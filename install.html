@@ -65,7 +65,7 @@
 
   <main class="main-col">
     <p class="eyebrow">行前準備</p>
-    <h1>8/19 之前，請先裝好這八項</h1>
+    <h1>8/19 之前，請先準備好這幾項</h1>
     <p class="lede">
       抓 40 分鐘就夠。<b>全部免費，不用付一毛錢。</b>
       當天上午三小時要動手做三樣東西，時間很緊，所以裝軟體這件事請務必在家裡先做完。
@@ -205,8 +205,10 @@
       </figure>
       <table class="kv">
         <tr><th><span class="en">Always Ask</span><br><b style="color:var(--accent,#10b981)">🌟 建議選這個</b></th>
-            <td>它每次產出檔案前先讓你看過。<br>
-                → 我們這門課就是在教「檢查 AI」，這一步等於幫你養成習慣。</td></tr>
+            <td>它在提出「工作計畫」「修改對照」這類文件時，會先停下來讓你看過再繼續。<br>
+                → 多一個看得到它在想什麼的機會。<br>
+                <b>⚠️ 但這不等於「每個檔案寫進去之前都會問你」</b>——它管的是那些給你看的說明文件，
+                不是所有的檔案動作。<b>真正的把關還是你自己看成品</b>。</td></tr>
         <tr><th><span class="en">Always Proceed</span></th>
             <td>做完就繼續，不等你看。熟了之後再換。</td></tr>
       </table>
@@ -256,8 +258,7 @@
             <td>多半已經內建。沒有的話，第一次用到時系統會自己跳出安裝提示，按同意就好。</td></tr>
       </table>
       <div class="warn">
-        學校配發的筆電如果鎖了安裝權限，先找資訊組開權限，或當天帶自己的筆電。
-        <b>真的裝不起來也沒關係</b>——這一項只影響最後那 10 分鐘的示範，前面三段動手完全不受影響。
+        學校配發的筆電如果鎖了安裝權限，先找資訊組開權限，或當天帶自己的筆電。<br><b>請務必試著裝</b>——8/19 最後一段會用到。真的裝不起來，當天提早 20 分鐘到，我們現場幫你看；前面三段動手不受影響，不會整個下午白來。
       </div>
       <p><b>怎麼驗收</b>：打開 Codex，貼這一句給它：</p>
       <div class="prompt">
@@ -266,7 +267,31 @@
       </div>
       <div class="pick"><b>怎麼算裝好</b>：它回你一串版本號（例如 <span class="en">git version 2.xx.x</span>）就對了。</div>
 
-      <h4 style="margin:1.1rem 0 .4rem">順便裝 <span class="en">GitHub Desktop</span>（有畫面的那個）</h4>
+      <h4 style="margin:1.1rem 0 .4rem">還要裝一個：<span class="en">GitHub CLI</span>（讓 AI 能自己開位置）</h4>
+      <p class="why" style="margin-bottom:.5rem">
+        剛才那個 Git 只會「把檔案送上去」，它<b>沒辦法在 GitHub 上開一個新位置</b>。
+        要讓 AI 一句話從頭做到尾，還需要這個工具。
+      </p>
+      <ol>
+        <li>到 <span class="en">cli.github.com</span> 下載安裝（Windows 一路 Next）</li>
+        <li>裝完<b>要登入一次</b>：在 Codex 裡貼下面這句</li>
+      </ol>
+      <div class="prompt">
+        <button class="copy" type="button">複製</button>
+        <pre>幫我跑 gh auth login，讓我登入 GitHub。
+過程中如果要我去瀏覽器貼一組代碼，把那組代碼清楚地告訴我。</pre>
+      </div>
+      <div class="warn">
+        <b>這一步會請你去瀏覽器貼一組八位數代碼，然後按「Authorize」。</b>
+        那是 GitHub 在確認「真的是你本人」，AI 沒辦法幫你按——<b>只有這一下要你自己來</b>，
+        之後就都交給它了。
+      </div>
+      <div class="pick">
+        <b>怎麼算裝好</b>：在 Codex 貼「<span class="en">幫我跑 gh auth status</span>」，
+        它回你「已登入」之類的訊息就成了。
+      </div>
+
+      <h4 style="margin:1.4rem 0 .4rem">最後一個（加分）：<span class="en">GitHub Desktop</span>（有畫面的那個）</h4>
       <p class="why" style="margin-bottom:.5rem">
         上面那個 Git 是給 AI 用的（它在背後跑指令）。
         <b>GitHub Desktop 是給你自己看的</b>——有畫面、有按鈕，可以看到「我改了哪些檔案」「上次是什麼時候傳的」。
@@ -276,9 +301,11 @@
         <li>用第 06 項的 GitHub 帳號登入</li>
       </ol>
       <div class="pick">
-        <b>為什麼兩個都要</b>：AI 幫你做事的時候用指令那個（快、不用你管）；
-        你想確認「它到底改了什麼、傳上去了沒」的時候，開 GitHub Desktop 看一眼就懂了。
-        <b>對不會電腦的人來說，看得到比看不到安心很多。</b>
+        <b>它跟前面兩個的關係</b>：Desktop 自己就能建 repo、提交、上傳，
+        <b>不是非得配合前面那兩個才能用</b>。<br>
+        我們仍然請你裝前面兩個，是因為<b>這門課要示範的是「AI 幫你做」</b>，
+        而 AI 是在終端機下指令，需要指令版的 Git 與 GitHub CLI。<br>
+        Desktop 的價值在<b>你自己看得見</b>：它改了哪些檔案、上次什麼時候傳的，一眼就懂。
       </div>
       <div class="warn">
         裝不起來也沒關係，這一項是<b>加分不是必要</b>——AI 用指令那個就能把事情做完。
@@ -328,7 +355,8 @@
         這個檢查習慣，就是 8/19 那天要教你的主要東西之一。
       </div>
 
-      <h3>八項總表</h3>
+      <h3>出門前對一次</h3>
+      <p class="small">前八項是這門課會用到的；07b 是加分的，沒有也能上課；最後兩條是提醒。</p>
       <ul class="checklist">
         <li><label><input type="checkbox"><span>01　ChatGPT 帳號可以登入</span></label></li>
         <li><label><input type="checkbox"><span>02　有一個個人 @gmail.com（不是學校帳號）</span></label></li>

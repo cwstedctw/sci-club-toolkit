@@ -94,20 +94,43 @@
       <section class="gate" id="g3">
         <header><span class="n">3</span><h2>提示詞卡</h2></header>
         <div class="body">
-          <p class="small">現場那四句，一鍵複製。第一句只需要用一次，之後每天用的其實只有第二、第三句。</p>
+          <div class="note">
+            <span class="label">前提：行前那三個工具要裝好</span>
+            <p>
+              這一關要 AI 幫你做事，它需要三樣東西：<span class="en">Git</span>（送檔案）、
+              <span class="en">GitHub CLI</span>（在 GitHub 上開新位置）、還有你已經<b>登入過一次</b>的 GitHub 帳號。
+              三樣都在 <a href="install.html">行前安裝</a> 那頁的第 06、07 項。<br>
+              <b>如果沒裝 GitHub CLI</b>，AI 會卡在「找不到那個位置」
+              （<span class="en">repository not found</span>）——因為單靠 Git 沒辦法憑空建出一個新的。
+            </p>
+          </div>
+
+          <p class="small" style="margin-top:1rem">位置開好之後，下面這三句才用得上。第一句只用一次，之後每天用的其實只有第二、第三句。</p>
           <div class="prompt">
             <header><span class="step">① 第一次放上去</span><button class="copy" type="button">複製</button></header>
-            <pre>幫我把這個資料夾放上我的 GitHub，開好 Pages，做完把網址給我。
-上傳前請先列出你要上傳哪些檔案讓我確認，我說可以你再動手。</pre>
+            <pre>幫我把 ⟨貼上你的資料夾路徑⟩ 這個資料夾放上我的 GitHub，
+建一個公開的 repo、開好 Pages，做完把網址給我。
+動手前先列出你要上傳哪些檔案讓我確認，我說可以你再開始。</pre>
             <dl>
               <dt>要什麼</dt><dd>一個可以打開的網址</dd>
-              <dt>AI 大概會回什麼</dt><dd>它會建立 repo、上傳檔案、開啟 Pages，最後給你一個網址</dd>
-              <dt>你要檢查什麼</dt><dd>把網址貼到手機上開一次；請注意 repo 要設 Public</dd>
+              <dt>AI 大概會回什麼</dt><dd>先列檔案清單等你確認，然後建 repo、上傳、開 Pages，最後給你網址</dd>
+              <dt>你要檢查什麼</dt><dd><b>清單裡有沒有出現任何人的資料</b>；有就喊停。網址拿到後用手機開一次</dd>
             </dl>
+          </div>
+          <div class="note">
+            <span class="label">如果 AI 開不了 Pages，你自己點也很快</span>
+            <p>
+              到你的 repo 頁面 → <span class="en">Settings</span> → 左邊選 <span class="en">Pages</span>
+              → <span class="en">Source</span> 選 <span class="en">Deploy from a branch</span>
+              → 分支選 <span class="en">main</span>（或 <span class="en">master</span>）、資料夾選 <span class="en">/ (root)</span> → <span class="en">Save</span>。<br>
+              開好之後<b>剛開會出現 404，官方說最多要等 10 分鐘</b>，先去做別的事再回來看。
+            </p>
           </div>
           <div class="prompt">
             <header><span class="step">② 之後每次改完</span><button class="copy" type="button">複製</button></header>
-            <pre>幫我把剛剛的修改更新上去</pre>
+            <pre>幫我把剛剛的修改更新上去。
+上傳前先列出這次要送上去的每一個檔案，還有每個檔案改了什麼，
+讓我確認過再動手。不要用「全部一起加」的方式。</pre>
             <dl>
               <dt>要什麼</dt><dd>網址上的內容跟著你的修改變新</dd>
               <dt>AI 大概會回什麼</dt><dd>它會 commit＋push，然後回報完成</dd>
@@ -143,12 +166,16 @@
             <li><strong>repo 設成 Private</strong> → 用免費方案時 Pages 開不了，要設成 Public。（付費方案可以用私人 repo 開 Pages，但我們用不到。）</li>
             <li><strong>首頁檔名不是 <code>index.html</code></strong> → 開出來多半是「404 找不到頁面」。首頁一定要叫 <code>index.html</code>。</li>
             <li><strong>Pages 剛開會先出現 404</strong> → 正常，要等。<b>官方說最多可能要 10 分鐘</b>，別急著砍掉重做。</li>
-            <li><strong>中文檔名在網址會變亂碼</strong> → 檔名一律英文，頁面才開得起來。</li>
+            <li><strong>中文檔名在網址會變成一長串亂碼（不一定開不了，但很難傳給別人）</strong> → 檔名一律英文，頁面才開得起來。</li>
           </ul>
           <div class="note bad">
             <span class="label">🚨 放上去就是公開的</span>
             <p>管理台裡如果有真實學生名單，<strong><b>另外開一個乾淨的資料夾</b>，只把「要給別人看的檔案」複製過去再上傳。<b>不要</b>拿原本那個工作資料夾按「載入練習用範例」就當作清乾淨了——真名可能還留在瀏覽器的暫存、你匯出過的備份檔、或資料夾裡你忘記的檔案</strong>。網址一旦公開，任何人都打得開，事後刪掉也可能已經被存下來。</p>
-            <p>會外傳的東西一律只放虛構名單。真名單留在你自己的電腦或學校雲端。</p><p style="margin-top:.6rem"><b>上傳前一定要先問 AI 這一句</b>（不要跳過）：</p><div class="prompt" style="margin:.5rem 0"><button class="copy" type="button">複製</button><pre>先不要上傳。請先列出你打算上傳的每一個檔案的完整清單，並且告訴我裡面有沒有出現任何人的姓名。我確認之後你再上傳。</pre></div><p style="font-size:.95rem">它列完你自己看一遍，有真名就停下來。<b>東西一旦推上去，就算你之後刪掉，紀錄裡還是留得住</b></p>
+            <p>會外傳的東西一律只放虛構名單。真名單留在你自己的電腦或學校雲端。</p><p style="margin-top:.6rem"><b>上傳前一定要先問 AI 這一句</b>（不要跳過）：</p><div class="prompt" style="margin:.5rem 0"><button class="copy" type="button">複製</button><pre>先不要上傳。請先做兩件事：
+一、列出你打算上傳的每一個檔案（含隱藏檔），一個一行。
+二、逐檔告訴我裡面有沒有出現這些東西：姓名、學號、班級座號、
+    電話、email、地址、生日、照片裡的人臉、家長資料。
+我確認之後你再上傳。</pre></div><p style="font-size:.95rem">它列完你自己看一遍，有真名就停下來。<b>東西一旦推上去，就算你之後刪掉，紀錄裡還是留得住</b></p>
           </div>
         </div>
       </section>

@@ -162,10 +162,6 @@
           <dt>你要檢查什麼</dt><dd>它有沒有真的打開你的檔案（問它「你看到的第一行是什麼」就知道）</dd>
         </dl>
       </div>
-
-      <footer class="site">
-        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
-      </footer>
     
     <h2 id="skill">教它一次，之後每次都照做</h2>
     <p>
@@ -174,24 +170,37 @@
       重講很累，而且你每次講得不太一樣，它做出來也就不一樣。
     </p>
     <p>
-      <b>解法很簡單：把你的規矩寫成一個檔案，放在同一個資料夾裡。</b>
-      之後只要說一句「照那份規則寫」就好。
+      <b>這兩個工具都有正式的做法：把你的規矩寫成一個檔案放在資料夾裡，它每次開工前自己會去讀。</b>
+      不是什麼進階功能，就是一個純文字檔——但<b>檔名不能亂取</b>，要用它認得的名字。
     </p>
 
+    <table class="tablewrap" style="width:100%;border-collapse:collapse;margin:.8rem 0">
+      <tr><th style="text-align:left;padding:.5rem;border:1px solid var(--line,#475569);width:30%">Codex</th>
+          <td style="padding:.5rem;border:1px solid var(--line,#475569)">
+            在你的資料夾裡建一個叫 <span class="en">AGENTS.md</span> 的檔（<b>就是這個名字，不能改</b>）。
+            Codex 每次開始工作前會自己讀，不用你提醒。</td></tr>
+      <tr><th style="text-align:left;padding:.5rem;border:1px solid var(--line,#475569)">Antigravity</th>
+          <td style="padding:.5rem;border:1px solid var(--line,#475569)">
+            官方的規則放在資料夾裡的 <span class="en">.agents/rules/</span> 底下（檔名隨你取，<span class="en">.md</span> 結尾）。
+            設定裡可以把它設成「一直生效」。<br>
+            <span class="muted small">嫌麻煩的話，先用下面那句提示詞叫它讀 <span class="en">AGENTS.md</span> 也可以，只是要每次講。</span></td></tr>
+    </table>
+
     <div class="note">
-      <span class="label">這不是什麼特殊功能</span>
+      <span class="label">存檔的時候，記事本很會坑人</span>
       <p>
-        就只是一個純文字檔。Codex 和 Antigravity 都讀得到，你自己也打得開。
-        不用學任何新東西——<b>你已經會的「開一個記事本打字」就夠了</b>。
+        <b>一、存的位置</b>要選你跟 AI 共用的那個資料夾（例如桌面的 <span class="en">club2026</span>），
+        不要按預設存到「文件」——存錯地方它就讀不到。<br>
+        <b>二、存檔類型要選「所有檔案」</b>，檔名打 <span class="en">AGENTS.md</span>。
+        如果不改存檔類型，記事本會自動加上 <span class="en">.txt</span>，變成
+        <span class="en">AGENTS.md.txt</span>，那它就不認得了。
       </p>
     </div>
 
-    <h3>示範：一份「不要有 AI 味」的規則</h3>
-    <p>
-      我們自己就在用一份，專門把 AI 寫的中文改成台灣人講話的樣子。裡面長這樣：
-    </p>
+    <h3>裡面寫什麼：一份「不要有 AI 味」的規則</h3>
+    <p>我們自己就在用一份，專門把 AI 寫的中文改成台灣人講話的樣子。可以直接抄走改：</p>
     <div class="prompt">
-      <header><span class="step">檔名</span><span>我的寫作規則.md</span></header>
+      <header><span class="step">檔名</span><span>AGENTS.md</span></header>
       <button class="copy" type="button">複製</button>
       <pre>寫給家長和學生看的東西，請照這些規則：
 
@@ -213,26 +222,30 @@
 學生說明：三到六年級看得懂，專有名詞第一次出現要解釋</pre>
     </div>
 
-    <h3>怎麼用</h3>
+    <h3>用的時候</h3>
+    <p>Codex 會自己讀，直接交代任務就好。Antigravity 還沒設定規則的話，加一句：</p>
     <div class="prompt">
-      <header><span class="step">用的時候</span><span>加一句話就好</span></header>
+      <header><span class="step">提示詞</span><span>加一句話</span></header>
       <button class="copy" type="button">複製</button>
       <pre>請幫我寫一份〈社團招生說明〉給家長看。
-寫之前先讀資料夾裡的「我的寫作規則.md」，照那份的規則寫。
-寫完告訴我你套用了哪幾條。</pre>
+寫之前先讀資料夾裡的 AGENTS.md，照那份的規則寫。
+寫完把你套用了哪幾條列出來，並且把你「沒有照做的地方」也一起講。</pre>
     </div>
-    <p>
-      最後那句「告訴我你套用了哪幾條」很重要——<b>它會逼 AI 真的去讀那份檔</b>，
-      而不是嘴上說有照做。這跟第 3 步「回頭檢查」是同一個道理。
-    </p>
+    <div class="note">
+      <span class="label">為什麼最後要它講「沒照做的地方」</span>
+      <p>
+        叫它列「套用了哪幾條」，它可能只是照你的話重講一遍——<b>這不能證明它真的讀過那份檔</b>。
+        多問一句「哪裡沒照做」比較有機會問出真話，因為那要它真的比對過才答得出來。<br>
+        不過說到底，<b>還是要你自己看成品</b>。這跟第 3 步「回頭檢查」是同一件事。
+      </p>
+    </div>
 
     <div class="note ok">
       <span class="label">為什麼社團老師特別需要這個</span>
       <p>
         你這一年要生的東西，有一半是<b>寫給人看的</b>：給家長的通知、給學生的說明、
         期末交給基金會的成果報告。這些東西一旦有 AI 腔，看的人一眼就知道。<br>
-        而且你只要寫一次規則，<b>之後整年都在用</b>——這正是這個網站的核心想法：
-        做一次，重複用。
+        而且你只要寫一次規則，<b>之後整年都在用</b>——這正是這個網站的核心想法：做一次，重複用。
       </p>
     </div>
 
@@ -241,10 +254,15 @@
       <p>
         同樣的做法可以拿來固定任何重複的要求——
         表格的欄位順序、檔名怎麼取、日期格式、每次都要附的欄位。
-        寫成檔案放著，AI 每次都照做，你不用再記。
+        寫成檔案放著，它每次都照做，你不用再記。
       </p>
     </div>
 
+
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
   </main>
   </div>
 </div>
