@@ -128,7 +128,7 @@
       <p class="why">這是「隊員」。負責真的把檔案做出來。</p>
       <ol>
         <li><b>只從 <span class="en">antigravity.google/download</span> 下載</b></li>
-        <li>頁面上有四樣東西，請選 <b>Antigravity 2.0（桌面版）</b>——不是 IDE、不是 CLI、不是 SDK</li>
+        <li>頁面上有四樣東西，請選 <b>Antigravity 2.0（桌面版）</b>。<br><span class="muted" style="font-size:.92rem">另外三樣寫著 IDE、CLI、SDK，那是給工程師用的版本，名字看起來很像但不是我們要的。<b>按錯只是下載到用不到的軟體，不會弄壞電腦</b>，刪掉重下就好。</span></li>
         <li>用 02 的個人 Gmail 登入</li>
       </ol>
       <div class="stop">
@@ -156,9 +156,9 @@
       <table class="kv">
         <tr><th><span class="en">Security Preset</span><br>安全等級</th>
             <td>
-              預設是 <span class="en">Default</span>：AI 只能碰你指定的工作資料夾，而且<b>每一個電腦指令都要你手動按同意</b>。<br>
-              <b>建議改成 <span class="en">Full machine</span></b>：指令一樣會問你，但 AI 可以讀寫電腦上的檔案，做事順很多。<br>
-              <span class="en">Turbo mode</span> 是完全不問你就動手 —— <b>不建議</b>，你會不知道它做了什麼。
+              預設是 <span class="en">Default</span>：AI 只能碰你指定的資料夾，而且它每要做一個動作（例如安裝東西、把檔案傳上網）都會停下來問你一次。<br>
+              <b>建議改成 <span class="en">Full machine</span></b>：它要動手時<b>還是會問你</b>，但可以讀寫你電腦上的檔案，做起事來順很多。<br><span class="muted" style="font-size:.92rem">名字聽起來像「整台電腦交出去」，其實不是——真正危險的是下面那個 Turbo mode。</span><br>
+              <span class="en">Turbo mode</span> 是<b>完全不問你就動手</b>——不要選。你會不知道它對你的電腦做了什麼。
             </td></tr>
         <tr><th><span class="en">Artifact Review Policy</span><br>產出審核</th>
             <td>
@@ -227,6 +227,16 @@
         另外<b>別放在桌面的雲端同步資料夾裡</b>（OneDrive、Google 雲端硬碟那種），同步會跟 AI 搶檔案。
       </div>
       <div class="pick"><b>怎麼算裝好</b>：兩個 AI 印出來的資料夾路徑一模一樣。</div>
+
+      <div class="warn" style="margin-top:.9rem">
+        <b>「資料夾路徑」是什麼？怎麼複製給 AI？</b><br>
+        後面每一關的提示詞都會叫你「貼上你的資料夾路徑」。那不是資料夾的名字，
+        而是像 <span class="en">C:\Users\你的名字\Desktop\club2026</span> 這樣一整串。<br>
+        <b>怎麼拿到它</b>：打開檔案總管、進到那個資料夾，
+        <b>在上面那條網址列點一下</b>（原本顯示「本機 &gt; 桌面 &gt; club2026」的地方），
+        它會變成一整串文字，這時候按 <span class="en">Ctrl+A</span> 全選、<span class="en">Ctrl+C</span> 複製，就能貼給 AI 了。<br>
+        <span class="muted" style="font-size:.92rem">更快的方法：<b>直接把資料夾拖進 AI 的視窗裡</b>，兩個工具都吃這一招，不用打任何字。</span>
+      </div>
     </section>
 
     <!-- 自我檢查 -->

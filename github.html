@@ -97,7 +97,8 @@
           <p class="small">現場那四句，一鍵複製。第一句只需要用一次，之後每天用的其實只有第二、第三句。</p>
           <div class="prompt">
             <header><span class="step">① 第一次放上去</span><button class="copy" type="button">複製</button></header>
-            <pre>幫我把這個資料夾放上我的 GitHub，開好 Pages，做完把網址給我</pre>
+            <pre>幫我把這個資料夾放上我的 GitHub，開好 Pages，做完把網址給我。
+上傳前請先列出你要上傳哪些檔案讓我確認，我說可以你再動手。</pre>
             <dl>
               <dt>要什麼</dt><dd>一個可以打開的網址</dd>
               <dt>AI 大概會回什麼</dt><dd>它會建立 repo、上傳檔案、開啟 Pages，最後給你一個網址</dd>
@@ -110,12 +111,13 @@
             <dl>
               <dt>要什麼</dt><dd>網址上的內容跟著你的修改變新</dd>
               <dt>AI 大概會回什麼</dt><dd>它會 commit＋push，然後回報完成</dd>
-              <dt>你要檢查什麼</dt><dd>重新整理那個網址，改的那行字有變嗎（可能要等一兩分鐘）</dd>
+              <dt>你要檢查什麼</dt><dd>重新整理那個網址，改的那行字有變嗎（要等，有時候要幾分鐘才會換過去）</dd>
             </dl>
           </div>
           <div class="prompt">
             <header><span class="step">③ 換另一台電腦時</span><button class="copy" type="button">複製</button></header>
-            <pre>我在另一台電腦，幫我把最新的抓下來</pre>
+            <pre>我在另一台電腦，幫我把 GitHub 上那份最新的抓下來。
+如果這台電腦上已經有我改到一半的東西，先告訴我，不要直接蓋掉。</pre>
             <dl>
               <dt>要什麼</dt><dd>這台電腦拿到最新的那一份</dd>
               <dt>AI 大概會回什麼</dt><dd>它會把檔案下載更新到你指定的資料夾</dd>
@@ -138,15 +140,15 @@
         <div class="body">
           <ul>
             <li><strong>第一次 push 要登入授權，瀏覽器會自己跳出來</strong> → 正常，照著按就好。</li>
-            <li><strong>repo 設成 Private</strong> → Pages 開不了（免費方案）。設成 Public。</li>
-            <li><strong>首頁檔名不是 <code>index.html</code></strong> → 開出來會是一排檔案列表，不是網頁。首頁一定叫 <code>index.html</code>。</li>
-            <li><strong>Pages 剛開會先出現 404</strong> → 等一兩分鐘再重新整理，正常。</li>
+            <li><strong>repo 設成 Private</strong> → 用免費方案時 Pages 開不了，要設成 Public。（付費方案可以用私人 repo 開 Pages，但我們用不到。）</li>
+            <li><strong>首頁檔名不是 <code>index.html</code></strong> → 開出來多半是「404 找不到頁面」。首頁一定要叫 <code>index.html</code>。</li>
+            <li><strong>Pages 剛開會先出現 404</strong> → 正常，要等。<b>官方說最多可能要 10 分鐘</b>，別急著砍掉重做。</li>
             <li><strong>中文檔名在網址會變亂碼</strong> → 檔名一律英文，頁面才開得起來。</li>
           </ul>
           <div class="note bad">
             <span class="label">🚨 放上去就是公開的</span>
-            <p>管理台裡如果有真實學生名單，<strong>先按「載入練習用範例」把資料清乾淨再上傳</strong>。網址一旦公開，任何人都打得開，事後刪掉也可能已經被存下來。</p>
-            <p>會外傳的東西一律只放虛構名單。真名單留在你自己的電腦或學校雲端。</p>
+            <p>管理台裡如果有真實學生名單，<strong><b>另外開一個乾淨的資料夾</b>，只把「要給別人看的檔案」複製過去再上傳。<b>不要</b>拿原本那個工作資料夾按「載入練習用範例」就當作清乾淨了——真名可能還留在瀏覽器的暫存、你匯出過的備份檔、或資料夾裡你忘記的檔案</strong>。網址一旦公開，任何人都打得開，事後刪掉也可能已經被存下來。</p>
+            <p>會外傳的東西一律只放虛構名單。真名單留在你自己的電腦或學校雲端。</p><p style="margin-top:.6rem"><b>上傳前一定要先問 AI 這一句</b>（不要跳過）：</p><div class="prompt" style="margin:.5rem 0"><button class="copy" type="button">複製</button><pre>先不要上傳。請先列出你打算上傳的每一個檔案的完整清單，並且告訴我裡面有沒有出現任何人的姓名。我確認之後你再上傳。</pre></div><p style="font-size:.95rem">它列完你自己看一遍，有真名就停下來。<b>東西一旦推上去，就算你之後刪掉，紀錄裡還是留得住</b></p>
           </div>
         </div>
       </section>
