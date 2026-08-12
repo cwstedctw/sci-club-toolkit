@@ -149,30 +149,70 @@
     <section class="inst" id="a5">
       <h3><span class="no">05</span> Antigravity 裝好之後，要調的設定</h3>
       <p class="why">
-        它預設的安全等級很嚴，會讓 AI 在幫你做事時一直停下來問你。
+        它出廠的安全等級最嚴，AI 每要做一個動作都會停下來問你。
         先調好，當天才不會每三十秒被打斷一次。
       </p>
-      <p>設定畫面是英文的。下面是對照表，照著選就好：</p>
+
+      <p><b>設定在哪裡</b>：視窗<b>左下角</b>的 <span class="en">Settings</span>（齒輪圖示），
+      或直接按 <span class="en">Ctrl + ,</span>（逗號）。</p>
+      <figure style="margin:.8rem 0">
+        <img src="img/ag-main.png" alt="Antigravity 主畫面，左下角是 Settings" style="width:100%;max-width:620px;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">主畫面。左下角那個齒輪 <span class="en">Settings</span> 就是入口。</figcaption>
+      </figure>
+
+      <p>點進去之後選左邊的 <span class="en">General</span>，往下找 <span class="en">Agent Settings</span>：</p>
+      <figure style="margin:.8rem 0">
+        <img src="img/ag-settings.png" alt="Antigravity 設定的 General 頁面" style="width:100%;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+      </figure>
+
+      <h4 style="margin:1.2rem 0 .4rem">要改的第一個：<span class="en">Security Preset</span>（安全等級）</h4>
+      <figure style="margin:.6rem 0">
+        <img src="img/ag-security-preset.png" alt="Security Preset 的四個選項展開" style="width:100%;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">點右邊那個下拉，會看到四個選項。</figcaption>
+      </figure>
       <table class="kv">
-        <tr><th><span class="en">Security Preset</span><br>安全等級</th>
-            <td>
-              預設是 <span class="en">Default</span>：AI 只能碰你指定的資料夾，而且它每要做一個動作（例如安裝東西、把檔案傳上網）都會停下來問你一次。<br>
-              <b>建議改成 <span class="en">Full machine</span></b>：它要動手時<b>還是會問你</b>，但可以讀寫你電腦上的檔案，做起事來順很多。<br><span class="muted" style="font-size:.92rem">名字聽起來像「整台電腦交出去」，其實不是——真正危險的是下面那個 Turbo mode。</span><br>
-              <span class="en">Turbo mode</span> 是<b>完全不問你就動手</b>——不要選。你會不知道它對你的電腦做了什麼。
-            </td></tr>
-        <tr><th><span class="en">Artifact Review Policy</span><br>產出審核</th>
-            <td>
-              <b>建議選 <span class="en">Always Ask</span></b>：它每次產出檔案前會先讓你看過。
-              對新手來說這一步很重要 —— 我們的課就是在教「檢查 AI」。
-            </td></tr>
+        <tr><th><span class="en">Default</span><br><span class="muted" style="font-weight:400">剛裝好就是這個</span></th>
+            <td>官方寫：工作資料夾以外的檔案存取、以及<b>所有</b>終端機指令，都要人工審核。<br>
+                → 最安全，但它會一直問你，做起事來很慢。</td></tr>
+        <tr><th><span class="en">Full machine</span><br><b style="color:var(--accent,#10b981)">🌟 建議選這個</b></th>
+            <td>官方寫：所有終端機指令<b>仍然要審核</b>，但 AI 可以讀寫這台電腦上的任何檔案。<br>
+                → 名字聽起來像「整台電腦交出去」，其實<b>要動手時還是會問你</b>，只是不必為了每個檔案再確認一次。</td></tr>
+        <tr><th><span class="en">Turbo mode</span></th>
+            <td>官方寫：<b>關閉所有安全屏障</b>，換取最快的速度。<br>
+                → <b>不要選。</b>你會不知道它對你的電腦做了什麼。</td></tr>
+        <tr><th><span class="en">Custom</span></th>
+            <td>自己一項一項設。新手用不到。</td></tr>
       </table>
+
+      <h4 style="margin:1.2rem 0 .4rem">要改的第二個：<span class="en">Artifact Review Policy</span>（產出審核）</h4>
+      <figure style="margin:.6rem 0">
+        <img src="img/ag-artifact-review.png" alt="Artifact Review Policy 的兩個選項" style="width:100%;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+      </figure>
+      <table class="kv">
+        <tr><th><span class="en">Always Ask</span><br><b style="color:var(--accent,#10b981)">🌟 建議選這個</b></th>
+            <td>它每次產出檔案前先讓你看過。<br>
+                → 我們這門課就是在教「檢查 AI」，這一步等於幫你養成習慣。</td></tr>
+        <tr><th><span class="en">Always Proceed</span></th>
+            <td>做完就繼續，不等你看。熟了之後再換。</td></tr>
+      </table>
+
       <div class="warn">
-        <b>這一段是依奕鈞老師的公開教學整理的，我們還沒有在自己的機器上逐項驗過。</b>
-        如果你打開設定畫面看到的選項跟這裡寫的不一樣，以你畫面上的為準，並且告訴我們一聲，我們會更正這一頁。<br>
-        奕鈞老師那份寫得非常詳細（每個選單都有實機截圖），想看完整版請直接看他的原始頁面：
-        <a href="https://ijun-ai.com/study/Antigravity01" target="_blank" rel="noopener noreferrer">Google Antigravity 系統設定全攻略</a>。
+        <b>一個小陷阱：下拉選單按 Esc 關不掉。</b>
+        我們自己測的時候就是這樣誤選到別的選項。
+        要取消的話，<b>把選單捲到原本那一項再點一次</b>，或點選單以外的空白處，不要按 Esc 就走。
       </div>
-      <div class="pick"><b>為什麼要管這個</b>：8/19 有一段要示範「請 AI 幫你把檔案放上網路」。那需要它跑電腦指令，設定太嚴的話會一直卡住。</div>
+
+      <div class="pick">
+        <b>為什麼要管這個</b>：8/19 有一段要示範「請 AI 幫你把檔案放上網路」。
+        那需要它跑電腦指令，設定太嚴會一直卡住、太鬆你又不知道它做了什麼。
+      </div>
+
+      <p class="muted" style="font-size:.9rem;margin-top:.8rem">
+        上面的截圖與英文原文是 2026/8/12 在我們自己的 Windows 機器上拍的（Antigravity 桌面版）。
+        這兩個選項的完整說明，奕鈞老師整理得非常詳細，想看每個選單逐項對照可以看他的
+        <a href="https://ijun-ai.com/study/Antigravity01" target="_blank" rel="noopener noreferrer">Google Antigravity 系統設定全攻略</a>。
+        <b>如果你打開看到的跟這裡不一樣，以你畫面上的為準</b>，並跟我們說一聲，這頁會更新。
+      </p>
     </section>
 
     <!-- 06 -->
