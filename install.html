@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>行前安裝｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .inst{border:1px solid var(--line,#475569);border-radius:10px;padding:1.1rem 1.2rem;margin:0 0 1.1rem}
+  .inst > h3{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .5rem;font-size:1.15rem}
+  .inst > h3 .no{font-family:ui-monospace,Consolas,monospace;font-size:.95rem;color:var(--accent,#10b981);
+    border:1px solid currentColor;border-radius:4px;padding:0 .4rem;flex:0 0 auto}
+  .inst .why{color:var(--muted,#94a3b8);margin:0 0 .7rem}
+  .inst ol,.inst ul{margin:.4rem 0 .7rem;padding-left:1.4rem}
+  .inst li{margin:.3rem 0}
+  .pick{border-left:3px solid var(--accent,#10b981);padding:.5rem .8rem;margin:.5rem 0;background:rgba(16,185,129,.07)}
+  .pick b{color:var(--accent,#10b981)}
+  .warn{border-left:3px solid #f59e0b;padding:.5rem .8rem;margin:.5rem 0;background:rgba(245,158,11,.08)}
+  .stop{border-left:3px solid #ef4444;padding:.5rem .8rem;margin:.5rem 0;background:rgba(239,68,68,.08)}
+  .kv{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.95rem}
+  .kv th,.kv td{border:1px solid var(--line,#475569);padding:.45rem .6rem;text-align:left;vertical-align:top}
+  .kv th{width:32%;font-weight:600;color:var(--muted,#94a3b8)}
+  .en{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+  .bigdone{font-size:1.15rem;font-weight:700;color:var(--accent,#10b981);margin:.6rem 0}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="shell">
+  <aside class="sidebar">
+    <h2>這頁有什麼</h2>
+    <ol>
+      <li><a href="#a1">01 ChatGPT 帳號</a></li>
+      <li><a href="#a2">02 個人 Gmail</a></li>
+      <li><a href="#a3">03 ChatGPT 桌面版（Codex）</a></li>
+      <li><a href="#a4">04 Antigravity 2.0</a></li>
+      <li><a href="#a5">05 裝好之後要調的設定</a></li>
+      <li><a href="#a6">06 GitHub 帳號</a></li>
+      <li><a href="#a7">07 Git</a></li>
+      <li><a href="#a8">08 教材包與資料夾</a></li>
+      <li><a href="#check">最後：自我檢查</a></li>
+      <li><a href="#stuck">卡住怎麼辦</a></li>
+    </ol>
+  </aside>
+
+  <main class="main-col">
+    <p class="eyebrow">行前準備</p>
+    <h1>8/19 之前，請先裝好這八項</h1>
+    <p class="lede">
+      抓 40 分鐘就夠。<b>全部免費，不用付一毛錢。</b>
+      當天上午三小時要動手做三樣東西，時間很緊，所以裝軟體這件事請務必在家裡先做完。
+    </p>
+
+    <div class="note info">
+      <b>裝不起來也請照樣來。</b>
+      現場有做好的範例檔可以直接用，也有人可以幫你看。最怕的是因為裝不起來就不來——那才真的什麼都帶不走。
+    </div>
+
+    <div class="stop">
+      <b>只有一件事現在就要記住：請用你的個人 Gmail，不要用學校配的帳號。</b>
+      學校的 Google 帳號常常登不進 Antigravity，這是官方說明寫的，不是我們設定錯。
+    </div>
+
+    <!-- 01 -->
+    <section class="inst" id="a1">
+      <h3><span class="no">01</span> ChatGPT 帳號</h3>
+      <p class="why">要用它裡面的 Codex。<b>免費方案就夠</b>，不必升級付費。</p>
+      <ol>
+        <li>到 <span class="en">chatgpt.com</span> 註冊（有帳號就跳過）</li>
+        <li>用瀏覽器登入一次，確認進得去</li>
+      </ol>
+      <div class="pick"><b>怎麼算裝好</b>：瀏覽器打得開 chatgpt.com，而且看得到自己的名字。</div>
+    </section>
+
+    <!-- 02 -->
+    <section class="inst" id="a2">
+      <h3><span class="no">02</span> 個人 Gmail（@gmail.com）</h3>
+      <p class="why">Antigravity 要用它登入。這是整份清單裡最常出問題的一項。</p>
+      <div class="stop">
+        <b>不要用學校配的 Google 帳號</b>（那種 @xxx.edu.tw 的）。
+        官方說明寫得很清楚：機構帳號常常登不進去。沒有個人 Gmail 就先申請一個，免費、三分鐘。
+      </div>
+      <ul>
+        <li>年齡要滿 18 歲並通過驗證，這是 Google 的規定</li>
+      </ul>
+      <div class="pick"><b>怎麼算裝好</b>：你手上有一個 <span class="en">@gmail.com</span> 結尾的帳號，而且記得密碼。</div>
+    </section>
+
+    <!-- 03 -->
+    <section class="inst" id="a3">
+      <h3><span class="no">03</span> ChatGPT 桌面版 → 切到 Codex</h3>
+      <p class="why">這是「領隊」。負責想清楚要做什麼、以及回頭幫你檢查有沒有做錯。</p>
+      <ol>
+        <li>到 <span class="en">chatgpt.com/download</span> 下載安裝</li>
+        <li>用 01 的帳號登入</li>
+        <li><b>左上角的切換器切到 Codex</b>（不是一般聊天模式）</li>
+      </ol>
+      <div class="warn">
+        <b>別去搜尋「Codex」下載獨立軟體。</b>
+        2026 年 7 月起它已經併進 ChatGPT app 裡了，網路上搜到的多半是過期教學，也有假冒的下載站。
+      </div>
+      <div class="pick"><b>怎麼算裝好</b>：切到 Codex 之後，它可以「打開一個資料夾」。看得到這個功能就對了。</div>
+    </section>
+
+    <!-- 04 -->
+    <section class="inst" id="a4">
+      <h3><span class="no">04</span> Antigravity 2.0（桌面版）</h3>
+      <p class="why">這是「隊員」。負責真的把檔案做出來。</p>
+      <ol>
+        <li><b>只從 <span class="en">antigravity.google/download</span> 下載</b></li>
+        <li>頁面上有四樣東西，請選 <b>Antigravity 2.0（桌面版）</b>——不是 IDE、不是 CLI、不是 SDK</li>
+        <li>用 02 的個人 Gmail 登入</li>
+      </ol>
+      <div class="stop">
+        <b>有假冒的下載站會偷帳號。</b>網址請自己打，不要點來路不明的連結。
+      </div>
+      <table class="kv">
+        <tr><th>Windows</th><td>10 以上、64 位元</td></tr>
+        <tr><th>Mac</th><td>macOS 12 以上，而且<b>只支援 Apple Silicon</b>（M1 之後的機型）。舊的 Intel Mac 不行 —— 這種情況請當天帶學校筆電或跟旁邊的老師併桌</td></tr>
+      </table>
+      <div class="warn">
+        <b>裝好之後先別玩。</b>它的免費額度是<b>一週給一次</b>，用完要等一週。
+        請把額度留給 8/19 那天動手的兩段。
+      </div>
+      <div class="pick"><b>怎麼算裝好</b>：登入成功，而且開得起跟 Codex 同一個資料夾。</div>
+    </section>
+
+    <!-- 05 -->
+    <section class="inst" id="a5">
+      <h3><span class="no">05</span> Antigravity 裝好之後，要調的設定</h3>
+      <p class="why">
+        它預設的安全等級很嚴，會讓 AI 在幫你做事時一直停下來問你。
+        先調好，當天才不會每三十秒被打斷一次。
+      </p>
+      <p>設定畫面是英文的。下面是對照表，照著選就好：</p>
+      <table class="kv">
+        <tr><th><span class="en">Security Preset</span><br>安全等級</th>
+            <td>
+              預設是 <span class="en">Default</span>：AI 只能碰你指定的工作資料夾，而且<b>每一個電腦指令都要你手動按同意</b>。<br>
+              <b>建議改成 <span class="en">Full machine</span></b>：指令一樣會問你，但 AI 可以讀寫電腦上的檔案，做事順很多。<br>
+              <span class="en">Turbo mode</span> 是完全不問你就動手 —— <b>不建議</b>，你會不知道它做了什麼。
+            </td></tr>
+        <tr><th><span class="en">Artifact Review Policy</span><br>產出審核</th>
+            <td>
+              <b>建議選 <span class="en">Always Ask</span></b>：它每次產出檔案前會先讓你看過。
+              對新手來說這一步很重要 —— 我們的課就是在教「檢查 AI」。
+            </td></tr>
+      </table>
+      <div class="warn">
+        <b>這一段是依奕鈞老師的公開教學整理的，我們還沒有在自己的機器上逐項驗過。</b>
+        如果你打開設定畫面看到的選項跟這裡寫的不一樣，以你畫面上的為準，並且告訴我們一聲，我們會更正這一頁。<br>
+        奕鈞老師那份寫得非常詳細（每個選單都有實機截圖），想看完整版請直接看他的原始頁面：
+        <a href="https://ijun-ai.com/study/Antigravity01" target="_blank" rel="noopener noreferrer">Google Antigravity 系統設定全攻略</a>。
+      </div>
+      <div class="pick"><b>為什麼要管這個</b>：8/19 有一段要示範「請 AI 幫你把檔案放上網路」。那需要它跑電腦指令，設定太嚴的話會一直卡住。</div>
+    </section>
+
+    <!-- 06 -->
+    <section class="inst" id="a6">
+      <h3><span class="no">06</span> GitHub 帳號</h3>
+      <p class="why">
+        為了讓你做好的東西變成一個<b>網址</b>。校長要看、家長要看、明年接手的老師要看，傳一個連結就好，不用一直寄檔案。
+      </p>
+      <ol>
+        <li>到 <span class="en">github.com</span> 註冊，免費</li>
+        <li>用 02 的個人 Gmail 註冊，跟 Antigravity 同一個比較好記</li>
+        <li>信箱會收到一封驗證信，點一下就完成</li>
+      </ol>
+      <div class="pick"><b>怎麼算裝好</b>：瀏覽器登入 github.com，右上角看得到自己的頭像。</div>
+    </section>
+
+    <!-- 07 -->
+    <section class="inst" id="a7">
+      <h3><span class="no">07</span> Git</h3>
+      <p class="why">上一項是「網路上的地方」，這一項是「把東西送上去的工具」。你不用學它，交給 AI 用。</p>
+      <table class="kv">
+        <tr><th>Windows</th>
+            <td>到 <span class="en">git-scm.com</span> 下載，安裝時<b>一路按 Next 就好</b>，那些選項不用看懂。<br>
+                <b>其中一步請選 <span class="en">Install for me only</span></b> —— 這樣就不需要管理員權限，學校的筆電也裝得起來。</td></tr>
+        <tr><th>Mac</th>
+            <td>多半已經內建。沒有的話，第一次用到時系統會自己跳出安裝提示，按同意就好。</td></tr>
+      </table>
+      <div class="warn">
+        學校配發的筆電如果鎖了安裝權限，先找資訊組開權限，或當天帶自己的筆電。
+        <b>真的裝不起來也沒關係</b>——這一項只影響最後那 10 分鐘的示範，前面三段動手完全不受影響。
+      </div>
+      <p><b>怎麼驗收</b>：打開 Codex，貼這一句給它：</p>
+      <div class="prompt">
+        <button class="copy" type="button">複製</button>
+        <pre>幫我確認這台電腦的 git 裝好了沒，跑一次 git --version 把結果給我</pre>
+      </div>
+      <div class="pick"><b>怎麼算裝好</b>：它回你一串版本號（例如 <span class="en">git version 2.xx.x</span>）就對了。</div>
+    </section>
+
+    <!-- 08 -->
+    <section class="inst" id="a8">
+      <h3><span class="no">08</span> 教材包與一個資料夾</h3>
+      <p class="why">兩個 AI 要看同一個資料夾，才有辦法接力。</p>
+      <ol>
+        <li>下載行前信裡的教材包 ZIP，右鍵解壓縮（Windows 和 Mac 都內建，不用另外裝軟體）</li>
+        <li>在桌面開一個資料夾，<b>名字用英文</b>，例如 <span class="en">club2026</span></li>
+        <li>裡面先放兩份檔案：你的<b>社團計畫書</b>、基金會的<b>成果報告書範本</b></li>
+        <li>Codex 和 Antigravity <b>都打開這一個資料夾</b></li>
+      </ol>
+      <div class="warn">
+        <b>資料夾和檔名都用英文或數字。</b>中文檔名在後面幾關會出問題（網址會變成一串亂碼）。<br>
+        另外<b>別放在桌面的雲端同步資料夾裡</b>（OneDrive、Google 雲端硬碟那種），同步會跟 AI 搶檔案。
+      </div>
+      <div class="pick"><b>怎麼算裝好</b>：兩個 AI 印出來的資料夾路徑一模一樣。</div>
+    </section>
+
+    <!-- 自我檢查 -->
+    <section class="card" id="check">
+      <h2>最後：花 3 分鐘自我檢查</h2>
+      <p>在 Codex 貼這一句，它會告訴你有沒有真的讀到你的檔案：</p>
+      <div class="prompt">
+        <button class="copy" type="button">複製</button>
+        <pre>請列出我這個資料夾裡所有檔案的檔名，一個一行。
+然後告訴我我的計畫書第一頁的標題是什麼。
+如果你打不開這個資料夾，直接說打不開，不要猜。</pre>
+      </div>
+      <div class="note">
+        <b>為什麼要問「第一頁的標題」？</b>
+        因為 AI 有時候會裝作讀過、其實是編的。標題只要有一個字對不上，它就是在編——
+        這個檢查習慣，就是 8/19 那天要教你的主要東西之一。
+      </div>
+
+      <h3>八項總表</h3>
+      <ul class="checklist">
+        <li><label><input type="checkbox"><span>01　ChatGPT 帳號可以登入</span></label></li>
+        <li><label><input type="checkbox"><span>02　有一個個人 @gmail.com（不是學校帳號）</span></label></li>
+        <li><label><input type="checkbox"><span>03　ChatGPT 桌面版裝好，而且切得到 Codex</span></label></li>
+        <li><label><input type="checkbox"><span>04　Antigravity 2.0 裝好、用個人 Gmail 登入成功</span></label></li>
+        <li><label><input type="checkbox"><span>05　Antigravity 的安全等級與產出審核已經調過</span></label></li>
+        <li><label><input type="checkbox"><span>06　GitHub 帳號註冊完成、驗證信點過</span></label></li>
+        <li><label><input type="checkbox"><span>07　git --version 問得到版本號</span></label></li>
+        <li><label><input type="checkbox"><span>08　英文名字的資料夾開好，兩個 AI 印出的路徑一樣</span></label></li>
+        <li><label><input type="checkbox"><span>額外：在<b>學校教室的網路</b>登入過一次（家裡通不代表教室通）</span></label></li>
+        <li><label><input type="checkbox"><span>額外：兩邊的免費額度都還沒用掉，留給 8/19</span></label></li>
+      </ul>
+      <p class="done-count bigdone">已完成 0 / 10 項</p>
+      <p class="muted small">勾選狀態存在你自己的瀏覽器裡，換一台電腦就要重勾。</p>
+    </section>
+
+    <!-- 卡住 -->
+    <section class="card" id="stuck">
+      <h2>卡住怎麼辦</h2>
+      <p><b>標準解法只有一句話：把畫面上的錯誤訊息，整段複製貼給你的 AI。</b></p>
+      <div class="prompt">
+        <button class="copy" type="button">複製</button>
+        <pre>我在裝軟體的時候卡住了，這是畫面上的錯誤訊息：
+
+⟨在這裡整段貼上⟩
+
+請用我聽得懂的話告訴我這是什麼意思，然後給我下一步該做什麼。</pre>
+      </div>
+      <div class="note info">
+        這不是「偷懶」，這就是這門課要教的能力本身。
+        遇到不會的技術問題、把錯誤訊息交給 AI 處理——這是這幾年最值得學會的一件事。
+      </div>
+      <p>還是不行的話：</p>
+      <ul>
+        <li>當天提早 20 分鐘到，現場有人幫你看</li>
+        <li>真的裝不起來，現場有做好的範例檔可以直接用，一樣做得完三樣東西</li>
+      </ul>
+    </section>
+  </main>
+</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

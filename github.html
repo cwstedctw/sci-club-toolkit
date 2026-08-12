@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關 6：交出去（放上 GitHub 變成網址）｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="sidebar">
+      <h2>這頁有什麼</h2>
+      <ol>
+        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g2">2 官方要求</a></li>
+        <li><a href="#g3">3 提示詞卡</a></li>
+        <li><a href="#g4">4 新手會卡在哪</a></li>
+        <li><a href="#g5">5 驗收清單</a></li>
+      </ol>
+    </aside>
+    <main>
+      <p class="eyebrow">關 6</p>
+      <h1>交出去：讓你做的東西有一個網址</h1>
+      <p class="lede">這一關只講一件事：<strong>AI 可以幫你 commit、push；然後你在辦公室和家裡打開的，是同一份。</strong>沒有第二個概念。</p>
+      <div class="note info">
+        <span class="label">名詞先講白話</span>
+        <p><strong>GitHub</strong>：一個免費放檔案的地方，可以順便把檔案變成一個網址讓別人打開。<br><strong>commit、push</strong>：就是「存一版」跟「傳上去」。這兩個字你不用會操作，AI 會做，你只要看得懂它在說什麼。<br><strong>Pages</strong>：GitHub 把你的 HTML 檔變成真的網頁的功能。</p>
+      </div>
+      <section class="gate" id="g1">
+        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <div class="body">
+          <p>讓你的東西有一個網址，而且兩台電腦同步。</p>
+          <p>你前面幾關做出來的管理台、規劃表，現在只活在那台筆電裡。放上去之後：</p>
+          <ul>
+            <li>你會拿到一個網址，手機、平板、別人的電腦都打得開，<strong>對方不用登入、不用裝任何東西</strong></li>
+            <li>辦公室做一半，回家接著做，<strong>不用再寄檔案給自己</strong></li>
+            <li>改一行字，請 AI 更新上去，<strong>網址不變，內容變了</strong></li>
+          </ul>
+          <div class="note ok">
+            <span class="label">你現在就在看它</span>
+            <p>你現在看的這個教材網站，就是用這個方法放上網的。</p>
+          </div>
+          <h4>行前要準備（併入行前信）</h4>
+          <ul>
+            <li>GitHub 帳號（免費，請用<strong>個人 gmail</strong> 註冊，不要用學校帳號）</li>
+            <li>Git，或 GitHub Desktop，二選一（要讓 AI 代操的話，裝 Git 就好）</li>
+          </ul>
+          <h4>8/19 現場示範腳本（10 分鐘，講師機投影）</h4>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>時間</th><th>做什麼</th><th>你會看到什麼</th></tr></thead>
+              <tbody>
+                <tr><td>0:00–0:30</td><td>講一句：你做好的東西，現在只活在這台筆電裡</td><td>問題被說中</td></tr>
+                <tr><td>0:30–3:00</td><td>對 AI 說「幫我把這個資料夾放上 GitHub」</td><td>AI 自己跑完，畫面吐出一個網址</td></tr>
+                <tr><td>3:00–5:00</td><td>改一行字，對 AI 說「幫我更新上去」</td><td>AI 自己 commit＋push</td></tr>
+                <tr><td>5:00–7:00</td><td>拿手機開同一個網址</td><td><strong>網址沒變，內容已經更新</strong></td></tr>
+                <tr><td>7:00–10:00</td><td>收尾：辦公室做一半，回家接著做，不用再寄檔案給自己</td><td>知道這件事為什麼值得裝</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note info">
+            <span class="label">現場不講什麼（寫出來，避免失焦）</span>
+            <p>這一關只到「有網址、兩台同步」為止。想更深入的老師，教材頁末尾接「跟 AI 一起用 Git」工作坊（15 關，CC BY-NC-SA），自己走。</p>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g2">
+        <header><span class="n">2</span><h2>官方要求</h2></header>
+        <div class="body">
+          <p><strong>無。</strong>這一關不對應基金會的任何文件，是給老師自己方便的。</p>
+          <p class="small">但下面那條紅框的個資提醒不是官方要求也要遵守——放上去就是公開的。</p>
+        </div>
+      </section>
+      <section class="gate" id="g3">
+        <header><span class="n">3</span><h2>提示詞卡</h2></header>
+        <div class="body">
+          <p class="small">現場那四句，一鍵複製。第一句只需要用一次，之後每天用的其實只有第二、第三句。</p>
+          <div class="prompt">
+            <header><span class="step">① 第一次放上去</span><button class="copy" type="button">複製</button></header>
+            <pre>幫我把這個資料夾放上我的 GitHub，開好 Pages，做完把網址給我</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一個可以打開的網址</dd>
+              <dt>AI 大概會回什麼</dt><dd>它會建立 repo、上傳檔案、開啟 Pages，最後給你一個網址</dd>
+              <dt>你要檢查什麼</dt><dd>把網址貼到手機上開一次；請注意 repo 要設 Public</dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">② 之後每次改完</span><button class="copy" type="button">複製</button></header>
+            <pre>幫我把剛剛的修改更新上去</pre>
+            <dl>
+              <dt>要什麼</dt><dd>網址上的內容跟著你的修改變新</dd>
+              <dt>AI 大概會回什麼</dt><dd>它會 commit＋push，然後回報完成</dd>
+              <dt>你要檢查什麼</dt><dd>重新整理那個網址，改的那行字有變嗎（可能要等一兩分鐘）</dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">③ 換另一台電腦時</span><button class="copy" type="button">複製</button></header>
+            <pre>我在另一台電腦，幫我把最新的抓下來</pre>
+            <dl>
+              <dt>要什麼</dt><dd>這台電腦拿到最新的那一份</dd>
+              <dt>AI 大概會回什麼</dt><dd>它會把檔案下載更新到你指定的資料夾</dd>
+              <dt>你要檢查什麼</dt><dd>打開檔案，看看是不是你在另一台改的那一版</dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">④ 出錯的時候</span><button class="copy" type="button">複製</button></header>
+            <pre>出錯了，這是錯誤訊息：⟨整段貼上⟩</pre>
+            <dl>
+              <dt>要什麼</dt><dd>把問題交回給 AI 處理</dd>
+              <dt>AI 大概會回什麼</dt><dd>它會解釋原因並直接處理</dd>
+              <dt>你要檢查什麼</dt><dd>錯誤訊息<strong>整段貼上</strong>，不要只貼最後一行、也不要自己重打</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g4">
+        <header><span class="n">4</span><h2>新手會卡在哪</h2></header>
+        <div class="body">
+          <ul>
+            <li><strong>第一次 push 要登入授權，瀏覽器會自己跳出來</strong> → 正常，照著按就好。</li>
+            <li><strong>repo 設成 Private</strong> → Pages 開不了（免費方案）。設成 Public。</li>
+            <li><strong>首頁檔名不是 <code>index.html</code></strong> → 開出來會是一排檔案列表，不是網頁。首頁一定叫 <code>index.html</code>。</li>
+            <li><strong>Pages 剛開會先出現 404</strong> → 等一兩分鐘再重新整理，正常。</li>
+            <li><strong>中文檔名在網址會變亂碼</strong> → 檔名一律英文，頁面才開得起來。</li>
+          </ul>
+          <div class="note bad">
+            <span class="label">🚨 放上去就是公開的</span>
+            <p>管理台裡如果有真實學生名單，<strong>先按「載入練習用範例」把資料清乾淨再上傳</strong>。網址一旦公開，任何人都打得開，事後刪掉也可能已經被存下來。</p>
+            <p>會外傳的東西一律只放虛構名單。真名單留在你自己的電腦或學校雲端。</p>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g5">
+        <header><span class="n">5</span><h2>驗收清單</h2></header>
+        <div class="body">
+          <ul class="checklist">
+            <li><label><input type="checkbox"><span>網址在手機上開得起來</span></label></li>
+            <li><label><input type="checkbox"><span>傳給旁邊的人，他不用登入也開得起來</span></label></li>
+            <li><label><input type="checkbox"><span>頁面上沒有任何真實學生姓名</span></label></li>
+            <li><label><input type="checkbox"><span>改一行字請 AI 更新，網址上的內容跟著變</span></label></li>
+            <li><label><input type="checkbox"><span>你知道這個網址之後要怎麼找回來</span></label></li>
+          </ul>
+          <p class="done-count small">已完成 0 / 5 項</p>
+        </div>
+      </section>
+      <div class="note info" style="margin-top:2rem">
+        <span class="label">想再往下走</span>
+        <p>這一關到「有網址、兩台同步」就結束，刻意不往下走。想再深入的老師可以接「跟 AI 一起用 Git」工作坊，共 15 關，CC BY-NC-SA 授權，自己走完。</p>
+      </div>
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

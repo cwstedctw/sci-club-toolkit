@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關 0：行前準備｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="sidebar">
+      <h2>這頁有什麼</h2>
+      <ol>
+        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g2">2 官方要求</a></li>
+        <li><a href="#g3">3 提示詞卡</a></li>
+        <li><a href="#g4">4 新手會卡在哪</a></li>
+        <li><a href="#g5">5 驗收清單</a></li>
+      </ol>
+    </aside>
+    <main>
+      <p class="eyebrow">關 0</p>
+      <h1>行前準備</h1>
+      <p class="lede">在 8/19 之前做完這一關，當天就不用花時間在裝軟體上。裝不起來沒關係，現場有做好的範例檔可以直接用，不用排隊等修電腦。</p>
+      <section class="gate" id="g1">
+        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <div class="body">
+          <p>把兩個 AI 裝在你自己的筆電上，開好一個資料夾，然後跑通一次——確認它真的讀得到你的檔案。</p>
+          <p><strong>白話說明：</strong>你以前用的免費 ChatGPT 是在網頁上聊天，它看不到你電腦裡的東西。這兩個工具不一樣，它們可以打開你指定的資料夾、讀裡面的檔案、直接把做好的檔案存回去。所以第一件事就是「告訴它讀哪個資料夾」。</p>
+          <h4>要裝的兩個</h4>
+          <div class="grid two">
+            <div class="card"><h4 style="margin-top:0">Codex（領隊）</h4><p>負責想清楚要做什麼、回頭檢查有沒有漏。免費額度比較緊，但它的工作很輕，夠用。</p></div>
+            <div class="card"><h4 style="margin-top:0">Antigravity（隊員）</h4><p>負責真的把檔案做出來。免費額度<strong>一週給一次</strong>，用完要等一週。</p></div>
+          </div>
+          <div class="note warn">
+            <span class="label">還沒好之前先別動</span>
+            <p>裝好之後<strong>不要先拿額度玩</strong>。留到 8/19 動手那兩段，額度用完當天補不回來。</p>
+          </div>
+          <h4>開一個資料夾</h4>
+          <p>在桌面開一個資料夾，名字用英文，例如 <code>club2026</code>。裡面先放兩份檔案：</p>
+          <ul>
+            <li>你的社團計畫書（Word 或 PDF 都可以）</li>
+            <li>基金會的成果報告書範本</li>
+          </ul>
+          <p class="small">資料夾和檔案名稱都用英文或數字。中文檔名在後面幾關會出問題（<a href="github.html">關 6</a> 會再講一次）。</p>
+        </div>
+      </section>
+      <section class="gate" id="g2">
+        <header><span class="n">2</span><h2>官方要求</h2></header>
+        <div class="body">
+          <p>這一關不對應任何基金會文件，是為了讓後面幾關做得下去。</p>
+          <p>但有一件跟官方有關的事現在就要知道：<strong>學生名單（附件一）2026 年 8–9 月就要交</strong>。所以這個資料夾裡等一下也會放名單，那份檔案不要外傳。</p>
+        </div>
+      </section>
+      <section class="gate" id="g3">
+        <header><span class="n">3</span><h2>提示詞卡</h2></header>
+        <div class="body">
+          <div class="prompt">
+            <header><span class="step">① 確認它真的讀到你的資料夾（貼給 Codex）</span><button class="copy" type="button">複製</button></header>
+            <pre>請列出 ⟨貼上你的資料夾路徑⟩ 這個資料夾裡所有檔案的檔名，一個一行。
+然後告訴我我的計畫書第一頁的標題是什麼。
+如果你打不開這個資料夾，直接說打不開，不要猜。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>確認 AI 真的看得到你的檔案</dd>
+              <dt>AI 大概會回什麼</dt><dd>一串檔名，加上你計畫書的真實標題</dd>
+              <dt>你要檢查什麼</dt><dd>檔名對不對？標題是你寫的那個嗎？<strong>只要有一個不對，它就是在編</strong></dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">② 跑通一次小任務（貼給 Antigravity）</span><button class="copy" type="button">複製</button></header>
+            <pre>請在 ⟨貼上你的資料夾路徑⟩ 裡建立一個 test.html，
+內容只要一行大字：「我的社團管理工具測試成功」。
+做完告訴我檔案存在哪個路徑。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>確認它真的能在你的電腦上產生檔案</dd>
+              <dt>AI 大概會回什麼</dt><dd>一個 test.html 加上路徑說明</dd>
+              <dt>你要檢查什麼</dt><dd>照著那行路徑打開資料夾，檔案真的在嗎？用瀏覽器打得開嗎？</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g4">
+        <header><span class="n">4</span><h2>新手會卡在哪</h2></header>
+        <div class="body">
+          <ul>
+            <li><strong>AI 說「完成了」但你找不到檔案</strong>：它存到自己的暫存資料夾去了。它回話裡有一行寫路徑，<strong>那行字很重要</strong>，照著找。</li>
+            <li><strong>它列出的檔名不是你的檔案</strong>：它沒讀到，自己編了。重新把完整路徑貼給它一次。</li>
+            <li><strong>學校筆電登不進去</strong>：校園網路可能會擋。<strong>請在你自己教室的網路先試一次</strong>，不要等到 8/19 當天才第一次登入。</li>
+            <li><strong>權限不足、裝不起來</strong>：各校電腦權限不同。不用硬拚，當天講師手上有做好的範例檔，你直接用那份往下做。</li>
+            <li><strong>免費額度用完了</strong>：Antigravity 一週給一次。所以先別玩。</li>
+          </ul>
+        </div>
+      </section>
+      <section class="gate" id="g5">
+        <header><span class="n">5</span><h2>驗收清單</h2></header>
+        <div class="body">
+          <ul class="checklist">
+            <li><label><input type="checkbox"><span>兩個 AI 都裝好了，而且登入成功</span></label></li>
+            <li><label><input type="checkbox"><span>在教室的網路（不是家裡）登入成功過一次</span></label></li>
+            <li><label><input type="checkbox"><span>桌面有一個英文名字的資料夾，裡面放了計畫書與官方報告書範本</span></label></li>
+            <li><label><input type="checkbox"><span>AI 列出的檔名，跟你資料夾裡的檔案一模一樣</span></label></li>
+            <li><label><input type="checkbox"><span>AI 在你的資料夾裡產出過一個 test.html，你用瀏覽器打得開</span></label></li>
+            <li><label><input type="checkbox"><span>你知道它回話裡「檔案路徑」那行字長什麼樣子</span></label></li>
+            <li><label><input type="checkbox"><span>額度還沒用掉，留給 8/19</span></label></li>
+          </ul>
+          <p class="done-count small">已完成 0 / 7 項</p>
+        </div>
+      </section>
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

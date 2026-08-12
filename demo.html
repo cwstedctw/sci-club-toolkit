@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>示範：三個可以真的按的東西｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="sidebar">
+      <h2>這頁有什麼</h2>
+      <ol>
+        <li><a href="#how-console">A 管理台</a></li>
+        <li><a href="#how-submit">B 交件頁</a></li>
+        <li><a href="#how-wall">C 展示牆</a></li>
+      </ol>
+    </aside>
+    <main>
+      <p class="eyebrow">示範</p>
+      <h1>這三個東西都是課堂教的方法做出來的</h1>
+      <p class="lede">這一頁不是截圖。你可以直接在下面按、輸入、看它算出來，然後往下看「做出這東西的三段提示詞」。</p>
+
+      <!-- ⚠ 本機接檔說明：三個 iframe 目前是空的佔位。
+           在本機把 src 補上（管理台＝單檔 HTML；交件頁與展示牆＝Apps Script 網址），
+           app.js 會自動隱藏佔位說明。教材網不重做 demo。 -->
+
+      <div class="tabs" role="tablist" aria-label="三個示範">
+        <button type="button" role="tab" data-tab="panel-console" aria-controls="panel-console" aria-selected="true">A 研習管理台</button>
+        <button type="button" role="tab" data-tab="panel-submit" aria-controls="panel-submit" aria-selected="false">B 作品交件頁</button>
+        <button type="button" role="tab" data-tab="panel-wall" aria-controls="panel-wall" aria-selected="false">C 成果展示牆</button>
+      </div>
+
+      <section id="panel-console" role="tabpanel" aria-label="A 研習管理台">
+        <div class="frame">
+          <div class="framebar">
+            <span class="t">A・研習管理台</span>
+            <span class="small">14 筆去識別的虛構名單，絕不放真名單</span>
+            <a class="btn mobile-open" href="#" data-demo-open="console">另開新視窗</a>
+          </div>
+          <iframe data-demo="console" title="研習管理台" src="console.html" loading="lazy"></iframe>
+          <div class="ph"><b>示範程式尚未接上</b><span>這個位置會嵌入研習管理台本體（單一 HTML 檔）。手機請用上面的「另開新視窗」。</span></div>
+        </div>
+        <div class="note ok">
+          <span class="label">給老師的話</span>
+          <p>這台換成社團尺寸，就是你期末要交的那套：名單、出席、材料費份數，都在同一個地方。</p>
+        </div>
+
+        <h2 id="how-console">這是怎麼做出來的</h2>
+        <div class="prompt">
+          <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+          <pre>我要做一個研習／社團的管理台，單一 HTML 檔、離線可用、資料存在瀏覽器裡。
+請先不要寫程式，先幫我想清楚規格：
+要有哪幾個畫面、每個畫面哪些欄位、出席率和材料費份數怎麼算。
+材料費份數的定義是「當次出席學生數 ＋ 授課教師 2 人」。
+最後寫成一段我可以整段轉貼給另一個 AI 的規格。</pre>
+          <dl>
+            <dt>要什麼</dt><dd>一份畫面與欄位的規格</dd>
+            <dt>AI 大概會回什麼</dt><dd>三到四個畫面的清單、欄位表、兩個算式</dd>
+            <dt>你要檢查什麼</dt><dd>材料費份數的算式有沒有含「＋2 位老師」</dd>
+          </dl>
+        </div>
+        <div class="prompt">
+          <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
+          <pre>請照下面的規格做出單一檔案的 HTML 管理台，不連網、離線可開。
+另外請做兩件事：
+1. 加一顆「載入練習用範例」，裡面放 14 筆虛構姓名，不要用真名
+2. 深色底（頁面底 #0f172a、卡片 #1e293b、主文字 #f8fafc、主色 #10b981），字不要小於 16px
+做完告訴我檔案在哪個路徑。
+
+⟨貼上第 1 步的規格⟩</pre>
+          <dl>
+            <dt>要什麼</dt><dd>一個真的能點、能輸入、能算的檔案</dd>
+            <dt>AI 大概會回什麼</dt><dd>一個 .html 檔（我們實測是 1,540 行）＋路徑</dd>
+            <dt>你要檢查什麼</dt><dd>按鈕按得動、文字看得見、關掉再開資料還在</dd>
+          </dl>
+        </div>
+        <div class="prompt">
+          <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
+          <pre>這是剛做好的管理台（路徑：⟨貼上路徑⟩）。請逐條檢查並列清單，不要幫我改：
+1. 每一顆按鈕按下去是否真的有反應、對話框關掉後頁面是否還點得動
+2. 有沒有任何文字的顏色跟背景一樣、看不見
+3. 出席率與材料費份數的算式是否符合官方定義
+4. 有沒有任何真實姓名或個資</pre>
+          <dl>
+            <dt>要什麼</dt><dd>一張「哪裡不對」的清單</dd>
+            <dt>AI 大概會回什麼</dt><dd>逐條缺漏，通常抓到 3 到 10 項</dd>
+            <dt>你要檢查什麼</dt><dd>它有沒有真的打開你的檔案</dd>
+          </dl>
+        </div>
+
+        <details class="block warn">
+          <summary>⚠ 我們踩過的兩個坑（點開看）</summary>
+          <div class="inner">
+            <p class="small">這兩個都是我們自己在驗收時抓到的。寫出來比講一百句「要驗收」有用。</p>
+            <h4>① 對話框開一次之後，全頁點不動</h4>
+            <p>對話框關掉了，但它上面那層看不見的遮罩沒有一起收掉，整頁被蓋住。畫面看起來完全正常，只是什麼都按不動。<br><strong>怎麼抓：</strong>每個對話框都開一次、關一次，然後隨手點一顆別的按鈕。</p>
+            <h4>② 按鈕白底白字，整顆消失</h4>
+            <p>按鈕在深色底上變成白底白字，文字整個看不見，只剩一塊白色方塊。<br><strong>怎麼抓：</strong>把畫面上每一顆按鈕、每一行小字唸出來。唸不出來的就是壞了。</p>
+          </div>
+        </details>
+
+        <details class="block ok">
+          <summary>✓ 這台跑過的 93 項檢查（點開看）</summary>
+          <div class="inner">
+            <p>管理台在交出來之前，逐條跑過 93 項驗收，分成七組。你自己的工具不用做到 93 項，但這七組值得照著問一遍。</p>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>組別</th><th>項數</th><th>在檢查什麼</th></tr></thead>
+                <tbody>
+                  <tr><td>畫面與顏色</td><td>18</td><td>每一行字都看得見、每顆按鈕都認得出來、深色底下對比夠</td></tr>
+                  <tr><td>按鈕與對話框</td><td>15</td><td>每顆按得動、對話框關掉後頁面還能操作</td></tr>
+                  <tr><td>資料進出</td><td>14</td><td>新增、修改、刪除、關掉再開資料還在、匯出檔案打得開</td></tr>
+                  <tr><td>算式</td><td>12</td><td>出席率、材料費份數、七個百分比，跟官方定義逐條對</td></tr>
+                  <tr><td>個資</td><td>11</td><td>沒有真實姓名、練習範例是虛構的、匯出檔不夾帶</td></tr>
+                  <tr><td>鍵盤與近用</td><td>13</td><td>不用滑鼠走得完、焦點框看得見、點擊區夠大</td></tr>
+                  <tr><td>手機與投影</td><td>10</td><td>手機開得起來、投影時最後一排看得到</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small">合計 93 項。這份清單本身也是請 AI 產的（第 3 步），我們再逐條手動確認。</p>
+          </div>
+        </details>
+      </section>
+
+      <section id="panel-submit" role="tabpanel" aria-label="B 作品交件頁" hidden>
+        <div class="frame">
+          <div class="framebar">
+            <span class="t">B・作品交件頁（學生這一端）</span>
+            <span class="small">示範用收件器，檔案進示範用資料夾</span>
+            
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2rem;align-items:center;padding:1.2rem;background:#0f172a">
+            <img src="submit-preview.png" alt="交件頁的實際畫面" style="width:100%;max-width:420px;display:block;border:1px solid #475569;border-radius:6px" loading="lazy">
+            <div style="text-align:center">
+              <img src="qr-submit.png" alt="交件頁 QR code" style="width:190px;height:190px;display:block;background:#fff;padding:8px;border-radius:6px" loading="lazy">
+              <p style="margin:.6rem 0 0;font-size:.9rem;color:#94a3b8">手機掃這個</p>
+              <a class="btn" href="https://script.google.com/macros/s/AKfycbzebFg27JrCtSW6AvbhkSUIaPnLNm6ejveefmBBV5u2JqOinogq6bwG2ILdc087lApQuA/exec" target="_blank" rel="noopener noreferrer" style="margin-top:.6rem;display:inline-block">在新分頁打開交件頁</a>
+            </div>
+          </div>
+          <div class="note ok" style="margin:0"><span class="label">這是真的，掃了就能交</span>
+          <p>左邊是交件頁的實際畫面，右邊的 QR 掃了直接開（示範用的那一支，收到的檔案進拋棄式資料夾）。
+          免登入、不用有帳號：選座號 → 選檔案 → 輸入通行碼 → 送出。通行碼當天投影在螢幕上。
+          收到的檔案進講師自己的雲端硬碟，學生彼此看不到、也看不到資料夾本身。</p>
+          <p style="margin-top:.5rem;font-size:.92rem;color:#94a3b8">
+          <b>為什麼這裡不是直接嵌在頁面上？</b>Google 的 Apps Script 預設不准別的網站把它嵌進來（防止有人拿它做釣魚頁）。
+          我們沒有為了好看去放寬那個設定——現場本來就是掃 QR，這樣才是真實用法。</p></div>
+        </div>
+        <p><strong>學生要做的事（免登入，不用有帳號）：</strong></p>
+        <p>掃 QR → 選座號 → 選檔案（照片／Word／PDF／HTML 都收，10MB 內）→ 勾「可以公開展示」→ 輸入通行碼 → 送出。</p>
+
+        <h2 id="how-submit">教材要講的三件事</h2>
+        <div class="grid three">
+          <div class="card"><h4 style="margin-top:0">① 為什麼不用 Google 表單</h4><p>學校帳號開的表單預設「僅限校內」，校外的人會被擋在登入畫面（畫面上寫 401，意思是「沒權限」）。自己寫的收件頁可以設成「任何人」都交得進來。</p></div>
+          <div class="card"><h4 style="margin-top:0">② 檔案進誰的雲端</h4><p>進<strong>你自己</strong>的 Google 雲端硬碟。學生彼此看不到別人交的，也不需要他們有帳號。</p></div>
+          <div class="card"><h4 style="margin-top:0">③ 三個常數要改什麼</h4><p>把程式最上面三行換成你自己的：<strong>資料夾 ID</strong>（檔案要收去哪）、<strong>通行碼</strong>（給學生的那組）、<strong>展示金鑰</strong>（只有你知道，用來打開展示牆）。</p></div>
+        </div>
+
+        <div class="prompt">
+          <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+          <pre>我要一個學生交作品的網頁，用 Google Apps Script 做，學生免登入。
+請先不要寫程式，先幫我想清楚：要收哪些欄位、檔案大小與格式怎麼限制、
+「可以公開展示」這個同意選項要怎麼存、通行碼怎麼驗。
+寫成一段我可以整段轉貼給另一個 AI 的規格。</pre>
+          <dl>
+            <dt>要什麼</dt><dd>收件頁的欄位與規則</dd>
+            <dt>AI 大概會回什麼</dt><dd>欄位清單、限制條件、同意欄位的存法</dd>
+            <dt>你要檢查什麼</dt><dd>有沒有把「同意公開展示」單獨存成一個欄位</dd>
+          </dl>
+        </div>
+        <div class="prompt">
+          <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
+          <pre>請照規格寫成 Google Apps Script（含 doGet 與交件表單畫面），部署成「任何人」都能開的網頁。
+最上面請留三個常數讓我改：資料夾 ID、通行碼、展示金鑰。
+單檔上限 10MB，收照片／Word／PDF／HTML。
+做完告訴我要在哪裡貼這段程式、怎麼部署。
+
+⟨貼上第 1 步的規格⟩</pre>
+          <dl>
+            <dt>要什麼</dt><dd>可以部署的 Apps Script 程式碼與部署步驟</dd>
+            <dt>AI 大概會回什麼</dt><dd>一段程式碼＋「貼到 script.google.com、按部署」的步驟</dd>
+            <dt>你要檢查什麼</dt><dd>用手機（不登入學校帳號）開一次，交一張照片試試</dd>
+          </dl>
+        </div>
+        <div class="prompt">
+          <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
+          <pre>這是剛做好的收件頁程式碼（整段貼在下面）。請逐條列出風險，不要幫我改：
+1. 沒有通行碼的人能不能交或看到別人的檔案
+2. 沒有勾「可以公開展示」的作品，會不會在展示牆被點開
+3. 超過 10MB 或奇怪的檔案格式會怎樣
+4. 有沒有把學生的個資寫進網址或記錄裡
+
+⟨貼上程式碼⟩</pre>
+          <dl>
+            <dt>要什麼</dt><dd>一張安全與個資的風險清單</dd>
+            <dt>AI 大概會回什麼</dt><dd>逐條風險與該補的檢查</dd>
+            <dt>你要檢查什麼</dt><dd>它指出的每一條，自己動手試一次</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section id="panel-wall" role="tabpanel" aria-label="C 成果展示牆" hidden>
+        <div class="frame">
+          <div class="framebar">
+            <span class="t">C・成果展示牆（老師這一端・投影用）</span>
+            <span class="small">示範版，假資料</span>
+            <a class="btn mobile-open" href="#" data-demo-open="wall">另開新視窗</a>
+          </div>
+          <img src="wall-preview.png" alt="成果展示牆的實際畫面：座號磁貼與頂端統計" style="width:100%;display:block;border:0" loading="lazy">
+          <div class="note" style="margin:0"><span class="label">這裡放的是實際畫面截圖，不是可操作的版本</span><p>展示牆要用講師專屬金鑰才打得開——把金鑰放在公開網頁上，等於任何人都能看到全班作品。所以這裡只放畫面，實際操作在 8/19 現場示範。</p></div>
+        </div>
+        <p><strong>你會看到：</strong>座號 × 產品的完成磁貼，頂端「① m/14　② n/14　③ p/14」的大字統計。投在教室螢幕上，誰交了、誰還沒交，一眼就看得完。</p>
+
+        <h2 id="how-wall">關鍵設計（這幾點要跟學生講清楚）</h2>
+        <div class="note bad">
+          <span class="label">紅框＝作者自己勾了「可以公開展示」，才點得開</span>
+          <p>沒勾的作品只亮完成狀態，點不開。這是尊重，也是個資紅線：交作業是義務，被公開展示不是。</p>
+        </div>
+        <div class="note ok">
+          <span class="label">老師做的 HTML 工具會直接在投影幕上跑起來</span>
+          <p>不是截圖，是當場輸入資料、當場算出出席率。這是全站最有戲的一幕——你在教室做的東西，在螢幕上真的動起來。</p>
+        </div>
+        <div class="note info">
+          <span class="label">不同檔案怎麼展示</span>
+          <p>照片直接投影；PDF 走預覽；Word 這類會提示「請在講師機下載打開」。</p>
+        </div>
+        <div class="note ok">
+          <span class="label">給老師的話</span>
+          <p>期末成果發表會、家長日、校內成果展，都是這一頁。</p>
+        </div>
+
+        <div class="prompt">
+          <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+          <pre>同一支 Apps Script 我要再加一個老師端的展示牆畫面，投影用。
+請先幫我想清楚規格：座號 × 產品的格子怎麼排、頂端要顯示哪些統計數字、
+哪些作品可以被點開放大（只有作者勾了「可以公開展示」的才可以）、
+沒有展示金鑰的人打開會看到什麼。</pre>
+          <dl>
+            <dt>要什麼</dt><dd>展示牆的版面與權限規則</dd>
+            <dt>AI 大概會回什麼</dt><dd>格子矩陣的排法、統計欄位、兩種權限狀態</dd>
+            <dt>你要檢查什麼</dt><dd>「沒勾同意就點不開」有沒有寫進規格</dd>
+          </dl>
+        </div>
+        <div class="prompt">
+          <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
+          <pre>請在同一支 Apps Script 裡加上展示牆畫面，需要展示金鑰才進得去。
+投影用，所以統計數字請用很大的字（至少 40px），深色底、格子邊框清楚。
+照片直接顯示、PDF 走預覽、其他格式顯示「請在講師機下載打開」。
+沒有勾「可以公開展示」的作品只亮完成狀態，不能點開。
+
+⟨貼上第 1 步的規格⟩</pre>
+          <dl>
+            <dt>要什麼</dt><dd>能投影的展示牆畫面</dd>
+            <dt>AI 大概會回什麼</dt><dd>加在同一支程式裡的另一段程式碼</dd>
+            <dt>你要檢查什麼</dt><dd>投到螢幕上，從教室最後一排看得到數字嗎</dd>
+          </dl>
+        </div>
+        <div class="prompt">
+          <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
+          <pre>這是展示牆的程式碼（整段貼在下面）。請逐條列出，不要幫我改：
+1. 有沒有任何路徑能讓沒勾同意的作品被點開或被下載
+2. 沒有展示金鑰的人能看到什麼
+3. 統計數字的算法是否正確（分母是名單人數還是交件人數）
+
+⟨貼上程式碼⟩</pre>
+          <dl>
+            <dt>要什麼</dt><dd>權限與算法的檢查清單</dd>
+            <dt>AI 大概會回什麼</dt><dd>逐條問題，常會抓到分母算錯</dd>
+            <dt>你要檢查什麼</dt><dd>拿一個沒勾同意的作品，自己試著點開</dd>
+          </dl>
+        </div>
+      </section>
+
+      <hr>
+      <div class="note info">
+        <span class="label">三個 demo 共用同一個提示詞格式</span>
+        <p><strong>要什麼 → 給 AI 的話 → AI 大概會回什麼 → 你要檢查什麼。</strong>每一關的提示詞卡都是這個格式，你自己寫新的提示詞時也照這四格想一遍就好。</p>
+      </div>
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

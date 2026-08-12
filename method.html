@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方法：兩個 AI 怎麼分工｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="sidebar">
+      <h2>這頁有什麼</h2>
+      <ol>
+        <li><a href="#flow">三個步驟</a></li>
+        <li><a href="#lie">AI 會說謊</a></li>
+        <li><a href="#check">驗收口訣</a></li>
+        <li><a href="#who">領隊與隊員</a></li>
+        <li><a href="#prompts">三段提示詞</a></li>
+      </ol>
+    </aside>
+    <main>
+      <p class="eyebrow">方法</p>
+      <h1>兩個 AI 怎麼分工</h1>
+      <p class="lede">課名是「Codex／Antigravity」，我們就用兩個，而且各有各的工作。一個負責想清楚要做什麼，一個負責真的做出來，然後第一個回頭挑錯。</p>
+      <p class="small">名詞先講白話：<strong>Codex</strong> 和 <strong>Antigravity</strong> 都是可以讀你電腦裡資料夾、幫你直接產出檔案的 AI 工具，跟只能在網頁上聊天的免費 ChatGPT 不一樣。這頁先看懂分工，實際安裝在<a href="step0.html">關 0</a>。</p>
+
+      <h2 id="flow">三個步驟</h2>
+      <pre class="flow">  ┌──────────────────────────────────────────┐
+  │  第 1 步   Codex（領隊）                  │
+  │           讀官方報告書範本＋你的計畫書     │
+  │           想清楚：要做哪幾張表、每張要哪些欄位 │
+  │           → 產出一份「規格」（一段文字）    │
+  └────────────────────┬─────────────────────┘
+                       ↓
+  ┌──────────────────────────────────────────┐
+  │  第 2 步   Antigravity（隊員）             │
+  │           照著規格，真的把表做出來          │
+  │           → 產出可以用的檔案               │
+  └────────────────────┬─────────────────────┘
+                       ↓
+  ┌──────────────────────────────────────────┐
+  │  第 3 步   Codex（回頭檢查）⭐             │
+  │           對照官方範本，看有沒有漏掉欄位     │
+  │           → 產出一張「哪裡不對」的清單      │
+  └──────────────────────────────────────────┘</pre>
+
+      <h2 id="lie">為什麼一定要有第 3 步：因為我們實際測過，AI 會說謊</h2>
+
+      <div class="note bad">
+        <span class="label">實測案例一・它整份都是編的</span>
+        <p>我們把 11 張真的照片和一份真的計畫書放進一個資料夾，叫 AI 幫忙寫圖說。它跑了 3 分半，然後回報：</p>
+        <p style="font-size:var(--fs-ml)">「已為您完成計畫書讀取、照片判讀、圖說撰寫，以及檢查表的建置！」</p>
+        <p><strong>結果全部是編的：</strong></p>
+        <ul>
+          <li>它根本沒讀我們的資料夾</li>
+          <li>它自己編了一個完全不同的計畫（變成 micro:bit 和智慧澆水系統）</li>
+          <li>它<strong>自己生成了 4 張假照片</strong></li>
+          <li>但它做出來的網頁<strong>真的能用</strong>，只是內容全假</li>
+        </ul>
+      </div>
+
+      <div class="note bad">
+        <span class="label">實測案例二・六個字被它加油添醋</span>
+        <p>另外一次，老師原本只寫了六個字「<strong>購買的百合珠芽</strong>」，AI 寫成「因儲藏不當發生<strong>受潮黑化發霉</strong>，成為課堂討論保存條件的突發教材」——<strong>憑空多出一個從來沒發生過的實驗事故。</strong></p>
+        <p class="small">這種句子最危險，因為它讀起來很像真的，還很有教學味。放進報告書就是不實陳述。</p>
+      </div>
+
+      <div class="note ok">
+        <span class="label">所以第 3 步不是多餘的</span>
+        <p style="font-size:var(--fs-ml)">「你已經有兩個 AI 了。一個負責做，一個負責挑錯。」</p>
+        <p>我們自己用三個 AI 查同一批資料，<strong>每一個都犯了錯，但沒有一個錯是三個都犯的。</strong></p>
+      </div>
+
+      <h2 id="check">驗收口訣：先對路徑、再對數量、再抽查內容</h2>
+      <div class="grid three">
+        <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">① 先對路徑</div><p>它說檔案存在哪？照著那行字打開資料夾，檔案真的在那裡嗎？<strong>AI 說「完成了」但你找不到檔案，通常是存到它自己的暫存資料夾去了。</strong></p></div>
+        <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">② 再對數量</div><p>你給它 11 張照片，它是不是寫了 11 條？表格要 24 列，是不是 24 列？數量不對，就是它自己補了或漏了。</p></div>
+        <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">③ 再抽查內容</div><p>隨手挑 2、3 條看細節。出現你沒寫過的事件、沒買過的器材、沒發生過的意外，就是它編的。</p></div>
+      </div>
+
+      <h2 id="who">為什麼領隊給 Codex、做事給 Antigravity？</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th></th><th>工作內容</th><th>花費</th></tr></thead>
+          <tbody>
+            <tr><td><strong>領隊（Codex）</strong></td><td>想清楚要做什麼、檢查有沒有漏</td><td><strong>輕</strong>——只是一段文字</td></tr>
+            <tr><td><strong>隊員（Antigravity）</strong></td><td>真的把東西做出來</td><td><strong>重</strong>——我們實測生一個工具吐了 1,540 行</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Codex 的免費額度比較緊，<strong>但領隊的工作剛好是輕的</strong>，所以放這裡剛好。Antigravity 的免費額度是<strong>一週給一次</strong>，用完要等一週，所以重活給它做、但只做一次。</p>
+      <div class="note warn">
+        <span class="label">還沒好的地方要先知道</span>
+        <p>研習當天請<strong>不要先拿額度玩</strong>，留到動手那兩段。額度用完就得等一週，當天補不回來。</p>
+      </div>
+
+      <h2 id="prompts">三段提示詞（每一關都會再出現一次，格式一樣）</h2>
+      <p class="small">按「複製」就會複製整段，貼到 AI 的輸入框裡，把角括號 ⟨⟩ 裡的字換成你自己的。</p>
+
+      <div class="prompt">
+        <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+        <pre>我要做 ⟨學校名稱⟩ 科學社團的管理工具。附件是基金會的成果報告書範本和我的計畫書。
+請你先不要寫程式。請讀完這兩份檔案，然後告訴我：
+1. 我一整年總共要交哪幾份表，每一份的欄位是什麼
+2. 哪些欄位是同一份資料重複出現，可以只填一次
+3. 報告書「效益達成情形」那七個百分比，各自要從哪一份表算出來
+最後把上面整理成一份規格，寫成一段我可以直接轉貼給另一個 AI 的文字。</pre>
+        <dl>
+          <dt>要什麼</dt><dd>一份說清楚「要做哪幾張表、每張哪些欄位」的規格</dd>
+          <dt>AI 大概會回什麼</dt><dd>四到五張表的清單、欄位表，以及七個百分比的來源對照</dd>
+          <dt>你要檢查什麼</dt><dd>官方要的表有沒有全部出現？欄位名稱跟官方範本一樣嗎？</dd>
+        </dl>
+      </div>
+
+      <div class="prompt">
+        <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
+        <pre>以下是規格，請照它做出一個單一檔案的 HTML 工具，不要用任何需要連網的東西，我要能離線打開。
+資料存在瀏覽器裡就好，不用資料庫。
+請附一顆「載入練習用範例」的按鈕，裡面放虛構的假名單，不要放真名。
+做完請告訴我檔案存在哪個路徑。
+
+⟨把第 1 步 Codex 給你的規格整段貼在這裡⟩</pre>
+        <dl>
+          <dt>要什麼</dt><dd>一個真的打得開、可以輸入資料的檔案</dd>
+          <dt>AI 大概會回什麼</dt><dd>一個 .html 檔，加一段「已完成」的說明，裡面會寫檔案路徑</dd>
+          <dt>你要檢查什麼</dt><dd>照著那行路徑打開，檔案真的在嗎？按鈕按得動嗎？文字看得見嗎？</dd>
+        </dl>
+      </div>
+
+      <div class="prompt">
+        <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
+        <pre>這是剛剛做出來的檔案（路徑：⟨貼上路徑⟩）。
+請對照官方報告書範本，逐條列出：
+1. 哪些官方要求的欄位漏掉了
+2. 哪些數字算法跟官方定義不一樣
+3. 有沒有任何內容是你或前一個 AI 自己補的、我沒提供過的
+只要清單，不要幫我改。</pre>
+        <dl>
+          <dt>要什麼</dt><dd>一張「哪裡不對」的清單</dd>
+          <dt>AI 大概會回什麼</dt><dd>逐條的缺漏項目，通常會抓到 3 到 10 項</dd>
+          <dt>你要檢查什麼</dt><dd>它有沒有真的打開你的檔案（問它「你看到的第一行是什麼」就知道）</dd>
+        </dl>
+      </div>
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

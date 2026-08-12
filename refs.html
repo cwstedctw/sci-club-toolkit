@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>延伸閱讀｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .reflist{list-style:none;padding:0;margin:.6rem 0 1.2rem}
+  .reflist li{border:1px solid var(--line,#475569);border-radius:8px;padding:.85rem 1rem;margin:0 0 .6rem}
+  .reflist a{font-weight:600;font-size:1.05rem;text-decoration:none}
+  .reflist a:hover{text-decoration:underline}
+  .reflist .meta{display:flex;gap:.5rem;flex-wrap:wrap;margin:.35rem 0}
+  .tag{font-size:.78rem;border:1px solid currentColor;border-radius:99px;padding:.05rem .55rem;line-height:1.6}
+  .tag.off{color:#10b981}.tag.blog{color:#94a3b8}.tag.vid{color:#f59e0b}.tag.forum{color:#3b82f6}
+  .reflist p{margin:.35rem 0 0;color:var(--muted,#94a3b8);font-size:.95rem}
+  .pick3{border:2px solid #10b981;border-radius:10px;padding:1rem 1.2rem;margin:0 0 1.4rem}
+  .pick3 h3{margin:0 0 .6rem;color:#10b981}
+  .pick3 ol{margin:0;padding-left:1.3rem}
+  .pick3 li{margin:.4rem 0}
+  table.sx{width:100%;border-collapse:collapse;font-size:.95rem;margin:.6rem 0}
+  table.sx th,table.sx td{border:1px solid var(--line,#475569);padding:.5rem .65rem;text-align:left;vertical-align:top}
+  table.sx th{background:rgba(148,163,184,.12);font-weight:600}
+  table.sx td:first-child{width:30%;font-weight:600}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+
+<div class="wrap">
+<div class="shell">
+  <aside class="sidebar">
+    <h2>這頁有什麼</h2>
+    <ol>
+      <li><a href="#pick">課前先看這三個就夠</a></li>
+      <li><a href="#fix">當場卡住：症狀對照表</a></li>
+      <li><a href="#official">官方文件</a></li>
+      <li><a href="#zh">中文入門教學</a></li>
+      <li><a href="#video">影片</a></li>
+      <li><a href="#trouble">新手排錯</a></li>
+      <li><a href="#cases">老師怎麼用（案例）</a></li>
+      <li><a href="#how">這份清單怎麼來的</a></li>
+    </ol>
+  </aside>
+
+  <main class="main-col">
+    <p class="eyebrow">延伸閱讀</p>
+    <h1>課前可以先看，課後回來查</h1>
+    <p class="lede">
+      這兩個工具改版很快，網路上很多教學已經過期。
+      這一頁的每一條我們都在 <b>2026/8/12</b> 實際開過一次，確認打得開、而且內容是現在的版本。
+    </p>
+
+    <div class="note">
+      <b>不用全部看完。</b>課前只要看「先看這三個」，其他等你真的卡住再回來查。
+    </div>
+
+    <section class="pick3" id="pick">
+      <h3>課前先看這三個就夠</h3>
+      <ol>
+        <li><a href="https://codelabs.developers.google.com/getting-started-google-antigravity?hl=zh-tw" target="_blank" rel="noopener noreferrer">開始使用 Google Antigravity</a>（Google 官方，<b>繁體中文</b>、圖多）<br>
+          <span class="muted small">安裝、登入、建第一個專案，跟著點就會。行前唯一必看的一篇。</span></li>
+        <li><a href="https://learn.chatgpt.com/docs/quickstart" target="_blank" rel="noopener noreferrer">ChatGPT 桌面版 Quickstart</a>（OpenAI 官方，英文）<br>
+          <span class="muted small">安裝 → 登入 → 開資料夾 → 第一次對話。英文不好也沒關係，照著畫面點。</span></li>
+        <li><a href="https://antigravity.google/docs/plans" target="_blank" rel="noopener noreferrer">Antigravity 額度說明</a>（Google 官方，英文）<br>
+          <span class="muted small"><b>只要看一件事：免費方案是「每週」刷新。</b>用完當天補不回來——這是 8/19 最可能毀掉你半天的東西。</span></li>
+      </ol>
+    </section>
+
+    <h2 id="fix">當場卡住：症狀對照表</h2>
+    <p>研習當天把這張表印出來放桌上。九成的狀況在這裡。</p>
+    <table class="sx">
+      <thead><tr><th>你遇到的狀況</th><th>先做這件事</th></tr></thead>
+      <tbody>
+        <tr><td>找不到 Codex 在哪裡切</td>
+            <td>確認裝的是<b>新版 ChatGPT 桌面版</b>（2026 年 7 月改版過），左上角應該可以切 Chat／Work／Codex。舊版的獨立 Codex 軟體已經不用了。</td></tr>
+        <tr><td>一直要我登入，或登不進去</td>
+            <td>Antigravity 請用<b>個人 Gmail</b>，不要用學校帳號（機構帳號常被擋）。Codex 用你平常的 ChatGPT 帳號。</td></tr>
+        <tr><td>突然不動了，像當機</td>
+            <td><b>先想是不是額度用完</b>——這是最常見的原因，而且它不會明講。兩邊都是看進度條，不是數次數。</td></tr>
+        <tr><td>它一直跳出來問我可不可以</td>
+            <td><b>那是正常的</b>，它在問能不能碰你的檔案。新手階段建議保持「每次都問我」，你才知道它做了什麼。</td></tr>
+        <tr><td>它說做好了，但我找不到檔案</td>
+            <td>叫它「<b>把完整路徑印出來</b>」。找不到通常是開錯資料夾，不是它沒做。</td></tr>
+        <tr><td>做出來的內容我沒講過</td>
+            <td>那就是它編的。這正是我們課堂第三步（回頭檢查）存在的理由——<b>不是你的錯</b>。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="official">官方文件</h2>
+    <p class="muted small">出問題時最可信的來源。改版資訊只有這裡是準的。</p>
+    <ul class="reflist">
+      <li><a href="https://learn.chatgpt.com/docs/quickstart" target="_blank" rel="noopener noreferrer">Quickstart — ChatGPT 桌面版入門</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>從安裝到第一次對話最短的路徑。</p></li>
+      <li><a href="https://learn.chatgpt.com/docs/windows/windows-app" target="_blank" rel="noopener noreferrer">Windows 版說明</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>Windows 專屬問題看這裡：安裝、權限、學校電腦的限制。</p></li>
+      <li><a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener noreferrer">方案與額度</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>免費方案能做什麼、什麼時候會撞到牆。</p></li>
+      <li><a href="https://antigravity.google/docs/getting-started" target="_blank" rel="noopener noreferrer">Antigravity 開始使用</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>系統需求寫在這裡（Windows 10 64 位元以上）。裝之前先確認你的電腦過關。</p></li>
+      <li><a href="https://antigravity.google/docs/plans" target="_blank" rel="noopener noreferrer">Antigravity 方案與額度</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p><b>免費是每週刷新</b>。這一條請務必看。</p></li>
+      <li><a href="https://www.antigravity.google/docs/settings" target="_blank" rel="noopener noreferrer">Antigravity 設定說明</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>登入怪怪的、或想調安全等級時看這裡。<a href="install.html">行前安裝那頁</a>有中文對照。</p></li>
+    </ul>
+
+    <h2 id="zh">中文入門教學</h2>
+    <ul class="reflist">
+      <li><a href="https://codelabs.developers.google.com/getting-started-google-antigravity?hl=zh-tw" target="_blank" rel="noopener noreferrer">開始使用 Google Antigravity（Codelabs）</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">繁體中文</span></div>
+        <p><b>官方繁中逐步教學，圖很多。</b>行前只看一篇的話，看這篇。</p></li>
+      <li><a href="https://ijun-ai.com/study/Antigravity01" target="_blank" rel="noopener noreferrer">Antigravity 系統設定全攻略（奕鈞老師）</a>
+        <div class="meta"><span class="tag blog">個人教學</span><span class="tag">繁體中文</span></div>
+        <p>每一個英文選單都有實機截圖與中文說明，還標了建議值。<b>裝好之後想把設定調對，看這篇最快。</b></p></li>
+      <li><a href="https://iambigd.tw/codex-on-windows-2026-guide" target="_blank" rel="noopener noreferrer">Codex on Windows 2026 指南</a>
+        <div class="meta"><span class="tag blog">個人教學</span><span class="tag">繁體中文</span></div>
+        <p>Windows 使用者踩到的實際問題整理。</p></li>
+      <li><a href="https://roamer-tech.com/google-antigravity-getting-started-installation-guide-2026" target="_blank" rel="noopener noreferrer">Antigravity 安裝入門</a>
+        <div class="meta"><span class="tag blog">個人教學</span><span class="tag">中文</span></div>
+        <p>安裝步驟的另一種寫法，官方看不懂時可以對照。</p></li>
+      <li><a href="https://www.aiposthub.com/codex-tutorial-for-non-developers/" target="_blank" rel="noopener noreferrer">給非工程師的 Codex 教學</a>
+        <div class="meta"><span class="tag blog">個人教學</span><span class="tag">中文</span></div>
+        <p>不寫程式的人怎麼用。跟我們這門課的角度接近。</p></li>
+    </ul>
+
+    <h2 id="video">影片</h2>
+    <p class="muted small">看畫面比看文字快的人走這條。英文的也不必聽懂，跟著點就好。</p>
+    <ul class="reflist">
+      <li><a href="https://www.youtube.com/watch?v=6C0FjHoN3qE" target="_blank" rel="noopener noreferrer">Antigravity 2.0 新手導覽</a>
+        <div class="meta"><span class="tag vid">影片</span><span class="tag off">官方頻道</span><span class="tag">英文</span></div>
+        <p>約 16 分鐘：登入、介面、第一次派工。</p></li>
+      <li><a href="https://academy.openai.com/public/clubs/k-12-education-aacga/videos/write-a-lesson-plan-with-codex-2026-06-02" target="_blank" rel="noopener noreferrer">用 Codex 寫教案</a>
+        <div class="meta"><span class="tag vid">影片</span><span class="tag off">OpenAI Academy</span><span class="tag">英文</span></div>
+        <p><b>直接就是老師的情境</b>：教案怎麼生、怎麼改。</p></li>
+      <li><a href="https://academy.openai.com/public/clubs/k-12-education-aacga/videos/differentiate-student-materials-with-codex-2026-06-02" target="_blank" rel="noopener noreferrer">用 Codex 做差異化教材</a>
+        <div class="meta"><span class="tag vid">影片</span><span class="tag off">OpenAI Academy</span><span class="tag">英文</span></div>
+        <p>同一份教材改出不同程度的版本。混齡社團用得上。</p></li>
+      <li><a href="https://www.youtube.com/@googleantigravity" target="_blank" rel="noopener noreferrer">Antigravity 官方頻道</a>
+        <div class="meta"><span class="tag vid">影片</span><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>改版之後想知道哪裡變了，來這裡。</p></li>
+    </ul>
+
+    <h2 id="trouble">新手排錯</h2>
+    <ul class="reflist">
+      <li><a href="https://learn.chatgpt.com/docs/reference/troubleshooting" target="_blank" rel="noopener noreferrer">Troubleshooting（官方 FAQ）</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>對話卡住、視窗當掉、找不到之前的紀錄。第一次「當了」先來這。</p></li>
+      <li><a href="https://learn.chatgpt.com/docs/windows/windows-app#troubleshooting-and-faq" target="_blank" rel="noopener noreferrer">Windows 常見問題</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>Windows 專屬的疑難排解。</p></li>
+      <li><a href="https://community.openai.com/t/codex-mode-missing-in-chatgpt-desktop-after-update-on-windows/1387671" target="_blank" rel="noopener noreferrer">更新後找不到 Codex 切換</a>
+        <div class="meta"><span class="tag forum">社群討論</span><span class="tag">英文</span></div>
+        <p>如果你更新完發現 Codex 不見了，你不是唯一一個。</p></li>
+      <li><a href="https://discuss.ai.google.dev/t/subscription-recognition-issue-antigravity-app-limited-to-free-tier/111865" target="_blank" rel="noopener noreferrer">付了費卻顯示免費方案</a>
+        <div class="meta"><span class="tag forum">社群討論</span><span class="tag">英文</span></div>
+        <p>已知問題，官方討論串。（我們的課只用免費方案，用不到付費。）</p></li>
+      <li><a href="https://antigravity.google/changelog" target="_blank" rel="noopener noreferrer">Antigravity 更新紀錄</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>畫面突然變了、或某個功能不見了，先看這裡是不是改版。</p></li>
+    </ul>
+
+    <h2 id="cases">老師怎麼用（案例）</h2>
+    <ul class="reflist">
+      <li><a href="https://academy.openai.com/public/clubs/k-12-education-aacga/blogs/k-12-educator-plugin-classroom-materials" target="_blank" rel="noopener noreferrer">K-12 教師外掛：做課堂教材</a>
+        <div class="meta"><span class="tag off">OpenAI Academy</span><span class="tag">英文</span></div>
+        <p>2026 年 8 月才推出的教師專用外掛，最貼近中小學現場。</p></li>
+      <li><a href="https://openai.com/codex/for-work/" target="_blank" rel="noopener noreferrer">Codex for work</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>官方列的行政用例：問卷分析、名單、追蹤表、把規劃文件變成表格。<b>幾乎可以直接換成社團行政</b>。</p></li>
+      <li><a href="https://openai.com/index/codex-for-knowledge-work/" target="_blank" rel="noopener noreferrer">Codex 不只是寫程式</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>非工程師拿它做報告、試算表、簡報。適合說服「這跟我沒關係」的同事。</p></li>
+      <li><a href="https://antigravity.google/use-cases" target="_blank" rel="noopener noreferrer">Antigravity 使用情境</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>官方整理的各種用法。</p></li>
+      <li><a href="https://www.gvm.com.tw/article/130317" target="_blank" rel="noopener noreferrer">遠見：Antigravity 是什麼</a>
+        <div class="meta"><span class="tag blog">媒體報導</span><span class="tag">繁體中文</span></div>
+        <p>想先知道「這東西到底是什麼」的中文背景介紹。</p></li>
+    </ul>
+
+    <section class="card" id="how">
+      <h2>這份清單怎麼來的</h2>
+      <p>
+        由團隊的兩個 AI（一個負責找官方文件、一個負責掃社群與影片）分頭蒐集，
+        去掉重複之後，<b>每一個網址都在 2026/8/12 實際連過一次</b>，確認打得開才放上來。
+      </p>
+      <div class="note">
+        <span class="label">兩件要提醒的事</span>
+        <p>
+          <b>一、介面會變。</b>這兩個工具改版很快，教學裡的畫面可能跟你看到的不一樣——<b>以你螢幕上的為準</b>。
+          發現哪一篇過期了，跟我們說一聲，我們更新這一頁。<br>
+          <b>二、標「個人教學」「社群討論」的不是官方。</b>參考價值很高，但出問題時以官方文件為準。
+        </p>
+      </div>
+      <p class="muted small">
+        另外，網路上有人分享「開多個免費帳號輪流用」來繞過額度限制。
+        <b>我們不建議這樣做</b>，那違反服務條款，學校電腦上更不適合。額度用完就等它刷新，或把任務拆小一點。
+      </p>
+    </section>
+  </main>
+</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

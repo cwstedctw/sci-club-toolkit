@@ -1,0 +1,3005 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>研習現場管理台・115學年度科學社團扶助計畫</title>
+  <style>
+    /* ==========================================================================
+       設計主張：高對比深石墨與竹青 (Graphite & Emerald) 工業實用風
+       無外部資源、內嵌 CSS/JS、 file:// 雙擊可執行
+       ========================================================================== */
+    :root {
+      --bg-main: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --bg-input: #0f172a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dark: #0f172a;
+
+      --emerald: #10b981;
+      --emerald-dark: #059669;
+      --emerald-light: #d1fae5;
+      --amber: #f59e0b;
+      --amber-dark: #d97706;
+      --amber-light: #fef3c7;
+      --red: #ef4444;
+      --red-dark: #dc2626;
+      --red-light: #fee2e2;
+      --blue: #3b82f6;
+      --blue-dark: #2563eb;
+      --blue-light: #dbeafe;
+      --slate-border: #475569;
+
+      --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Microsoft JhengHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-base);
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* 頂端降級警告橫幅 */
+    #degraded-banner {
+      display: none;
+      background-color: var(--red-dark);
+      color: #ffffff;
+      padding: 12px 20px;
+      font-weight: bold;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* 頂端導覽與狀態列 */
+    header {
+      background-color: #090d16;
+      border-bottom: 2px solid var(--slate-border);
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .version-tag {
+      background-color: var(--slate-border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .save-badge {
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .save-badge.saved { background-color: rgba(16, 185, 129, 0.2); color: var(--emerald); border: 1px solid var(--emerald); }
+    .save-badge.warning { background-color: rgba(245, 158, 11, 0.2); color: var(--amber); border: 1px solid var(--amber); }
+
+    /* 高頻快速操作列 */
+    .quick-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background-color: var(--bg-card);
+      border: 1px solid var(--slate-border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stat-pill span { color: var(--emerald); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 44px;
+      min-width: 44px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
+      user-select: none;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); filter: brightness(0.95); }
+    .btn:focus-visible { outline: 3px solid var(--emerald); outline-offset: 2px; }
+
+    .btn-emerald { background-color: var(--emerald-dark); color: #ffffff; }
+    .btn-amber { background-color: var(--amber-dark); color: #ffffff; }
+    .btn-red { background-color: var(--red-dark); color: #ffffff; }
+    .btn-blue { background-color: var(--blue-dark); color: #ffffff; }
+    .btn-slate { background-color: var(--slate-border); color: #ffffff; }
+    .btn-outline { background-color: transparent; border: 1.5px solid var(--slate-border); color: var(--text-main); }
+    .btn-outline:hover { background-color: var(--bg-card-hover); }
+
+    /* 主頁籤切換 */
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      background-color: #090d16;
+      padding: 8px 24px;
+      border-bottom: 1px solid var(--slate-border);
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background-color: transparent;
+      color: var(--text-muted);
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      min-height: 44px;
+    }
+    .tab-btn:hover { color: #ffffff; background-color: rgba(255,255,255,0.05); }
+    .tab-btn.active { color: #ffffff; background-color: var(--emerald-dark); }
+
+    /* 主內容容器 */
+    main {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* 卡片區塊 */
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--slate-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--slate-border);
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 網格版面 */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+    /* 表單元件 */
+    input[type="text"], input[type="search"], select, textarea {
+      width: 100%;
+      background-color: var(--bg-input);
+      border: 1px solid var(--slate-border);
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      min-height: 44px;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--emerald);
+      border-color: transparent;
+    }
+    label { font-weight: 600; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 6px; display: block; }
+
+    /* 報到卡片與表格 */
+    .student-card {
+      background-color: #162032;
+      border: 1px solid var(--slate-border);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      position: relative;
+    }
+    .student-card.checked-in { border-left: 6px solid var(--emerald); }
+    .student-card.checked-out { border-left: 6px solid var(--blue); opacity: 0.9; }
+
+    .seat-badge {
+      background-color: var(--slate-border);
+      color: #ffffff;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .student-name { font-size: 1.2rem; font-weight: 800; color: #ffffff; }
+    .student-info { font-size: 0.85rem; color: var(--text-muted); }
+
+    .status-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .status-tag.not-yet { background-color: rgba(148, 163, 184, 0.2); color: var(--text-muted); }
+    .status-tag.in { background-color: rgba(16, 185, 129, 0.25); color: var(--emerald); }
+    .status-tag.out { background-color: rgba(59, 130, 246, 0.25); color: var(--blue); }
+
+    /* 備註與警示 */
+    .note-display {
+      font-size: 0.85rem;
+      background-color: rgba(255,255,255,0.05);
+      padding: 6px 10px;
+      border-radius: 6px;
+      color: var(--amber);
+      word-break: break-all;
+    }
+
+    .hours-warn {
+      color: var(--red);
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    /* 表格通用樣式 */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .data-table th, .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--slate-border);
+    }
+    .data-table th {
+      background-color: #090d16;
+      color: var(--text-muted);
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+    .data-table tr:hover { background-color: var(--bg-card-hover); }
+
+    /* 繳交矩陣格子 */
+    .sub-cell {
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 120px;
+      min-height: 44px;
+      border: 1px solid transparent;
+    }
+    .sub-cell.unreceived { background-color: #334155; color: #94a3b8; }
+    .sub-cell.online { background-color: rgba(16, 185, 129, 0.25); color: var(--emerald); border-color: var(--emerald); }
+    .sub-cell.usb { background-color: rgba(59, 130, 246, 0.25); color: var(--blue); border-color: var(--blue); }
+    .sub-cell.corrupted { background-color: rgba(239, 68, 68, 0.25); color: var(--red); border-color: var(--red); }
+
+    /* 廣播與覆蓋層 Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background-color: rgba(0,0,0,0.85);
+      z-index: 5000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .modal-backdrop.active { display: flex; }
+
+    .modal-content {
+      background-color: var(--bg-card);
+      border: 2px solid var(--slate-border);
+      border-radius: 16px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px;
+      position: relative;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .modal-close:hover { color: #ffffff; }
+
+    /* 廣播卡全螢幕 */
+    .broadcast-fullscreen {
+      background-color: #000000;
+      color: #ffffff;
+      width: 100vw; height: 100vh;
+      position: fixed;
+      top:0; left:0;
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+    }
+    .broadcast-fullscreen .big-text {
+      font-size: 6vw;
+      font-weight: 900;
+      line-height: 1.2;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .broadcast-fullscreen .sub-text {
+      font-size: 2vw;
+      color: var(--emerald);
+      margin-top: 30px;
+    }
+
+    /* 3分鐘倒數計時全螢幕 */
+    .countdown-fullscreen {
+      background-color: #0b132b;
+      color: #ffffff;
+      width: 100vw; height: 100vh;
+      position: fixed;
+      top:0; left:0;
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .countdown-timer {
+      font-size: 16vw;
+      font-weight: 900;
+      font-family: monospace;
+      color: var(--emerald);
+      letter-spacing: -2px;
+    }
+
+    /* 🔴 投影模式 (視角隔離) 樣式 override */
+    body.projection-mode {
+      background-color: #000000 !important;
+    }
+    body.projection-mode header,
+    body.projection-mode .nav-tabs,
+    body.projection-mode .hide-on-projection {
+      display: none !important;
+    }
+    body.projection-mode .proj-huge-num {
+      font-size: 8vh !important;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--emerald);
+    }
+    body.projection-mode .student-note,
+    body.projection-mode .sensitive-name,
+    body.projection-mode .action-btn-group {
+      display: none !important;
+    }
+
+    /* Toast 復原通知 */
+    #toast-container {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toast {
+      background-color: var(--bg-card);
+      border: 1px solid var(--emerald);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      animation: slideIn 0.2s ease-out;
+    }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    /* 列印專用 CSS */
+    @media print {
+      body * { visibility: hidden; }
+      #degraded-banner, header, .nav-tabs, .quick-bar, #toast-container, .modal-backdrop { display: none !important; }
+
+      .printable-area, .printable-area * {
+        visibility: visible !important;
+      }
+      .printable-area {
+        position: absolute;
+        left: 0; top: 0;
+        width: 100%;
+        color: #000000 !important;
+        background-color: #ffffff !important;
+        padding: 0 !important;
+      }
+
+      .print-page-break { page-break-after: always; }
+
+      table.print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+      table.print-table th, table.print-table td {
+        border: 1px solid #000;
+        padding: 8px 10px;
+        color: #000;
+        font-size: 11pt;
+      }
+      table.print-table th { background-color: #f0f0f0 !important; font-weight: bold; }
+
+      /* 桌牌 2x2 網格印出 */
+      .nameplate-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px;
+        height: 90vh;
+      }
+      .nameplate-card {
+        border: 2px dashed #333;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .nameplate-seat { font-size: 48pt; font-weight: 900; line-height: 1; }
+      .nameplate-name { font-size: 28pt; font-weight: 800; margin: 15px 0; }
+      .nameplate-sub { font-size: 16pt; color: #444; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂端降級警告橫幅 -->
+  <div id="degraded-banner">
+    ⚠️ 本機儲存無法使用，資料只存在這個分頁，關閉即消失，請常按「下載備份」！
+  </div>
+
+  <!-- 頂端導覽與狀態列 -->
+  <header>
+    <div class="brand-box">
+      <div class="brand-title">研習現場管理台</div>
+      <div class="version-tag">秀姑巒 v20260819</div>
+      <div id="save-status" class="save-badge saved">已儲存</div>
+    </div>
+
+    <!-- 六大現場動作 2次點擊內可達工具列 -->
+    <div class="quick-bar">
+      <div class="stat-pill" title="0點擊即可目視">
+        實到: <span id="hdr-stat-attended">0</span> / 應到: <span id="hdr-stat-total">0</span> (<span id="hdr-stat-rate">0%</span>)｜在場: <span id="hdr-stat-present">0</span>
+      </div>
+
+      <button class="btn btn-emerald" onclick="openQuickSearchModal()" title="1次點擊開啟找人">⚡ 快速簽到</button>
+      <button class="btn btn-amber" onclick="openBroadcastMenu()" title="1次點擊開廣播卡">📢 廣播卡</button>
+      <button class="btn btn-red" onclick="openUncheckedOutModal()" title="1次點擊看缺簽退">⚠️ 缺簽退 (<span id="hdr-stat-unout">0</span>)</button>
+      <button class="btn btn-blue" onclick="downloadBackup()" title="1次點擊下載備份">💾 備份</button>
+      <button class="btn btn-slate" id="btn-toggle-projection" onclick="toggleProjectionMode()">📺 投影模式</button>
+    </div>
+  </header>
+
+  <!-- 主頁籤導覽列 -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('tab-dashboard')">📊 報到與即時看板</button>
+    <button class="tab-btn" onclick="switchTab('tab-checkin')">📝 報到與學員名單</button>
+    <button class="tab-btn" onclick="switchTab('tab-submissions')">📋 繳交追蹤 (3件)</button>
+    <button class="tab-btn" onclick="switchTab('tab-roster')">👥 名單管理與分組</button>
+    <button class="tab-btn" onclick="switchTab('tab-export')">🖨️ 匯出與收工檢核</button>
+    <button class="tab-btn" onclick="switchTab('tab-group-status')">🛠️ 實作巡場狀態</button>
+  </nav>
+
+  <main>
+
+    <!-- ==========================================================================
+         頁籤 1：報到與即時看板
+         ========================================================================== -->
+    <div id="tab-dashboard" class="tab-pane active">
+
+      <!-- 公告列 -->
+      <div class="card" style="border-left: 6px solid var(--amber);">
+        <div class="card-header">
+          <div class="card-title">📢 研習現場即時公告</div>
+          <button class="btn btn-outline btn-sm hide-on-projection" onclick="editAnnouncement()">編輯公告</button>
+        </div>
+        <div id="dashboard-announcement" style="font-size: 1.2rem; font-weight: 700; color: #ffffff;">
+          （無公告）
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- 實到與統計卡片 -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">📈 出席概狀況統計</div></div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <span style="color: var(--text-muted);">實到人數：</span>
+              <span class="proj-huge-num" style="font-size: 2.5rem; color: var(--emerald); font-weight: 900;" id="dash-attended">0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">應到總數：</span>
+              <span style="font-weight: 700;" id="dash-total">0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">整體出席率：</span>
+              <span style="font-weight: 700; color: var(--emerald);" id="dash-rate">0%</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-muted);">目前在場：</span>
+              <span style="font-weight: 700; color: var(--blue);" id="dash-present">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 餐食統計卡片 -->
+        <div class="card" id="card-meals">
+          <div class="card-header"><div class="card-title">🍱 已到者餐食統計</div></div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 700;">
+              <span>🥩 葷食：</span><span id="meal-meat">0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: 700;">
+              <span>🥗 素食：</span><span id="meal-veg">0</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: 700;" id="meal-unfilled-row">
+              <span>❓ 未填：</span><span id="meal-unfilled">0</span>
+            </div>
+            <div id="meal-alert" style="display:none; background: rgba(245, 158, 11, 0.2); color: var(--amber); padding: 8px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; margin-top: 6px;">
+              ⚠️ 注意：有已到學員餐食未填，請儘速確認補齊！
+            </div>
+          </div>
+        </div>
+
+        <!-- 最近簽到動態 (8筆) -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">🕒 最近簽到動態 (最新8筆)</div></div>
+          <div id="recent-checkins-stream" style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
+            <!-- 動態產生 -->
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- 各校到齊狀況 -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">🏫 各學校到齊狀況</div></div>
+          <div id="school-status-list" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- 動態產生 -->
+          </div>
+        </div>
+
+        <!-- 分組與巡場燈號 (投影安全) -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">🧩 各組成員與巡場燈號</div></div>
+          <div id="dash-group-list" class="grid-2">
+            <!-- 動態產生 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 今日議程卡片與模擬時間測試 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📅 今日研習議程 (2026/08/19)</div>
+          <div class="hide-on-projection" style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem;">
+            <label style="margin:0;">模擬測試時間：</label>
+            <input type="text" id="simulated-time-input" placeholder="例 09:15" style="width: 100px; min-height:36px; padding:4px 8px;" onchange="updateAgendaHighlight()">
+            <button class="btn btn-outline" style="min-height:36px; padding:4px 10px; font-size:0.85rem;" onclick="clearSimulatedTime()">重置本機時間</button>
+          </div>
+        </div>
+        <div id="agenda-timeline" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- 議程清單 -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================================
+         頁籤 2：報到與學員名單
+         ========================================================================== -->
+    <div id="tab-checkin" class="tab-pane">
+
+      <!-- 控制與搜尋列 -->
+      <div class="card">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
+          <div style="display: flex; gap: 12px; flex: 1; min-width: 280px;">
+            <input type="search" id="search-student-input" placeholder="🔍 搜尋姓名、學校、座號..." oninput="renderStudentList()">
+            <select id="filter-group-select" style="width: 140px;" onchange="renderStudentList()">
+              <option value="">全部分組</option>
+              <option value="1">第一組</option>
+              <option value="2">第二組</option>
+              <option value="3">第三組</option>
+              <option value="4">第四組</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-emerald" onclick="openWalkinModal()">➕ 現場臨時加人</button>
+            <button class="btn btn-amber" onclick="openAbsentModal()">📄 產生未到紙條</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 學員卡片網格區 -->
+      <div id="student-grid" class="grid-3">
+        <!-- 動態繪製學員卡片 -->
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         頁籤 3：繳交追蹤 (3件作品)
+         ========================================================================== -->
+    <div id="tab-submissions" class="tab-pane">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📦 作品繳交追蹤與自願展示標記</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-emerald" onclick="openProjectStatsModal()">📺 全螢幕投影完成數</button>
+            <button class="btn btn-blue" onclick="openSubPasteModal()">📋 貼上匯入繳交紀錄</button>
+            <button class="btn btn-amber" onclick="openMissingSubModal()">📄 缺件與重交清單</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted);">
+          💡 點擊切換狀態：⚪未收 ➔ 🌐網路收到 ➔ 💾隨身碟收到 ➔ ⚠️檔案打不開。或點擊右側 ⚙️ 直接指定。勾選「展示」代表該學員自願展示作品。
+        </div>
+
+        <!-- 繳交矩陣表格 -->
+        <div style="overflow-x: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">座號</th>
+                <th style="width: 140px;">姓名 / 學校</th>
+                <th>① 24週課程規劃表</th>
+                <th>② 學生回饋單</th>
+                <th>③ 出席對帳工具</th>
+              </tr>
+            </thead>
+            <tbody id="submission-matrix-tbody">
+              <!-- 動態生成 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 展示名額指派區 (SHOW-1 / SHOW-2 / SHOW-3) -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">🌟 現場展示名額指派 (限自願展示者)</div></div>
+        <div class="grid-3">
+          <div class="card" style="margin:0; background-color: #162032;">
+            <div style="font-weight: 800; color: var(--amber); margin-bottom: 8px;">SHOW-1 展示名額</div>
+            <label>主要展示學員：</label>
+            <select id="showcase-1-select" onchange="updateShowcase('SHOW-1', this.value)"></select>
+            <label style="margin-top:8px;">備位學員：</label>
+            <select id="showcase-1-backup-select" onchange="updateShowcaseBackup('SHOW-1', this.value)"></select>
+          </div>
+
+          <div class="card" style="margin:0; background-color: #162032;">
+            <div style="font-weight: 800; color: var(--amber); margin-bottom: 8px;">SHOW-2 展示名額</div>
+            <label>主要展示學員：</label>
+            <select id="showcase-2-select" onchange="updateShowcase('SHOW-2', this.value)"></select>
+            <label style="margin-top:8px;">備位學員：</label>
+            <select id="showcase-2-backup-select" onchange="updateShowcaseBackup('SHOW-2', this.value)"></select>
+          </div>
+
+          <div class="card" style="margin:0; background-color: #162032;">
+            <div style="font-weight: 800; color: var(--amber); margin-bottom: 8px;">SHOW-3 展示名額</div>
+            <label>主要展示學員：</label>
+            <select id="showcase-3-select" onchange="updateShowcase('SHOW-3', this.value)"></select>
+            <label style="margin-top:8px;">備位學員：</label>
+            <select id="showcase-3-backup-select" onchange="updateShowcaseBackup('SHOW-3', this.value)"></select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================================
+         頁籤 4：名單管理與分組
+         ========================================================================== -->
+    <div id="tab-roster" class="tab-pane">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">👥 學員名單維護與批量匯入</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-blue" onclick="openRosterPasteModal()">📋 貼上 CSV 匯入學員</button>
+            <button class="btn btn-amber" onclick="triggerAutoGrouping()">🎲 自動分 4 組（小老師分開）</button>
+            <button class="btn btn-red" onclick="triggerResetToDefaultSample()">🔄 載入 14 筆預設範例</button>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>座號</th>
+                <th>姓名</th>
+                <th>學校</th>
+                <th>職稱</th>
+                <th>葷素</th>
+                <th class="hide-on-projection">小老師</th>
+                <th>組別</th>
+                <th>簽到 / 簽退</th>
+                <th>時數</th>
+                <th class="hide-on-projection">操作</th>
+              </tr>
+            </thead>
+            <tbody id="roster-manage-tbody">
+              <!-- 動態產生 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================================
+         頁籤 5：匯出、列印與收工檢核
+         ========================================================================== -->
+    <div id="tab-export" class="tab-pane">
+
+      <div class="grid-2">
+        <!-- 檔案匯出區 -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">📥 檔案匯出與備份</div></div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn btn-emerald" onclick="downloadCheckinCSV()">📊 下載「簽到表 CSV」（現場核對用）</button>
+            <button class="btn btn-emerald" onclick="downloadHoursCSV()">⏱️ 下載「時數表 CSV」（研習時數登錄用）</button>
+            <button class="btn btn-blue" onclick="downloadBackup()">💾 下載完整 JSON 備份檔</button>
+            <div style="border-top: 1px solid var(--slate-border); padding-top: 12px; margin-top: 6px;">
+              <label>還原 JSON 備份檔：</label>
+              <input type="file" id="restore-json-input" accept=".json" onchange="handleRestoreJSON(event)">
+            </div>
+          </div>
+        </div>
+
+        <!-- 列印功能區 -->
+        <div class="card">
+          <div class="card-header"><div class="card-title">🖨️ 紙本文件列印</div></div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="btn btn-outline" onclick="printSignSheet()">📝 列印核銷用親筆簽名表 (A4)</button>
+            <button class="btn btn-outline" onclick="printNameplates()">🪪 列印學員桌牌 (A4 每頁4張)</button>
+            <button class="btn btn-outline" onclick="openAbsentModal()">✂️ 列印未到人員小紙條</button>
+            <button class="btn btn-outline" onclick="openMissingSubModal()">✂️ 列印作品缺件小紙條</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 開場自檢卡片 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🔍 研習開場自檢</div>
+          <button class="btn btn-emerald" onclick="runOpeningSelfCheck()">重新執行開場自檢</button>
+        </div>
+        <div id="opening-check-results" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- 動態檢核結果 -->
+        </div>
+      </div>
+
+      <!-- 收工檢核卡片 -->
+      <div class="card" style="border: 2px solid var(--slate-border);">
+        <div class="card-header">
+          <div class="card-title">🏁 研習收工關機檢核</div>
+          <button class="btn btn-amber" onclick="runEndDayCheck()">重新計算收工狀態</button>
+        </div>
+        <div id="endday-check-results" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- 動態收工檢核結果 -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==========================================================================
+         頁籤 6：實作巡場狀態 (4組故障分流)
+         ========================================================================== -->
+    <div id="tab-group-status" class="tab-pane">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🛠️ 實作巡場故障分流與求救燈號 (4組)</div>
+        </div>
+        <div style="margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted);">
+          💡 此區供講師與工讀即時掌握組別狀況。**投影模式下僅顯示紅黃綠燈號，絕不公開任何學員姓名**。
+        </div>
+
+        <div class="grid-2" id="group-support-grid">
+          <!-- 4組巡場卡片 -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast 通知容器 -->
+  <div id="toast-container"></div>
+
+  <!-- ==========================================================================
+       MODALS / OVERLAYS 覆蓋層 (全系統維持最多一層，Esc 可關閉)
+       ========================================================================== -->
+
+  <!-- 1. 廣播選單 Modal -->
+  <div id="modal-broadcast-menu" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-broadcast-menu')">✕</button>
+      <h2 style="margin-bottom: 16px; color: var(--emerald);">📢 選擇投影廣播卡</h2>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <button class="btn btn-emerald" onclick="showBroadcastFullscreen(0)">1. 請回座，3 分鐘後開始 (含倒數)</button>
+        <button class="btn btn-blue" onclick="showBroadcastFullscreen(1)">2. 午餐：素食有專區</button>
+        <button class="btn btn-slate" onclick="showBroadcastFullscreen(2)">3. 下午場地 A128</button>
+        <button class="btn btn-amber" onclick="showBroadcastFullscreen(3)">4. 請完成簽退後再離場</button>
+
+        <div style="border-top: 1px solid var(--slate-border); padding-top: 12px; margin-top: 8px;">
+          <label>5. 自由輸入內容：</label>
+          <textarea id="broadcast-custom-input" rows="3" placeholder="請輸入廣播大字內容..."></textarea>
+          <button class="btn btn-emerald" style="width: 100%; margin-top: 8px;" onclick="showBroadcastFullscreen(4)">發布自由廣播</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 全螢幕廣播卡 Overlay -->
+  <div id="overlay-broadcast-fullscreen" class="broadcast-fullscreen" style="display:none;" onclick="closeBroadcastFullscreen()">
+    <div class="big-text" id="broadcast-fullscreen-text">廣播文字</div>
+    <div class="sub-text">（點擊螢幕或按 Esc 關閉廣播）</div>
+  </div>
+
+  <!-- 3. 全螢幕 3 分鐘倒數 Overlay -->
+  <div id="overlay-countdown-fullscreen" class="countdown-fullscreen" style="display:none;" onclick="stopCountdown()">
+    <div style="font-size: 3vw; font-weight: bold; margin-bottom: 20px;">⏱️ 請回座・研習即將開始</div>
+    <div class="countdown-timer" id="countdown-timer-text">03:00</div>
+    <div style="font-size: 1.5vw; color: var(--text-muted); margin-top: 20px;">（點擊螢幕或按 Esc 停止並關閉倒數）</div>
+  </div>
+
+  <!-- 4. 快速搜尋與簽到 Modal -->
+  <div id="modal-quick-search" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-quick-search')">✕</button>
+      <h2 style="margin-bottom: 16px; color: var(--emerald);">⚡ 快速搜尋與現場簽到</h2>
+      <input type="search" id="quick-search-input" placeholder="喊名打字：輸入姓名、學校、座號..." oninput="renderQuickSearchList()">
+      <div id="quick-search-results" style="margin-top: 16px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+        <!-- 搜尋結果 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 缺簽退清單 Modal -->
+  <div id="modal-unchecked-out" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-unchecked-out')">✕</button>
+      <h2 style="margin-bottom: 16px; color: var(--red);">⚠️ 缺簽退人員清單</h2>
+      <div class="hide-on-projection" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">
+        在場已簽到但尚未簽退者。投影模式下將自動隱藏姓名僅顯示人數。
+      </div>
+      <div id="unchecked-out-list" style="display: flex; flex-direction: column; gap: 8px;">
+        <!-- 動態列出 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 備註與事實紀錄 Modal -->
+  <div id="modal-note-edit" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-note-edit')">✕</button>
+      <h3 style="margin-bottom: 12px;" id="note-edit-student-title">編輯出缺勤備註</h3>
+      <div style="font-size: 0.85rem; color: var(--amber); margin-bottom: 12px; font-weight: bold;">
+        📌 注意：只記出缺席事實，不進行任何評價。
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label>快捷標籤 (可複選)：</label>
+          <div style="display: flex; gap: 12px; margin-top: 4px;">
+            <label><input type="checkbox" id="note-tag-late"> 遲到</label>
+            <label><input type="checkbox" id="note-tag-mid"> 中場離場</label>
+            <label><input type="checkbox" id="note-tag-early"> 提早離開</label>
+          </div>
+        </div>
+        <div>
+          <label>自由事實文字 (上限80字，剩餘 <span id="note-chars-left">80</span> 字)：</label>
+          <textarea id="note-free-text" rows="3" maxlength="80" oninput="updateNoteCharsLeft()"></textarea>
+        </div>
+        <button class="btn btn-emerald" onclick="saveStudentNote()">儲存備註</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 現場臨時加人 Modal -->
+  <div id="modal-walkin" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-walkin')">✕</button>
+      <h3 style="margin-bottom: 16px; color: var(--emerald);">➕ 現場臨時新增學員</h3>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div><label>座號 (兩位數字字串，可空)：</label><input type="text" id="walkin-seat" placeholder="例 15"></div>
+        <div><label>姓名 (必填)：</label><input type="text" id="walkin-name" placeholder="例 張三"></div>
+        <div><label>學校 (必填)：</label><input type="text" id="walkin-school" placeholder="例 太陽國小"></div>
+        <div><label>職稱：</label><input type="text" id="walkin-title" placeholder="例 教師"></div>
+        <div>
+          <label>葷素餐食：</label>
+          <select id="walkin-meal">
+            <option value="">未填</option>
+            <option value="葷">葷</option>
+            <option value="素">素</option>
+          </select>
+        </div>
+        <div>
+          <label>組別：</label>
+          <select id="walkin-group">
+            <option value="">未分組</option>
+            <option value="1">第一組</option>
+            <option value="2">第二組</option>
+            <option value="3">第三組</option>
+            <option value="4">第四組</option>
+          </select>
+        </div>
+        <button class="btn btn-emerald" onclick="submitWalkinStudent()">新增並立即簽到</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Roster CSV Paste Modal -->
+  <div id="modal-roster-paste" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-roster-paste')">✕</button>
+      <h3 style="margin-bottom: 12px; color: var(--blue);">📋 貼上 CSV 匯入學員名單</h3>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+        格式：每行 <code>姓名,學校,職稱,葷素,[組別],[座號]</code>。自動去前後空白、英數轉半形、正規化餐食。
+      </div>
+      <textarea id="roster-paste-textarea" rows="8" placeholder="甄美春,星野國小,教師兼教務主任,葷,1,01&#10;華志明,星野國小,自然教師,葷,1,02"></textarea>
+      <div style="margin: 12px 0;">
+        <label><input type="checkbox" id="allow-duplicate-names"> 允許重複姓名 (預設同姓名同學校略過)</label>
+      </div>
+      <button class="btn btn-blue" onclick="processRosterPasteImport()">開始匯入</button>
+      <div id="roster-paste-summary" style="margin-top: 14px;"></div>
+    </div>
+  </div>
+
+  <!-- 9. Submissions Paste Modal -->
+  <div id="modal-sub-paste" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-sub-paste')">✕</button>
+      <h3 style="margin-bottom: 12px; color: var(--blue);">📋 貼上匯入繳交紀錄</h3>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+        格式：每行 <code>座號或姓名,產品代號(1/2/3),[時間]</code>。優先座號比對，僅把「未收」更新為「網路收到」。
+      </div>
+      <textarea id="sub-paste-textarea" rows="6" placeholder="01,1,2026-08-19 10:15&#10;甄美春,2"></textarea>
+      <button class="btn btn-blue" style="margin-top: 10px;" onclick="processSubPasteImport()">開始匯入</button>
+      <div id="sub-paste-summary" style="margin-top: 14px;"></div>
+    </div>
+  </div>
+
+  <!-- 10. 全螢幕完成數投影 Modal -->
+  <div id="modal-project-stats" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 900px; text-align: center; background: #000000;">
+      <button class="modal-close" onclick="closeModal('modal-project-stats')">✕</button>
+      <h2 style="color: var(--emerald); margin-bottom: 24px;">📊 作品繳交完成進度 (投影視角)</h2>
+      <div id="project-stats-content" style="font-size: 4vw; font-weight: 900; line-height: 1.6; color: #ffffff;">
+        <!-- 動態產生 -->
+      </div>
+      <div style="font-size: 1.2rem; color: var(--text-muted); margin-top: 30px;">（絕不顯示未交者姓名）</div>
+    </div>
+  </div>
+
+  <!-- 11. 未到紙條 Modal -->
+  <div id="modal-absent-strip" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-absent-strip')">✕</button>
+      <h3 style="margin-bottom: 12px; color: var(--amber);">📄 未到人員小紙條 (供現場尋人)</h3>
+      <div id="absent-strip-content" style="background: #ffffff; color: #000000; padding: 20px; border-radius: 8px; font-family: monospace;">
+        <!-- 動態生成 -->
+      </div>
+      <button class="btn btn-emerald" style="margin-top: 16px; width: 100%;" onclick="printAbsentStrip()">🖨️ 列印此紙條</button>
+    </div>
+  </div>
+
+  <!-- 12. 缺件與重交小紙條 Modal -->
+  <div id="modal-missing-strip" class="modal-backdrop">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-missing-strip')">✕</button>
+      <h3 style="margin-bottom: 12px; color: var(--red);">📄 作品缺件與需重交小紙條</h3>
+      <div id="missing-strip-content" style="background: #ffffff; color: #000000; padding: 20px; border-radius: 8px; font-family: monospace;">
+        <!-- 動態生成 -->
+      </div>
+      <button class="btn btn-red" style="margin-top: 16px; width: 100%;" onclick="printMissingStrip()">🖨️ 列印此紙條</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       隱藏列印區域 (PRINTABLE CONTAINERS)
+       ========================================================================== -->
+  <div id="print-area-signsheet" class="printable-area" style="display:none;"></div>
+  <div id="print-area-nameplates" class="printable-area" style="display:none;"></div>
+
+  <!-- ==========================================================================
+       JavaScript 核心邏輯
+       ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       常數與全域宣告
+       -------------------------------------------------------------------------- */
+    const EVENT_NAME = "115 學年度國中小科學社團扶助計畫研習活動";
+    const EVENT_DATE = "2026/8/19";
+    const ACCOUNTING_NOTE = "本表供餐費、茶水費核銷檢附";
+
+    const STORAGE_KEY = "workshop_console_xiuguluan_20260819";
+
+    const BROADCAST_PRESETS = [
+      "請回座，3 分鐘後開始",
+      "午餐：素食有專區",
+      "下午場地 A128",
+      "請完成簽退後再離場"
+    ];
+
+    const AGENDA_ITEMS = [
+      { time: "08:00", title: "報到" },
+      { time: "08:30", title: "開場：非制式動手做科學推廣（楊悠娟）" },
+      { time: "09:00", title: "Codex/Antigravity 教學應用與社團管理開發（陳文盛、游豐兆）" },
+      { time: "12:00", title: "午餐" },
+      { time: "13:00", title: "大自然的仿生與綠色化學（楊悠娟）" },
+      { time: "14:30", title: "靜電感測器實作（洪連輝）" },
+      { time: "16:00", title: "課程表與社團實務討論座談" },
+      { time: "17:00", title: "賦歸" }
+    ];
+
+    // 14 筆預設範例資料 (組別留空)
+    const DEFAULT_STUDENTS = [
+      { id: "s01", seat: "01", name: "甄美春", school: "星野國小", title: "教師兼教務主任", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s02", seat: "02", name: "華志明", school: "星野國小", title: "自然教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s03", seat: "03", name: "林月桃", school: "貝殼國小", title: "校長", meal: "素", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s04", seat: "04", name: "吳大維", school: "貝殼國小", title: "自然教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s05", seat: "05", name: "江雪倫", school: "曙光國小", title: "教師兼總務主任", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s06", seat: "06", name: "方子齊", school: "曙光國小", title: "教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s07", seat: "07", name: "高秋香", school: "青苔國中", title: "教務主任", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s08", seat: "08", name: "鄭一帆", school: "青苔國中", title: "自然科教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s09", seat: "09", name: "杜曉風", school: "青苔國中", title: "數學科教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s10", seat: "10", name: "薛春枝", school: "飛魚國小", title: "教導主任", meal: "素", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s11", seat: "11", name: "翟文豪", school: "飛魚國小", title: "教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s12", seat: "12", name: "石采蓉", school: "螢火國小", title: "學務組長", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s13", seat: "13", name: "童啟光", school: "螢火國小", title: "教師", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null },
+      { id: "s14", seat: "14", name: "賀明霞", school: "雲杉國中", title: "自然科專任", meal: "葷", group: "", note: "", checkedInAt: null, checkedOutAt: null }
+    ];
+
+    /* 全域狀態 */
+    let state = {
+      students: [],
+      submissions: {},
+      showcase: { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null },
+      showcaseBackups: { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null },
+      announcement: "",
+      checklist: {
+        hoursCsvDownloadedAt: null,
+        signSheetPrintedConfirmed: false,
+        backupDownloadedAt: null,
+        collectionBoxArchived: false,
+        waivers: []
+      },
+      groupStatus: {
+        "1": { status: "normal", category: "", note: "", updatedAt: null },
+        "2": { status: "normal", category: "", note: "", updatedAt: null },
+        "3": { status: "normal", category: "", note: "", updatedAt: null },
+        "4": { status: "normal", category: "", note: "", updatedAt: null }
+      },
+      broadcastCustom: "請各位老師完成簽退後再離場"
+    };
+
+    let isStorageAvailable = true;
+    let isProjectionMode = false;
+    let countdownInterval = null;
+    let countdownRemaining = 180;
+    let currentEditingNoteStudentId = null;
+
+    /* --------------------------------------------------------------------------
+       初始化與 localStorage 持久化
+       -------------------------------------------------------------------------- */
+    window.addEventListener("DOMContentLoaded", () => {
+      checkStorageAvailability();
+      loadState();
+      setupEventListeners();
+      renderAll();
+
+      // 每 30 秒自動更新議程高亮
+      setInterval(updateAgendaHighlight, 30000);
+    });
+
+    function checkStorageAvailability() {
+      try {
+        const k = "__test__";
+        localStorage.setItem(k, "1");
+        localStorage.removeItem(k);
+        isStorageAvailable = true;
+        document.getElementById("degraded-banner").style.display = "none";
+      } catch (e) {
+        isStorageAvailable = false;
+        document.getElementById("degraded-banner").style.display = "block";
+
+        // 降級提醒：每10分鐘提醒下載備份
+        setInterval(() => {
+          alert("⚠️ [本機儲存降級提醒] 目前處於記憶體模式，請記得下載備份！");
+        }, 600000);
+
+        window.addEventListener("beforeunload", (e) => {
+          e.preventDefault();
+          e.returnValue = "本機儲存不可用，關閉分頁資料將消失！確定離開？";
+        });
+      }
+    }
+
+    function loadState() {
+      if (isStorageAvailable) {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          try {
+            const parsed = JSON.parse(raw);
+            state = Object.assign(state, parsed);
+            return;
+          } catch (e) {
+            console.error("Parse state error", e);
+          }
+        }
+      }
+      // 首次開啟載入範例
+      initDefaultSampleData();
+    }
+
+    function initDefaultSampleData() {
+      state.students = JSON.parse(JSON.stringify(DEFAULT_STUDENTS));
+      state.submissions = {};
+      state.students.forEach(s => {
+        state.submissions[s.id] = {
+          "1": { state: "未收", volunteer: false, receivedAt: null },
+          "2": { state: "未收", volunteer: false, receivedAt: null },
+          "3": { state: "未收", volunteer: false, receivedAt: null }
+        };
+      });
+      state.showcase = { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
+      state.showcaseBackups = { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
+      state.announcement = "歡迎參加 115 學年度科學社團扶助計畫研習活動！請完成報到與簽到。";
+      saveState();
+    }
+
+    function saveState() {
+      const nowStr = new Date().toLocaleTimeString("zh-TW", { hour12: false });
+      if (isStorageAvailable) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          const el = document.getElementById("save-status");
+          el.textContent = `已儲存 ${nowStr}`;
+          el.className = "save-badge saved";
+        } catch (e) {
+          console.error("Save error", e);
+        }
+      } else {
+        const el = document.getElementById("save-status");
+        el.textContent = `記憶體模式 ${nowStr}`;
+        el.className = "save-badge warning";
+      }
+    }
+
+    function setupEventListeners() {
+      // 跨視窗同步
+      window.addEventListener("storage", (e) => {
+        if (e.key === STORAGE_KEY && e.newValue) {
+          try {
+            state = JSON.parse(e.newValue);
+            renderAll();
+            showToast("資料已由另一個視窗更新！", "info");
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      });
+
+      // 按 Esc 鍵關閉任何覆蓋層 Modal / 廣播
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeAllOverlays();
+        }
+      });
+    }
+
+    function renderAll() {
+      renderHeaderStats();
+      renderDashboard();
+      renderStudentList();
+      renderSubmissionMatrix();
+      renderRosterTable();
+      renderOpeningCheckResults();
+      renderEndDayCheckResults();
+      renderGroupStatusGrid();
+    }
+
+    /* --------------------------------------------------------------------------
+       視角隔離與投影模式
+       -------------------------------------------------------------------------- */
+    function toggleProjectionMode() {
+      isProjectionMode = !isProjectionMode;
+      const btn = document.getElementById("btn-toggle-projection");
+      if (isProjectionMode) {
+        document.body.classList.add("projection-mode");
+        btn.textContent = "📺 離開投影模式";
+        btn.className = "btn btn-red";
+        showToast("已開啟投影模式 (視角隔離啟動，敏感個資與姓名已隱藏)", "info");
+      } else {
+        document.body.classList.remove("projection-mode");
+        btn.textContent = "📺 投影模式";
+        btn.className = "btn btn-slate";
+      }
+      renderAll();
+    }
+
+    /* --------------------------------------------------------------------------
+       統計數字計算 (依第〇節定義)
+       -------------------------------------------------------------------------- */
+    function computeStats() {
+      const total = state.students.length; // 應到 (動態)
+      const attended = state.students.filter(s => s.checkedInAt !== null).length; // 實到
+      const present = state.students.filter(s => s.checkedInAt !== null && s.checkedOutAt === null).length; // 在場
+      const uncheckedOut = present; // 缺簽退人數
+      const rateStr = total === 0 ? "—" : Math.round((attended / total) * 100) + "%";
+
+      return { total, attended, present, uncheckedOut, rateStr };
+    }
+
+    function renderHeaderStats() {
+      const s = computeStats();
+      document.getElementById("hdr-stat-attended").textContent = s.attended;
+      document.getElementById("hdr-stat-total").textContent = s.total;
+      document.getElementById("hdr-stat-rate").textContent = s.rateStr;
+      document.getElementById("hdr-stat-present").textContent = s.present;
+      document.getElementById("hdr-stat-unout").textContent = s.uncheckedOut;
+    }
+
+    /* --------------------------------------------------------------------------
+       頁籤 1：即時看板與議程
+       -------------------------------------------------------------------------- */
+    function renderDashboard() {
+      const stats = computeStats();
+      document.getElementById("dash-attended").textContent = stats.attended;
+      document.getElementById("dash-total").textContent = stats.total;
+      document.getElementById("dash-rate").textContent = stats.rateStr;
+      document.getElementById("dash-present").textContent = stats.present;
+
+      // 公告
+      document.getElementById("dashboard-announcement").textContent = state.announcement || "（無公告）";
+
+      // 餐食統計 (已到者)
+      const arrivedStudents = state.students.filter(s => s.checkedInAt !== null);
+      const meat = arrivedStudents.filter(s => s.meal === "葷").length;
+      const veg = arrivedStudents.filter(s => s.meal === "素").length;
+      const unfilled = arrivedStudents.filter(s => !s.meal || (s.meal !== "葷" && s.meal !== "素")).length;
+
+      document.getElementById("meal-meat").textContent = meat;
+      document.getElementById("meal-veg").textContent = veg;
+      document.getElementById("meal-unfilled").textContent = unfilled;
+
+      const alertEl = document.getElementById("meal-alert");
+      if (unfilled > 0) {
+        alertEl.style.display = "block";
+      } else {
+        alertEl.style.display = "none";
+      }
+
+      // 最近簽到動態 (8筆)
+      const streamEl = document.getElementById("recent-checkins-stream");
+      streamEl.innerHTML = "";
+      const checkedInList = state.students
+        .filter(s => s.checkedInAt !== null)
+        .sort((a, b) => new Date(b.checkedInAt) - new Date(a.checkedInAt))
+        .slice(0, 8);
+
+      if (checkedInList.length === 0) {
+        streamEl.innerHTML = `<div style="color:var(--text-muted);">尚未有人簽到</div>`;
+      } else {
+        checkedInList.forEach(s => {
+          const timeStr = formatHHMM(s.checkedInAt);
+          streamEl.innerHTML += `
+            <div style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--slate-border); padding-bottom:4px;">
+              <span class="${isProjectionMode ? 'sensitive-name' : ''}">${escapeHtml(s.name)} (${escapeHtml(s.school)})</span>
+              <span style="color:var(--emerald); font-weight:bold;">${timeStr} 簽到</span>
+            </div>
+          `;
+        });
+      }
+
+      // 各校到齊狀況
+      const schoolMap = {};
+      state.students.forEach(s => {
+        if (!schoolMap[s.school]) schoolMap[s.school] = { total: 0, arrived: 0 };
+        schoolMap[s.school].total++;
+        if (s.checkedInAt !== null) schoolMap[s.school].arrived++;
+      });
+
+      const schoolEl = document.getElementById("school-status-list");
+      schoolEl.innerHTML = "";
+      Object.keys(schoolMap).forEach(sc => {
+        const item = schoolMap[sc];
+        const isAll = item.arrived === item.total && item.total > 0;
+        schoolEl.innerHTML += `
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+            <span>${escapeHtml(sc)}</span>
+            <span>
+              <strong>${item.arrived}</strong> / ${item.total}
+              ${isAll ? `<span class="status-tag in" style="margin-left:8px;">全到</span>` : ''}
+            </span>
+          </div>
+        `;
+      });
+
+      // 各組成員與巡場燈號 (投影安全)
+      const groupEl = document.getElementById("dash-group-list");
+      groupEl.innerHTML = "";
+      for (let g = 1; g <= 4; g++) {
+        const groupStudents = state.students.filter(s => s.group === String(g));
+        const st = state.groupStatus[String(g)] || { status: "normal" };
+        let badgeColor = "var(--emerald)";
+        let badgeLabel = "正常";
+        if (st.status === "stuck") { badgeColor = "var(--amber)"; badgeLabel = "卡住"; }
+        if (st.status === "halted") { badgeColor = "var(--red)"; badgeLabel = "停擺"; }
+
+        groupEl.innerHTML += `
+          <div style="background:#162032; padding:10px; border-radius:8px; border-top: 4px solid ${badgeColor};">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:6px;">
+              <span>第 ${g} 組 (${groupStudents.length}人)</span>
+              <span style="color:${badgeColor};">${badgeLabel}</span>
+            </div>
+            <div class="${isProjectionMode ? 'sensitive-name' : ''}" style="font-size:0.85rem; color:var(--text-muted);">
+              ${groupStudents.map(s => escapeHtml(s.name)).join("、") || "無成員"}
+            </div>
+          </div>
+        `;
+      }
+
+      updateAgendaHighlight();
+    }
+
+    function editAnnouncement() {
+      const next = prompt("請輸入現場公告文字：", state.announcement);
+      if (next !== null) {
+        state.announcement = next.trim();
+        saveState();
+        renderDashboard();
+      }
+    }
+
+    function updateAgendaHighlight() {
+      const container = document.getElementById("agenda-timeline");
+      container.innerHTML = "";
+
+      let nowTimeStr = "";
+      const simVal = document.getElementById("simulated-time-input").value.trim();
+      if (simVal) {
+        nowTimeStr = simVal;
+      } else {
+        const d = new Date();
+        const year = d.getFullYear();
+        const month = d.getMonth() + 1;
+        const date = d.getDate();
+        // 非 2026/8/19 當天且未設模擬時間者不高亮
+        if (year === 2026 && month === 8 && date === 19) {
+          nowTimeStr = d.toTimeString().slice(0, 5);
+        }
+      }
+
+      AGENDA_ITEMS.forEach((item, index) => {
+        const nextItem = AGENDA_ITEMS[index + 1];
+        const startTime = item.time;
+        const endTime = nextItem ? nextItem.time : "17:30";
+
+        let isActive = false;
+        if (nowTimeStr && nowTimeStr >= startTime && nowTimeStr < endTime) {
+          isActive = true;
+        }
+
+        container.innerHTML += `
+          <div style="display:flex; gap:16px; align-items:center; padding:10px 14px; border-radius:8px; background:${isActive ? 'rgba(16, 185, 129, 0.2)' : '#162032'}; border: 1px solid ${isActive ? 'var(--emerald)' : 'transparent'};">
+            <div style="font-weight:900; font-family:monospace; color:${isActive ? 'var(--emerald)' : 'var(--text-muted)'}; font-size:1.1rem; min-width:110px;">
+              ${startTime} ~ ${endTime}
+            </div>
+            <div style="font-weight:700; color:${isActive ? '#ffffff' : 'var(--text-muted)'};">
+              ${escapeHtml(item.title)}
+              ${isActive ? `<span style="margin-left:10px; color:var(--emerald);">◀ 進行中</span>` : ''}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function clearSimulatedTime() {
+      document.getElementById("simulated-time-input").value = "";
+      updateAgendaHighlight();
+    }
+
+    /* --------------------------------------------------------------------------
+       頁籤 2：報到管理與學員列表 (狀態機實作)
+       -------------------------------------------------------------------------- */
+    function renderStudentList() {
+      const grid = document.getElementById("student-grid");
+      grid.innerHTML = "";
+
+      const query = document.getElementById("search-student-input").value.trim().toLowerCase();
+      const groupFilter = document.getElementById("filter-group-select").value;
+
+      const filtered = state.students.filter(s => {
+        const matchQ = !query || s.name.toLowerCase().includes(query) || s.school.toLowerCase().includes(query) || (s.seat && s.seat.includes(query));
+        const matchG = !groupFilter || s.group === groupFilter;
+        return matchQ && matchG;
+      });
+
+      filtered.forEach(s => {
+        const hoursInfo = getStudentHoursInfo(s);
+        let cardClass = "student-card";
+        let statusTag = `<span class="status-tag not-yet">未簽到</span>`;
+
+        if (s.checkedInAt && !s.checkedOutAt) {
+          cardClass += " checked-in";
+          statusTag = `<span class="status-tag in">已簽到 ${formatHHMM(s.checkedInAt)}</span>`;
+        } else if (s.checkedInAt && s.checkedOutAt) {
+          cardClass += " checked-out";
+          statusTag = `<span class="status-tag out">已簽退 ${formatHHMM(s.checkedOutAt)}</span>`;
+        }
+
+        grid.innerHTML += `
+          <div class="${cardClass}">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <span class="seat-badge">座號 ${s.seat || '—'}</span>
+                <span style="font-size:0.8rem; color:var(--text-muted); margin-left:6px;">第 ${s.group || '未'} 組</span>
+              </div>
+              ${statusTag}
+            </div>
+
+            <div>
+              <div class="student-name ${isProjectionMode ? 'sensitive-name' : ''}">${escapeHtml(s.name)}</div>
+              <div class="student-info">${escapeHtml(s.school)}｜${escapeHtml(s.title || '無職稱')}｜${s.meal || '未填餐食'}</div>
+            </div>
+
+            ${s.note ? `<div class="note-display student-note">備註：${escapeHtml(s.note)}</div>` : ''}
+            ${hoursInfo.abnormal ? `<div class="hours-warn">⚠️ ${hoursInfo.text}</div>` : ''}
+
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:6px;" onclick="event.stopPropagation();">
+              ${renderCheckinActionButtons(s)}
+              <div style="display:flex; gap:6px;">
+                <button class="btn btn-outline hide-on-projection" style="flex:1; min-height:36px; font-size:0.85rem;" onclick="openNoteEditModal('${s.id}')">📝 備註</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderCheckinActionButtons(s) {
+      // 分離主要簽到動作與子按鈕，避免事件冒泡
+      if (!s.checkedInAt) {
+        return `<button class="btn btn-emerald" style="width:100%; font-size:1.05rem;" onclick="handleCheckIn('${s.id}')">簽到</button>`;
+      } else if (s.checkedInAt && !s.checkedOutAt) {
+        return `
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-blue" style="flex:2;" onclick="handleCheckOut('${s.id}')">簽退</button>
+            <button class="btn btn-outline hide-on-projection" style="flex:1; color:var(--red); border-color:var(--red);" onclick="handleRevokeCheckIn('${s.id}')">撤銷簽到</button>
+          </div>
+        `;
+      } else {
+        // 已簽退
+        return `
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn btn-outline hide-on-projection" style="flex:1; font-size:0.85rem;" onclick="handleRevokeCheckOut('${s.id}')">撤銷簽退 (保留簽到)</button>
+            <button class="btn btn-outline hide-on-projection" style="flex:1; font-size:0.85rem; color:var(--red); border-color:var(--red);" onclick="handleRevokeAllState('${s.id}')">撤銷全部</button>
+          </div>
+        `;
+      }
+    }
+
+    /* 狀態機動作與可復原 Undo 實作 */
+    let lastUndoAction = null;
+
+    function handleCheckIn(id) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      s.checkedInAt = new Date().toISOString();
+      saveState();
+      renderAll();
+      showToast(`已成功簽到：${s.name}`, "emerald");
+    }
+
+    function handleCheckOut(id) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      s.checkedOutAt = new Date().toISOString();
+      saveState();
+      renderAll();
+      showToast(`已成功簽退：${s.name}`, "blue");
+    }
+
+    function handleRevokeCheckOut(id) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      const prevOut = s.checkedOutAt;
+
+      s.checkedOutAt = null; // 保留 checkedInAt
+      saveState();
+      renderAll();
+
+      showUndoToast(`已撤銷 ${s.name} 的簽退`, () => {
+        s.checkedOutAt = prevOut;
+        saveState();
+        renderAll();
+      });
+    }
+
+    function handleRevokeCheckIn(id) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      const prevIn = s.checkedInAt;
+      const prevOut = s.checkedOutAt;
+
+      s.checkedInAt = null;
+      s.checkedOutAt = null;
+      saveState();
+      renderAll();
+
+      showUndoToast(`已撤銷 ${s.name} 的簽到`, () => {
+        s.checkedInAt = prevIn;
+        s.checkedOutAt = prevOut;
+        saveState();
+        renderAll();
+      });
+    }
+
+    function handleRevokeAllState(id) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      if (confirm(`確定要將 ${s.name} 撤銷回「未簽到」狀態？`)) {
+        s.checkedInAt = null;
+        s.checkedOutAt = null;
+        saveState();
+        renderAll();
+        showToast(`已清除 ${s.name} 簽到簽退紀錄`, "info");
+      }
+    }
+
+    function showUndoToast(msg, undoFn) {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <span>${msg}</span>
+        <button class="btn btn-amber btn-sm" style="min-height:32px; padding:4px 10px;">復原 (10秒內)</button>
+      `;
+      const btn = toast.querySelector("button");
+      btn.onclick = () => {
+        undoFn();
+        toast.remove();
+        showToast("已復原先前動作！", "info");
+      };
+      container.appendChild(toast);
+      setTimeout(() => { if (toast.parentNode) toast.remove(); }, 10000);
+    }
+
+    function showToast(msg, type = "info") {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span>${msg}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => { if (toast.parentNode) toast.remove(); }, 3000);
+    }
+
+    /* 時數計算 (無條件捨去至小數第1位) */
+    function getStudentHoursInfo(s) {
+      if (!s.checkedInAt || !s.checkedOutAt) {
+        return { hoursStr: "—", rawHours: null, abnormal: false, text: "未簽退" };
+      }
+      const inTime = new Date(s.checkedInAt).getTime();
+      const outTime = new Date(s.checkedOutAt).getTime();
+
+      if (isNaN(inTime) || isNaN(outTime) || outTime < inTime) {
+        return { hoursStr: "—", rawHours: 0, abnormal: true, text: "時間異常：簽退早於簽到" };
+      }
+      const diffHours = (outTime - inTime) / 3600000;
+      if (diffHours > 12) {
+        return { hoursStr: "—", rawHours: diffHours, abnormal: true, text: "時間異常：超過12小時" };
+      }
+      // 無條件捨去至小數點第1位
+      const floored = Math.floor(diffHours * 10) / 10;
+      return { hoursStr: floored.toFixed(1), rawHours: floored, abnormal: false, text: `${floored.toFixed(1)} 小時` };
+    }
+
+    /* 備註與事實紀錄 Modal */
+    function openNoteEditModal(id) {
+      currentEditingNoteStudentId = id;
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+
+      document.getElementById("note-edit-student-title").textContent = `編輯備註：${s.name}`;
+      const noteStr = s.note || "";
+      const parts = noteStr.split("；");
+      const tagsPart = parts[0] || "";
+      const textPart = parts.length > 1 ? parts.slice(1).join("；") : (tagsPart.includes("遲到") || tagsPart.includes("中場離場") || tagsPart.includes("提早離開") ? "" : tagsPart);
+
+      document.getElementById("note-tag-late").checked = tagsPart.includes("遲到");
+      document.getElementById("note-tag-mid").checked = tagsPart.includes("中場離場");
+      document.getElementById("note-tag-early").checked = tagsPart.includes("提早離開");
+      document.getElementById("note-free-text").value = textPart;
+
+      updateNoteCharsLeft();
+      openModal("modal-note-edit");
+    }
+
+    function updateNoteCharsLeft() {
+      const val = document.getElementById("note-free-text").value;
+      document.getElementById("note-chars-left").textContent = 80 - val.length;
+    }
+
+    function saveStudentNote() {
+      if (!currentEditingNoteStudentId) return;
+      const s = state.students.find(x => x.id === currentEditingNoteStudentId);
+      if (!s) return;
+
+      const tags = [];
+      if (document.getElementById("note-tag-late").checked) tags.push("遲到");
+      if (document.getElementById("note-tag-mid").checked) tags.push("中場離場");
+      if (document.getElementById("note-tag-early").checked) tags.push("提早離開");
+
+      const freeText = document.getElementById("note-free-text").value.trim();
+
+      let finalNote = "";
+      if (tags.length > 0) {
+        finalNote = tags.join("、");
+        if (freeText) finalNote += "；" + freeText;
+      } else {
+        finalNote = freeText;
+      }
+
+      s.note = finalNote;
+      saveState();
+      renderAll();
+      closeModal("modal-note-edit");
+      showToast("已更新出缺勤備註", "info");
+    }
+
+    /* 現場臨時加人 */
+    function openWalkinModal() {
+      openModal("modal-walkin");
+    }
+
+    function submitWalkinStudent() {
+      const name = document.getElementById("walkin-name").value.trim();
+      const school = document.getElementById("walkin-school").value.trim();
+      if (!name || !school) {
+        alert("請輸入姓名與學校！");
+        return;
+      }
+
+      let seat = document.getElementById("walkin-seat").value.trim();
+      if (seat && seat.length === 1) seat = "0" + seat;
+
+      const newId = "s_" + Date.now();
+      const newStudent = {
+        id: newId,
+        seat: seat,
+        name: name,
+        school: school,
+        title: document.getElementById("walkin-title").value.trim(),
+        meal: document.getElementById("walkin-meal").value,
+        group: document.getElementById("walkin-group").value,
+        note: "",
+        checkedInAt: new Date().toISOString(), // 買即簽到
+        checkedOutAt: null
+      };
+
+      state.students.push(newStudent);
+      state.submissions[newId] = {
+        "1": { state: "未收", volunteer: false, receivedAt: null },
+        "2": { state: "未收", volunteer: false, receivedAt: null },
+        "3": { state: "未收", volunteer: false, receivedAt: null }
+      };
+
+      saveState();
+      renderAll();
+      closeModal("modal-walkin");
+      showToast(`已新增並完成簽到：${name}`, "emerald");
+    }
+
+    /* --------------------------------------------------------------------------
+       頁籤 3：繳交追蹤 (3件作品)
+       -------------------------------------------------------------------------- */
+    function renderSubmissionMatrix() {
+      const tbody = document.getElementById("submission-matrix-tbody");
+      tbody.innerHTML = "";
+
+      state.students.forEach(s => {
+        const subData = state.submissions[s.id] || {};
+        tbody.innerHTML += `
+          <tr>
+            <td><span class="seat-badge">${s.seat || '—'}</span></td>
+            <td>
+              <div class="student-name ${isProjectionMode ? 'sensitive-name' : ''}">${escapeHtml(s.name)}</div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">${escapeHtml(s.school)}</div>
+            </td>
+            <td>${renderSubCell(s.id, "1", subData["1"])}</td>
+            <td>${renderSubCell(s.id, "2", subData["2"])}</td>
+            <td>${renderSubCell(s.id, "3", subData["3"])}</td>
+          </tr>
+        `;
+      });
+
+      renderShowcaseSelects();
+    }
+
+    function renderSubCell(studentId, itemKey, cellObj = { state: "未收", volunteer: false }) {
+      const stateMap = {
+        "未收": { class: "unreceived", text: "⚪ 未收" },
+        "網路收到": { class: "online", text: "🌐 網路收到" },
+        "隨身碟收到": { class: "usb", text: "💾 隨身碟收到" },
+        "檔案打不開": { class: "corrupted", text: "⚠️ 檔案打不開" }
+      };
+
+      const info = stateMap[cellObj.state] || stateMap["未收"];
+
+      return `
+        <div class="sub-cell ${info.class}" onclick="cycleSubState('${studentId}', '${itemKey}')">
+          <span>${info.text}</span>
+          <div style="display:flex; align-items:center; gap:4px;" onclick="event.stopPropagation();">
+            <label style="font-size:0.75rem; margin:0; cursor:pointer;" title="自願展示">
+              <input type="checkbox" ${cellObj.volunteer ? 'checked' : ''} onchange="toggleSubVolunteer('${studentId}', '${itemKey}', this.checked)"> 展示
+            </label>
+            <select style="min-height:24px; padding:0; font-size:0.75rem; width:45px;" onchange="setSubState('${studentId}', '${itemKey}', this.value)">
+              <option value="">⚙️</option>
+              <option value="未收">未收</option>
+              <option value="網路收到">網路</option>
+              <option value="隨身碟收到">USB</option>
+              <option value="檔案打不開">故障</option>
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+    function cycleSubState(studentId, itemKey) {
+      const nextStates = {
+        "未收": "網路收到",
+        "網路收到": "隨身碟收到",
+        "隨身碟收到": "檔案打不開",
+        "檔案打不開": "未收"
+      };
+      const cur = state.submissions[studentId][itemKey].state;
+      setSubState(studentId, itemKey, nextStates[cur] || "未收");
+    }
+
+    function setSubState(studentId, itemKey, targetState) {
+      if (!targetState) return;
+      state.submissions[studentId][itemKey].state = targetState;
+      if (targetState === "網路收到" || targetState === "隨身碟收到") {
+        state.submissions[studentId][itemKey].receivedAt = new Date().toISOString();
+      }
+      saveState();
+      renderSubmissionMatrix();
+      renderEndDayCheckResults();
+    }
+
+    function toggleSubVolunteer(studentId, itemKey, isVol) {
+      state.submissions[studentId][itemKey].volunteer = isVol;
+
+      // 若取消自願展示，釋出展示名額
+      if (!isVol) {
+        ["SHOW-1", "SHOW-2", "SHOW-3"].forEach(slot => {
+          if (state.showcase[slot] === studentId) state.showcase[slot] = null;
+          if (state.showcaseBackups[slot] === studentId) state.showcaseBackups[slot] = null;
+        });
+      }
+
+      saveState();
+      renderSubmissionMatrix();
+    }
+
+    /* 展示名額指派選單 */
+    function renderShowcaseSelects() {
+      const volStudentIds = new Set();
+      state.students.forEach(s => {
+        const sub = state.submissions[s.id] || {};
+        if (sub["1"]?.volunteer || sub["2"]?.volunteer || sub["3"]?.volunteer) {
+          volStudentIds.add(s.id);
+        }
+      });
+
+      const volStudents = state.students.filter(s => volStudentIds.has(s.id));
+
+      ["SHOW-1", "SHOW-2", "SHOW-3"].forEach(slot => {
+        const mainSelect = document.getElementById(`showcase-${slot.split("-")[1]}-select`);
+        const backupSelect = document.getElementById(`showcase-${slot.split("-")[1]}-backup-select`);
+
+        if (!mainSelect || !backupSelect) return;
+
+        let mainHtml = `<option value="">-- 未指派 --</option>`;
+        let backupHtml = `<option value="">-- 未指派 --</option>`;
+
+        volStudents.forEach(s => {
+          const isMainSelected = state.showcase[slot] === s.id;
+          const isBackupSelected = state.showcaseBackups[slot] === s.id;
+          mainHtml += `<option value="${s.id}" ${isMainSelected ? 'selected' : ''}>${escapeHtml(s.name)} (${escapeHtml(s.school)})</option>`;
+          backupHtml += `<option value="${s.id}" ${isBackupSelected ? 'selected' : ''}>${escapeHtml(s.name)} (${escapeHtml(s.school)})</option>`;
+        });
+
+        mainSelect.innerHTML = mainHtml;
+        backupSelect.innerHTML = backupHtml;
+      });
+    }
+
+    function updateShowcase(slot, studentId) {
+      if (studentId && state.showcase[slot] && state.showcase[slot] !== studentId) {
+        if (!confirm(`該名額已被指派，確定要覆蓋取代嗎？`)) {
+          renderShowcaseSelects();
+          return;
+        }
+      }
+      state.showcase[slot] = studentId || null;
+      saveState();
+      renderShowcaseSelects();
+    }
+
+    function updateShowcaseBackup(slot, studentId) {
+      state.showcaseBackups[slot] = studentId || null;
+      saveState();
+      renderShowcaseSelects();
+    }
+
+    /* 全螢幕投影完成數 (絕不顯示未交者姓名) */
+    function openProjectStatsModal() {
+      const N = state.students.length;
+      let c1 = 0, c2 = 0, c3 = 0;
+      state.students.forEach(s => {
+        const sub = state.submissions[s.id] || {};
+        if (sub["1"]?.state === "網路收到" || sub["1"]?.state === "隨身碟收到") c1++;
+        if (sub["2"]?.state === "網路收到" || sub["2"]?.state === "隨身碟收到") c2++;
+        if (sub["3"]?.state === "網路收到" || sub["3"]?.state === "隨身碟收到") c3++;
+      });
+
+      const container = document.getElementById("project-stats-content");
+      container.innerHTML = `
+        <div>① 24週課程規劃表：<span style="color:var(--emerald);">${c1} / ${N}</span></div>
+        <div>② 學生回饋單：<span style="color:var(--emerald);">${c2} / ${N}</span></div>
+        <div>③ 出席對帳工具：<span style="color:var(--emerald);">${c3} / ${N}</span></div>
+      `;
+
+      openModal("modal-project-stats");
+    }
+
+    /* --------------------------------------------------------------------------
+       頁籤 4：名單管理與自動分組
+       -------------------------------------------------------------------------- */
+    function renderRosterTable() {
+      const tbody = document.getElementById("roster-manage-tbody");
+      tbody.innerHTML = "";
+
+      state.students.forEach(s => {
+        const hoursInfo = getStudentHoursInfo(s);
+        tbody.innerHTML += `
+          <tr>
+            <td><input type="text" value="${escapeHtml(s.seat || '')}" style="width:50px; min-height:32px; padding:2px 4px;" onchange="updateStudentField('${s.id}', 'seat', this.value)"></td>
+            <td><input type="text" value="${escapeHtml(s.name)}" style="width:100px; min-height:32px; padding:2px 4px;" onchange="updateStudentField('${s.id}', 'name', this.value)"></td>
+            <td><input type="text" value="${escapeHtml(s.school)}" style="width:120px; min-height:32px; padding:2px 4px;" onchange="updateStudentField('${s.id}', 'school', this.value)"></td>
+            <td><input type="text" value="${escapeHtml(s.title || '')}" style="width:120px; min-height:32px; padding:2px 4px;" onchange="updateStudentField('${s.id}', 'title', this.value)"></td>
+            <td>
+              <select style="width:70px; min-height:32px; padding:2px 4px;" onchange="updateStudentField('${s.id}', 'meal', this.value)">
+                <option value="" ${!s.meal ? 'selected' : ''}>未填</option>
+                <option value="葷" ${s.meal === '葷' ? 'selected' : ''}>葷</option>
+                <option value="素" ${s.meal === '素' ? 'selected' : ''}>素</option>
+              </select>
+            </td>
+            <td class="hide-on-projection" style="text-align:center;">
+              <label style="display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; cursor:pointer;" title="勾起來的人，分組時會被拆開到不同組">
+                <input type="checkbox" ${s.mentor ? 'checked' : ''} style="width:22px; height:22px; min-height:22px; cursor:pointer;" onchange="toggleMentor('${s.id}', this.checked)" aria-label="${escapeHtml(s.name)} 設為小老師">
+              </label>
+            </td>
+            <td>
+              <select style="width:80px; min-height:32px; padding:2px 4px;" onchange="updateStudentField('${s.id}', 'group', this.value)">
+                <option value="" ${!s.group ? 'selected' : ''}>未分組</option>
+                <option value="1" ${s.group === '1' ? 'selected' : ''}>第1組</option>
+                <option value="2" ${s.group === '2' ? 'selected' : ''}>第2組</option>
+                <option value="3" ${s.group === '3' ? 'selected' : ''}>第3組</option>
+                <option value="4" ${s.group === '4' ? 'selected' : ''}>第4組</option>
+              </select>
+            </td>
+            <td style="font-size:0.85rem;">
+              in: ${s.checkedInAt ? formatHHMM(s.checkedInAt) : '—'}<br>
+              out: ${s.checkedOutAt ? formatHHMM(s.checkedOutAt) : '—'}
+            </td>
+            <td>${hoursInfo.hoursStr}</td>
+            <td class="hide-on-projection">
+              <button class="btn btn-red btn-sm" style="min-height:32px; padding:2px 8px; font-size:0.8rem;" onclick="deleteStudent('${s.id}')">刪除</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function updateStudentField(id, field, val) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      if (field === "seat" && val.length === 1) val = "0" + val;
+      s[field] = val.trim();
+      saveState();
+      renderAll();
+    }
+
+    /* 小老師：勾起來的人，自動分組時會被拆散到不同組（每組至多一位） */
+    function toggleMentor(id, checked) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      s.mentor = !!checked;
+      saveState();
+      renderAll();
+    }
+
+    function deleteStudent(id) {
+      const s = state.students.find(x => x.id === id);
+      if (!s) return;
+      if (confirm(`確定要刪除學員 ${s.name}？相關繳交紀錄與展示名額將一併移除且無法復原。`)) {
+        state.students = state.students.filter(x => x.id !== id);
+        delete state.submissions[id];
+        ["SHOW-1", "SHOW-2", "SHOW-3"].forEach(slot => {
+          if (state.showcase[slot] === id) state.showcase[slot] = null;
+          if (state.showcaseBackups[slot] === id) state.showcaseBackups[slot] = null;
+        });
+        saveState();
+        renderAll();
+        showToast("已成功刪除該學員", "info");
+      }
+    }
+
+    /* 自動分組 (均分 4 組，相差不超過 1 人，須二次確認) */
+    function triggerAutoGrouping() {
+      if (!confirm("⚠️ 自動分組將覆蓋所有既有組別設定（含手動指定），確定執行重抽嗎？")) return;
+      if (!confirm("再次確認：確定要執行自動隨機分組？")) return;
+
+      const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+      const mentors = shuffle(state.students.filter(s => s.mentor));
+      const others = shuffle(state.students.filter(s => !s.mentor));
+
+      /* 先把小老師一人一組拆開，其餘的每次補進人最少的那一組（保證各組相差不超過 1 人） */
+      const buckets = [[], [], [], []];
+      mentors.forEach((s, i) => buckets[i % 4].push(s));
+      others.forEach(s => {
+        buckets.reduce((a, b) => (b.length < a.length ? b : a)).push(s);
+      });
+      buckets.forEach((bucket, i) => bucket.forEach(s => { s.group = String(i + 1); }));
+
+      saveState();
+      renderAll();
+      const n = Math.min(mentors.length, 4);
+      showToast(
+        n > 0
+          ? `已分組：${n} 組各有一位小老師，人數平均`
+          : "已完成隨機平均分組 (1-4組)",
+        "emerald"
+      );
+    }
+
+    function triggerResetToDefaultSample() {
+      if (!confirm("⚠️ 「載入範例資料」會刪除目前所有簽到與繳交資料，且無法復原！確定執行？")) return;
+      if (state.students.some(s => s.checkedInAt !== null)) {
+        if (!confirm("已有簽到紀錄，強烈建議先下載備份！確定仍要重置？")) return;
+      }
+      initDefaultSampleData();
+      renderAll();
+      showToast("已重新載入 14 筆預設範例資料", "info");
+    }
+
+    /* --------------------------------------------------------------------------
+       匯入功能 (CSV 名單與繳交紀錄)
+       -------------------------------------------------------------------------- */
+    function openRosterPasteModal() {
+      openModal("modal-roster-paste");
+    }
+
+    function processRosterPasteImport() {
+      const text = document.getElementById("roster-paste-textarea").value;
+      const allowDup = document.getElementById("allow-duplicate-names").checked;
+
+      const lines = text.split(/\r?\n/);
+      let successCount = 0;
+      let skippedCount = 0;
+      const errors = [];
+
+      lines.forEach((lineStr, idx) => {
+        const lineNo = idx + 1;
+        const line = lineStr.trim();
+        if (!line) return;
+
+        // 忽略包含「姓名」的表頭
+        if (lineNo === 1 && line.includes("姓名")) return;
+
+        const cols = parseCSVLine(line);
+        if (cols.length < 4 || !cols[0].trim()) {
+          errors.push(`第 ${lineNo} 行：欄位不足 4 欄或姓名為空 [${line}]`);
+          return;
+        }
+
+        const rawName = normalizeText(cols[0]);
+        const rawSchool = normalizeText(cols[1]);
+        const rawTitle = normalizeText(cols[2]);
+        const rawMealStr = cols[3].trim();
+        const rawGroup = cols[4] ? cols[4].trim() : "";
+        let rawSeat = cols[5] ? cols[5].trim() : "";
+
+        if (rawSeat && rawSeat.length === 1) rawSeat = "0" + rawSeat;
+
+        // 餐食正規化 (去空白，含素->素，含葷/肉->葷，其餘->未填)
+        let meal = "";
+        if (rawMealStr.includes("素")) meal = "素";
+        else if (rawMealStr.includes("葷") || rawMealStr.includes("肉")) meal = "葷";
+        else if (rawMealStr !== "") {
+          errors.push(`第 ${lineNo} 行警告：無法辨識餐食「${rawMealStr}」，已預設為未填`);
+        }
+
+        // 組別檢查
+        let group = "";
+        if (["1", "2", "3", "4"].includes(rawGroup)) group = rawGroup;
+        else if (rawGroup) {
+          errors.push(`第 ${lineNo} 行警告：組別「${rawGroup}」不在 1-4 範圍，視為空`);
+        }
+
+        // 重複判定 (姓名與學校皆相同)
+        const isDup = state.students.some(s => s.name === rawName && s.school === rawSchool);
+        if (isDup && !allowDup) {
+          skippedCount++;
+          return;
+        }
+
+        const newId = "s_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4);
+        const newStudent = {
+          id: newId,
+          seat: rawSeat,
+          name: rawName,
+          school: rawSchool,
+          title: rawTitle,
+          meal: meal,
+          group: group,
+          note: "",
+          checkedInAt: null,
+          checkedOutAt: null
+        };
+
+        state.students.push(newStudent);
+        state.submissions[newId] = {
+          "1": { state: "未收", volunteer: false, receivedAt: null },
+          "2": { state: "未收", volunteer: false, receivedAt: null },
+          "3": { state: "未收", volunteer: false, receivedAt: null }
+        };
+        successCount++;
+      });
+
+      saveState();
+      renderAll();
+
+      const summaryEl = document.getElementById("roster-paste-summary");
+      summaryEl.innerHTML = `
+        <div style="background:#162032; padding:12px; border-radius:8px; font-size:0.9rem;">
+          <div style="font-weight:bold; color:var(--emerald);">匯入完成摘要：成功 ${successCount} 筆／略過重複 ${skippedCount} 筆／錯誤警告 ${errors.length} 筆</div>
+          ${errors.length > 0 ? `<div style="color:var(--red); margin-top:8px; max-height:150px; overflow-y:auto;">${errors.join("<br>")}</div>` : ''}
+        </div>
+      `;
+    }
+
+    function openSubPasteModal() {
+      openModal("modal-sub-paste");
+    }
+
+    function processSubPasteImport() {
+      const text = document.getElementById("sub-paste-textarea").value;
+      const lines = text.split(/\r?\n/);
+      let successCount = 0;
+      let skippedCount = 0;
+      const errors = [];
+
+      lines.forEach((lineStr, idx) => {
+        const lineNo = idx + 1;
+        const line = lineStr.trim();
+        if (!line) return;
+
+        const cols = parseCSVLine(line);
+        if (cols.length < 2) {
+          errors.push(`第 ${lineNo} 行：欄位不足 [${line}]`);
+          return;
+        }
+
+        let key = cols[0].trim();
+        if (key.length === 1) key = "0" + key;
+        const prodId = cols[1].trim();
+        const timeStr = cols[2] ? cols[2].trim() : new Date().toISOString();
+
+        if (!["1", "2", "3"].includes(prodId)) {
+          errors.push(`第 ${lineNo} 行：產品代號「${prodId}」不符(應為1/2/3)`);
+          return;
+        }
+
+        // 比對學員 (座號優先，無座號退回姓名)
+        let matches = state.students.filter(s => s.seat && s.seat === key);
+        if (matches.length === 0) {
+          matches = state.students.filter(s => s.name === key);
+        }
+
+        if (matches.length === 0) {
+          errors.push(`第 ${lineNo} 行：對不上名單學員「${key}」`);
+          return;
+        } else if (matches.length > 1) {
+          errors.push(`第 ${lineNo} 行：比對到 2 筆以上同名同座號學員「${key}」，不覆蓋`);
+          return;
+        }
+
+        const targetStudent = matches[0];
+        const curState = state.submissions[targetStudent.id][prodId].state;
+
+        // 覆蓋規則：只把「未收」改為「網路收到」；已是「隨身碟收到」或「檔案打不開」者不覆蓋
+        if (curState === "未收") {
+          state.submissions[targetStudent.id][prodId].state = "網路收到";
+          state.submissions[targetStudent.id][prodId].receivedAt = timeStr;
+          successCount++;
+        } else {
+          skippedCount++;
+        }
+      });
+
+      saveState();
+      renderAll();
+
+      const summaryEl = document.getElementById("sub-paste-summary");
+      summaryEl.innerHTML = `
+        <div style="background:#162032; padding:12px; border-radius:8px; font-size:0.9rem;">
+          <div style="font-weight:bold; color:var(--emerald);">繳交匯入摘要：成功更新 ${successCount} 筆／已收到略過 ${skippedCount} 筆／對不上名單 ${errors.length} 筆</div>
+          ${errors.length > 0 ? `<div style="color:var(--red); margin-top:8px; max-height:150px; overflow-y:auto;">${errors.join("<br>")}</div>` : ''}
+        </div>
+      `;
+    }
+
+    /* 全形轉半形與去除前後空白 */
+    function normalizeText(str) {
+      if (!str) return "";
+      return str.trim().replace(/[\uFF01-\uFF5E]/g, function (ch) {
+        return String.fromCharCode(ch.charCodeAt(0) - 0xfee0);
+      });
+    }
+
+    function parseCSVLine(line) {
+      const res = [];
+      let cur = "";
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') inQuotes = !inQuotes;
+        else if (c === ',' && !inQuotes) {
+          res.push(cur);
+          cur = "";
+        } else {
+          cur += c;
+        }
+      }
+      res.push(cur);
+      return res.map(s => s.replace(/^"|"$/g, "").replace(/""/g, '"'));
+    }
+
+    /* --------------------------------------------------------------------------
+       頁籤 5：匯出、列印與收工檢核
+       -------------------------------------------------------------------------- */
+    function downloadCheckinCSV() {
+      const headers = ["姓名", "學校", "職稱", "葷素", "簽到時間", "簽退時間", "時數", "備註"];
+      const rows = state.students.map(s => {
+        const hoursInfo = getStudentHoursInfo(s);
+        return [
+          s.name,
+          s.school,
+          s.title || "",
+          s.meal || "",
+          s.checkedInAt ? formatYYYYMMDDHHMM(s.checkedInAt) : "",
+          s.checkedOutAt ? formatYYYYMMDDHHMM(s.checkedOutAt) : "",
+          hoursInfo.rawHours !== null ? hoursInfo.hoursStr : "",
+          s.note || ""
+        ];
+      });
+
+      const nowHHMM = new Date().toTimeString().slice(0, 5).replace(":", "");
+      exportCSV(`簽到表-20260819-${nowHHMM}.csv`, headers, rows);
+    }
+
+    function downloadHoursCSV() {
+      const headers = ["姓名", "學校", "職稱", "簽到時間", "簽退時間", "時數", "備註"];
+      const rows = state.students.map(s => {
+        const hoursInfo = getStudentHoursInfo(s);
+        return [
+          s.name,
+          s.school,
+          s.title || "",
+          s.checkedInAt ? formatYYYYMMDDHHMM(s.checkedInAt) : "",
+          s.checkedOutAt ? formatYYYYMMDDHHMM(s.checkedOutAt) : "",
+          hoursInfo.rawHours !== null ? hoursInfo.hoursStr : "",
+          s.note || ""
+        ];
+      });
+
+      state.checklist.hoursCsvDownloadedAt = new Date().toISOString();
+      saveState();
+      renderEndDayCheckResults();
+
+      const nowHHMM = new Date().toTimeString().slice(0, 5).replace(":", "");
+      exportCSV(`時數表-20260819-${nowHHMM}.csv`, headers, rows);
+    }
+
+    function exportCSV(filename, headers, rows) {
+      let content = "\uFEFF"; // UTF-8 BOM
+      content += headers.map(h => `"${h.replace(/"/g, '""')}"`).join(",") + "\r\n";
+      rows.forEach(r => {
+        content += r.map(c => `"${(c ?? "").toString().replace(/"/g, '""')}"`).join(",") + "\r\n";
+      });
+
+      const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+
+    function downloadBackup() {
+      const exportObj = {
+        schema: "workshop-console",
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        eventDate: "2026-08-19",
+        students: state.students,
+        submissions: state.submissions,
+        showcase: state.showcase,
+        showcaseBackups: state.showcaseBackups,
+        announcement: state.announcement,
+        checklist: state.checklist,
+        groupStatus: state.groupStatus,
+        broadcastCustom: state.broadcastCustom
+      };
+
+      state.checklist.backupDownloadedAt = new Date().toISOString();
+      saveState();
+      renderEndDayCheckResults();
+
+      const nowHHMM = new Date().toTimeString().slice(0, 5).replace(":", "");
+      const jsonStr = JSON.stringify(exportObj, null, 2);
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `備份-20260819-${nowHHMM}.json`;
+      link.click();
+
+      showToast("已下載 JSON 完整備份", "emerald");
+    }
+
+    function handleRestoreJSON(evt) {
+      const file = evt.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (!parsed.schema || parsed.schema !== "workshop-console") {
+            alert("⚠️ 錯誤：匯入的 JSON 檔案結構 schema 不符合（必須為 workshop-console），已拒絕還原！");
+            return;
+          }
+          if (!confirm("確定要還原此 JSON 備份檔嗎？目前的資料將會被取代！")) return;
+
+          state.students = parsed.students || [];
+          state.submissions = parsed.submissions || {};
+          state.showcase = parsed.showcase || { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
+          state.showcaseBackups = parsed.showcaseBackups || { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
+          state.announcement = parsed.announcement || "";
+          state.checklist = parsed.checklist || state.checklist;
+          state.groupStatus = parsed.groupStatus || state.groupStatus;
+
+          saveState();
+          renderAll();
+          alert("✅ 成功還原 JSON 備份資料！");
+        } catch (err) {
+          alert("⚠️ 無法解析此 JSON 檔案，請檢查檔案格式！現有資料保持不動。");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    /* 列印簽到表 (核銷用親筆簽名表) */
+    function printSignSheet() {
+      const container = document.getElementById("print-area-signsheet");
+      container.style.display = "block";
+
+      let rowsHtml = "";
+      state.students.forEach((s, idx) => {
+        rowsHtml += `
+          <tr>
+            <td style="text-align:center;">${s.seat || (idx + 1)}</td>
+            <td>${escapeHtml(s.name)}</td>
+            <td>${escapeHtml(s.school)}</td>
+            <td>${escapeHtml(s.title || '')}</td>
+            <td style="text-align:center;">${s.meal || '—'}</td>
+            <td>${s.checkedInAt ? formatYYYYMMDDHHMM(s.checkedInAt) : ''}</td>
+            <td>${s.checkedOutAt ? formatYYYYMMDDHHMM(s.checkedOutAt) : ''}</td>
+            <td style="width:140px;"></td>
+          </tr>
+        `;
+      });
+
+      container.innerHTML = `
+        <div style="text-align:center; margin-bottom:20px;">
+          <h1 style="font-size:18pt; font-weight:bold; margin-bottom:6px;">${EVENT_NAME}</h1>
+          <h2 style="font-size:14pt; font-weight:normal;">簽到與簽退核銷簽名表（日期：${EVENT_DATE}）</h2>
+        </div>
+
+        <table class="print-table">
+          <thead>
+            <tr>
+              <th>座號</th>
+              <th>姓名</th>
+              <th>服務單位 / 學校</th>
+              <th>職稱</th>
+              <th>餐食</th>
+              <th>簽到時間</th>
+              <th>簽退時間</th>
+              <th>親筆簽名欄</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+            <!-- 工作人員區塊 -->
+            <tr style="background:#fafafa;">
+              <td style="text-align:center;">講師</td>
+              <td>陳文盛 / 游豐兆</td>
+              <td>國立花蓮高級中學</td>
+              <td>講師</td>
+              <td style="text-align:center;">葷</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr style="background:#fafafa;">
+              <td style="text-align:center;">工讀</td>
+              <td>（現場工作人員）</td>
+              <td>花蓮縣科學社團團隊</td>
+              <td>行政助理</td>
+              <td style="text-align:center;">葷</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:20px; text-align:right; font-size:10pt; font-weight:bold;">
+          ${ACCOUNTING_NOTE}
+        </div>
+      `;
+
+      window.print();
+      container.style.display = "none";
+    }
+
+    /* 列印桌牌 (A4 每頁 4 張 2x2) */
+    function printNameplates() {
+      const emptySeats = state.students.filter(s => !s.seat);
+      if (emptySeats.length > 0) {
+        if (!confirm(`⚠️ 尚有 ${emptySeats.length} 位學員未編座號（列印將顯示「—」），確定仍要列印桌牌？`)) return;
+      }
+
+      const container = document.getElementById("print-area-nameplates");
+      container.style.display = "block";
+      container.innerHTML = "";
+
+      let pageCardsHtml = "";
+      state.students.forEach((s, idx) => {
+        pageCardsHtml += `
+          <div class="nameplate-card">
+            <div class="nameplate-seat">座號 ${s.seat || '—'}</div>
+            <div class="nameplate-name">${escapeHtml(s.name)}</div>
+            <div class="nameplate-sub">${escapeHtml(s.school)}｜第 ${s.group || '未'} 組</div>
+          </div>
+        `;
+
+        if ((idx + 1) % 4 === 0 || idx === state.students.length - 1) {
+          container.innerHTML += `
+            <div class="nameplate-grid print-page-break">
+              ${pageCardsHtml}
+            </div>
+          `;
+          pageCardsHtml = "";
+        }
+      });
+
+      window.print();
+      container.style.display = "none";
+    }
+
+    /* 開場自檢 */
+    function runOpeningSelfCheck() {
+      const resultsEl = document.getElementById("opening-check-results");
+      resultsEl.innerHTML = "";
+
+      // 1. 本機儲存寫入測試
+      let test1Pass = false;
+      try {
+        const tk = "__self_check_test__";
+        localStorage.setItem(tk, "test_val");
+        const readBack = localStorage.getItem(tk);
+        localStorage.removeItem(tk);
+        test1Pass = readBack === "test_val";
+      } catch (e) { test1Pass = false; }
+
+      // 2. 名單筆數 > 0
+      const count = state.students.length;
+      const test2Pass = count > 0;
+
+      // 3. 電腦日期 = 2026/8/19
+      const todayStr = new Date().toLocaleDateString("zh-TW", { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, "-");
+      const test3Pass = todayStr.includes("2026") && todayStr.includes("08") && todayStr.includes("19");
+
+      // 4. 最近備份存在且為今日
+      const test4Pass = !!state.checklist.backupDownloadedAt;
+
+      resultsEl.innerHTML = `
+        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+          <span>1. 本機儲存 (localStorage) 寫入與讀取：</span>
+          <span style="font-weight:bold; color:${test1Pass ? 'var(--emerald)' : 'var(--red)'};">${test1Pass ? '✅ 通過' : '❌ 未通過'}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+          <span>2. 名單筆數 > 0：</span>
+          <span style="font-weight:bold; color:${test2Pass ? 'var(--emerald)' : 'var(--red)'};">${test2Pass ? `✅ 通過 (${count} 人)` : '❌ 未通過'}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+          <span>3. 本機電腦日期校正 (2026/8/19)：</span>
+          <span style="font-weight:bold; color:${test3Pass ? 'var(--emerald)' : 'var(--amber)'};">
+            ${test3Pass ? '✅ 通過 (2026/8/19)' : '⚠️ 警示：本機日期與活動日不符，簽到時間會記錯，請先校正電腦時鐘'}
+          </span>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+          <span>4. 開場前備份檔建立：</span>
+          <span style="font-weight:bold; color:${test4Pass ? 'var(--emerald)' : 'var(--amber)'};">
+            ${test4Pass ? `✅ 通過 (已於 ${formatHHMM(state.checklist.backupDownloadedAt)} 下載)` : '⚠️ 提示：請先點選右側按鈕下載開場前備份'}
+          </span>
+        </div>
+        <div style="margin-top:8px;">
+          <button class="btn btn-blue" onclick="downloadBackup()">下載開場前備份</button>
+        </div>
+      `;
+    }
+
+    function renderOpeningCheckResults() {
+      runOpeningSelfCheck();
+    }
+
+    /* 收工檢核與豁免機制 */
+    function runEndDayCheck() {
+      const resultsEl = document.getElementById("endday-check-results");
+      resultsEl.innerHTML = "";
+
+      const stats = computeStats();
+      const waivers = state.checklist.waivers || [];
+
+      // 必達項 1: 缺簽退為 0
+      const item1Pass = stats.uncheckedOut === 0 || waivers.includes("unout");
+      // 必達項 2: 已下載時數表
+      const item2Pass = !!state.checklist.hoursCsvDownloadedAt || waivers.includes("hours");
+      // 必達項 3: 已下載備份
+      const item3Pass = !!state.checklist.backupDownloadedAt || waivers.includes("backup");
+      // 必達項 4: 人工確認紙本簽到表印出且正確
+      const item4Pass = state.checklist.signSheetPrintedConfirmed || waivers.includes("signsheet");
+
+      const allMandatoryPassed = item1Pass && item2Pass && item3Pass && item4Pass;
+
+      // 缺簽退姓名具體列出
+      const unoutStudents = state.students.filter(s => s.checkedInAt !== null && s.checkedOutAt === null);
+      const unoutNamesStr = unoutStudents.map(s => s.name).join("、");
+
+      resultsEl.innerHTML = `
+        <div style="padding:10px; background:${allMandatoryPassed ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)'}; border: 1px solid ${allMandatoryPassed ? 'var(--emerald)' : 'var(--red)'}; border-radius:8px; font-weight:bold; font-size:1.1rem;">
+          ${allMandatoryPassed ? `🎉 通過收工檢核：可以安心關機！${waivers.length > 0 ? `(含 ${waivers.length} 項人工豁免)` : ''}` : '⛔ 未通過收工檢核：尚有未完成必達項目，不得直接關機！'}
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+          <!-- 項目 1 -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+            <div>
+              <strong>1. 缺簽退人數為 0：</strong>
+              <span style="color:${stats.uncheckedOut === 0 ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
+                ${stats.uncheckedOut === 0 ? '已清空 (0人)' : `缺簽退 ${stats.uncheckedOut} 人：${unoutNamesStr}`}
+              </span>
+            </div>
+            <button class="btn btn-outline btn-sm hide-on-projection" onclick="toggleWaiver('unout')">${waivers.includes("unout") ? '取消豁免' : '標記不適用豁免'}</button>
+          </div>
+
+          <!-- 項目 2 -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+            <div>
+              <strong>2. 下載研習時數表 CSV：</strong>
+              <span style="color:${state.checklist.hoursCsvDownloadedAt ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
+                ${state.checklist.hoursCsvDownloadedAt ? `已於 ${formatHHMM(state.checklist.hoursCsvDownloadedAt)} 下載` : '未下載'}
+              </span>
+            </div>
+            <button class="btn btn-outline btn-sm hide-on-projection" onclick="toggleWaiver('hours')">${waivers.includes("hours") ? '取消豁免' : '標記不適用豁免'}</button>
+          </div>
+
+          <!-- 項目 3 -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+            <div>
+              <strong>3. 下載 JSON 完整備份：</strong>
+              <span style="color:${state.checklist.backupDownloadedAt ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
+                ${state.checklist.backupDownloadedAt ? `已於 ${formatHHMM(state.checklist.backupDownloadedAt)} 下載` : '未下載'}
+              </span>
+            </div>
+            <button class="btn btn-outline btn-sm hide-on-projection" onclick="toggleWaiver('backup')">${waivers.includes("backup") ? '取消豁免' : '標記不適用豁免'}</button>
+          </div>
+
+          <!-- 項目 4 -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+            <div>
+              <label style="margin:0; font-weight:bold; cursor:pointer; color:#ffffff;">
+                <input type="checkbox" ${state.checklist.signSheetPrintedConfirmed ? 'checked' : ''} onchange="toggleSignSheetConfirmed(this.checked)">
+                4. 我已確認紙本簽到表印出且內容無誤 (人工勾選確認)
+              </label>
+            </div>
+            <button class="btn btn-outline btn-sm hide-on-projection" onclick="toggleWaiver('signsheet')">${waivers.includes("signsheet") ? '取消豁免' : '標記不適用豁免'}</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderEndDayCheckResults() {
+      runEndDayCheck();
+    }
+
+    function toggleSignSheetConfirmed(checked) {
+      state.checklist.signSheetPrintedConfirmed = checked;
+      saveState();
+      renderEndDayCheckResults();
+    }
+
+    function toggleWaiver(key) {
+      if (!state.checklist.waivers) state.checklist.waivers = [];
+      const idx = state.checklist.waivers.indexOf(key);
+      if (idx >= 0) {
+        state.checklist.waivers.splice(idx, 1);
+      } else {
+        const reason = prompt("請輸入標記不適用的豁免原因（將記錄於備份檔）：", "現場特殊情況許可");
+        if (reason !== null) {
+          state.checklist.waivers.push(key);
+        }
+      }
+      saveState();
+      renderEndDayCheckResults();
+    }
+
+    /* --------------------------------------------------------------------------
+       頁籤 6：實作巡場狀態 (4組故障分流)
+       -------------------------------------------------------------------------- */
+    function renderGroupStatusGrid() {
+      const grid = document.getElementById("group-support-grid");
+      grid.innerHTML = "";
+
+      for (let g = 1; g <= 4; g++) {
+        const key = String(g);
+        const st = state.groupStatus[key] || { status: "normal", category: "", note: "" };
+
+        grid.innerHTML += `
+          <div class="card" style="margin:0; background:#162032; border-top: 6px solid ${getStatusBorderColor(st.status)};">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h3 style="color:#ffffff;">第 ${g} 組巡場狀態</h3>
+              <select style="width:140px; min-height:36px;" onchange="updateGroupStatus('${key}', 'status', this.value)">
+                <option value="normal" ${st.status === 'normal' ? 'selected' : ''}>🟢 正常</option>
+                <option value="stuck" ${st.status === 'stuck' ? 'selected' : ''}>🟡 卡住 (可等)</option>
+                <option value="halted" ${st.status === 'halted' ? 'selected' : ''}>🔴 停擺 (急)</option>
+              </select>
+            </div>
+
+            <div class="hide-on-projection" style="display:flex; flex-direction:column; gap:10px;">
+              <div>
+                <label>故障卡關類型：</label>
+                <select onchange="updateGroupStatus('${key}', 'category', this.value)">
+                  <option value="" ${!st.category ? 'selected' : ''}>-- 未選擇 --</option>
+                  <option value="網路" ${st.category === '網路' ? 'selected' : ''}>🌐 網路</option>
+                  <option value="登入" ${st.category === '登入' ? 'selected' : ''}>🔑 登入</option>
+                  <option value="安裝" ${st.category === '安裝' ? 'selected' : ''}>⚙️ 安裝</option>
+                  <option value="操作" ${st.category === '操作' ? 'selected' : ''}>💻 操作</option>
+                  <option value="硬體" ${st.category === '硬體' ? 'selected' : ''}>🔌 硬體</option>
+                </select>
+              </div>
+
+              <div>
+                <label>現場狀況與處置紀錄 (不記個人)：</label>
+                <input type="text" value="${escapeHtml(st.note || '')}" placeholder="例：路由器訊號弱，已更換 AP" onchange="updateGroupStatus('${key}', 'note', this.value)">
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function getStatusBorderColor(st) {
+      if (st === "stuck") return "var(--amber)";
+      if (st === "halted") return "var(--red)";
+      return "var(--emerald)";
+    }
+
+    function updateGroupStatus(groupKey, field, val) {
+      if (!state.groupStatus[groupKey]) {
+        state.groupStatus[groupKey] = { status: "normal", category: "", note: "", updatedAt: null };
+      }
+      state.groupStatus[groupKey][field] = val;
+      state.groupStatus[groupKey].updatedAt = new Date().toISOString();
+      saveState();
+      renderDashboard();
+      renderGroupStatusGrid();
+    }
+
+    /* --------------------------------------------------------------------------
+       廣播與倒數計時 Overlay
+       -------------------------------------------------------------------------- */
+    function openBroadcastMenu() {
+      openModal("modal-broadcast-menu");
+    }
+
+    function showBroadcastFullscreen(presetIndex) {
+      closeModal("modal-broadcast-menu");
+
+      if (presetIndex === 0) {
+        // 請回座，3 分鐘後開始 -> 啟動全螢幕倒數
+        startCountdown();
+        return;
+      }
+
+      let text = "";
+      if (presetIndex < 4) {
+        text = BROADCAST_PRESETS[presetIndex];
+      } else {
+        text = document.getElementById("broadcast-custom-input").value.trim() || state.broadcastCustom || "廣播通知";
+        state.broadcastCustom = text;
+        saveState();
+      }
+
+      document.getElementById("broadcast-fullscreen-text").textContent = text;
+      document.getElementById("overlay-broadcast-fullscreen").style.display = "flex";
+    }
+
+    function closeBroadcastFullscreen() {
+      document.getElementById("overlay-broadcast-fullscreen").style.display = "none";
+    }
+
+    function startCountdown() {
+      countdownRemaining = 180;
+      updateCountdownDisplay();
+
+      document.getElementById("overlay-countdown-fullscreen").style.display = "flex";
+
+      if (countdownInterval) clearInterval(countdownInterval);
+      countdownInterval = setInterval(() => {
+        countdownRemaining--;
+        if (countdownRemaining <= 0) {
+          stopCountdown();
+          showToast("⏱️ 3分鐘倒數結束！研習正式開始", "emerald");
+        } else {
+          updateCountdownDisplay();
+        }
+      }, 1000);
+    }
+
+    function updateCountdownDisplay() {
+      const m = Math.floor(countdownRemaining / 60);
+      const s = countdownRemaining % 60;
+      const mStr = String(m).padStart(2, "0");
+      const sStr = String(s).padStart(2, "0");
+      document.getElementById("countdown-timer-text").textContent = `${mStr}:${sStr}`;
+    }
+
+    function stopCountdown() {
+      if (countdownInterval) clearInterval(countdownInterval);
+      document.getElementById("overlay-countdown-fullscreen").style.display = "none";
+    }
+
+    /* --------------------------------------------------------------------------
+       快速搜尋、缺簽退、未到紙條、缺件紙條 MODAL
+       -------------------------------------------------------------------------- */
+    function openQuickSearchModal() {
+      openModal("modal-quick-search");
+      document.getElementById("quick-search-input").value = "";
+      renderQuickSearchList();
+      setTimeout(() => document.getElementById("quick-search-input").focus(), 100);
+    }
+
+    function renderQuickSearchList() {
+      const q = document.getElementById("quick-search-input").value.trim().toLowerCase();
+      const container = document.getElementById("quick-search-results");
+      container.innerHTML = "";
+
+      const filtered = state.students.filter(s => !q || s.name.toLowerCase().includes(q) || s.school.toLowerCase().includes(q) || (s.seat && s.seat.includes(q)));
+
+      filtered.forEach(s => {
+        container.innerHTML += `
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:10px 14px; border-radius:8px;">
+            <div>
+              <span class="seat-badge">座號 ${s.seat || '—'}</span>
+              <strong style="margin-left:8px; font-size:1.1rem;">${escapeHtml(s.name)}</strong>
+              <span style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;">(${escapeHtml(s.school)})</span>
+            </div>
+            <div>
+              ${renderCheckinActionButtons(s)}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function openUncheckedOutModal() {
+      const listEl = document.getElementById("unchecked-out-list");
+      listEl.innerHTML = "";
+
+      const unout = state.students.filter(s => s.checkedInAt !== null && s.checkedOutAt === null);
+
+      if (unout.length === 0) {
+        listEl.innerHTML = `<div style="color:var(--emerald); font-weight:bold; padding:10px;">🎉太棒了！無缺簽退人員，大家皆已順利簽退。</div>`;
+      } else {
+        listEl.innerHTML = `<div style="font-weight:bold; margin-bottom:8px;">目前共有 ${unout.length} 人在場尚未簽退：</div>`;
+        unout.forEach(s => {
+          listEl.innerHTML += `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:10px 14px; border-radius:8px;">
+              <div>
+                <span class="seat-badge">座號 ${s.seat || '—'}</span>
+                <strong class="${isProjectionMode ? 'sensitive-name' : ''}" style="margin-left:8px; font-size:1.1rem;">${escapeHtml(s.name)}</strong>
+                <span class="${isProjectionMode ? 'sensitive-name' : ''}" style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;">(${escapeHtml(s.school)})</span>
+              </div>
+              <div class="hide-on-projection">
+                <button class="btn btn-blue btn-sm" onclick="handleCheckOut('${s.id}'); openUncheckedOutModal();">直接協助簽退</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      openModal("modal-unchecked-out");
+    }
+
+    function openAbsentModal() {
+      const absents = state.students.filter(s => s.checkedInAt === null);
+      const contentEl = document.getElementById("absent-strip-content");
+
+      if (absents.length === 0) {
+        contentEl.innerHTML = `<h3>全員已到齊！無未簽到學員。</h3>`;
+      } else {
+        let html = `
+          <h2 style="margin-bottom:10px;">未簽到人員小紙條 (共 ${absents.length} 人)</h2>
+          <div>活動日期：${EVENT_DATE}｜列印時間：${new Date().toLocaleTimeString()}</div>
+          <hr style="margin:10px 0;">
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr style="border-bottom:2px solid #000;">
+                <th style="text-align:left;">座號</th>
+                <th style="text-align:left;">姓名</th>
+                <th style="text-align:left;">學校</th>
+                <th style="text-align:left;">組別</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        absents.forEach(s => {
+          html += `
+            <tr style="border-bottom:1px solid #ccc;">
+              <td>${s.seat || '—'}</td>
+              <td><strong>${escapeHtml(s.name)}</strong></td>
+              <td>${escapeHtml(s.school)}</td>
+              <td>第 ${s.group || '未'} 組</td>
+            </tr>
+          `;
+        });
+        html += `</tbody></table>`;
+        contentEl.innerHTML = html;
+      }
+
+      openModal("modal-absent-strip");
+    }
+
+    function printAbsentStrip() {
+      const content = document.getElementById("absent-strip-content").innerHTML;
+      const win = window.open("", "_blank");
+      win.document.write(`<html><head><title>未到小紙條</title></head><body onload="window.print();window.close();">${content}</body></html>`);
+      win.document.close();
+    }
+
+    function openMissingSubModal() {
+      const contentEl = document.getElementById("missing-strip-content");
+      const missingList = [];
+
+      state.students.forEach(s => {
+        const sub = state.submissions[s.id] || {};
+        const missingItems = [];
+        if (sub["1"]?.state === "未收") missingItems.push("① 24週課程規劃表");
+        if (sub["1"]?.state === "檔案打不開") missingItems.push("① 24週課程規劃表 (⚠️ 需重新繳交)");
+
+        if (sub["2"]?.state === "未收") missingItems.push("② 學生回饋單");
+        if (sub["2"]?.state === "檔案打不開") missingItems.push("② 學生回饋單 (⚠️ 需重新繳交)");
+
+        if (sub["3"]?.state === "未收") missingItems.push("③ 出席對帳工具");
+        if (sub["3"]?.state === "檔案打不開") missingItems.push("③ 出席對帳工具 (⚠️ 需重新繳交)");
+
+        if (missingItems.length > 0) {
+          missingList.push({ student: s, items: missingItems });
+        }
+      });
+
+      if (missingList.length === 0) {
+        contentEl.innerHTML = `<h3>🎉 太棒了！全體學員作品已完整繳交！</h3>`;
+      } else {
+        let html = `
+          <h2 style="margin-bottom:10px;">作品缺件與重新繳交通知紙條</h2>
+          <div>列印時間：${new Date().toLocaleTimeString()}</div>
+          <hr style="margin:10px 0;">
+        `;
+        missingList.forEach(m => {
+          html += `
+            <div style="margin-bottom:12px; border-bottom:1px dashed #666; padding-bottom:8px;">
+              <strong>${escapeHtml(m.student.name)} (${escapeHtml(m.student.school)}) - 座號 ${m.student.seat || '—'}：</strong>
+              <div style="margin-left:15px; color:#d97706;">缺件及需重交項目：${m.items.join("； ")}</div>
+            </div>
+          `;
+        });
+        contentEl.innerHTML = html;
+      }
+
+      openModal("modal-missing-strip");
+    }
+
+    function printMissingStrip() {
+      const content = document.getElementById("missing-strip-content").innerHTML;
+      const win = window.open("", "_blank");
+      win.document.write(`<html><head><title>缺件小紙條</title></head><body onload="window.print();window.close();">${content}</body></html>`);
+      win.document.close();
+    }
+
+    /* 通用 Modal 控制 (確保任何時刻最多一層) */
+    function openModal(id) {
+      closeAllOverlays();
+      const el = document.getElementById(id);
+      if (el) el.classList.add("active");
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("active");
+    }
+
+    function closeAllOverlays() {
+      document.querySelectorAll(".modal-backdrop").forEach(m => m.classList.remove("active"));
+      closeBroadcastFullscreen();
+      stopCountdown();
+    }
+
+    /* 頁籤切換 */
+    function switchTab(paneId) {
+      document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+
+      const targetPane = document.getElementById(paneId);
+      if (targetPane) targetPane.classList.add("active");
+
+      const btnMap = {
+        'tab-dashboard': 0,
+        'tab-checkin': 1,
+        'tab-submissions': 2,
+        'tab-roster': 3,
+        'tab-export': 4,
+        'tab-group-status': 5
+      };
+      const btns = document.querySelectorAll(".tab-btn");
+      if (btns[btnMap[paneId]]) btns[btnMap[paneId]].classList.add("active");
+    }
+
+    /* 輔助函式 */
+    function formatHHMM(isoStr) {
+      if (!isoStr) return "";
+      const d = new Date(isoStr);
+      if (isNaN(d)) return "";
+      const h = String(d.getHours()).padStart(2, "0");
+      const m = String(d.getMinutes()).padStart(2, "0");
+      return `${h}:${m}`;
+    }
+
+    function formatYYYYMMDDHHMM(isoStr) {
+      if (!isoStr) return "";
+      const d = new Date(isoStr);
+      if (isNaN(d)) return "";
+      const Y = d.getFullYear();
+      const M = String(d.getMonth() + 1).padStart(2, "0");
+      const D = String(d.getDate()).padStart(2, "0");
+      const h = String(d.getHours()).padStart(2, "0");
+      const m = String(d.getMinutes()).padStart(2, "0");
+      return `${Y}/${M}/${D} ${h}:${m}`;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關 1：24 週課程規劃表｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 行前</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="github.html">關 6 交出去</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="sidebar">
+      <h2>這頁有什麼</h2>
+      <ol>
+        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g2">2 官方要求</a></li>
+        <li><a href="#g3">3 提示詞卡</a></li>
+        <li><a href="#g4">4 新手會卡在哪</a></li>
+        <li><a href="#g5">5 驗收清單</a></li>
+      </ol>
+    </aside>
+    <main>
+      <p class="eyebrow">關 1</p>
+      <h1>24 週課程規劃表</h1>
+      <p class="lede">6 位老師在報名表上寫「想快速產出教案與學習單」。每週的課程內容就是教案的骨架，所以先把這張表生出來。<strong>而且同一份內容要能換三種格式輸出</strong>——仰望一份、學校備查一份、家長通知一份，不要重打三次。</p>
+      <section class="gate" id="g1">
+        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <div class="body">
+          <p>先看一份別校真的寫過的表（花蓮北濱國小，臺師大科教中心網站公開下載），再把自己的計畫貼給 AI，說「照這個結構，換成我的主題」。</p>
+          <p>做出來長這樣：</p>
+          <pre class="flow">週次 │ 日期    │ 課程內容           │ 任課教師 │ 備註
+──────┼─────────┼────────────────────┼──────────┼──────
+  1  │ 9/10    │ 認識校園植物        │ 陳老師   │
+  2  │ 9/17    │ 觀察植物的繁殖方式  │ 陳老師   │
+ ...  │  ...    │ ...                │  ...     │
+ 24  │ 6/10    │ 成果發表            │ 陳老師   │</pre>
+          <p>同一份表，最後輸出三種：</p>
+          <div class="grid three">
+            <div class="card"><h4 style="margin-top:0">給仰望</h4><p>官方格式，24 列、欄位名稱照範本。</p></div>
+            <div class="card"><h4 style="margin-top:0">給學校備查</h4><p>加上場地、時數統計，主任要看的那些欄位。</p></div>
+            <div class="card"><h4 style="margin-top:0">給家長通知</h4><p>去掉行政欄位，改成看得懂的日期與內容，可以直接印。</p></div>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g2">
+        <header><span class="n">2</span><h2>官方要求</h2></header>
+        <div class="body">
+          <ul>
+            <li>表格是 <strong>24 列</strong></li>
+            <li><strong>每週至少 2 小時</strong></li>
+            <li>國小收 3–6 年級、國中收 1–3 年級</li>
+            <li><strong>社團至少 15 人</strong>（學校規模小可以降到 10 人）</li>
+          </ul>
+          <div class="note info">
+            <span class="label">為什麼這張表值得先做</span>
+            <p>後面關 5 挑照片時，第一個問題就是「這張對應到第幾週」。這張表就是那個對照表。</p>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g3">
+        <header><span class="n">3</span><h2>提示詞卡</h2></header>
+        <div class="body">
+          <div class="prompt">
+            <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+            <pre>附件是我的社團計畫書，還有一份別校的 24 週課程規劃表當範例。
+請先不要產表格。請告訴我：
+1. 官方要求這張表要有哪些欄位
+2. 我的計畫書裡哪些內容可以直接填進去、哪些我還沒想
+3. 24 週要怎麼分段（例如前 8 週基礎、中間 10 週實作、最後 6 週成果）
+最後寫成一段規格，讓另一個 AI 可以照著產表。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>欄位清單、分段建議、你還沒想到的缺口</dd>
+              <dt>AI 大概會回什麼</dt><dd>欄位表、三到四個階段的分段、一串「你還沒決定」的問題</dd>
+              <dt>你要檢查什麼</dt><dd>欄位跟官方範本一樣嗎？它有沒有自己多加你沒有的課程主題？</dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
+            <pre>請照下面的規格，產出我的 24 週課程規劃表，做成一個離線可開的 HTML 檔，
+表格可以在網頁上直接編輯，並且有三顆匯出按鈕：
+「匯出仰望格式」、「匯出學校備查格式」、「匯出家長通知」。
+三種格式的內容來自同一份資料，我只填一次。
+第一週從 ⟨你的開學日期⟩ 開始，每週一次，跳過寒暑假與國定假日。
+做完告訴我檔案在哪個路徑。
+
+⟨貼上第 1 步的規格⟩</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一份可以自己改、能輸出三種格式的表</dd>
+              <dt>AI 大概會回什麼</dt><dd>一個 .html 檔＋路徑</dd>
+              <dt>你要檢查什麼</dt><dd><strong>數一次是不是 24 列</strong>；日期有沒有跳過寒假；三顆匯出按鈕都按一次</dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
+            <pre>這是剛做好的 24 週規劃表（路徑：⟨貼上路徑⟩）。請對照官方範本逐條列出，不要幫我改：
+1. 列數、欄位是否符合官方要求
+2. 每週時數是否都達到 2 小時
+3. 有沒有任何課程內容是你或前一個 AI 自己編的、我的計畫書裡沒有的
+4. 日期有沒有排到假日或寒暑假</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一張「哪裡不對」的清單</dd>
+              <dt>AI 大概會回什麼</dt><dd>逐條缺漏，通常會抓到日期或時數問題</dd>
+              <dt>你要檢查什麼</dt><dd>它有沒有真的打開你的檔案（問它第 7 週寫什麼）</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="gate" id="g4">
+        <header><span class="n">4</span><h2>新手會卡在哪</h2></header>
+        <div class="body">
+          <ul>
+            <li><strong>只生出 18 列或 20 列</strong>：AI 常照「一學期 18 週」的習慣做。<strong>每次都要自己數一遍</strong>，明確說「24 列」。</li>
+            <li><strong>課程內容看起來很漂亮，但不是你的計畫</strong>：它沒讀到你的檔案就自己編了。抽查兩三週的內容，出現你沒教的東西就是編的。</li>
+            <li><strong>日期排到寒假或連假</strong>：AI 不知道你們學校的行事曆。把開學日與寒假起訖日期明確給它。</li>
+            <li><strong>三種格式變成三份各自不同的資料</strong>：改了一份，另兩份沒跟著變。要明確要求「三種格式來自同一份資料」。</li>
+            <li><strong>它問你的問題你答不出來</strong>：正常。那就是你本來就還沒決定的事，先寫「待定」，不要讓 AI 幫你決定。</li>
+          </ul>
+        </div>
+      </section>
+      <section class="gate" id="g5">
+        <header><span class="n">5</span><h2>驗收清單</h2></header>
+        <div class="body">
+          <ul class="checklist">
+            <li><label><input type="checkbox"><span>表格是 24 列（自己數過）</span></label></li>
+            <li><label><input type="checkbox"><span>每一週都有內容，沒有「待補」以外的空格</span></label></li>
+            <li><label><input type="checkbox"><span>每週時數都達到 2 小時</span></label></li>
+            <li><label><input type="checkbox"><span>日期沒有排到寒暑假或國定假日</span></label></li>
+            <li><label><input type="checkbox"><span>抽查三週的課程內容，都是你自己的計畫，不是 AI 編的</span></label></li>
+            <li><label><input type="checkbox"><span>三顆匯出按鈕都按過，檔案都打得開</span></label></li>
+            <li><label><input type="checkbox"><span>改一格內容，三種格式都跟著變</span></label></li>
+            <li><label><input type="checkbox"><span>存檔位置你找得到，而且記得起來</span></label></li>
+          </ul>
+          <p class="done-count small">已完成 0 / 8 項</p>
+        </div>
+      </section>
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
