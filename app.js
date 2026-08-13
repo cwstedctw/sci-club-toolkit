@@ -15,7 +15,57 @@
     }
   }
 
-  /* 2. 投影模式：字級整體推高、側欄收起 */
+  /* 2. 投影模式：一格一畫面，像投影片一樣翻
+        分頁單位＝section.gate（關卡頁有五格）；沒有 gate 的頁面用 h2 切段。
+        第一張是封面（h1 與導言，在第一個分界之前的東西）。 */
+  var slides = [], cur = 0;
+
+  function buildSlides(){
+    var main = document.querySelector('main');
+    if (!main || main.getAttribute('data-sliced')) return;
+    var kids = [], i;
+    for (i = 0; i < main.children.length; i++) kids.push(main.children[i]);
+    var groups = [], now = [];
+    for (i = 0; i < kids.length; i++){
+      var el = kids[i];
+      if (el.tagName === 'FOOTER') continue;           // 頁尾不切成投影片
+      var isBreak = (el.classList && el.classList.contains('gate')) || el.tagName === 'H2';
+      if (isBreak && now.length){ groups.push(now); now = []; }
+      now.push(el);
+    }
+    if (now.length) groups.push(now);
+    for (i = 0; i < groups.length; i++){
+      var g = groups[i];
+      var box = document.createElement('div');
+      box.className = 'slide';
+      g[0].parentNode.insertBefore(box, g[0]);
+      for (var j = 0; j < g.length; j++) box.appendChild(g[j]);
+    }
+    main.setAttribute('data-sliced', '1');
+    slides = main.querySelectorAll('.slide');
+  }
+
+  function showSlide(n){
+    if (!slides.length) return;
+    cur = Math.max(0, Math.min(n, slides.length - 1));
+    for (var i = 0; i < slides.length; i++) slides[i].classList.toggle('on', i === cur);
+    var tag = document.getElementById('slideNo');
+    if (tag) tag.textContent = (cur + 1) + ' / ' + slides.length;
+    window.scrollTo(0, 0);
+  }
+
+  function slideBar(){
+    if (document.getElementById('slideBar')) return;
+    var bar = document.createElement('div');
+    bar.id = 'slideBar';
+    bar.innerHTML = '<button type="button" id="slidePrev" aria-label="上一張">←</button>' +
+                    '<span id="slideNo">1 / 1</span>' +
+                    '<button type="button" id="slideNext" aria-label="下一張">→</button>';
+    document.body.appendChild(bar);
+    document.getElementById('slidePrev').addEventListener('click', function(){ showSlide(cur - 1); });
+    document.getElementById('slideNext').addEventListener('click', function(){ showSlide(cur + 1); });
+  }
+
   function projection(){
     var btn = document.querySelector('.projbtn');
     if (!btn) return;
@@ -24,8 +74,17 @@
       document.body.classList.toggle('proj', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       btn.textContent = on ? '關閉投影模式' : '投影模式';
+      if (on){ buildSlides(); slideBar(); showSlide(cur); }
       try { localStorage.setItem(KEY+'proj', on ? '1' : '0'); } catch(e){}
     }
+    document.addEventListener('keydown', function(e){
+      if (!document.body.classList.contains('proj')) return;
+      var tag = (e.target && e.target.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); showSlide(cur + 1); }
+      if (e.key === 'ArrowLeft'  || e.key === 'PageUp'){ e.preventDefault(); showSlide(cur - 1); }
+      if (e.key === 'Escape'){ apply(false); }
+    });
     var saved = '0';
     try { saved = localStorage.getItem(KEY+'proj') || '0'; } catch(e){}
     apply(saved === '1');

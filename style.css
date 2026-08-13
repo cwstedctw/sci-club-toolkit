@@ -44,6 +44,22 @@ body.proj .projbtn{background:var(--ok);color:var(--bg);border-color:var(--ok);f
 .shell{display:grid;grid-template-columns:13rem minmax(0,1fr);gap:2.5rem;align-items:start}
 body.proj .shell{grid-template-columns:minmax(0,1fr)}
 body.proj .sidebar{display:none}
+/* 投影模式＝一格一畫面。頂欄收成一行，把畫面讓給內容 */
+body.proj nav.main{display:none}
+body.proj .brand span{display:none}
+body.proj .topbar-in{padding:.25rem 1rem}
+body.proj main{padding-bottom:5rem}
+body.proj .slide{display:none}
+body.proj .slide.on{display:block}
+body.proj footer.site{display:none}
+#slideBar{display:none}
+body.proj #slideBar{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);
+  display:flex;align-items:center;gap:.75rem;z-index:60;
+  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.35rem .75rem}
+body.proj #slideBar button{min-width:44px;min-height:44px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--fg);border:1px solid var(--line);font:inherit;font-size:1.1rem}
+body.proj #slideBar button:hover{background:var(--card-hi)}
+body.proj #slideNo{font-variant-numeric:tabular-nums;color:var(--fg2);min-width:4.5rem;text-align:center}
 .sidebar{position:sticky;top:5rem;font-size:var(--fs-s)}
 .sidebar h2{font-size:var(--fs-xs);color:var(--fg2);letter-spacing:.14em;
   text-transform:uppercase;margin:0 0 .5rem}
@@ -198,3 +214,12 @@ footer.site{border-top:1px solid var(--line);margin-top:4rem;padding:1.5rem 0 0;
   .mobile-open{display:inline-flex}
 }
 @media print{.topbar,.sidebar,.copy{display:none}body{background:#fff;color:#000}}
+
+.needbars{display:grid;gap:.5rem;margin:.75rem 0}
+.nb-row{display:grid;grid-template-columns:11rem 1fr 3.5rem;gap:.6rem;align-items:center}
+.nb-label{font-size:var(--fs-s)}
+.nb-track{background:var(--card-hi);border-radius:4px;height:1.5rem;overflow:hidden}
+.nb-fill{background:var(--ok);height:100%;border-radius:4px}
+.nb-num{font-variant-numeric:tabular-nums;text-align:right;font-size:var(--fs-s)}
+.nb-map{grid-column:2 / -1;color:var(--fg2);font-size:var(--fs-xs);margin-top:-.15rem}
+@media (max-width:640px){.nb-row{grid-template-columns:1fr 3.5rem}.nb-label{grid-column:1 / -1}.nb-map{grid-column:1 / -1}}
