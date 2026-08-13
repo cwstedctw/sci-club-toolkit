@@ -46,14 +46,62 @@
         <header><span class="n">1</span><h2>這關做什麼</h2></header>
         <div class="body">
           <p>做一張表：學生名單建一次，之後每次上課點名，系統自己算出兩個數字——<strong>出席率</strong>（官方報告書第⑤項）與<strong>材料費該開幾份</strong>（核銷對帳用）。</p>
-          <pre class="flow">   學生名單（官方附件一，8–9 月要交）
-        ↓
-   每次上課點名
-        ↓
-   ┌────────────┬──────────────┐
-   ↓            ↓              ↓
- 出席率 %    材料費該開幾份   缺席追蹤
- （官方⑤）   （核銷對帳）</pre>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 960 700" role="img" aria-labelledby="roster-title roster-desc">
+  <title id="roster-title">學生名單經點名後產生出席率與材料費份數</title>
+  <desc id="roster-desc">一份學生名單填一次，每次上課點名後，同時產生報告書所需的出席率，以及加上兩位授課教師後的材料費份數。</desc>
+
+  <defs>
+    <marker id="roster-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="var(--fg2)"/>
+    </marker>
+    <marker id="roster-ok-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="var(--ok)"/>
+    </marker>
+    <marker id="roster-warn-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="var(--warn)"/>
+    </marker>
+  </defs>
+
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="480" y="46" text-anchor="middle" fill="var(--fg)" font-size="30" font-weight="700">一份名單，長出兩個重要數字</text>
+    <text x="480" y="78" text-anchor="middle" fill="var(--fg2)" font-size="16">名單只填一次；每次點名後，同時計算報告與核銷資料</text>
+
+    <rect x="240" y="112" width="480" height="118" rx="18" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+    <rect x="266" y="136" width="88" height="32" rx="16" fill="var(--card-hi)"/>
+    <text x="310" y="158" text-anchor="middle" fill="var(--fg2)" font-size="15" font-weight="700">資料來源</text>
+    <text x="480" y="170" text-anchor="middle" fill="var(--fg)" font-size="24" font-weight="700">學生名單</text>
+    <text x="480" y="204" text-anchor="middle" fill="var(--fg2)" font-size="17">官方附件一，8–9 月要交</text>
+
+    <path d="M 480 230 L 480 282" fill="none" stroke="var(--fg2)" stroke-width="3" marker-end="url(#roster-arrow)"/>
+
+    <rect x="300" y="290" width="360" height="100" rx="18" fill="var(--card-hi)" stroke="var(--fg2)" stroke-width="2"/>
+    <text x="480" y="329" text-anchor="middle" fill="var(--fg)" font-size="24" font-weight="700">每次上課點名</text>
+    <text x="480" y="363" text-anchor="middle" fill="var(--fg2)" font-size="16">勾選本週實際出席的學生</text>
+
+    <circle cx="480" cy="430" r="8" fill="var(--fg2)"/>
+    <path d="M 480 390 L 480 430 L 245 430 L 245 478" fill="none" stroke="var(--ok)" stroke-width="3" marker-end="url(#roster-ok-arrow)"/>
+    <path d="M 480 430 L 715 430 L 715 478" fill="none" stroke="var(--warn)" stroke-width="3" marker-end="url(#roster-warn-arrow)"/>
+    <text x="480" y="458" text-anchor="middle" fill="var(--fg2)" font-size="15" font-weight="700">同時產生</text>
+
+    <rect x="60" y="486" width="370" height="160" rx="18" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <rect x="84" y="510" width="112" height="32" rx="16" fill="var(--ok)"/>
+    <text x="140" y="532" text-anchor="middle" fill="var(--bg)" font-size="15" font-weight="700">報告書用</text>
+    <text x="245" y="582" text-anchor="middle" fill="var(--fg)" font-size="27" font-weight="700">出席率％</text>
+    <text x="245" y="618" text-anchor="middle" fill="var(--fg2)" font-size="17">官方項目⑤</text>
+
+    <rect x="530" y="486" width="370" height="160" rx="18" fill="var(--card)" stroke="var(--warn)" stroke-width="3"/>
+    <rect x="554" y="510" width="112" height="32" rx="16" fill="var(--warn)"/>
+    <text x="610" y="532" text-anchor="middle" fill="var(--bg)" font-size="15" font-weight="700">核銷用</text>
+    <text x="715" y="574" text-anchor="middle" fill="var(--fg)" font-size="22" font-weight="700">本週出席人數</text>
+    <text x="715" y="611" text-anchor="middle" fill="var(--warn)" font-size="22" font-weight="800">＋ 授課教師 2 人</text>
+
+    <rect x="592" y="660" width="246" height="34" rx="17" fill="var(--warn)"/>
+    <text x="715" y="683" text-anchor="middle" fill="var(--bg)" font-size="16" font-weight="800">＝ 材料費份數</text>
+    <path d="M 715 646 L 715 658" fill="none" stroke="var(--warn)" stroke-width="3" marker-end="url(#roster-warn-arrow)"/>
+
+    <text x="480" y="683" text-anchor="middle" fill="var(--fg2)" font-size="14">最常退件：漏加教師 2 人</text>
+  </g>
+</svg>
           <p>這張名單也是後面幾關的地基：回饋單、學生作品、材料費對帳，全部共用它。<strong>填一次、四個地方都能用。</strong></p>
         </div>
       </section>

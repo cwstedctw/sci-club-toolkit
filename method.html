@@ -47,24 +47,59 @@
       <p class="small">名詞先講白話：<strong>Codex</strong> 和 <strong>Antigravity</strong> 都是可以讀你電腦裡資料夾、幫你直接產出檔案的 AI 工具，跟只能在網頁上聊天的免費 ChatGPT 不一樣。這頁先看懂分工，實際安裝在<a href="step0.html">關 0</a>。</p>
 
       <h2 id="flow">三個步驟</h2>
-      <pre class="flow">  ┌──────────────────────────────────────────┐
-  │  第 1 步   Codex（領隊）                  │
-  │           讀官方報告書範本＋你的計畫書     │
-  │           想清楚：要做哪幾張表、每張要哪些欄位 │
-  │           → 產出一份「規格」（一段文字）    │
-  └────────────────────┬─────────────────────┘
-                       ↓
-  ┌──────────────────────────────────────────┐
-  │  第 2 步   Antigravity（隊員）             │
-  │           照著規格，真的把表做出來          │
-  │           → 產出可以用的檔案               │
-  └────────────────────┬─────────────────────┘
-                       ↓
-  ┌──────────────────────────────────────────┐
-  │  第 3 步   Codex（回頭檢查）⭐             │
-  │           對照官方範本，看有沒有漏掉欄位     │
-  │           → 產出一張「哪裡不對」的清單      │
-  └──────────────────────────────────────────┘</pre>
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 960 760" role="img" aria-labelledby="method-title method-desc">
+  <title id="method-title">想清楚、做、驗收的三步驟</title>
+  <desc id="method-desc">第一步由人主導 Codex 產出規格，第二步由 Antigravity 照規格製作檔案，第三步由人主導 Codex 逐條驗收。</desc>
+
+  <defs>
+    <marker id="method-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="var(--fg2)"/>
+    </marker>
+  </defs>
+
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="480" y="46" text-anchor="middle" fill="var(--fg)" font-size="30" font-weight="700">三個步驟：想清楚 → 做 → 驗收</text>
+    <text x="480" y="78" text-anchor="middle" fill="var(--fg2)" font-size="16">人掌握方向與品質，AI 負責中間的實作</text>
+
+    <rect x="80" y="112" width="800" height="152" rx="18" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <rect x="104" y="136" width="92" height="34" rx="17" fill="var(--ok)"/>
+    <text x="150" y="159" text-anchor="middle" fill="var(--bg)" font-size="16" font-weight="700">第 1 步</text>
+    <rect x="704" y="136" width="144" height="34" rx="17" fill="var(--card-hi)" stroke="var(--ok)" stroke-width="2"/>
+    <text x="776" y="159" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="700">人主導</text>
+    <text x="104" y="205" fill="var(--fg)" font-size="24" font-weight="700">Codex（領隊）</text>
+    <text x="104" y="239" fill="var(--fg2)" font-size="18">想清楚要做什麼，產出一份「規格」</text>
+
+    <path d="M 480 264 L 480 318" fill="none" stroke="var(--fg2)" stroke-width="3" marker-end="url(#method-arrow)"/>
+    <rect x="546" y="278" width="194" height="32" rx="16" fill="var(--card-hi)"/>
+    <text x="643" y="300" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="600">把規格整段複製</text>
+
+    <rect x="80" y="326" width="800" height="152" rx="18" fill="var(--card-hi)" stroke="var(--warn)" stroke-width="3"/>
+    <rect x="104" y="350" width="92" height="34" rx="17" fill="var(--warn)"/>
+    <text x="150" y="373" text-anchor="middle" fill="var(--bg)" font-size="16" font-weight="700">第 2 步</text>
+    <rect x="704" y="350" width="144" height="34" rx="17" fill="var(--card)" stroke="var(--warn)" stroke-width="2"/>
+    <text x="776" y="373" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="700">AI 執行</text>
+    <text x="104" y="419" fill="var(--fg)" font-size="24" font-weight="700">Antigravity（隊員）</text>
+    <text x="104" y="453" fill="var(--fg)" font-size="18">照規格做出一個真的能打開的檔案</text>
+
+    <path d="M 480 478 L 480 532" fill="none" stroke="var(--fg2)" stroke-width="3" marker-end="url(#method-arrow)"/>
+    <rect x="546" y="492" width="210" height="32" rx="16" fill="var(--card-hi)"/>
+    <text x="651" y="514" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="600">把成品路徑貼回去</text>
+
+    <rect x="80" y="540" width="800" height="152" rx="18" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <rect x="104" y="564" width="92" height="34" rx="17" fill="var(--ok)"/>
+    <text x="150" y="587" text-anchor="middle" fill="var(--bg)" font-size="16" font-weight="700">第 3 步</text>
+    <rect x="704" y="564" width="144" height="34" rx="17" fill="var(--card-hi)" stroke="var(--ok)" stroke-width="2"/>
+    <text x="776" y="587" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="700">人主導</text>
+    <text x="104" y="633" fill="var(--fg)" font-size="24" font-weight="700">Codex（領隊）</text>
+    <text x="104" y="667" fill="var(--fg2)" font-size="18">拿規格對成品，逐條挑錯，不要它改</text>
+
+    <path d="M 50 188 L 28 188 L 28 616 L 50 616" fill="none" stroke="var(--ok)" stroke-width="3"/>
+    <text x="20" y="402" text-anchor="middle" fill="var(--ok)" font-size="15" font-weight="700" transform="rotate(-90 20 402)">同一位領隊：定規格、做驗收</text>
+
+    <rect x="290" y="716" width="380" height="34" rx="17" fill="var(--card-hi)" stroke="var(--line)" stroke-width="2"/>
+    <text x="480" y="739" text-anchor="middle" fill="var(--fg)" font-size="17" font-weight="700">想清楚 → 交給 AI 做 → 人來驗收</text>
+  </g>
+</svg>
 
       <h2 id="lie">為什麼一定要有第 3 步：因為我們實際測過，AI 會說謊</h2>
 

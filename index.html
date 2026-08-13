@@ -150,23 +150,93 @@
 
       <h2 id="system">三、系統全貌：四張表共用同一份學生名單</h2>
       <p>我們要做的不是四個各自獨立的小工具，而是一套互相連動的社團管理系統。填一次名單，四個地方都能用。</p>
-      <pre class="flow">        ┌─────────────────┐
-        │   學生名單       │  ← 官方附件一，8–9 月就要交
-        └────────┬────────┘
-                 │
-      ┌──────────┼──────────┬─────────────┐
-      ↓          ↓          ↓             ↓
- ┌─────────┐ ┌────────┐ ┌────────┐  ┌──────────┐
- │ 出席紀錄 │ │ 回饋單  │ │學生作品│  │ 材料費   │
- │(教室日誌)│ │        │ │        │  │  對帳    │
- └────┬────┘ └───┬────┘ └───┬────┘  └────┬─────┘
-      │          │          │            │
-      ↓          ↓          ↓            ↓
-   出席率%    四個百分比   成果展示頁   核銷份數
-   (官方⑤)    (官方①②③④)  (官方參節)   (核銷用)
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 740" role="img" aria-labelledby="flow-title flow-desc" style="display:block;max-width:100%;font-family:system-ui,-apple-system,'Segoe UI','Noto Sans TC',sans-serif">
+  <title id="flow-title">學生名單與官方成果報告資料流程圖</title>
+  <desc id="flow-desc">學生名單填寫一次後，分別產生出席紀錄、回饋單、學生作品與材料費對帳，再轉換成官方需要的出席率、四個百分比、成果展示頁與核銷份數。課程規劃表橫貫四欄，讓作品對應到課程週次。</desc>
 
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="var(--line)"/>
+    </marker>
+    <marker id="arrow-ok" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="var(--ok)"/>
+    </marker>
+  </defs>
 
- 課程規劃表（24 週）─── 每個作品對應到第幾週</pre>
+  <g fill="none" stroke="var(--line)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 128 V180"/>
+    <path d="M165 180 H1035"/>
+    <path d="M165 180 V232" marker-end="url(#arrow)"/>
+    <path d="M455 180 V232" marker-end="url(#arrow)"/>
+    <path d="M745 180 V232" marker-end="url(#arrow)"/>
+    <path d="M1035 180 V232" marker-end="url(#arrow)"/>
+  </g>
+
+  <rect x="400" y="28" width="400" height="100" rx="16" fill="var(--card-hi)" stroke="var(--line)" stroke-width="3"/>
+  <text x="600" y="70" fill="var(--fg)" font-size="25" font-weight="700" text-anchor="middle">學生名單</text>
+  <text x="600" y="101" fill="var(--fg2)" font-size="17" text-anchor="middle">填寫一次</text>
+
+  <path d="M800 78 H835" fill="none" stroke="var(--warn)" stroke-width="3" stroke-linecap="round"/>
+  <text x="850" y="68" fill="var(--warn)" font-size="18" font-weight="700">官方附件一</text>
+  <text x="850" y="94" fill="var(--fg2)" font-size="16">8–9 月就要交</text>
+
+  <g>
+    <rect x="55" y="245" width="220" height="130" rx="14" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
+    <text x="165" y="298" fill="var(--fg)" font-size="22" font-weight="700" text-anchor="middle">出席紀錄</text>
+    <text x="165" y="331" fill="var(--fg2)" font-size="17" text-anchor="middle">（教室日誌）</text>
+
+    <rect x="345" y="245" width="220" height="130" rx="14" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
+    <text x="455" y="319" fill="var(--fg)" font-size="22" font-weight="700" text-anchor="middle">回饋單</text>
+
+    <rect x="635" y="245" width="220" height="130" rx="14" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
+    <text x="745" y="319" fill="var(--fg)" font-size="22" font-weight="700" text-anchor="middle">學生作品</text>
+
+    <rect x="925" y="245" width="220" height="130" rx="14" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
+    <text x="1035" y="298" fill="var(--fg)" font-size="22" font-weight="700" text-anchor="middle">材料費</text>
+    <text x="1035" y="331" fill="var(--fg2)" font-size="18" text-anchor="middle">對帳</text>
+  </g>
+
+  <g fill="none" stroke="var(--ok)" stroke-width="4" stroke-linecap="round">
+    <path d="M165 375 V438" marker-end="url(#arrow-ok)"/>
+    <path d="M455 375 V438" marker-end="url(#arrow-ok)"/>
+    <path d="M745 375 V438" marker-end="url(#arrow-ok)"/>
+    <path d="M1035 375 V438" marker-end="url(#arrow-ok)"/>
+  </g>
+
+  <g>
+    <rect x="55" y="453" width="220" height="118" rx="14" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <text x="165" y="500" fill="var(--ok)" font-size="23" font-weight="800" text-anchor="middle">出席率％</text>
+    <text x="165" y="537" fill="var(--fg2)" font-size="17" text-anchor="middle">（官方⑤）</text>
+
+    <rect x="345" y="453" width="220" height="118" rx="14" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <text x="455" y="500" fill="var(--ok)" font-size="22" font-weight="800" text-anchor="middle">四個百分比</text>
+    <text x="455" y="537" fill="var(--fg2)" font-size="17" text-anchor="middle">（官方①②③④）</text>
+
+    <rect x="635" y="453" width="220" height="118" rx="14" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <text x="745" y="500" fill="var(--ok)" font-size="22" font-weight="800" text-anchor="middle">成果展示頁</text>
+    <text x="745" y="537" fill="var(--fg2)" font-size="17" text-anchor="middle">（官方參節）</text>
+
+    <rect x="925" y="453" width="220" height="118" rx="14" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
+    <text x="1035" y="500" fill="var(--ok)" font-size="22" font-weight="800" text-anchor="middle">核銷份數</text>
+    <text x="1035" y="537" fill="var(--fg2)" font-size="17" text-anchor="middle">（核銷用）</text>
+  </g>
+
+  <g>
+    <path d="M55 634 H1145" fill="none" stroke="var(--warn)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="165" cy="634" r="8" fill="var(--warn)"/>
+    <circle cx="455" cy="634" r="8" fill="var(--warn)"/>
+    <circle cx="745" cy="634" r="8" fill="var(--warn)"/>
+    <circle cx="1035" cy="634" r="8" fill="var(--warn)"/>
+
+    <rect x="55" y="606" width="322" height="57" rx="12" fill="var(--card-hi)" stroke="var(--warn)" stroke-width="3"/>
+    <text x="216" y="642" fill="var(--fg)" font-size="21" font-weight="700" text-anchor="middle">課程規劃表（24 週）</text>
+
+    <rect x="763" y="606" width="382" height="57" rx="12" fill="var(--card-hi)" stroke="var(--warn)" stroke-width="3"/>
+    <text x="954" y="642" fill="var(--fg)" font-size="19" font-weight="700" text-anchor="middle">每個作品對應到第幾週</text>
+
+    <text x="600" y="705" fill="var(--fg2)" font-size="16" text-anchor="middle">橫貫四欄的課程地基</text>
+  </g>
+</svg>
 
       <h2 id="gates">四、從這裡開始</h2>
       <p class="small">這一版先放上面這幾關。<b>關 3（學生回饋單）、關 4（核銷對帳）、關 5（結案）</b>還在寫，研習後一週補上——但關 3 的內容 <b>8/19 當天現場會帶你做</b>，不會漏掉。關 3 回饋單、關 4 材料費對帳、關 5 結案、進階關「搬上雲端」會後一週補上。</p>
