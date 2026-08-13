@@ -29,7 +29,8 @@
     for (i = 0; i < kids.length; i++){
       var el = kids[i];
       if (el.tagName === 'FOOTER') continue;           // 頁尾不切成投影片
-      var isBreak = (el.classList && el.classList.contains('gate')) || el.tagName === 'H2';
+      // 分界＝main 層級的 section（gate／inst／無 class 都算）或 h2
+      var isBreak = el.tagName === 'SECTION' || el.tagName === 'H2';
       if (isBreak && now.length){ groups.push(now); now = []; }
       now.push(el);
     }
