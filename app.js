@@ -23,25 +23,114 @@
   function buildSlides(){
     var main = document.querySelector('main');
     if (!main || main.getAttribute('data-sliced')) return;
+
+    /* 一張投影片＝一個講得完的單位。切法分兩層：
+       外層以 main 的 section／h2 切成「章」；章內若還很長，
+       再以 h3、提示詞卡、驗收清單、表格為界切開，每張重掛章名。 */
+    function atoms(nodes){
+      var out = [], cur = [];
+      for (var i = 0; i < nodes.length; i++){
+        var el = nodes[i];
+        var brk = el.tagName === 'H3'
+               || (el.classList && (el.classList.contains('prompt') ||
+                                    el.classList.contains('checklist') ||
+                                    el.classList.contains('pit')))
+               || el.tagName === 'TABLE';
+        if (brk && cur.length){ out.push(cur); cur = []; }
+        cur.push(el);
+        // 提示詞卡與清單自成一張，後面另起
+        if (el.classList && (el.classList.contains('prompt') || el.classList.contains('checklist'))){
+          out.push(cur); cur = [];
+        }
+      }
+      if (cur.length) out.push(cur);
+      return out;
+    }
+
     var kids = [], i;
     for (i = 0; i < main.children.length; i++) kids.push(main.children[i]);
-    var groups = [], now = [];
+    var chapters = [], now = [];
     for (i = 0; i < kids.length; i++){
       var el = kids[i];
-      if (el.tagName === 'FOOTER') continue;           // 頁尾不切成投影片
-      // 分界＝main 層級的 section（gate／inst／無 class 都算）或 h2
+      if (el.tagName === 'FOOTER') continue;
       var isBreak = el.tagName === 'SECTION' || el.tagName === 'H2';
-      if (isBreak && now.length){ groups.push(now); now = []; }
+      if (isBreak && now.length){ chapters.push(now); now = []; }
       now.push(el);
     }
-    if (now.length) groups.push(now);
-    for (i = 0; i < groups.length; i++){
-      var g = groups[i];
-      var box = document.createElement('div');
-      box.className = 'slide';
-      g[0].parentNode.insertBefore(box, g[0]);
-      for (var j = 0; j < g.length; j++) box.appendChild(g[j]);
+    if (now.length) chapters.push(now);
+
+    var frag = document.createDocumentFragment();
+    for (i = 0; i < chapters.length; i++){
+      var ch = chapters[i];
+      var lead = ch[0];
+      // section 內部再切；非 section 的章（h2 開頭）直接整章一張
+      var inner = null, title = '';
+      if (lead.tagName === 'SECTION'){
+        var head = lead.querySelector(':scope > header');
+        var body = lead.querySelector(':scope > .body');
+        var h2 = lead.querySelector('h2');
+        title = h2 ? h2.textContent.trim() : '';
+        if (body){
+          inner = [];
+          for (var k = 0; k < body.children.length; k++) inner.push(body.children[k]);
+        }
+      }
+      if (inner && inner.length > 1){
+        var parts = atoms(inner);
+        for (var j = 0; j < parts.length; j++){
+          var box = document.createElement('div');
+          box.className = 'slide';
+          if (j === 0){
+            // 第一張帶著 section 的外殼與標題
+            var shell = lead.cloneNode(false);
+            var hd = lead.querySelector(':scope > header');
+            if (hd) shell.appendChild(hd.cloneNode(true));
+            var bd = document.createElement('div');
+            bd.className = 'body';
+            for (var m = 0; m < parts[j].length; m++) bd.appendChild(parts[j][m]);
+            shell.appendChild(bd);
+            box.appendChild(shell);
+          } else {
+            var tag = document.createElement('p');
+            tag.className = 'slide-chapter';
+            tag.textContent = title;
+            box.appendChild(tag);
+            var bd2 = document.createElement('div');
+            bd2.className = 'body';
+            for (var m2 = 0; m2 < parts[j].length; m2++) bd2.appendChild(parts[j][m2]);
+            box.appendChild(bd2);
+          }
+          frag.appendChild(box);
+        }
+        if (lead.parentNode) lead.parentNode.removeChild(lead);
+        for (var q = 1; q < ch.length; q++){
+          var extra = document.createElement('div');
+          extra.className = 'slide';
+          extra.appendChild(ch[q]);
+          frag.appendChild(extra);
+        }
+      } else {
+        /* 沒有 section 外殼的章（h2 直接掛在 main 底下）也要切，
+           不然像 method.html 那種一章就會擠成 2000px 高的一張。 */
+        var h2b = null;
+        for (var z = 0; z < ch.length; z++) if (ch[z].tagName === 'H2') { h2b = ch[z]; break; }
+        var t2 = h2b ? h2b.textContent.trim() : '';
+        var ps = atoms(ch);
+        for (var y = 0; y < ps.length; y++){
+          var one = document.createElement('div');
+          one.className = 'slide';
+          if (y > 0 && t2){
+            var lab = document.createElement('p');
+            lab.className = 'slide-chapter';
+            lab.textContent = t2;
+            one.appendChild(lab);
+          }
+          for (var r = 0; r < ps[y].length; r++) one.appendChild(ps[y][r]);
+          frag.appendChild(one);
+        }
+      }
     }
+    main.appendChild(frag);
     main.setAttribute('data-sliced', '1');
     slides = main.querySelectorAll('.slide');
   }
@@ -53,6 +142,15 @@
     var tag = document.getElementById('slideNo');
     if (tag) tag.textContent = (cur + 1) + ' / ' + slides.length;
     window.scrollTo(0, 0);
+    /* 有些內容本來就高（嵌入的工具、實機截圖、長表格），硬切會把意思切碎。
+       那幾張就讓它捲，但要明講，不要讓人以為畫面只有這樣。 */
+    var hint = document.getElementById('slideScroll');
+    if (hint){
+      var bar = document.querySelector('.topbar');
+      var avail = window.innerHeight - (bar ? bar.getBoundingClientRect().height : 0) - 90;
+      var need = slides[cur].getBoundingClientRect().height;
+      hint.hidden = !(need > avail * 1.02);
+    }
   }
 
   function slideBar(){
@@ -61,6 +159,7 @@
     bar.id = 'slideBar';
     bar.innerHTML = '<button type="button" id="slidePrev" aria-label="上一張">←</button>' +
                     '<span id="slideNo">1 / 1</span>' +
+                    '<span id="slideScroll" hidden>↓ 這張要往下捲</span>' +
                     '<button type="button" id="slideNext" aria-label="下一張">→</button>';
     document.body.appendChild(bar);
     document.getElementById('slidePrev').addEventListener('click', function(){ showSlide(cur - 1); });

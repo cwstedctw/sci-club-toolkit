@@ -51,6 +51,7 @@ body.proj .topbar-in{padding:.25rem 1rem}
 body.proj main{padding-bottom:5rem}
 body.proj .slide{display:none}
 body.proj .slide.on{display:block}
+body.proj .slide-chapter{color:var(--fg2);font-size:var(--fs-s);margin:0 0 .5rem;border-left:3px solid var(--ok);padding-left:.6rem}
 body.proj footer.site{display:none}
 #slideBar{display:none}
 body.proj #slideBar{position:fixed;left:50%;bottom:1rem;transform:translateX(-50%);
@@ -59,6 +60,8 @@ body.proj #slideBar{position:fixed;left:50%;bottom:1rem;transform:translateX(-50
 body.proj #slideBar button{min-width:44px;min-height:44px;border-radius:999px;cursor:pointer;
   background:transparent;color:var(--fg);border:1px solid var(--line);font:inherit;font-size:1.1rem}
 body.proj #slideBar button:hover{background:var(--card-hi)}
+body.proj #slideScroll{color:var(--warn);font-size:var(--fs-s)}
+body.proj #slideScroll[hidden]{display:none}
 body.proj #slideNo{font-variant-numeric:tabular-nums;color:var(--fg2);min-width:4.5rem;text-align:center}
 .sidebar{position:sticky;top:5rem;font-size:var(--fs-s)}
 .sidebar h2{font-size:var(--fs-xs);color:var(--fg2);letter-spacing:.14em;
