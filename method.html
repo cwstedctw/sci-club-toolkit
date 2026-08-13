@@ -36,6 +36,7 @@
         <li><a href="#check">驗收口訣</a></li>
         <li><a href="#who">領隊與隊員</a></li>
         <li><a href="#prompts">三段提示詞</a></li>
+        <li><a href="#relay">用資料夾傳紙條</a></li>
         <li><a href="#talk">卡片只是起頭</a></li>
         <li><a href="#skill">教它一次，之後每次都照做</a></li>
       </ol>
@@ -235,6 +236,75 @@
         </dl>
       </div>
     
+    <h2 id="relay">不想一直複製貼上？讓他們用資料夾傳紙條</h2>
+    <p>
+      照上面三段走一次，你會發現一件麻煩事：<strong>規格那一大段，要你自己從一個視窗複製、
+      貼到另一個視窗</strong>。那段通常兩三百個字，手機打不動、電腦也要滑半天。
+    </p>
+    <p>
+      有一個更省事的做法，而且它用的是你<strong>已經學過的東西——兩個 AI 開的是同一個資料夾</strong>。
+      既然開同一個，那就別用剪貼簿傳，<strong>叫他們把東西寫成檔案，放在資料夾裡互相拿</strong>。
+    </p>
+
+    <h3>先建兩個空資料夾</h3>
+    <p>
+      在你的「我的小隊」資料夾裡，建兩個子資料夾，名字就叫
+      <code>inbox</code> 和 <code>outbox</code>。用檔案總管手動建就好，不用叫 AI 建。
+    </p>
+    <div class="note info">
+      <ul>
+        <li><strong>inbox</strong>：領隊寫給隊員的任務單放這裡</li>
+        <li><strong>outbox</strong>：隊員做完的東西與交接說明放這裡</li>
+      </ul>
+    </div>
+
+    <h3>然後三段話都變短了</h3>
+    <div class="prompt">
+      <header><span class="step">① 給 Codex：把規格寫成檔案，不要印在畫面上</span><button class="copy" type="button">複製</button></header>
+      <pre>（前面照原本那張卡講你要做什麼）
+
+規格想好之後，不要印在畫面上給我看。
+請把它寫成一個檔案，存到這個資料夾的 inbox 底下，檔名叫 spec.md。
+寫完只要跟我說一句「寫好了」，並且把那個檔案的完整路徑印出來。</pre>
+    </div>
+
+    <div class="prompt">
+      <header><span class="step">② 給 Antigravity：叫它自己去讀</span><button class="copy" type="button">複製</button></header>
+      <pre>請讀這個資料夾裡 inbox/spec.md 這個檔案，照它做出來。
+做完把成品存在這個資料夾的根目錄，並在 outbox 裡寫一個 done.md，
+裡面寫你做了什麼、檔案叫什麼名字、有哪裡你不確定。
+最後把成品的完整路徑印給我。</pre>
+    </div>
+
+    <div class="prompt">
+      <header><span class="step">③ 回去給 Codex：拿規格對成品</span><button class="copy" type="button">複製</button></header>
+      <pre>隊員做完了。請你讀 inbox/spec.md 和 outbox/done.md，
+再打開他做出來的成品，逐條對照規格檢查。
+只告訴我哪裡不對、哪裡漏了，不要幫我改。
+規格裡沒寫到但你覺得有問題的，也一起講。</pre>
+    </div>
+
+    <div class="note ok">
+      <p><strong>這樣做多了三個好處，都不是省力氣而已：</strong></p>
+      <ul>
+        <li><strong>規格留下來了。</strong> 貼在對話框裡的字，關掉視窗就沒了；寫成檔案，
+          下週想改課程規劃表，打開 <code>spec.md</code> 就知道當初講好什麼。</li>
+        <li><strong>換電腦還在。</strong> 辦公室做一半、回家接著做，資料夾帶著走就好。</li>
+        <li><strong>它們對不起來的時候，你查得到是誰的問題。</strong>
+          成品不對，回去看 <code>spec.md</code>：是規格就寫錯了，還是隊員沒照做？
+          這兩件事的處理方式完全不同。</li>
+      </ul>
+    </div>
+
+    <div class="note warn">
+      <p>
+        <strong>一定要叫它把「完整路徑」印出來，然後你自己去看一眼。</strong>
+        我們實測過一次：AI 回報「寫檔：做到」，那是真話，
+        <strong>只是檔案寫在它自己的暫存資料夾，不在你的資料夾裡</strong>。
+        它沒有騙人，是你沒問清楚寫到哪。這就是上面第 ② 招在防的事。
+      </p>
+    </div>
+
     <h2 id="talk">卡片只是起頭，接下來要自己跟它談</h2>
     <p>
       每一關都有提示詞卡，那是<strong>起手式，不是標準答案</strong>。

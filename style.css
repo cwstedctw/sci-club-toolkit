@@ -62,6 +62,14 @@ body.proj #slideBar button{min-width:44px;min-height:44px;border-radius:999px;cu
 body.proj #slideBar button:hover{background:var(--card-hi)}
 body.proj #slideScroll{color:var(--warn);font-size:var(--fs-s)}
 body.proj #slideScroll[hidden]{display:none}
+/* 圖太高就等比縮到放得下，不要讓一張圖逼出捲軸 */
+body.proj .slide svg{max-height:58vh}
+/* 投影時把嵌進來的示範框壓到放得下，裡面自己捲 */
+body.proj .frame iframe{height:52vh}
+/* 實機截圖投影時等比縮到放得下 */
+body.proj .slide img{max-height:52vh;width:auto}
+/* 提示詞卡本文投影時縮一點，多數卡片就進得了一頁 */
+body.proj .prompt pre{font-size:.92rem;line-height:1.55}
 body.proj #slideNo{font-variant-numeric:tabular-nums;color:var(--fg2);min-width:4.5rem;text-align:center}
 .sidebar{position:sticky;top:5rem;font-size:var(--fs-s)}
 .sidebar h2{font-size:var(--fs-xs);color:var(--fg2);letter-spacing:.14em;

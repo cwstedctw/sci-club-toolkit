@@ -135,6 +135,75 @@
     slides = main.querySelectorAll('.slide');
   }
 
+  /* 切完再量一次。上面那套是照「意思」切的，猜不到實際高度；
+     真的高過畫面的，就把尾巴挪到下一張。只剩一塊內容時不再切
+     （那種是單一張長圖或長卡片，硬切會把它切爛，交給捲動提示）。 */
+  function fitSlides(){
+    var main = document.querySelector('main');
+    if (!main) return;
+    var bar = document.querySelector('.topbar');
+    var avail = window.innerHeight - (bar ? bar.getBoundingClientRect().height : 0) - 90;
+    if (avail < 240) return;
+    function movable(host){
+      var out = [];
+      for (var i = 0; i < host.children.length; i++){
+        if (!host.children[i].classList.contains('slide-chapter')) out.push(host.children[i]);
+      }
+      return out;
+    }
+    /* 有些整章包在一個 section 或一張 card 裡，外面看只有一個孩子。
+       這種要鑽進去拿裡面的內容切，不然整章會擠成一張四千像素的投影片。 */
+    function hostOf(s){
+      var h = s.querySelector('.body') || s, guard = 0;
+      while (guard++ < 6){
+        var m = movable(h);
+        if (m.length !== 1) break;
+        var one = m[0], ok = one.tagName === 'SECTION' || one.tagName === 'ARTICLE' ||
+                             (one.tagName === 'DIV' && (one.classList.contains('card') ||
+                                                        one.classList.contains('body')));
+        if (!ok || one.children.length < 2) break;
+        h = one.querySelector(':scope > .body') || one;
+      }
+      return h;
+    }
+
+    var guard = 0, list = main.querySelectorAll('.slide');
+    for (var i = 0; i < list.length && guard < 400; i++){
+      var s = list[i];
+      s.classList.add('on');
+      var host = hostOf(s);
+      var spill = null;
+      while (s.scrollHeight > avail && movable(host).length > 1 && guard++ < 400){
+        if (!spill){
+          spill = document.createElement('div');
+          spill.className = 'slide';
+          var lab = s.querySelector('.slide-chapter');
+          var h2n = s.querySelector('h2') || s.querySelector('h3');
+          var name = lab ? lab.textContent : (h2n ? h2n.textContent.trim() : '');
+          if (name){
+            var p = document.createElement('p');
+            p.className = 'slide-chapter';
+            p.textContent = name;
+            spill.appendChild(p);
+          }
+          var bd = document.createElement('div');
+          bd.className = 'body';
+          spill.appendChild(bd);
+          s.parentNode.insertBefore(spill, s.nextSibling);
+        }
+        var sink = spill.querySelector('.body');
+        var kids = movable(host);
+        sink.insertBefore(kids[kids.length - 1], sink.firstChild);
+        /* 搬走幾塊之後，剩下的可能又縮成「單一個大容器」，要重找一次，
+           不然會停在一張還是塞不下的卡片上。 */
+        host = hostOf(s);
+      }
+      s.classList.remove('on');
+      list = main.querySelectorAll('.slide');
+    }
+    slides = main.querySelectorAll('.slide');
+  }
+
   function showSlide(n){
     if (!slides.length) return;
     cur = Math.max(0, Math.min(n, slides.length - 1));
@@ -174,7 +243,7 @@
       document.body.classList.toggle('proj', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       btn.textContent = on ? '關閉投影模式' : '投影模式';
-      if (on){ buildSlides(); slideBar(); showSlide(cur); }
+      if (on){ buildSlides(); fitSlides(); slideBar(); showSlide(cur); }
       try { localStorage.setItem(KEY+'proj', on ? '1' : '0'); } catch(e){}
     }
     document.addEventListener('keydown', function(e){
