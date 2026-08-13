@@ -163,6 +163,9 @@ details.block.ok{border-color:var(--ok)}
 .frame .ph{position:absolute;inset:0;display:grid;place-content:center;gap:.5rem;
   text-align:center;padding:2rem;color:var(--fg2);font-size:var(--fs-ms)}
 .frame .ph b{color:var(--warn);font-size:var(--fs-ml)}
+/* app.js 用 ph.hidden=true 藏佔位字，但上面的 display:grid 會蓋過瀏覽器對 [hidden] 的
+   display:none，害佔位字疊在 iframe 上面。這一行把它壓回去。 */
+.frame .ph[hidden]{display:none}
 .framebar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;
   padding:.7rem .9rem;border-bottom:1px solid var(--line);background:#243349;font-size:var(--fs-s)}
 .framebar .t{font-weight:700;font-size:var(--fs-ms);margin-right:auto}
