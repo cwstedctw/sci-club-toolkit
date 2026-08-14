@@ -53,6 +53,7 @@
   <aside class="sidebar">
     <h2>這頁有什麼</h2>
     <ol>
+      <li><a href="#ours">我們自己的教材</a></li>
       <li><a href="#pick">課前先看這四個就夠</a></li>
       <li><a href="#fix">當場卡住：症狀對照表</a></li>
       <li><a href="#official">官方文件</a></li>
@@ -76,10 +77,17 @@
       <b>不用全部看完。</b>課前只要看「先看這四個」，其他等你真的卡住再回來查。
     </div>
     <div class="note info">
-      <b>8/19 有兩種 AI 流程。</b>上半場實際使用 Codex → Antigravity → Codex，完成規劃、實作與複核；下半場才使用單一 Antigravity。GitHub 帳號、Git 與已登入的 GitHub CLI 也要在行前準備好，讓 AI 能留版本並把 repo 內的專案記憶、規格與作品接到另一台電腦；GitHub Desktop 選配。
+      <b>8/19 有兩種 AI 流程。</b>上半場學員只跟 Codex 講話，由它呼叫 <span class="en">agy</span> 完成規劃、實作與複核；下半場才使用單一 Antigravity 桌面版。GitHub 帳號、Git 與已登入的 GitHub CLI 也要在行前準備好，讓 AI 能留版本並把 repo 內的專案記憶、規格與作品接到另一台電腦；GitHub Desktop 選配。
     </div>
     <div class="note ok">
       <b>課後要重做，不必先讀外部文章。</b>先回<a href="install.html">行前安裝</a>與<a href="step0.html">開課前檢查</a>，再依現場順序走課程規劃表 → 3 → 2 → 4 → 5 → 6。教材可從 <a href="https://github.com/cwstedctw/sci-club-toolkit">GitHub</a> 再下載一次。真的卡住才用本頁查。
+    </div>
+
+    <div class="note ok">
+      <b>想先搞懂「兩個 AI 怎麼讀同一份記憶」：</b>
+      看我們自己的通識課《<a href="https://cwstedctw.github.io/ndhu-ai-courses/courses/ai-team.html" target="_blank" rel="noopener noreferrer">打造你的 AI 雙人小隊</a>》。
+      重點是共用資料夾裡的規則（那邊叫共用區；這堂課對應 <span class="en">HANDOFF.md</span>、<span class="en">specs/</span>）。
+      8/19 上半場用的是那堂裡的「全自動」。講義與範本團隊在 <a href="https://github.com/cwstedctw/ai-agent-team-course" target="_blank" rel="noopener noreferrer">github.com/cwstedctw/ai-agent-team-course</a>。
     </div>
 
     <section class="pick3" id="pick">
@@ -88,7 +96,7 @@
         <li><a href="https://codelabs.developers.google.com/getting-started-google-antigravity?hl=zh-tw" target="_blank" rel="noopener noreferrer">開始使用 Google Antigravity</a>（Google 官方，<b>繁體中文</b>、圖多）<br>
           <span class="muted small">安裝、登入、建第一個專案，跟著點就會。Antigravity 入門先看這篇。</span></li>
         <li><a href="install.html#a3">本站：ChatGPT 桌面版切到 Codex</a>（中文步驟＋畫面說明）<br>
-          <span class="muted small">安裝、登入、切換 Codex、開資料夾。官方下載頁是 chatgpt.com/download。</span></li>
+          <span class="muted small">安裝、登入、切換 Codex、開資料夾。官方下載頁是 <a href="https://chatgpt.com/download" target="_blank" rel="noopener noreferrer">chatgpt.com/download</a>。</span></li>
         <li><a href="install.html#a6">GitHub 行前安裝清單</a>（本教材中文步驟）<br>
           <span class="muted small">依序完成 GitHub 帳號、Git、GitHub CLI 與登入；GitHub Desktop 是選配。這組工具用於版本控制與跨機器接手；部署另列選配，可用 GitHub Pages、Netlify 或其他服務。</span></li>
         <li><a href="https://antigravity.google/docs/plans" target="_blank" rel="noopener noreferrer">Antigravity 額度說明</a>（Google 官方，英文）<br>
@@ -201,6 +209,19 @@
       <li><a href="https://antigravity.google/changelog" target="_blank" rel="noopener noreferrer">Antigravity 更新紀錄</a>
         <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
         <p>畫面突然變了、或某個功能不見了，先看這裡是不是改版。</p></li>
+    </ul>
+
+    <h2 id="ours">我們自己的教材（雙人小隊＋記憶）</h2>
+    <ul class="reflist">
+      <li><a href="https://cwstedctw.github.io/ndhu-ai-courses/courses/ai-team.html" target="_blank" rel="noopener noreferrer">打造你的 AI 雙人小隊（課程網）</a>
+        <div class="meta"><span class="tag off">我們的課</span><span class="tag">繁體中文</span></div>
+        <p>東華通識課公開版。兩個 AI 開同一個資料夾，靠 inbox／outbox／共用區傳紙條；共用區就是兩邊都讀得到的記憶。8/19 的「Codex 自己叫 agy」＝那堂的全自動。</p></li>
+      <li><a href="https://github.com/cwstedctw/ai-agent-team-course" target="_blank" rel="noopener noreferrer">ai-agent-team-course（講義與範本團隊）</a>
+        <div class="meta"><span class="tag off">我們的課</span><span class="tag">繁體中文</span></div>
+        <p>學生講義、安裝指南、<span class="en">04_給AI的指令包.md</span>（含記憶／開機咒語）、以及可複製的 <span class="en">範本團隊/</span>（<span class="en">AGENTS.md</span>＋人格檔＋inbox／outbox／shared）。</p></li>
+      <li><a href="https://cwstedctw.github.io/git-ai-workshop/" target="_blank" rel="noopener noreferrer">跟 AI 一起用 Git</a>
+        <div class="meta"><span class="tag off">我們的課</span><span class="tag">繁體中文</span></div>
+        <p>會後若要把記憶與成品接到另一台電腦，這份講版本控制。8/19 的<a href="github.html">留下版本</a>是精簡版。</p></li>
     </ul>
 
     <h2 id="cases">老師怎麼用（案例）</h2>

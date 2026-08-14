@@ -319,7 +319,9 @@
   /* 3. 提示詞卡一鍵複製（離線 file:// 也要能用，所以留備援） */
   function copyButtons(){
     var btns = document.querySelectorAll('.copy');
-    for (var i=0;i<btns.length;i++) btns[i].addEventListener('click', function(){
+    for (var i=0;i<btns.length;i++){
+      if (btns[i].textContent.trim() === '複製') btns[i].textContent = '📋 複製';
+      btns[i].addEventListener('click', function(){
       var btn = this;
       var box = btn.closest('.prompt') || btn.closest('.card') || document;
       var pre = box.querySelector('pre');
@@ -328,13 +330,14 @@
       function done(){
         var old = btn.textContent;
         btn.setAttribute('data-done','1');
-        btn.textContent = '已複製';
+        btn.textContent = '✨ 好了';
         setTimeout(function(){ btn.removeAttribute('data-done'); btn.textContent = old; }, 1600);
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done, btn, pre); });
       } else { fallback(text, done, btn, pre); }
     });
+    }
     function fallback(text, done, btn, pre){
       var ta = document.createElement('textarea');
       ta.value = text; ta.setAttribute('readonly','');
@@ -455,6 +458,14 @@
         frame.addEventListener('error', function(){ placeholder.hidden = false; });
       })(ifr, ph);
     }
+    /* 一般閱讀：沒點示範框時滾輪要捲這一頁，不要被 iframe 吃掉。 */
+    document.addEventListener('click', function(e){
+      var hit = e.target.closest && e.target.closest('.frame');
+      var all = document.querySelectorAll('.frame');
+      for (var j = 0; j < all.length; j++){
+        all[j].classList.toggle('is-active', all[j] === hit);
+      }
+    });
   }
 
   /* 7. 大張教材圖表：離線放大／縮小，放大後仍可捲動與拖曳。
@@ -561,6 +572,7 @@
         out.disabled = zoom <= 75;
         inn.disabled = zoom >= 200;
         reset.disabled = zoom === 100;
+        viewport.classList.toggle('is-zoomed', zoom !== 100);
         if (oldWidth > 0 && viewport.clientWidth > 0){
           var ratio = oldCenter / oldWidth;
           requestAnimationFrame(function(){
@@ -590,6 +602,7 @@
       /* 觸控使用瀏覽器原生捲動；滑鼠另支援在圖上拖曳。 */
       var drag = null;
       viewport.addEventListener('pointerdown', function(e){
+        if (zoom === 100) return;
         if (e.pointerType !== 'mouse' || e.button !== 0) return;
         drag = {x:e.clientX, y:e.clientY, left:viewport.scrollLeft, top:viewport.scrollTop};
         viewport.classList.add('is-dragging');

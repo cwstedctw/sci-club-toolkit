@@ -60,9 +60,9 @@
         <p>早上分兩段。<strong>Part 1（09:00–10:25，我們）</strong>＝對安裝 → 開課前檢查 → 示範 → 課程規劃表。<strong>Part 2（10:35–12:00，游豐兆）</strong>＝回饋單、名單出席、核銷。現場做不完，<a href="#again">會後用同一套頁面重做</a>。</p>
       </div>
       <ol>
-        <li><strong>對安裝</strong>：ChatGPT／Codex、個人 Gmail、Antigravity 打得開；兩個工具都開得到 <code>club2026</code>。裝不起來用現場範例檔。</li>
-        <li><strong>開課前檢查</strong>：兩邊印出同一條路徑，跑一次 60 秒讀檔。</li>
-        <li><strong>示範</strong>：AI 會說謊的兩個實例、三句驗收口訣、兩個 AI 怎麼接力（必要時看示範頁的管理台）。</li>
+        <li><strong>對安裝</strong>：ChatGPT／Codex、個人 Gmail、Antigravity 桌面版、<code>agy</code> 指令列打得開。裝不起來用現場範例檔。</li>
+        <li><strong>開課前檢查</strong>：Codex 開 <code>club2026</code>，60 秒讀檔，並跑一次 <code>agy --version</code>。</li>
+        <li><strong>示範</strong>：AI 會說謊的兩個實例、三句驗收口訣、Codex 自己呼叫 <code>agy</code>（必要時看示範頁的管理台）。</li>
         <li><strong>課程規劃表</strong>：做出 <code>outputs/course-plan.html</code>，約 10:22 交一次。</li>
         <li><strong>Part 2</strong>：跟游豐兆；約 11:50 再交一次。12:00 這堂結束。</li>
       </ol>
@@ -72,7 +72,7 @@
         <span class="label">進場前先做好這些，09:00 才接得上</span>
         <ol>
           <li>從網站或行前信拿到教材：<a href="https://github.com/cwstedctw/sci-club-toolkit">github.com/cwstedctw/sci-club-toolkit</a> → Code → Download ZIP。解壓後複製進 <code>club2026</code>。官方原件（成果報告書、共識營簡報）由主辦／行前信發，講師備課在 OneDrive 活動夾。</li>
-          <li>照<a href="install.html">行前安裝</a>裝好 ChatGPT／Codex、個人 Gmail、Antigravity，兩個工具都開得到同一個 <code>club2026</code>。</li>
+          <li>照<a href="install.html#once">行前安裝最快那張卡</a>：先裝兩個桌面版。Codex 開新對話、先不要開專案，貼第一張卡。它建好 <code>club2026</code> 後，再開「新專案」選那個資料夾，問「你是誰」。</li>
           <li>做一次<a href="step0.html">開課前檢查</a> 的 60 秒讀檔。有本校計畫書就放進 <code>sources</code>；沒有也能上課，課程規劃表 用虛構表，並標明不能當官方附件。</li>
           <li><strong>額度先別玩</strong>，留給現場實作。</li>
         </ol>
@@ -85,9 +85,9 @@
           <thead><tr><th>時間</th><th>講師在台上做什麼</th><th>你手上會多出什麼</th></tr></thead>
           <tbody>
             <tr><td colspan="3"><strong>Part 1　陳文盛　09:00–10:25</strong>＝對安裝 → 開課前檢查 → 示範 → 課程規劃表</td></tr>
-            <tr><td>09:00–09:10</td><td>開場＋<a href="install.html">對安裝</a>：誰還沒開得了 Codex／Antigravity，這段處理</td><td>兩個工具打得開，或拿到範例檔</td></tr>
-            <tr><td>09:10–09:20</td><td><a href="step0.html">開課前檢查</a>：兩邊開同一個 <code>club2026</code>，60 秒讀檔；順便對照<a href="needs.html">今天要做什麼</a></td><td>兩邊路徑一樣，看得到同一批檔</td></tr>
-            <tr><td>09:20–09:45</td><td><strong>示範</strong>：<a href="method.html#lie">AI 說謊</a>、三句驗收口訣、兩個 AI 怎麼接力；需要時打開<a href="demo.html">示範頁</a></td><td>知道怎麼檢查、三步各在哪個工具</td></tr>
+            <tr><td>09:00–09:10</td><td>開場＋<a href="install.html">對安裝</a>：誰還沒開得了 Codex／agy，這段處理</td><td>Codex 與 agy 打得開，或拿到範例檔</td></tr>
+            <tr><td>09:10–09:20</td><td><a href="step0.html">開課前檢查</a>：Codex 開 <code>club2026</code>，60 秒讀檔＋<code>agy --version</code>；順便對照<a href="needs.html">今天要做什麼</a></td><td>路徑對、agy 有版本號</td></tr>
+            <tr><td>09:20–09:45</td><td><strong>示範</strong>：<a href="method.html#lie">AI 說謊</a>、三句驗收口訣、Codex 自己叫 agy；需要時打開<a href="demo.html">示範頁</a></td><td>知道怎麼檢查、一張卡就能做完三步</td></tr>
             <tr><td>09:45–10:22</td><td><a href="step1.html">課程規劃表</a>：依本校實際週次做表</td><td><code>outputs/course-plan.html</code></td></tr>
             <tr><td>10:22–10:25</td><td>收 Part 1 作品</td><td>第一次收件</td></tr>
             <tr><td>10:25–10:35</td><td>休息（沒跟上的人這段補）</td><td>—</td></tr>

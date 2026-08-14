@@ -38,27 +38,32 @@
         <li><a href="#lie">AI 會說謊</a></li>
         <li><a href="#check">驗收口訣</a></li>
         <li><a href="#who">領隊與隊員</a></li>
-        <li><a href="#prompts">上半場三段提示詞</a></li>
-        <li><a href="#relay">進一步：用資料夾傳紙條</a></li>
+        <li><a href="#prompts">一張卡給 Codex</a></li>
+        <li><a href="#backup">agy 叫不動時</a></li>
         <li><a href="#talk">卡片只是起頭</a></li>
         <li><a href="#skill">教它一次，之後每次都照做</a></li>
       </ol>
     </aside>
     <main>
       <p class="eyebrow">方法</p>
-      <h1>上半場用兩個 AI 接力；下半場用一個 AI 做完</h1>
-      <p class="lede">8/19 上半場（09:00–10:25）實際操作兩個 AI：先讓 Codex 把規格想清楚，再交給 Antigravity 做出檔案，最後回到 Codex 對照原始資料複核。下半場（10:35–12:00）為了少切換，改由單一 Antigravity 完成。會後重做時，同一頁、同一張卡再貼一次即可。</p>
-      <p class="small">名詞先講白話：<strong>Codex</strong> 和 <strong>Antigravity</strong> 都是可以讀你指定資料夾、幫你直接產出檔案的 AI 工具。安裝在<a href="install.html">行前安裝</a>，開同一個資料夾在<a href="step0.html">開課前檢查</a>。</p>
+      <h1>上半場你只跟 Codex 講話；它自己去叫隊員</h1>
+      <p class="lede">8/19 上半場（09:00–10:25）還是三步：想清楚 → 做 → 驗收。中間那步不用你開第二個視窗。Codex 寫好規格，自己叫 <code>agy</code> 去做，再打開成品挑錯。下半場（10:35–12:00）只開 Antigravity 桌面版。會後重做時，同一頁、同一張卡再貼一次即可。</p>
+      <p class="small">你對話的是 <strong>Codex</strong>，名叫<strong>洄瀾</strong>；它叫來做事的是 <strong>agy</strong>，名叫<strong>秀姑巒</strong>。檔在 <code>領隊-洄瀾.md</code> 與 <code>隊員-秀姑巒.md</code>。桌面版 Antigravity 留給下半場。安裝在<a href="install.html">行前安裝</a>，開課前檢查在<a href="step0.html">開課前檢查</a>。</p>
       <div class="note ok">
         <span class="label">課堂上先看完這裡就夠</span>
-        <p>09:00–10:25 只要看懂「三段提示詞」和後面「四招」。再下面「用資料夾傳紙條」「教它一次」會後再看，現場不必一次讀完。</p>
-        <p><strong>上半場：Codex 規劃 → Antigravity 實作 → Codex 複核。</strong><br><strong>下半場：單一 Antigravity 釐清 → 實作 → 檢查。</strong>最後都要由人核對原始資料。</p>
+        <p>09:00–10:25 只要看懂「一張卡給 Codex」和後面「四招」。<code>agy</code> 叫不動時，再打開下面「兩個視窗自己貼」。</p>
+        <p><strong>上半場（規劃表）：你跟 Codex 講 → 它叫 agy 做 → 它再驗收。</strong><br><strong>下半場（回饋、名單、核銷）：只開一個 Antigravity，同一對話做完。</strong>最後都要由人核對原始資料。</p>
+      </div>
+      <div class="note info">
+        <span class="label">想看更完整的說明</span>
+        <p>通識課《<a href="https://cwstedctw.github.io/ndhu-ai-courses/courses/ai-team.html" target="_blank" rel="noopener noreferrer">打造你的 AI 雙人小隊</a>》講同一件事：兩個 AI 開同一個資料夾，靠裡面的檔合作。今天上半場就是：你只跟 Codex 講，它去叫 agy。</p>
+        <p class="small">講義在 <a href="https://github.com/cwstedctw/ai-agent-team-course" target="_blank" rel="noopener noreferrer">github.com/cwstedctw/ai-agent-team-course</a>。</p>
       </div>
 
       <h2 id="flow">上半場：雙 AI 的三個步驟</h2>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 960 760" role="img" aria-labelledby="method-title method-desc">
   <title id="method-title">想清楚、做、驗收的三步驟</title>
-  <desc id="method-desc">第一步由人主導 Codex 產出規格，第二步由 Antigravity 照規格製作檔案，第三步由人主導 Codex 逐條驗收。</desc>
+  <desc id="method-desc">第一步由人主導 Codex 產出規格，第二步由 Codex 呼叫 agy 照規格製作檔案，第三步由人主導 Codex 逐條驗收。</desc>
 
   <defs>
     <marker id="method-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
@@ -80,7 +85,7 @@
 
     <path d="M 480 264 L 480 318" fill="none" stroke="var(--fg2)" stroke-width="3" marker-end="url(#method-arrow)"/>
     <rect x="546" y="278" width="194" height="32" rx="16" fill="var(--card-hi)"/>
-    <text x="643" y="300" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="600">把規格整段複製</text>
+    <text x="643" y="300" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="600">Codex 自己呼叫 agy</text>
 
     <rect x="80" y="326" width="800" height="152" rx="18" fill="var(--card-hi)" stroke="var(--warn)" stroke-width="3"/>
     <rect x="104" y="350" width="92" height="34" rx="17" fill="var(--warn)"/>
@@ -92,7 +97,7 @@
 
     <path d="M 480 478 L 480 532" fill="none" stroke="var(--fg2)" stroke-width="3" marker-end="url(#method-arrow)"/>
     <rect x="546" y="492" width="210" height="32" rx="16" fill="var(--card-hi)"/>
-    <text x="651" y="514" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="600">把成品路徑貼回去</text>
+    <text x="651" y="514" text-anchor="middle" fill="var(--fg)" font-size="15" font-weight="600">Codex 自己打開成品</text>
 
     <rect x="80" y="540" width="800" height="152" rx="18" fill="var(--card)" stroke="var(--ok)" stroke-width="3"/>
     <rect x="104" y="564" width="92" height="34" rx="17" fill="var(--ok)"/>
@@ -160,10 +165,10 @@
         <p>課前請<strong>不要先拿額度玩</strong>，把 Antigravity 額度留給 8/19 實作。免費額度按週刷新，當天用完無法立刻補回。</p>
       </div>
 
-      <h2 id="prompts">上半場實作：雙 AI 三段提示詞</h2>
+      <h2 id="prompts">一張卡貼給 Codex，它自己叫隊員</h2>
     <p>
-      這三張卡就是 8/19 上半場讓 Codex 與 Antigravity 接力的流程；下半場才使用各頁裡的 Antigravity 單一工具版本。
-      但先講一件更要緊的事：<strong>為什麼要分三段，不能一次講完？</strong>
+      為什麼還是分三段、不能一次叫它做完？因為規格是<strong>文字</strong>，你看得懂也改得動。
+      一次就叫它做，你只能看結果，看不到它把你的話理解成什麼。
     </p>
 
     <h3>① 第一段不要它做東西，只要它先講清楚</h3>
@@ -174,11 +179,11 @@
       先讓它用文字講一遍，錯了你當場就攔得住。
     </p>
 
-    <h3>② 第二段換另一個 AI 做</h3>
+    <h3>② 第二段換另一個 AI 做——但不用你去貼</h3>
     <p>
-      規格既然是文字，就可以整段搬給別人。換一個做有個好處：
+      規格既然是文字，就可以交給另一個 AI 做。換一個做有個好處：
       <strong>它只看得到規格</strong>，不會把第一個 AI 的誤解一起繼承下去。
-      兩邊對不起來的地方，通常就是規格沒寫清楚，那也是你要知道的事。
+      課堂上這一步由 Codex 自己呼叫 <code>agy</code>，你不用開第二個視窗、也不用當傳話筒。
     </p>
 
     <h3>③ 第三段回去問第一個，不要問做的那個</h3>
@@ -198,12 +203,51 @@
     </div>
       <div class="note info">
         <span class="label">這裡是方法練習，不是正式交件</span>
-        <p>下面先用一個縮小版工具練習「規劃 → 實作 → 複核」。這份練習檔<strong>不是</strong> 10:22 要交的東西。要交的是<a href="step1.html">課程規劃表</a> 的 <code>outputs/course-plan.html</code>。</p>
+        <p>下面先用一個縮小版工具練習「規劃 → 叫 agy 做 → 複核」。這份練習檔<strong>不是</strong> 10:22 要交的東西。要交的是<a href="step1.html">課程規劃表</a> 的 <code>outputs/course-plan.html</code>。</p>
       </div>
-      <p class="small">按「複製」就會複製整段，貼到 AI 的輸入框裡，把角括號 ⟨⟩ 裡的字換成你自己的。</p>
+      <p class="small">按「複製」就會複製整段，貼到 Codex 的輸入框裡，把角括號 ⟨⟩ 裡的字換成你自己的。</p>
 
       <div class="prompt">
-        <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+        <header><span class="step">只貼給 Codex</span><button class="copy" type="button">複製</button></header>
+        <pre>我要做 ⟨學校名稱⟩ 科學社團的管理工具。
+你現在開著的這個資料夾裡，有基金會的成果報告書範本和我的社團計畫書。
+請你先不要寫程式。請把這兩份檔案讀完，然後告訴我：
+1. 我一整年總共要交哪幾份表，每一份的欄位是什麼
+2. 哪些欄位是同一份資料重複出現，可以只填一次
+3. 報告書「效益達成情形」那七個百分比，各自要從哪一份表算出來
+把上面整理成規格，寫成 specs/practice.md；同名檔已存在就停下來問我，不得覆蓋。
+
+我確認規格之後，不要叫我複製給另一個視窗。
+請你自己在終端機呼叫 Antigravity CLI，指令名稱是 agy。
+路徑一律用這個資料夾的絕對路徑。
+若終端機要你允許執行，先把完整指令秀給我，等我同意再跑。
+找不到 agy 就停下來，叫我去行前安裝那一頁。
+
+你是領隊洄瀾，先讀 領隊-洄瀾.md。一律先用繁體中文說話。
+對 agy 說：你是隊員秀姑巒，先讀 隊員-秀姑巒.md。一律先用繁體中文說話。
+對 agy 下的任務：讀 specs/practice.md，做出單一檔案、離線可開的 HTML 工具；
+資料存在瀏覽器裡；加一顆「載入練習用範例」，放虛構假名單，不要真名；
+成品存成 outputs/practice-tool.html；同名檔先停，不得覆蓋教材 index.html；
+更新 HANDOFF.md（做了什麼、成品檔名、下一步、哪裡不確定）。
+
+agy 做完後，你打開成品，對照規格列出問題，不要幫我改。
+最後告訴我：你實際跑的指令、成品完整路徑、你看到的第一個按鈕寫什麼。</pre>
+        <dl>
+          <dt>要什麼</dt><dd>一份規格檔、一個打得開的練習工具、一張「哪裡不對」的清單</dd>
+          <dt>你只做什麼</dt><dd>跟 Codex 確認規格；允許它跑 agy；自己打開成品看一眼</dd>
+          <dt>你要檢查什麼</dt><dd>路徑對不對？按鈕按得動嗎？它有沒有真的打開檔案？</dd>
+        </dl>
+      </div>
+
+      <details class="block" id="backup">
+        <summary>備援：agy 叫不動時再點開（兩個視窗自己傳）</summary>
+        <div class="inner">
+      <h2 id="copy">兩個視窗自己貼</h2>
+      <p>
+        <code>agy</code> 裝不起來時用這個。同時開 Codex 與 Antigravity 桌面版，中間自己複製貼上。
+      </p>
+      <div class="prompt">
+        <header><span class="step">備援① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
         <pre>我要做 ⟨學校名稱⟩ 科學社團的管理工具。
 你現在開著的這個資料夾裡，有基金會的成果報告書範本和我的社團計畫書。
 請你先不要寫程式。請把這兩份檔案讀完，然後告訴我：
@@ -219,7 +263,7 @@
       </div>
 
       <div class="prompt">
-        <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
+        <header><span class="step">備援② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
         <pre>以下是方法練習的規格，請照它做出一個單一檔案的 HTML 工具，不要用任何需要連網的東西，我要能離線打開。
 資料存在瀏覽器裡就好，不用資料庫。
 請附一顆「載入練習用範例」的按鈕，裡面放虛構的假名單，不要放真名。
@@ -235,7 +279,7 @@
       </div>
 
       <div class="prompt">
-        <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
+        <header><span class="step">備援③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
         <pre>這是剛剛做出來的檔案（路徑：⟨貼上路徑⟩）。
 請對照官方報告書範本，逐條列出：
 1. 哪些官方要求的欄位漏掉了
@@ -249,14 +293,10 @@
         </dl>
       </div>
     
-    <h2 id="relay">進一步：讓兩個 AI 用規格檔與交接檔傳紙條</h2>
+    <h2 id="relay">備援的進階：兩個視窗用檔案傳紙條</h2>
     <p>
-      照上面三段走一次，你會發現一件麻煩事：<strong>規格那一大段，要你自己從一個視窗複製、
-      貼到另一個視窗</strong>。那段通常兩三百個字，手機打不動、電腦也要滑半天。
-    </p>
-    <p>
-      有一個更省事的做法，而且它用的是你<strong>已經學過的東西——兩個 AI 開的是同一個資料夾</strong>。
-      既然開同一個，那就別用剪貼簿傳，<strong>叫他們把東西寫成檔案，放在資料夾裡互相拿</strong>。
+      若你走備援、兩邊都開同一個 <code>club2026</code>，就別用剪貼簿傳規格，
+      <strong>叫他們把東西寫成檔案，放在資料夾裡互相拿</strong>。走自動時不必用這一段：Codex 會把規格寫成檔，再叫 <code>agy</code> 去讀。
     </p>
 
     <h3>沿用開課前檢查時建好的資料夾，不要再創另一套</h3>
@@ -319,6 +359,8 @@
         它沒有騙人，是你沒問清楚寫到哪。這就是上面第 ② 招在防的事。
       </p>
     </div>
+        </div>
+      </details>
 
     <h2 id="talk">卡片只是起頭，接下來要自己跟它談</h2>
     <p>
@@ -375,7 +417,7 @@
 
 請告訴我：這是什麼意思？是我這台電腦的問題，還是要我去按什麼？
 先列唯讀檢查，不要直接刪除、覆蓋、移動檔案或修改全域設定。
-如果需要我自己動手，一步一步講，我不會用命令列；任何變更先等我確認。</pre>
+如果需要我自己動手，一步一步講；終端機指令請你跑，不要叫我自己打。任何變更先等我確認。</pre>
     </div>
 
     <div class="note">
@@ -397,6 +439,7 @@
       <b>把規則、已確認規格與下一步寫成檔案，兩個工具與下一台電腦才能接著讀。</b>
       教材包本身已有 <span class="en">AGENTS.md</span>，它會先判斷你是在維護教材，還是在做學員作品；<b>不要覆蓋它</b>。
       學員真正要帶走的記憶，是根目錄的 <span class="en">PROJECT-README.md</span>、<span class="en">HANDOFF.md</span>、<span class="en">LEARNER-RULES.md</span>，以及 <span class="en">specs/</span> 裡每一關的規格。
+      這跟《<a href="https://cwstedctw.github.io/ndhu-ai-courses/courses/ai-team.html" target="_blank" rel="noopener noreferrer">打造你的 AI 雙人小隊</a>》同一件事。這堂課對應的三份檔是 <span class="en">PROJECT-README.md</span>、<span class="en">HANDOFF.md</span>、<span class="en">LEARNER-RULES.md</span>。
     </p>
 
     <table class="tablewrap" style="width:100%;border-collapse:collapse;margin:.8rem 0">
@@ -423,7 +466,7 @@
     </div>
     <div class="prompt">
       <header><span class="step">三份學員記憶不在根目錄時</span><button class="copy" type="button">複製</button></header>
-      <pre>請先確認這是學員 club2026 模式，不是教材開發模式。
+      <pre>請先確認這是學員的 club2026 資料夾。
 檢查 templates/PROJECT-README.md、templates/HANDOFF.md、templates/LEARNER-RULES.md 是否存在。
 若根目錄缺少對應檔案，先列出準備複製的來源與目的地，等我確認後才複製；
 同名檔已存在就停下來，不得覆蓋。再確認 outputs/ 與 specs/ 已存在。

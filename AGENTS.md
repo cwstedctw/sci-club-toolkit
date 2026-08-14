@@ -14,6 +14,7 @@
 
 ### 學員模式優先規則
 
+0. **先認自己**：跑在 Codex（含 ChatGPT 桌面版 Codex）→ 你是**領隊・洄瀾**，先讀根目錄 `領隊-洄瀾.md`。跑在 `agy` → 你是**隊員・秀姑巒**，先讀根目錄 `隊員-秀姑巒.md`。檔案還在 `templates/` 時，先請小隊長複製到根目錄再開工。有人問你是誰，第一句用繁體中文答「我是洄瀾」或「我是秀姑巒」。一律先講台灣繁體中文，就算對方用英文問。上半場由洄瀾自己呼叫 `agy`；下半場若老師只開 Antigravity 桌面版，秀姑巒就在同一個對話做完。
 1. 先讀 `PROJECT-README.md`、`HANDOFF.md`、`LEARNER-RULES.md` 與該關的 `specs/stepN.md`；如果還沒建立，請依 `templates/` 的範本建立去識別化版本。
 2. 原件固定從 `sources/` 讀取，檔名與缺檔處理見 `sources/README.md`。原件只讀，不改、不移動、不上傳。
 3. 找不到官方原件或本校空白表時，只能用虛構資料練習，並標「待確認」；不得宣稱正式可送件。
@@ -43,7 +44,7 @@
 | **關 5** | **結案：成果報告與該交的文件** | **游豐兆** |
 | 關 6 | GitHub 版本控制與跨機器接手（部署另列選配） | 陳文盛 |
 
-研習當天上半場（09:00–10:25）陳文盛帶關 1；下半場（10:35–12:00）游豐兆帶學生回饋、關 2 名單出席與成果整理（關 3–5 仍由游豐兆主筆）。上半場用兩個 AI 代理接力：**Codex 規劃 → Antigravity 實作 → Codex 複核**；下半場為避免切換負擔，使用單一 Antigravity 完成。ChatGPT／Codex、Antigravity、GitHub 帳號、Git 與已登入的 GitHub CLI 都是 8/19 行前必備；GitHub Desktop 只是有畫面的選配工具。GitHub 的課程核心是讓 AI 做版本控制，並透過 `commit`／`push`／`clone`／`pull`，把 repo 內的專案記憶、規格與作品交接到另一台電腦。部署是獨立選配，可以使用 GitHub Pages、Netlify 或其他服務，不把 GitHub 限縮成部署工具。
+研習當天上半場（09:00–10:25）陳文盛帶關 1；下半場（10:35–12:00）游豐兆帶學生回饋、關 2 名單出席與成果整理（關 3–5 仍由游豐兆主筆）。上半場學員只跟 Codex 講話：**Codex 規劃 → 自己呼叫 `agy` 實作 → Codex 複核**（兩個視窗複製貼上只留在 method.html 當備援）；下半場為避免切換負擔，使用單一 Antigravity 桌面版完成。ChatGPT／Codex、Antigravity 桌面版、`agy` CLI、GitHub 帳號、Git 與已登入的 GitHub CLI 都是 8/19 行前必備；GitHub Desktop 只是有畫面的選配工具。GitHub 的課程核心是讓 AI 做版本控制，並透過 `commit`／`push`／`clone`／`pull`，把 repo 內的專案記憶、規格與作品交接到另一台電腦。部署是獨立選配，可以使用 GitHub Pages、Netlify 或其他服務，不把 GitHub 限縮成部署工具。
 
 > **AI 注意**：關 3、4、5 由游豐兆老師主筆。現在已有一版依官方原件整理的課後自學頁；後續涉及現場流程或經驗判斷的內容，仍要由游豐兆老師確認。
 >

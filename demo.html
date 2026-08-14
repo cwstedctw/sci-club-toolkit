@@ -42,7 +42,7 @@
     <main>
       <p class="eyebrow">示範</p>
       <h1>這三個東西都是課堂教的方法做出來的</h1>
-      <p class="lede">A 管理台可以直接操作；B 交件頁可從按鈕或 QR code 開啟，但連到 Google Apps Script，必須有網路；C 展示牆因為需要講師金鑰，這裡只提供實際畫面截圖。每個示範下方都有「做出這東西的三段提示詞」。</p>
+      <p class="lede">A 管理台可以直接操作；B 交件頁要網路；C 展示牆只放截圖。下面每段只貼給 Codex：它寫規格、自己叫 <code>agy</code> 做、再讀檔挑錯。agy 叫不動時看<a href="method.html#backup">方法頁</a>。想看更完整的說明，見《<a href="https://cwstedctw.github.io/ndhu-ai-courses/courses/ai-team.html" target="_blank" rel="noopener noreferrer">打造你的 AI 雙人小隊</a>》。</p>
 
       <!-- A 直接嵌入可操作的管理台；B 連到示範用交件頁；C 只公開不含金鑰的畫面截圖。 -->
 
@@ -56,7 +56,7 @@
         <div class="frame">
           <div class="framebar">
             <span class="t">A・研習管理台</span>
-            <span class="small">14 筆去識別的虛構名單，絕不放真名單</span>
+            <span class="small">14 筆去識別的虛構名單。要操作示範請先點框一下；沒點時滾輪會捲這一頁</span>
             <a class="btn mobile-open" href="console.html" data-demo-open="console" target="_blank" rel="noopener">另開管理台</a>
           </div>
           <iframe data-demo="console" title="研習管理台" src="console.html" loading="lazy"></iframe>
@@ -67,50 +67,26 @@
           <p>這台換成社團尺寸，就是你期末要交的那套：名單、出席、材料費份數，都在同一個地方。</p>
         </div>
 
-        <h2 id="how-console">這是怎麼做出來的</h2>
-        <div class="prompt">
-          <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
-          <pre>我要做一個研習／社團的管理台，單一 HTML 檔、離線可用、資料存在瀏覽器裡。
-請先不要寫程式，先幫我想清楚規格：
-要有哪幾個畫面、每個畫面哪些欄位、出席率和材料費份數怎麼算。
-材料費份數的定義是「當次出席學生數 ＋ 授課教師 2 人」。
-最後寫成一段我可以整段轉貼給另一個 AI 的規格。
-請把規格用下面這兩行框起來，中間不要夾雜別的話，我才知道要複製哪一段：
-===規格開始===
-（規格內容）
-===規格結束===</pre>
-          <dl>
-            <dt>要什麼</dt><dd>一份畫面與欄位的規格</dd>
-            <dt>AI 大概會回什麼</dt><dd>三到四個畫面的清單、欄位表、兩個算式</dd>
-            <dt>你要檢查什麼</dt><dd>材料費份數的算式有沒有含「＋2 位老師」</dd>
-          </dl>
+        <h2 id="how-console">這是怎麼做出來的（Codex 自己叫 agy）</h2>
+        <div class="note ok">
+          <span class="label">課堂要示範的重點</span>
+          <p>你只開 Codex，選整個 <code>club2026</code>。它寫規格檔，自己呼叫 <code>agy</code> 去做，再讀成品挑錯。你檢查路徑與畫面，不必當傳話筒。</p>
         </div>
         <div class="prompt">
-          <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
-          <pre>請照下面的規格做出單一檔案的 HTML 管理台，不連網、離線可開。
-另外請做兩件事：
-1. 加一顆「載入練習用範例」，裡面放 14 筆虛構姓名，不要用真名
-2. 深色底（頁面底 #0f172a、卡片 #1e293b、主文字 #f8fafc、主色 #10b981），字不要小於 16px
-做完告訴我檔案在哪個路徑。
+          <header><span class="step">貼給 Codex（它會自己叫 agy）</span><button class="copy" type="button">複製</button></header>
+          <pre>我要做一個研習／社團的管理台，單一 HTML、離線可用、資料在瀏覽器裡。
+先不要寫程式。想清楚畫面、欄位、出席率與材料費份數（出席學生數＋老師 2 人）。
+規格寫成 specs/demo-console.md；同名檔先停。
 
-⟨把第 1 步那兩條框線中間的內容整段貼在這裡，框線本身不用貼⟩</pre>
+寫好後不要叫我複製給另一個視窗。請你自己呼叫 agy。
+路徑用這個資料夾的絕對路徑；先把要跑的指令秀給我，等我同意再跑。找不到 agy 就停，叫我去行前安裝。
+
+你是領隊洄瀾，先讀 領隊-洄瀾.md。一律先用繁體中文說話。對 agy 說：你是隊員秀姑巒，先讀 隊員-秀姑巒.md。一律先用繁體中文說話。
+對 agy：讀規格做出 outputs/demo-console.html；同名先停；更新 HANDOFF.md。
+做完你打開成品複核，不要改。告訴我：實際指令、完整路徑、第一個按鈕寫什麼、12 人時份數是多少。</pre>
           <dl>
-            <dt>要什麼</dt><dd>一個真的能點、能輸入、能算的檔案</dd>
-            <dt>AI 大概會回什麼</dt><dd>一個 .html 檔（我們實測是 1,540 行）＋路徑</dd>
-            <dt>你要檢查什麼</dt><dd>按鈕按得動、文字看得見、關掉再開資料還在</dd>
-          </dl>
-        </div>
-        <div class="prompt">
-          <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
-          <pre>這是剛做好的管理台（路徑：⟨貼上路徑⟩）。請逐條檢查並列清單，不要幫我改：
-1. 每一顆按鈕按下去是否真的有反應、對話框關掉後頁面是否還點得動
-2. 有沒有任何文字的顏色跟背景一樣、看不見
-3. 出席率與材料費份數的算式是否符合官方定義
-4. 有沒有任何真實姓名或個資</pre>
-          <dl>
-            <dt>要什麼</dt><dd>一張「哪裡不對」的清單</dd>
-            <dt>AI 大概會回什麼</dt><dd>逐條缺漏，通常抓到 3 到 10 項</dd>
-            <dt>你要檢查什麼</dt><dd>它有沒有真的打開你的檔案</dd>
+            <dt>Codex 做什麼</dt><dd>寫規格、呼叫 agy、再讀檔挑錯</dd>
+            <dt>你要檢查什麼</dt><dd>問它「第一個按鈕寫什麼」；照路徑打開，按鈕按得動、關掉再開資料還在</dd>
           </dl>
         </div>
 
@@ -179,48 +155,25 @@
         <div class="grid three">
           <div class="card"><h4 style="margin-top:0">① 為什麼不用 Google 表單</h4><p>學校帳號開的表單預設「僅限校內」，校外的人會被擋在登入畫面（畫面上寫 401，意思是「沒權限」）。自己寫的收件頁可以設成「任何人」都交得進來。</p></div>
           <div class="card"><h4 style="margin-top:0">② 檔案進誰的雲端</h4><p>進<strong>你自己</strong>的 Google 雲端硬碟。學生彼此看不到別人交的，也不需要他們有帳號。</p></div>
-          <div class="card"><h4 style="margin-top:0">③ 三個常數要改什麼</h4><p>把程式最上面三行換成你自己的：<strong>資料夾 ID</strong>（檔案要收去哪）、<strong>通行碼</strong>（給學生的那組）、<strong>展示金鑰</strong>（只有你知道，用來打開展示牆）。</p></div>
+          <div class="card"><h4 style="margin-top:0">③ 三個名字要改什麼</h4><p>把程式最上面三行換成你自己的：<strong>收件資料夾編號</strong>（檔案要收去哪）、<strong>通行碼</strong>（給學生的那組）、<strong>展示鑰匙</strong>（只有你知道，用來打開展示牆）。</p></div>
         </div>
 
-        <div class="prompt">
-          <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
-          <pre>我要一個學生交作品的網頁，用 Google Apps Script 做，學生免登入。
-請先不要寫程式，先幫我想清楚：要收哪些欄位、檔案大小與格式怎麼限制、
-「可以公開展示」這個同意選項要怎麼存、通行碼怎麼驗。
-寫成一段我可以整段轉貼給另一個 AI 的規格。</pre>
-          <dl>
-            <dt>要什麼</dt><dd>收件頁的欄位與規則</dd>
-            <dt>AI 大概會回什麼</dt><dd>欄位清單、限制條件、同意欄位的存法</dd>
-            <dt>你要檢查什麼</dt><dd>有沒有把「同意公開展示」單獨存成一個欄位</dd>
-          </dl>
+        <div class="note info">
+          <span class="label">還是只跟 Codex 講</span>
+          <p>它寫 <code>specs/demo-submit.md</code>，自己叫 <code>agy</code> 做，再讀檔查風險。下面「三個要你自己改的名字」改成：收件資料夾編號、給學生的通行碼、只有老師知道的展示鑰匙。</p>
         </div>
         <div class="prompt">
-          <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
-          <pre>請照規格寫成 Google Apps Script（含 doGet 與交件表單畫面），部署成「任何人」都能開的網頁。
-最上面請留三個常數讓我改：資料夾 ID、通行碼、展示金鑰。
-單檔上限 10MB，收照片／Word／PDF／HTML。
-做完告訴我要在哪裡貼這段程式、怎麼部署。
+          <header><span class="step">貼給 Codex（它會自己叫 agy）</span><button class="copy" type="button">複製</button></header>
+          <pre>我要一個學生交作品的網頁，用 Google Apps Script，學生免登入。
+先不要寫程式。想清楚欄位、檔案限制、「可以公開展示」、通行碼。
+規格寫成 specs/demo-submit.md；同名檔先停。
 
-⟨把第 1 步那兩條框線中間的內容整段貼在這裡，框線本身不用貼⟩</pre>
+寫好後不要叫我複製。請你自己呼叫 agy（絕對路徑；先秀指令等我同意）。
+對 agy：讀規格做出 outputs/demo-submit.gs；同名先停；更新 HANDOFF.md，並告訴我怎麼部署。
+做完你列風險，不要改。告訴我實際指令與完整路徑。</pre>
           <dl>
-            <dt>要什麼</dt><dd>可以部署的 Apps Script 程式碼與部署步驟</dd>
-            <dt>AI 大概會回什麼</dt><dd>一段程式碼＋「貼到 script.google.com、按部署」的步驟</dd>
-            <dt>你要檢查什麼</dt><dd>用手機（不登入學校帳號）開一次，交一張照片試試</dd>
-          </dl>
-        </div>
-        <div class="prompt">
-          <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
-          <pre>這是剛做好的收件頁程式碼（整段貼在下面）。請逐條列出風險，不要幫我改：
-1. 沒有通行碼的人能不能交或看到別人的檔案
-2. 沒有勾「可以公開展示」的作品，會不會在展示牆被點開
-3. 超過 10MB 或奇怪的檔案格式會怎樣
-4. 有沒有把學生的個資寫進網址或記錄裡
-
-⟨貼上程式碼⟩</pre>
-          <dl>
-            <dt>要什麼</dt><dd>一張安全與個資的風險清單</dd>
-            <dt>AI 大概會回什麼</dt><dd>逐條風險與該補的檢查</dd>
-            <dt>你要檢查什麼</dt><dd>它指出的每一條，自己動手試一次</dd>
+            <dt>Codex 做什麼</dt><dd>寫規則、呼叫 agy、再查安全</dd>
+            <dt>你要檢查什麼</dt><dd>用手機、不登入學校帳號，交一張照片試試</dd>
           </dl>
         </div>
       </section>
@@ -255,44 +208,22 @@
           <p>期末成果發表會、家長日、校內成果展，都是這一頁。</p>
         </div>
 
-        <div class="prompt">
-          <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
-          <pre>同一支 Apps Script 我要再加一個老師端的展示牆畫面，投影用。
-請先幫我想清楚規格：座號 × 產品的格子怎麼排、頂端要顯示哪些統計數字、
-哪些作品可以被點開放大（只有作者勾了「可以公開展示」的才可以）、
-沒有展示金鑰的人打開會看到什麼。</pre>
-          <dl>
-            <dt>要什麼</dt><dd>展示牆的版面與權限規則</dd>
-            <dt>AI 大概會回什麼</dt><dd>格子矩陣的排法、統計欄位、兩種權限狀態</dd>
-            <dt>你要檢查什麼</dt><dd>「沒勾同意就點不開」有沒有寫進規格</dd>
-          </dl>
+        <div class="note info">
+          <span class="label">還是只跟 Codex 講</span>
+          <p>它寫 <code>specs/demo-wall.md</code>，自己叫 <code>agy</code> 加畫面，再讀檔查權限。重點：沒勾同意就不能點開。</p>
         </div>
         <div class="prompt">
-          <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
-          <pre>請在同一支 Apps Script 裡加上展示牆畫面，需要展示金鑰才進得去。
-投影用，所以統計數字請用很大的字（至少 40px），深色底、格子邊框清楚。
-照片直接顯示、PDF 走預覽、其他格式顯示「請在講師機下載打開」。
-沒有勾「可以公開展示」的作品只亮完成狀態，不能點開。
+          <header><span class="step">貼給 Codex（它會自己叫 agy）</span><button class="copy" type="button">複製</button></header>
+          <pre>同一支 Apps Script 再加老師端展示牆，投影用。
+先不要寫程式。想清楚格子、頂端統計、只有勾「可以公開展示」的才能點開。
+規格寫成 specs/demo-wall.md；同名檔先停。
 
-⟨把第 1 步那兩條框線中間的內容整段貼在這裡，框線本身不用貼⟩</pre>
+寫好後不要叫我複製。請你自己呼叫 agy（絕對路徑；先秀指令等我同意）。
+對 agy：讀規格做出 outputs/demo-wall.gs；同名先停；更新 HANDOFF.md。
+做完你查權限，不要改。告訴我實際指令與完整路徑。</pre>
           <dl>
-            <dt>要什麼</dt><dd>能投影的展示牆畫面</dd>
-            <dt>AI 大概會回什麼</dt><dd>加在同一支程式裡的另一段程式碼</dd>
-            <dt>你要檢查什麼</dt><dd>投到螢幕上，從教室最後一排看得到數字嗎</dd>
-          </dl>
-        </div>
-        <div class="prompt">
-          <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
-          <pre>這是展示牆的程式碼（整段貼在下面）。請逐條列出，不要幫我改：
-1. 有沒有任何路徑能讓沒勾同意的作品被點開或被下載
-2. 沒有展示金鑰的人能看到什麼
-3. 統計數字的算法是否正確（分母是名單人數還是交件人數）
-
-⟨貼上程式碼⟩</pre>
-          <dl>
-            <dt>要什麼</dt><dd>權限與算法的檢查清單</dd>
-            <dt>AI 大概會回什麼</dt><dd>逐條問題，常會抓到分母算錯</dd>
-            <dt>你要檢查什麼</dt><dd>拿一個沒勾同意的作品，自己試著點開</dd>
+            <dt>Codex 做什麼</dt><dd>寫規則、呼叫 agy、再查權限</dd>
+            <dt>你要檢查什麼</dt><dd>拿一個沒勾同意的作品，自己試著點開；投到螢幕上，最後一排看不看得清數字</dd>
           </dl>
         </div>
       </section>
@@ -300,7 +231,7 @@
       <hr>
       <div class="note info">
         <span class="label">三個 demo 共用同一個提示詞格式</span>
-        <p><strong>要什麼 → 給 AI 的話 → AI 大概會回什麼 → 你要檢查什麼。</strong>每一關的提示詞卡都是這個格式，你自己寫新的提示詞時也照這四格想一遍就好。</p>
+        <p><strong>只跟 Codex 講：它寫規格 → 自己叫 agy 做 → 再讀檔挑錯。</strong>你檢查路徑與成品。agy 叫不動時，打開<a href="method.html#backup">方法頁</a>。</p>
       </div>
 
       <footer class="site">

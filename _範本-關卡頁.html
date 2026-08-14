@@ -67,27 +67,24 @@
         <header><span class="n">3</span><h2>提示詞卡</h2></header>
         <div class="body">
           <div class="prompt">
-            <header><span class="step">① 釐清規格</span><button class="copy" type="button">複製</button></header>
-            <pre>整段可以直接複製貼給 AI 的話。
-寫成老師照抄就能用的樣子，不要寫「請描述你的需求」這種空話。
-要求它先讀官方原檔；找不到就停下來，不得自編欄位或規定。</pre>
+            <header><span class="step">① 釐清規格：貼給 Codex</span><button class="copy" type="button">複製</button></header>
+            <pre>整段可以直接複製貼給 Codex 的話。
+先讀官方原檔；找不到就停下來，不得自編欄位。
+我確認後存成 specs/stepN.md。</pre>
           </div>
           <div class="prompt">
-            <header><span class="step">② 實作</span><button class="copy" type="button">複製</button></header>
-            <pre>指定固定成品路徑 outputs/檔名.html。
-同名檔已存在時先停下來，不得覆蓋，也不得覆蓋教材的 index.html。
-示範資料只用虛構內容，不要求老師貼真實個資。</pre>
+            <header><span class="step">② 規格確認後：仍貼給 Codex，它自己叫 agy</span><button class="copy" type="button">複製</button></header>
+            <pre>規格我已確認，在 specs/stepN.md。
+不要叫我複製給另一個視窗。請你自己呼叫 agy。
+成品存 outputs/檔名.html；同名先停；更新 HANDOFF.md。
+做完你打開成品複核，不要幫我改。</pre>
           </div>
-          <div class="prompt">
-            <header><span class="step">③ 檢查</span><button class="copy" type="button">複製</button></header>
-            <pre>重新讀官方原檔與成品，逐條列問題，先不要改。
-列完等老師確認，不把 AI 自己的建議直接寫回成品。</pre>
-          </div>
-          <div class="prompt">
-            <header><span class="step">④ 修正並重驗</span><button class="copy" type="button">複製</button></header>
-            <pre>只修正老師確認的問題；先做不覆蓋舊檔的備份。
-修正後重新跑第 ③ 步，分開回報「已修正」與「仍待確認」。</pre>
-          </div>
+          <details class="block">
+            <summary>備援：agy 叫不動時再點開</summary>
+            <div class="inner">
+              <p>打開 method.html#backup。或留在同一個 Antigravity，自己讀 specs/ 再做。</p>
+            </div>
+          </details>
         </div>
       </section>
       <section class="gate" id="g4">

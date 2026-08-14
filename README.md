@@ -3,8 +3,9 @@
 2026/8/19 花蓮「115 學年度國中小科學社團扶助計畫」教師研習的配套教材網。
 
 給參與的國中小老師**會後自學**用：把「經營一個科學社團」拆成幾關。
-研習上半場用兩個 AI 代理接力：Codex 規劃、Antigravity 實作、Codex 複核；
-下半場由老師使用單一 Antigravity，做出基金會成果報告書真正需要的東西。
+研習上半場學員只跟 Codex 講話：它寫規格、自己呼叫 `agy`（Antigravity CLI）實作、再讀成品複核；
+兩個視窗自己複製貼上的作法只留在方法頁當備援。
+下半場由老師使用單一 Antigravity 桌面版，做出基金會成果報告書真正需要的東西。
 
 課後重做的順序固定是：**行前安裝 → 開課前檢查 → 方法 → 課程規劃表 → 學生回饋單 → 名單與出席 → 核銷對帳 → 結案 → 留下版本**。檔名仍是 step0–step5，上課與自學會先做回饋單，再做名單與出席。
 
@@ -17,8 +18,8 @@
 | 檔案 | 內容 |
 |---|---|
 | `index.html` | 總覽 |
-| `install.html` | ChatGPT／Codex、Antigravity、GitHub、Git、GitHub CLI 與教材資料夾的行前步驟；GitHub Desktop 選配（可勾選） |
-| `method.html` | 上半場雙 AI 接力、下半場單一工具，以及 AI 會編內容的實測案例 |
+| `install.html` | ChatGPT／Codex、Antigravity 桌面版、agy CLI、GitHub、Git、GitHub CLI 與教材資料夾的行前步驟；GitHub Desktop 選配（可勾選） |
+| `method.html` | 上半場 Codex 呼叫 agy、複製貼上備援、下半場單一工具，以及 AI 會編內容的實測案例 |
 | `demo.html` | 一個可操作管理台、一個外開作品收件器、一個成果牆畫面預覽 |
 | `needs.html` | 老師的實際痛點對照到哪一關 |
 | `step0.html` `step1.html` `step2.html` | 關 0／1／2 |
@@ -66,7 +67,7 @@
 | 0／1／2／6 | 行前準備、依各校實際週次製作課程規劃表、名單與出席、GitHub 版本控制與跨機器接手 | 陳文盛 |
 | **3／4／5** | **學生回饋單、核銷對帳、結案** | **游豐兆** |
 
-研習當天上半場（09:00–10:25）由陳文盛帶關 1，以 Codex → Antigravity → Codex 完成規劃、實作與複核；下半場（10:35–12:00）由游豐兆帶學生回饋、關 2 名單出席與成果整理，使用單一 Antigravity（關 3–5 仍由游豐兆主筆）。上、下半場作品分別在 10:22、11:50 收件。為了讓 AI 自動做 `commit`／`push`／`clone`／`pull`，GitHub 帳號、Git 與已登入的 GitHub CLI 都列為行前必備，GitHub Desktop 選配。
+研習當天上半場（09:00–10:25）由陳文盛帶關 1，學員只跟 Codex 講話，由它呼叫 `agy` 完成規劃、實作與複核；下半場（10:35–12:00）由游豐兆帶學生回饋、關 2 名單出席與成果整理，使用單一 Antigravity 桌面版（關 3–5 仍由游豐兆主筆）。上、下半場作品分別在 10:22、11:50 收件。為了讓 AI 自動做 `commit`／`push`／`clone`／`pull`，GitHub 帳號、Git 與已登入的 GitHub CLI 都列為行前必備，GitHub Desktop 選配。
 
 - 要動手改：先讀 **[`協作指南-給豐兆.md`](協作指南-給豐兆.md)**（人看的）與 **[`AGENTS.md`](AGENTS.md)**（AI 看的）
 - 已查證的官方規定與各校資料：**[`參考-官方事實與已查證資料.md`](參考-官方事實與已查證資料.md)**

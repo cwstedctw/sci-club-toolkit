@@ -45,7 +45,7 @@
       <p class="eyebrow">結案</p>
       <h1>結案：成果報告與該交的文件</h1>
       <p class="lede">把課程規劃表到核銷對帳平時留下的資料，對回官方成果報告書的六節與三份附件。AI 先做<strong>證據對照與缺件清單</strong>，有來源才寫；找不到就標「待補」，不替你編一段看似完整的成果。</p>
-      <p class="small">年度時程列出 2027 年 6–7 月繳交結案報告書、相關憑證與美國捐助相關表單；正式截止日與送件方式仍以基金會當期通知為準。</p>
+      <p class="small">會後重做也只用<strong>一個 Antigravity</strong>。年度時程列出 2027 年 6–7 月繳交；正式截止日以基金會當期通知為準。</p>
 
       <section class="gate" id="g1">
         <header><span class="n">1</span><h2>這頁做什麼</h2></header>
@@ -176,13 +176,7 @@ outputs/final-report-workbench.html
    outputs/teacher-self-review-summary.json 仍有待確認欄位時，不得產生官方百分比
 
 只用去識別化資料。做完回報完整路徑，不要把真人個資或照片寫進 HTML 原始碼。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>一個會指出來源與缺件的結案工作台</dd>
-              <dt>AI 大概會回什麼</dt><dd>一個 HTML 檔與完整路徑</dd>
-              <dt>你要檢查什麼</dt><dd>沒有來源的段落是否留「待補」；12 個照片位置是否分成兩組各 6 張</dd>
-            </dl>
           </div>
-
           <div class="prompt">
             <header><span class="step">③ 檢查</span><button class="copy" type="button">複製</button></header>
             <pre>請重新打開 outputs/final-report-workbench.html，也重新讀 sources/01-official-result-template.*、
@@ -198,13 +192,7 @@ specs/step5.md 與五份去識別化成品／摘要，
 8. HTML 原始碼與工作稿是否沒有真人個資、學生照片或核銷敏感資料
 9. ⑥⑦ 是否真的來自 outputs/teacher-self-review-summary.json，且待確認欄位未被補成定案
 最後列出我沒想到但應該檢查的項目。列完等我確認，不要直接改檔。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>一張可以逐項核對的問題清單</dd>
-              <dt>AI 大概會回什麼</dt><dd>欄位、證據、算法、照片位置與個資問題</dd>
-              <dt>你要檢查什麼</dt><dd>隨機抽三段，自己打開它標的來源檔確認</dd>
-            </dl>
           </div>
-
           <div class="prompt">
             <header><span class="step">④ 修正並重驗</span><button class="copy" type="button">複製</button></header>
             <pre>這是我確認要修正的問題：
@@ -215,11 +203,6 @@ specs/step5.md 與五份去識別化成品／摘要，
 
 修正後重新開啟工作台，重跑第 ③ 步九項檢查，再產生一次缺件清單與列印預覽。
 最後分成「已修正」「仍待補／待確認」兩段回報，附成品與備份完整路徑。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>有備份、重驗過的修正版</dd>
-              <dt>AI 大概會回什麼</dt><dd>修正項目、缺件、列印測試與路徑</dd>
-              <dt>你要檢查什麼</dt><dd>待補項目沒有被漂亮文字偷偷填滿</dd>
-            </dl>
           </div>
         </div>
       </section>

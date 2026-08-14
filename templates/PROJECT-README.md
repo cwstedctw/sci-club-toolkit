@@ -15,6 +15,7 @@
 - 成品與去識別化摘要：`outputs/`
 - 交接紀錄：`HANDOFF.md`
 - 寫作偏好：`LEARNER-RULES.md`
+- 預設角色：`領隊-洄瀾.md`（Codex）、`隊員-秀姑巒.md`（agy）
 
 ## 目前狀態
 

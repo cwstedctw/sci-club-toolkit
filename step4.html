@@ -45,7 +45,7 @@
       <p class="eyebrow">核銷對帳</p>
       <h1>核銷對帳</h1>
       <p class="lede">把出席人次、發票日期、用途別與校內表單放在同一張檢查表裡。工具只協助算時數、份數與金額；<strong>身分證字號、戶籍住址、匯款帳號不進 AI、不進雲端，只在學校紙本手寫。</strong></p>
-      <p class="small">這一頁使用單一 Antigravity；頁面中的校內表單名稱來自三校原始檔，各校主計室若有不同版本，以本校現行表單為準。</p>
+      <p class="small">這一頁使用<strong>單一 Antigravity</strong>；釐清、實作、檢查都留在同一個對話。校內表單名稱來自三校原始檔，各校以本校現行表單為準。</p>
 
       <section class="gate" id="g1">
         <header><span class="n">1</span><h2>這頁做什麼</h2></header>
@@ -113,7 +113,7 @@
         <header><span class="n">3</span><h2>提示詞卡</h2></header>
         <div class="body">
           <div class="note">
-            <p><strong>四段都貼在同一個 Antigravity 對話。</strong>只使用「第幾週、日期、出席總數、用途與金額」等去識別化資料。人員姓名用「講師 A」「教師 B」代替；身分證、地址、匯款資料連假的都不要輸入。</p>
+            <p><strong>四段都貼在同一個 Antigravity 對話。</strong>只使用「第幾週、日期、出席總數、用途與金額」等去識別化資料。人員用「講師 A」「教師 B」；身分證、地址、匯款連假的都不要輸入。</p>
           </div>
           <div class="prompt">
             <header><span class="step">① 釐清規格</span><button class="copy" type="button">複製</button></header>
@@ -169,13 +169,7 @@ outputs/reimbursement-check.html
 
 請附一顆「載入練習用範例」，人員只用講師 A、教師 B，數字清楚標示為虛構。
 做完回報完整路徑；不要把正式表單裡的真人資料複製進工具。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>一份協助核對、但不冒充正式憑證的離線工具</dd>
-              <dt>AI 大概會回什麼</dt><dd>一個 HTML 檔與完整路徑</dd>
-              <dt>你要檢查什麼</dt><dd>材料費 12 位學生是否顯示 14 份；跨年度是否警告</dd>
-            </dl>
           </div>
-
           <div class="prompt">
             <header><span class="step">③ 檢查</span><button class="copy" type="button">複製</button></header>
             <pre>請重新打開 outputs/reimbursement-check.html，也重新讀基金會簡報與本校空白表單，
@@ -191,13 +185,7 @@ outputs/reimbursement-check.html
 9. 金額加總、outputs/reimbursement-summary.json 匯出與每一顆按鈕是否真的能用
 10. 原始碼、範例與匯出摘要是否沒有真人個資、身分證、地址或匯款資料
 最後列出我沒想到但應該檢查的項目。列完等我確認，不要直接改檔。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>一張可以逐項核對的問題清單</dd>
-              <dt>AI 大概會回什麼</dt><dd>日期、人次、表單、金額與個資問題</dd>
-              <dt>你要檢查什麼</dt><dd>自己用 12 人、跨年度與設備採購三個案例各試一次</dd>
-            </dl>
           </div>
-
           <div class="prompt">
             <header><span class="step">④ 修正並重驗</span><button class="copy" type="button">複製</button></header>
             <pre>這是我確認要修正的問題：
@@ -210,11 +198,6 @@ outputs/reimbursement-check.html
 12 位學生材料費、跨年度、設備採購、導師費、週末 2 小時餐費、週末 3 小時餐費、
 演示與原授課鐘點費重複、第三次指導出席八個案例。
 最後分成「已修正」「仍待本校確認」兩段回報，附成品與備份完整路徑。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>有備份、重驗過的修正版</dd>
-              <dt>AI 大概會回什麼</dt><dd>修正項目、四個測試結果與路徑</dd>
-              <dt>你要檢查什麼</dt><dd>待主計室確認的項目沒有被 AI 自行拍板</dd>
-            </dl>
           </div>
         </div>
       </section>

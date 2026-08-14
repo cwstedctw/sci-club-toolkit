@@ -45,7 +45,7 @@
       <p class="eyebrow">課程規劃表</p>
       <h1>依各校實際週次做課程規劃表</h1>
       <p class="lede">這是早上上半場（約 09:45–10:22）你要交的那一份。先做出<strong>你自己學校的課程規劃表</strong>，存成 <code>outputs/course-plan.html</code>。同一份內容以後要能換三種格式（仰望、學校備查、家長通知）；課堂上先求「列數＝本校實際週次、內容是自己的計畫」。</p>
-      <p class="small">流程：<strong>Codex 規劃 → Antigravity 實作 → Codex 複核</strong>。約 <strong>10:22</strong> 收件。沒做完或想改，會後打開這一頁、同一張卡再貼一次即可。</p>
+      <p class="small">流程：<strong>你跟 Codex 確認規格 → 它自己叫 agy 做 → 它再複核</strong>。約 <strong>10:22</strong> 收件。沒做完或想改，會後打開這一頁、同一張卡再貼一次即可。agy 叫不動才走<a href="method.html#backup">方法頁</a>。</p>
       <div class="note warn">
         <span class="label">沒有本校計畫書也能做</span>
         <p>跟 AI 說「用虛構 8 週示範，每格標虛構」。檔名仍存 <code>outputs/course-plan.html</code>。這份<strong>不能</strong>拿去當官方附件。</p>
@@ -54,7 +54,7 @@
         <header><span class="n">1</span><h2>這頁做什麼</h2></header>
         <div class="body">
           <p>先對照基金會成果報告書範本的欄位，再讓 AI 讀你自己學校的計畫，依實際上課日期與週次做表。三份原始校務資料分別排 28 次、19 次與 22 週，沒有統一的 24 週答案。</p>
-          <p>這一頁會現場示範兩個 AI 代理接力：Codex 先把規格寫清楚，Antigravity 依規格做出檔案，再由 Codex 回頭挑錯。</p>
+          <p>這一頁你只跟 Codex 講話：它先把規格寫清楚，你確認後它自己呼叫 <code>agy</code> 做檔案，再回頭挑錯。</p>
           <p>做出來長這樣：</p>
           <pre class="flow">週次 │ 日期    │ 課程內容           │ 任課教師 │ 備註
 ──────┼─────────┼────────────────────┼──────────┼──────
@@ -120,54 +120,42 @@
             </dl>
           </div>
           <div class="prompt">
-            <header><span class="step">② 實作：請 Antigravity 讀 Codex 存下的規格</span><button class="copy" type="button">複製</button></header>
-            <pre>Codex 已把我確認的規格存成 specs/step1.md。請先讀它，再重新讀取
-sources/03-school-plan-deidentified.*、sources/01-official-result-template.*，
-以及 sources/04-school-calendar.*（若有）。找不到規格或必要原件就停下來，不要猜。
+            <header><span class="step">② 規格確認後：仍貼給 Codex，它自己叫 agy</span><button class="copy" type="button">複製</button></header>
+            <pre>規格我已確認，在 specs/step1.md。
+不要叫我複製給另一個視窗。請你自己呼叫 agy。
+路徑用這個資料夾的絕對路徑；先把完整指令秀給我，等我同意再跑。
+找不到 agy 就停，叫我去行前安裝那一頁。
 
-請做成一個離線可開、可直接編輯的單一 HTML 工具，固定存成：
-outputs/course-plan.html
-如果這個檔案已存在，先停下來告訴我，不得覆蓋，也不得覆蓋教材的 index.html。
+你是領隊洄瀾，先讀 領隊-洄瀾.md。一律先用繁體中文說話。
+對 agy 說：你是隊員秀姑巒，先讀 隊員-秀姑巒.md。一律先用繁體中文說話。
+對 agy：讀 specs/step1.md 做出 outputs/course-plan.html；
+同名檔先停，不要蓋教材；三種輸出共用同一份資料；更新 HANDOFF.md。
 
-同一份課程資料要有三種輸出，且三種輸出共用同一份資料：
-1. 基金會官方格式：欄位依官方範本，列數依本校實際課程增減
-2. 學校備查格式：保留規格中已確認的校內欄位
-3. 家長通知格式：移除行政欄位，保留日期與課程內容
-畫面要有三顆名稱清楚的匯出按鈕，三種匯出都能單獨開啟或列印。
-
-做完告訴我檔案的完整路徑。有任何不確定的地方，先問我再動手。</pre>
+做完你打開成品，對照規格與計畫書列出問題，不要幫我改。
+告訴我：實際指令、完整路徑、第 7 週寫什麼、列數是不是本校實際週次。</pre>
             <dl>
-              <dt>要什麼</dt><dd>一份可以自己改、能輸出三種格式的表</dd>
-              <dt>AI 大概會回什麼</dt><dd>一個 .html 檔＋路徑</dd>
-              <dt>你要檢查什麼</dt><dd><strong>列數是否等於本校實際上課次數</strong>；日期有沒有跳過寒假；三顆匯出按鈕都按一次</dd>
+              <dt>要什麼</dt><dd>一份可改的表，加上一張「哪裡不對」的清單</dd>
+              <dt>你要檢查什麼</dt><dd>列數＝本校實際上課次數；三顆匯出都按一次；問它第 7 週寫什麼</dd>
             </dl>
           </div>
+          <details class="block">
+            <summary>備援：agy 叫不動時再點開（兩個視窗自己傳）</summary>
+            <div class="inner">
+              <p class="small">打開 <a href="method.html#backup">方法頁備援</a>。實作時跟 Antigravity 說：讀 <code>specs/step1.md</code>，成品存 <code>outputs/course-plan.html</code>。再把路徑貼回 Codex 複核。</p>
+            </div>
+          </details>
           <div class="prompt">
-            <header><span class="step">③ 複核：把成品路徑貼回 Codex</span><button class="copy" type="button">複製</button></header>
-            <pre>Antigravity 已經做完課程規劃表，檔案路徑是：⟨貼上完整路徑⟩。
-請重新打開成品，也重新讀 sources/ 裡三份來源與 specs/step1.md，逐條列出問題，先不要幫我改：
-1. 列數是否等於本校實際上課次數，欄位是否符合官方範本
-2. 每週時數是否都達到 2 小時
-3. 有沒有任何課程內容是前一個 AI 自己補的、我的計畫書與確認規格裡沒有的
-4. 日期有沒有排到假日或寒暑假
-最後再告訴我：還有什麼是我沒想到、但應該要檢查的？
-列完後先等我確認，不要直接改檔。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>一張「哪裡不對」的清單</dd>
-              <dt>AI 大概會回什麼</dt><dd>逐條缺漏，通常會抓到日期或時數問題</dd>
-              <dt>你要檢查什麼</dt><dd>它有沒有真的打開你的檔案（問它第 7 週寫什麼）</dd>
-            </dl>
-          </div>
-          <div class="prompt">
-            <header><span class="step">④ 修正並重驗（會後或現場有時間再做）</span><button class="copy" type="button">複製</button></header>
+            <header><span class="step">③ 修正並重驗（會後或現場有時間再做）</span><button class="copy" type="button">複製</button></header>
             <pre>這是我確認要修正的問題：
 ⟨貼上剛才的問題清單，只保留你確認要改的項目⟩
 
-請只修正這些項目，不要改動其他已通過的內容。若 outputs/course-plan.html 已存在，
+請只修正這些項目，不要改動其他已通過的內容。
+若需要改檔，請你自己再呼叫 agy；不要叫我複製到另一個視窗。
+若 outputs/course-plan.html 已存在，
 先複製成 outputs/course-plan-before-fix.html 留存，再修正 course-plan.html；
 如果備份檔也已存在，先停下來問我，不得覆蓋。
 
-修正後重新開啟成品，逐條重跑第 ③ 步的四項檢查，並實際測試三顆匯出按鈕。
+修正後重新開啟成品，逐條重跑第 ② 步的四項檢查，並實際測試三顆匯出按鈕。
 最後分成「已修正」「仍待確認」兩段回報，附上成品與備份的完整路徑。</pre>
             <dl>
               <dt>要什麼</dt><dd>有備份、經過第二次檢查的修正版</dd>
@@ -185,6 +173,7 @@ outputs/course-plan.html
             <li><strong>課程內容看起來很漂亮，但不是你的計畫</strong>：它沒讀到你的檔案就自己編了。抽查兩三週的內容，出現你沒教的東西就是編的。</li>
             <li><strong>日期排到寒假或連假</strong>：AI 不知道你們學校的行事曆。把開學日與寒假起訖日期明確給它。</li>
             <li><strong>三種格式變成三份各自不同的資料</strong>：改了一份，另兩份沒跟著變。要明確要求「三種格式來自同一份資料」。</li>
+            <li><strong>Codex 說找不到 agy</strong>：關掉 ChatGPT 桌面版再重開，回<a href="install.html#a4b">行前安裝</a>。不要改叫它自己寫程式湊過去。</li>
             <li><strong>規格只留在聊天裡</strong>：換工具或換電腦就接不上。確認後一定要看到 <code>specs/step1.md</code>，而且裡面分開列出基金會、校內與家長三種輸出。</li>
             <li><strong>把教材首頁或舊作品蓋掉</strong>：成品只能放在 <code>outputs/course-plan.html</code>。看到同名檔已存在就先停，不准覆蓋。</li>
             <li><strong>它問你的問題你答不出來</strong>：正常。那就是你本來就還沒決定的事，先寫「待定」，不要讓 AI 幫你決定。</li>
