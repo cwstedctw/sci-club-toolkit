@@ -54,7 +54,7 @@
 | **關 5** | **結案：成果報告與該交的文件** | **游豐兆** |
 | 關 6 | GitHub 版本控制與跨機器接手（部署另列選配） | 陳文盛 |
 
-研習當天上半場（09:00–10:25）陳文盛帶關 1；下半場（10:35–12:00）游豐兆帶學生回饋、關 2 名單出席與成果整理（關 3–5 仍由游豐兆主筆）。上半場學員只跟 Codex 講話：**Codex 規劃 → 自己呼叫 `agy` 實作 → Codex 複核**（兩個視窗複製貼上只留在 method.html 當備援）；下半場為避免切換負擔，使用單一 Antigravity 桌面版完成。ChatGPT／Codex、Antigravity 桌面版、`agy` CLI、GitHub 帳號、Git 與已登入的 GitHub CLI 都是 8/19 行前必備；GitHub Desktop 只是有畫面的選配工具。GitHub 的課程核心是讓 AI 做版本控制，並透過 `commit`／`push`／`clone`／`pull`，把 repo 內的專案記憶、規格與作品交接到另一台電腦。部署是獨立選配，可以使用 GitHub Pages、Netlify 或其他服務，不把 GitHub 限縮成部署工具。
+研習當天上半場（09:00–10:25）陳文盛帶關 1；下半場（10:35–12:00）游豐兆帶學生回饋、關 2 名單出席與成果整理（關 3–5 仍由游豐兆主筆）。上半場學員只跟 Codex 講話：**Codex 規劃 → 自己呼叫 `agy` 實作 → Codex 複核**（兩個視窗複製貼上只留在 method.html 當備援）；下半場為避免切換負擔，使用單一 Antigravity 桌面版完成。ChatGPT／Codex、Antigravity 桌面版與 `agy` CLI 是 8/19 早上現場要用的。GitHub 帳號、Git 與 GitHub CLI 是會後「留下版本」才用到：有最好，沒裝仍請來；GitHub Desktop 只是有畫面的選配工具。GitHub 的課程核心是讓 AI 做版本控制，並透過 `commit`／`push`／`clone`／`pull`，把 repo 內的專案記憶、規格與作品交接到另一台電腦。部署是獨立選配，可以使用 GitHub Pages、Netlify 或其他服務，不把 GitHub 限縮成部署工具。
 
 > **AI 注意**：關 3、4、5 由游豐兆老師主筆。現在已有一版依官方原件整理的課後自學頁；後續涉及現場流程或經驗判斷的內容，仍要由游豐兆老師確認。
 >
