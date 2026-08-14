@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 1：依實際週次做課程規劃表｜科學社團專案管理範本站</title>
+<title>課程規劃表｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -34,7 +34,7 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g1">1 這頁做什麼</a></li>
         <li><a href="#g2">2 官方要求</a></li>
         <li><a href="#g3">3 提示詞卡</a></li>
         <li><a href="#g4">4 新手會卡在哪</a></li>
@@ -42,15 +42,19 @@
       </ol>
     </aside>
     <main>
-      <p class="eyebrow">關 1</p>
+      <p class="eyebrow">課程規劃表</p>
       <h1>依各校實際週次做課程規劃表</h1>
-      <p class="lede">14 位老師的報名需求資料中，有 8 位勾選「想快速產出教案與學習單」。每週的課程內容就是教案的骨架，所以先把這張表做出來。<strong>而且同一份內容要能換三種格式輸出</strong>——仰望一份、學校備查一份、家長通知一份，不要重打三次。</p>
-      <p class="small">8/19 上半場作品在 <strong>10:22</strong> 收件；流程是 <strong>Codex 規劃 → Antigravity 實作 → Codex 複核</strong>。</p>
+      <p class="lede">這是早上上半場（約 09:45–10:22）你要交的那一份。先做出<strong>你自己學校的課程規劃表</strong>，存成 <code>outputs/course-plan.html</code>。同一份內容以後要能換三種格式（仰望、學校備查、家長通知）；課堂上先求「列數＝本校實際週次、內容是自己的計畫」。</p>
+      <p class="small">流程：<strong>Codex 規劃 → Antigravity 實作 → Codex 複核</strong>。約 <strong>10:22</strong> 收件。沒做完或想改，會後打開這一頁、同一張卡再貼一次即可。</p>
+      <div class="note warn">
+        <span class="label">沒有本校計畫書也能做</span>
+        <p>跟 AI 說「用虛構 8 週示範，每格標虛構」。檔名仍存 <code>outputs/course-plan.html</code>。這份<strong>不能</strong>拿去當官方附件。</p>
+      </div>
       <section class="gate" id="g1">
-        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <header><span class="n">1</span><h2>這頁做什麼</h2></header>
         <div class="body">
           <p>先對照基金會成果報告書範本的欄位，再讓 AI 讀你自己學校的計畫，依實際上課日期與週次做表。三份原始校務資料分別排 28 次、19 次與 22 週，沒有統一的 24 週答案。</p>
-          <p>這一關會現場示範兩個 AI 代理接力：Codex 先把規格寫清楚，Antigravity 依規格做出檔案，再由 Codex 回頭挑錯。</p>
+          <p>這一頁會現場示範兩個 AI 代理接力：Codex 先把規格寫清楚，Antigravity 依規格做出檔案，再由 Codex 回頭挑錯。</p>
           <p>做出來長這樣：</p>
           <pre class="flow">週次 │ 日期    │ 課程內容           │ 任課教師 │ 備註
 ──────┼─────────┼────────────────────┼──────────┼──────
@@ -78,7 +82,7 @@
           </ul>
           <div class="note info">
             <span class="label">為什麼這張表值得先做</span>
-            <p>後面關 5 挑照片時，第一個問題就是「這張對應到第幾週」。這張表就是那個對照表。</p>
+            <p>後面結案挑照片時，第一個問題就是「這張對應到第幾週」。這張表就是那個對照表。</p>
           </div>
         </div>
       </section>
@@ -155,7 +159,7 @@ outputs/course-plan.html
             </dl>
           </div>
           <div class="prompt">
-            <header><span class="step">④ 修正並重驗：確認問題後貼回 Antigravity</span><button class="copy" type="button">複製</button></header>
+            <header><span class="step">④ 修正並重驗（會後或現場有時間再做）</span><button class="copy" type="button">複製</button></header>
             <pre>這是我確認要修正的問題：
 ⟨貼上剛才的問題清單，只保留你確認要改的項目⟩
 
@@ -190,8 +194,9 @@ outputs/course-plan.html
       <section class="gate" id="g5">
         <header><span class="n">5</span><h2>驗收清單</h2></header>
         <div class="body">
+          <p class="small">上半場先勾前面五項就能交件。後面幾項會後再勾。</p>
           <ul class="checklist">
-            <li><label><input type="checkbox"><span>表格列數等於本校實際上課次數（自己對過計畫書）</span></label></li>
+            <li><label><input type="checkbox"><span>表格列數等於本校實際上課次數（自己對過計畫書；虛構練習則列數自洽）</span></label></li>
             <li><label><input type="checkbox"><span>每一週都有內容，沒有「待補」以外的空格</span></label></li>
             <li><label><input type="checkbox"><span>每週時數都達到 2 小時</span></label></li>
             <li><label><input type="checkbox"><span>日期沒有排到寒暑假或國定假日</span></label></li>

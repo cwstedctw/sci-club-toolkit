@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 4：核銷對帳｜科學社團專案管理範本站</title>
+<title>核銷對帳｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -34,7 +34,7 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g1">1 這頁做什麼</a></li>
         <li><a href="#g2">2 官方要求</a></li>
         <li><a href="#g3">3 提示詞卡</a></li>
         <li><a href="#g4">4 新手會卡在哪</a></li>
@@ -42,16 +42,16 @@
       </ol>
     </aside>
     <main>
-      <p class="eyebrow">關 4</p>
+      <p class="eyebrow">核銷對帳</p>
       <h1>核銷對帳</h1>
       <p class="lede">把出席人次、發票日期、用途別與校內表單放在同一張檢查表裡。工具只協助算時數、份數與金額；<strong>身分證字號、戶籍住址、匯款帳號不進 AI、不進雲端，只在學校紙本手寫。</strong></p>
-      <p class="small">這一關使用單一 Antigravity；頁面中的校內表單名稱來自三校原始檔，各校主計室若有不同版本，以本校現行表單為準。</p>
+      <p class="small">這一頁使用單一 Antigravity；頁面中的校內表單名稱來自三校原始檔，各校主計室若有不同版本，以本校現行表單為準。</p>
 
       <section class="gate" id="g1">
-        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <header><span class="n">1</span><h2>這頁做什麼</h2></header>
         <div class="body">
           <p>做一個離線核銷檢查工具，輸入去識別化的週次、日期、用途、數量與金額後，提醒你該用哪一張校內表、哪個日期區間，以及材料費份數有沒有和教室日誌對上。</p>
-          <pre class="flow">關 2 的 outputs/attendance-summary.json（不含姓名）
+          <pre class="flow">名單與出席那頁的 outputs/attendance-summary.json（不含姓名）
           ＋ 採購／授課日期與金額
           ↓
 判斷用途別與校內表單
@@ -63,7 +63,7 @@
 產生核銷檢查清單，再回本校正式表單填寫</pre>
           <div class="note warn">
             <span class="label">工具不是正式憑證</span>
-            <p>這一關產生的是<strong>對帳工作表</strong>，不能取代本校請購、黏貼憑證、印領清冊與簽核流程。正式送件前一定要交由承辦人與主計室核對。</p>
+            <p>這一頁產生的是<strong>對帳工作表</strong>，不能取代本校請購、黏貼憑證、印領清冊與簽核流程。正式送件前一定要交由承辦人與主計室核對。</p>
           </div>
         </div>
       </section>
@@ -162,7 +162,7 @@ outputs/reimbursement-check.html
 7. 教學演示與指導出席要分開顯示「需來函」，檢查單價、每學年最多 2 次；
    演示另檢查是否額外邀請、是否納入申請週數、是否和原授課教師鐘點費重複
 8. 匯出不含姓名的對帳摘要，固定下載 reimbursement-summary.json，提醒我存成
-   outputs/reimbursement-summary.json，供關 5 讀取；內容只放期間、用途別加總、
+   outputs/reimbursement-summary.json，供結案 讀取；內容只放期間、用途別加總、
    檢查通過／警告／待確認數與規則版本，並寫 contains_personal_data: false，
    不含人名、匯款、身分證、逐筆憑證號碼；同名檔存在先提醒備份，不得靜默覆蓋
 9. 所有畫面都不建立身分證字號、戶籍住址、匯款帳號欄位，改顯示紙本手寫提醒

@@ -16,13 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -34,8 +34,10 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#prep">行前必做</a></li>
-        <li><a href="#rundown">當天流程</a></li>
+        <li><a href="#idea">今天要做什麼</a></li>
+        <li><a href="#prep">行前要準備</a></li>
+        <li><a href="#rundown">09:00–12:00 分鐘表</a></li>
+        <li><a href="#again">會後怎麼重做</a></li>
         <li><a href="#photo">挑 12 張照片</a></li>
         <li><a href="#rescue">現場救援</a></li>
         <li><a href="#takeaway">帶得走的東西</a></li>
@@ -43,25 +45,38 @@
     </aside>
     <main>
       <p class="eyebrow">場次資訊</p>
-      <h1>8/19 三小時怎麼走</h1>
+      <h1>8/19 早上這三小時，我們要做什麼</h1>
       <dl class="kv" style="margin:1.5rem 0">
-        <dt>時間</dt><dd>2026 年 8 月 19 日（三）09:00–12:00，共 3 小時</dd>
+        <dt>我們這堂</dt><dd>2026 年 8 月 19 日（三）<strong>09:00–12:00</strong>，整堂都在早上</dd>
         <dt>地點</dt><dd>東華大學環境學院 A124、A128</dd>
-        <dt>講師</dt><dd>陳文盛、游豐兆，另有工讀 1 位（現場 3 個大人顧 14 位老師）</dd>
-        <dt>學員</dt><dd>14 位花蓮縣國中小老師與校長（8 所學校）</dd>
+        <dt>講師</dt><dd>陳文盛（09:00–10:25）、游豐兆（10:35–12:00）；工讀 1 位</dd>
+        <dt>學員</dt><dd>花蓮縣國中小老師與校長</dd>
+        <dt>全天其他場次</dt><dd>08:30–09:00 楊悠娟；12:00 午餐後是仿生、靜電、座談——<strong>不是這堂課的延續</strong></dd>
       </dl>
 
-      <h2 id="prep">行前必做（請在 8/19 之前完成）</h2>
+      <h2 id="idea">用學生的話講一次</h2>
+      <div class="note ok">
+        <span class="label">今天不是寫期末報告</span>
+        <p>早上分兩段。<strong>Part 1（09:00–10:25，我們）</strong>＝對安裝 → 開課前檢查 → 示範 → 課程規劃表。<strong>Part 2（10:35–12:00，游豐兆）</strong>＝回饋單、名單出席、核銷。現場做不完，<a href="#again">會後用同一套頁面重做</a>。</p>
+      </div>
+      <ol>
+        <li><strong>對安裝</strong>：ChatGPT／Codex、個人 Gmail、Antigravity 打得開；兩個工具都開得到 <code>club2026</code>。裝不起來用現場範例檔。</li>
+        <li><strong>開課前檢查</strong>：兩邊印出同一條路徑，跑一次 60 秒讀檔。</li>
+        <li><strong>示範</strong>：AI 會說謊的兩個實例、三句驗收口訣、兩個 AI 怎麼接力（必要時看示範頁的管理台）。</li>
+        <li><strong>課程規劃表</strong>：做出 <code>outputs/course-plan.html</code>，約 10:22 交一次。</li>
+        <li><strong>Part 2</strong>：跟游豐兆；約 11:50 再交一次。12:00 這堂結束。</li>
+      </ol>
+
+      <h2 id="prep">行前要準備</h2>
       <div class="note warn">
-        <span class="label">還沒好的話，當天會來不及</span>
+        <span class="label">進場前先做好這些，09:00 才接得上</span>
         <ol>
-          <li>照<a href="install.html">行前安裝</a>解壓教材包，把內容複製進 <code>club2026</code>，並照頁面建立 <code>sources</code>、<code>specs</code>、<code>outputs</code> 與三份學員記憶檔。</li>
-          <li>把五類原件放進 <code>sources</code>：官方成果報告書範本、基金會共識營簡報、去識別化校內計畫、校務行事曆、校內核銷空白表。缺哪一份，就依<a href="sources/README.md">來源清單</a>標成待補，不要讓 AI 猜。</li>
-          <li>完成<a href="step0.html">關 0</a>；Codex 與 Antigravity 都要開啟同一個 <code>club2026</code>，並在<strong>教室的網路試過一次</strong>。</li>
-          <li>註冊並驗證 GitHub 帳號，安裝 Git 與 GitHub CLI，完成 GitHub CLI 登入；GitHub Desktop 選配（<a href="github.html">關 6</a>）。這組工具要讓 AI 自動留版本、上傳、下載並跨機器接手，請不要把安裝與登入留到現場</li>
-          <li><strong>額度先別玩</strong>：Codex 與 Antigravity 的額度都留給當天實作</li>
+          <li>從網站或行前信拿到教材：<a href="https://github.com/cwstedctw/sci-club-toolkit">github.com/cwstedctw/sci-club-toolkit</a> → Code → Download ZIP。解壓後複製進 <code>club2026</code>。官方原件（成果報告書、共識營簡報）由主辦／行前信發，講師備課在 OneDrive 活動夾。</li>
+          <li>照<a href="install.html">行前安裝</a>裝好 ChatGPT／Codex、個人 Gmail、Antigravity，兩個工具都開得到同一個 <code>club2026</code>。</li>
+          <li>做一次<a href="step0.html">開課前檢查</a> 的 60 秒讀檔。有本校計畫書就放進 <code>sources</code>；沒有也能上課，課程規劃表 用虛構表，並標明不能當官方附件。</li>
+          <li><strong>額度先別玩</strong>，留給現場實作。</li>
         </ol>
-        <p class="small">裝不起來不用急。當天講師手上有做好的範例檔，卡住的人直接用那份往下做，不排隊等修電腦。</p>
+        <p class="small">GitHub 帳號、Git、GitHub CLI 有最好，沒裝仍請來。裝不起來現場有範例檔。</p>
       </div>
 
       <h2 id="rundown">當天流程</h2>
@@ -69,22 +84,31 @@
         <table>
           <thead><tr><th>時間</th><th>講師在台上做什麼</th><th>你手上會多出什麼</th></tr></thead>
           <tbody>
-            <tr><td>09:00–09:10</td><td>開場：講他們每天在過的日子（等簽核、催進度、同一份資料填三次）</td><td>—</td></tr>
-            <tr><td>09:10–09:20</td><td>說明：你想要的 ＝ 報告要的（<a href="needs.html">那張對照表</a>）</td><td>知道今天做的東西期末用得到</td></tr>
-            <tr><td>09:20–09:35</td><td><strong>示範 AI 說謊</strong>（<a href="method.html#lie">兩個實測案例</a>），教三句驗收口訣</td><td>知道怎麼檢查 AI</td></tr>
-            <tr><td>09:35–09:45</td><td>示範兩個 AI 代理怎麼接力：<strong>Codex 規劃 → Antigravity 實作 → Codex 複核</strong></td><td>知道三步各在哪一個工具完成</td></tr>
-            <tr><td>09:45–10:22</td><td><strong>動手一：<a href="step1.html">依本校實際週次做課程規劃表</a></strong>（雙 AI 三步主流程；發現問題再走第 4 張修正卡）</td><td>一份經 Codex 複核、符合自己學校計畫的課程規劃表</td></tr>
-            <tr><td>10:22–10:25</td><td><strong>收上半場作品：課程規劃表</strong></td><td>完成第一次收件</td></tr>
-            <tr><td>10:25–10:35</td><td>休息（也是救援時間，豐兆和工讀顧沒跟上的人）</td><td>—</td></tr>
-            <tr><td>10:35–11:05</td><td><strong>動手二：<a href="step3.html">學生回饋單</a></strong>（單一 Antigravity，先處理學生面前四項）</td><td>一份可以印、可以發的回饋單</td></tr>
-            <tr><td>11:05–11:35</td><td><strong>動手三：<a href="step2.html">學生名單＋出席</a>＋<a href="step4.html">材料費對帳</a></strong>（單一 Antigravity）</td><td>一張表，出席與核銷一起核對</td></tr>
-            <tr><td>11:35–11:40</td><td><strong><a href="step5.html">結案入口</a></strong>：12 張照片、七個百分比與六節報告要從哪裡拿資料</td><td>知道平時要留下哪些證據</td></tr>
-            <tr><td>11:40–11:50</td><td><strong><a href="github.html">關 6 示範</a></strong>：先看版本差異並 commit／push，再用另一台電腦或第二個空資料夾 clone，讓另一個 AI 讀專案記憶後接手</td><td>看懂版本控制與跨機器接續</td></tr>
-            <tr><td>11:50–12:00</td><td><strong>收下半場作品、確認檔名與問題紀錄</strong></td><td>完成第二次收件；有未完成處就記成「待確認」帶回去接著做</td></tr>
+            <tr><td colspan="3"><strong>Part 1　陳文盛　09:00–10:25</strong>＝對安裝 → 開課前檢查 → 示範 → 課程規劃表</td></tr>
+            <tr><td>09:00–09:10</td><td>開場＋<a href="install.html">對安裝</a>：誰還沒開得了 Codex／Antigravity，這段處理</td><td>兩個工具打得開，或拿到範例檔</td></tr>
+            <tr><td>09:10–09:20</td><td><a href="step0.html">開課前檢查</a>：兩邊開同一個 <code>club2026</code>，60 秒讀檔；順便對照<a href="needs.html">今天要做什麼</a></td><td>兩邊路徑一樣，看得到同一批檔</td></tr>
+            <tr><td>09:20–09:45</td><td><strong>示範</strong>：<a href="method.html#lie">AI 說謊</a>、三句驗收口訣、兩個 AI 怎麼接力；需要時打開<a href="demo.html">示範頁</a></td><td>知道怎麼檢查、三步各在哪個工具</td></tr>
+            <tr><td>09:45–10:22</td><td><a href="step1.html">課程規劃表</a>：依本校實際週次做表</td><td><code>outputs/course-plan.html</code></td></tr>
+            <tr><td>10:22–10:25</td><td>收 Part 1 作品</td><td>第一次收件</td></tr>
+            <tr><td>10:25–10:35</td><td>休息（沒跟上的人這段補）</td><td>—</td></tr>
+            <tr><td colspan="3"><strong>10:35 起由游豐兆帶。</strong>下面時間以現場簡報為準，本頁不改他的教法。</td></tr>
+            <tr><td>10:35–11:05</td><td>動手二：<a href="step3.html">學生回饋單</a>（單一 Antigravity）</td><td>一份可以印、可以發的回饋單</td></tr>
+            <tr><td>11:05–11:35</td><td>動手三：<a href="step2.html">名單＋出席</a>、<a href="step4.html">材料費對帳</a></td><td>出席與核銷能對在一起</td></tr>
+            <tr><td>11:35–11:50</td><td>平時要留哪些證據（照片、百分比從哪來）</td><td>知道會後還要補什麼</td></tr>
+            <tr><td>11:50–12:00</td><td>收下半場作品</td><td>沒做完就寫「待確認」，會後用本站重做</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="small">教材網目前採用的收件節點為 <strong>10:22</strong> 與 <strong>11:50</strong>。<a href="github.html">關 6</a> 會示範 AI 用 <span class="en">commit</span>／<span class="en">push</span> 留下版本，再從另一台電腦用 <span class="en">clone</span>／<span class="en">pull</span> 接續；跟著 repo 走的是 PROJECT-README、HANDOFF、LEARNER-RULES、specs 與逐檔核准的去識別化作品，不含 sources 原件或教材改善工單。部署是獨立選配，可使用 GitHub Pages、Netlify 或其他服務。</p>
+      <p class="small">收件兩次：<strong>10:22</strong> 課程規劃表、<strong>11:50</strong> 下半場作品。12:00 這堂結束，不是中午再繼續。</p>
+
+      <h2 id="again">會後怎麼整堂重做</h2>
+      <p>現場只要跟上節奏、交出當下那一份。回家打開 <code>club2026/index.html</code>（離線即可），提示詞按「複製」貼上再走一次。</p>
+      <ol>
+        <li>Part 1：<a href="install.html">對安裝</a> → <a href="step0.html">開課前檢查</a> → <a href="method.html">示範</a> → <a href="step1.html">課程規劃表</a></li>
+        <li>Part 2：<a href="step3.html">學生回饋單</a> → <a href="step2.html">名單與出席</a> → <a href="step4.html">核銷對帳</a> → <a href="step5.html">結案</a></li>
+        <li>想留版本、換電腦接著做：<a href="github.html">留下版本</a></li>
+      </ol>
+      <p class="small">缺官方原件時，各頁會寫能不能用虛構練習。虛構成品不能拿去當正式附件。</p>
 
       <h2 id="photo">從 200 張挑 12 張</h2>
       <p>官方報告書的「課程紀錄」只要求<strong>一段文字說明配 6 張照片</strong>，兩項共 12 張，<strong>沒有要求每張都寫圖說</strong>。所以難的不是寫 200 句，是挑。</p>
@@ -112,7 +136,7 @@
 
       <h2 id="takeaway">可以帶走的東西</h2>
       <ul>
-        <li>這份教材資料夾：請保留行前信下載的 ZIP；解壓後可直接離線開啟。本站目前沒有公開下載網址。</li>
+        <li>教材網站：<a href="https://github.com/cwstedctw/sci-club-toolkit">github.com/cwstedctw/sci-club-toolkit</a>（Download ZIP 後離線開啟 <code>index.html</code>）。官方文件與行前包由主辦／行前信發。</li>
         <li>全站的提示詞卡（每一張都可以一鍵複製）</li>
         <li><a href="https://www.sec.ntnu.edu.tw/uploads/asset/data/68f88e1d0e0b30b3b96f2a27/05_%E8%8A%B1%E8%93%AE%E7%B8%A3_%E5%8C%97%E6%BF%B1%E5%9C%8B%E6%B0%91%E5%B0%8F%E5%AD%B8-%E7%B7%9A%E4%B8%8A%E5%A0%B1%E5%91%8A.pdf" target="_blank" rel="noopener noreferrer">北濱國小科學教育專案期末報告（臺師大科教中心 PDF）</a></li>
         <li><a href="https://sites.google.com/view/be-ernt/" target="_blank" rel="noopener noreferrer">東華大學團隊「全民 FUN 科學」教案與影片平台</a>（彙整 110 個歷年教案及示範影片）</li>

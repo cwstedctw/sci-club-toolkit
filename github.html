@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 6：留下版本，換電腦接著做｜科學社團專案管理範本站</title>
+<title>留下版本，換電腦接著做｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -34,7 +34,7 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g1">1 這頁做什麼</a></li>
         <li><a href="#g2">2 官方要求</a></li>
         <li><a href="#g3">3 提示詞卡</a></li>
         <li><a href="#g4">4 新手會卡在哪</a></li>
@@ -42,15 +42,15 @@
       </ol>
     </aside>
     <main>
-      <p class="eyebrow">關 6</p>
+      <p class="eyebrow">留下版本</p>
       <h1>留下版本，換一台電腦也能接著做</h1>
-      <p class="lede"><strong>GitHub 在這一關先拿來做版本控制與跨機器接手。</strong>每次修改都留一個版本，專案規格、規則與交接紀錄也跟著走；把網站部署成網址是另一件事，最後再選要不要做。</p>
+      <p class="lede"><strong>GitHub 在這一頁先拿來做版本控制與跨機器接手。</strong>每次修改都留一個版本，專案規格、規則與交接紀錄也跟著走；把網站部署成網址是另一件事，最後再選要不要做。</p>
       <div class="note info">
         <span class="label">名詞先講白話</span>
         <p><strong>Git</strong>：替專案保存每次修改的版本。<br><strong>GitHub</strong>：把 Git 版本庫放到網路上，讓另一台電腦或協作者取得同一份專案。<br><strong>commit、push</strong>：把目前修改「存成一版」，再「傳到 GitHub」。<br><strong>clone、pull</strong>：另一台電腦第一次取得完整專案用 clone；已經有專案時，用 pull 抓回最新版本。</p>
       </div>
       <section class="gate" id="g1">
-        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <header><span class="n">1</span><h2>這頁做什麼</h2></header>
         <div class="body">
           <p>把專案變成一條看得見的版本線，並讓另一台電腦讀到同一批專案記憶。</p>
           <pre class="flow">電腦 A 更新去識別化學員記憶與核准共享的工具
@@ -108,7 +108,7 @@ commit 存成一版 → push 傳到 GitHub
       <section class="gate" id="g2">
         <header><span class="n">2</span><h2>官方要求</h2></header>
         <div class="body">
-          <p><strong>這一關不對應基金會的繳交文件。</strong>版本控制與跨機器接手，是團隊自己保護成果、維持工作連續性的做法。</p>
+          <p><strong>這一頁不對應基金會的繳交文件。</strong>版本控制與跨機器接手，是團隊自己保護成果、維持工作連續性的做法。</p>
           <div class="tablewrap">
             <table>
               <thead><tr><th>會跟著 GitHub 走</th><th>不會自動跟著走</th><th>絕對不要上傳</th></tr></thead>
@@ -139,7 +139,7 @@ commit 存成一版 → push 傳到 GitHub
           <div class="note">
             <span class="label">前提：行前那三個工具要裝好</span>
             <p>
-              這一關要 AI 幫你做事，它需要三樣東西：<span class="en">Git</span>（版本與傳送）、
+              這一頁要 AI 幫你做事，它需要三樣東西：<span class="en">Git</span>（版本與傳送）、
               <span class="en">GitHub CLI</span>（讓 AI 登入、建立並操作 GitHub repo）、還有你已經<b>登入過一次</b>的 GitHub 帳號。
               三樣都在 <a href="install.html">行前安裝</a> 那頁的第 06、07 項。<br>
               <b>如果沒裝 GitHub CLI</b>，AI 常會回報找不到 <code>gh</code> 指令，無法替你建立或管理 GitHub 上的 repo；
@@ -220,7 +220,7 @@ sources/ 原件、教材製作者的 AGENTS／README／協作指南／查證資�
           </div>
           <div class="note">
             <span class="label">部署和版本控制分開</span>
-            <p>把檔案 push 到 GitHub，是保存版本與交接；把網站部署成公開網址，是另一個步驟。需要網址時可以選 GitHub Pages，也可以用 Netlify 或其他部署平台。這一關不把 GitHub 當成唯一部署方式。</p>
+            <p>把檔案 push 到 GitHub，是保存版本與交接；把網站部署成公開網址，是另一個步驟。需要網址時可以選 GitHub Pages，也可以用 Netlify 或其他部署平台。這一頁不把 GitHub 當成唯一部署方式。</p>
           </div>
           <div class="prompt">
             <header><span class="step">② 之後每次改完</span><button class="copy" type="button">複製</button></header>

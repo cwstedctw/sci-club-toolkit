@@ -34,13 +34,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -71,8 +71,9 @@
     <p class="eyebrow">行前準備</p>
     <h1>8/19 之前，請先準備好這幾項</h1>
     <p class="lede">
-      8/19 上半場會由 Codex 規劃、Antigravity 實作，再回 Codex 複核；下半場才使用單一 Antigravity。
-      請先備妥 ChatGPT／Codex、個人 Gmail、Antigravity、GitHub 帳號、Git、已登入的 GitHub CLI 與研習資料夾。GitHub 這一組工具會用來留下版本，並把專案接到另一台電腦。<b>全部免費；GitHub Desktop 選配。</b>
+      8/19 整堂課都在早上 09:00–12:00。上半場用 Codex 規劃、Antigravity 實作、再回 Codex 複核；下半場改用單一 Antigravity。
+      <b>進場前一定要好：</b>ChatGPT／Codex、個人 Gmail、Antigravity、教材資料夾。
+      GitHub／Git／GitHub CLI 有最好，沒裝仍請來，會後再補也行。全部免費；GitHub Desktop 選配。
     </p>
 
     <div class="note info">
@@ -153,7 +154,7 @@
       </div>
       <table class="kv">
         <tr><th>Windows</th><td>10 以上、64 位元</td></tr>
-        <tr><th>Mac</th><td>macOS 12 以上。官方下載頁目前同時列出 Apple Silicon 與 Intel 按鈕，但需求文字又寫「X86 不支援」，兩段資訊彼此矛盾。<b>Intel Mac 請在行前實際安裝並通過關 0；無法通過就改帶 Windows 或 Apple Silicon 筆電。</b></td></tr>
+        <tr><th>Mac</th><td>macOS 12 以上。官方下載頁目前同時列出 Apple Silicon 與 Intel 按鈕，但需求文字又寫「X86 不支援」，兩段資訊彼此矛盾。<b>Intel Mac 請在行前實際安裝並通過開課前檢查；無法通過就改帶 Windows 或 Apple Silicon 筆電。</b></td></tr>
       </table>
       <div class="warn">
         <b>裝好之後先別玩。</b>免費方案的額度按週刷新，額度與可用模型會依帳號狀況變動。
@@ -251,7 +252,7 @@
     <!-- 07 -->
     <section class="inst" id="a7">
       <h3><span class="no">07</span> Git ＋ GitHub CLI（行前必備；GitHub Desktop 選配）</h3>
-      <p class="why">Git 負責版本紀錄，以及 <span class="en">commit</span>、<span class="en">push</span>、<span class="en">clone</span>、<span class="en">pull</span>；GitHub CLI 讓 AI 登入並操作你的 GitHub。兩者都列入 8/19 行前必備。GitHub Desktop 只是看得見的選配工具。</p>
+      <p class="why">Git 負責版本紀錄；GitHub CLI 讓 AI 登入並操作 GitHub。會後重做、換電腦接著做時會用到。沒裝仍可上完 09:00–12:00。GitHub Desktop 是有畫面的選配。</p>
       <table class="kv">
         <tr><th>Windows</th>
             <td>到 <span class="en">git-scm.com</span> 下載，安裝時<b>一路按 Next 就好</b>，那些選項不用看懂。<br>
@@ -304,7 +305,7 @@
       <div class="pick">
         <b>它跟前面兩個的關係</b>：Desktop 自己就能建 repo、提交、上傳，
         <b>不是非得配合前面那兩個才能用</b>。<br>
-        若要照關 6 的提示詞讓 AI 自動留版本、上傳、下載並跨機器接手，就需要指令版的 Git 與已登入的 GitHub CLI。<br>
+        若要照留下版本 的提示詞讓 AI 自動留版本、上傳、下載並跨機器接手，就需要指令版的 Git 與已登入的 GitHub CLI。<br>
         Desktop 的價值在<b>你自己看得見</b>：它改了哪些檔案、上次什麼時候傳的，一眼就懂。
       </div>
       <div class="warn">
@@ -320,7 +321,7 @@
       <h3><span class="no">08</span> 教材包與一個資料夾</h3>
       <p class="why">8/19 上半場請讓 Codex 與 Antigravity 都開這個資料夾，兩個 AI 才能依序規劃、實作與複核。AI 代理就是能讀取整個專案資料夾、依步驟做事並回報結果的 AI，不只是回答一則聊天訊息。</p>
       <ol>
-        <li>若你已經在解壓縮後的教材裡看到這一頁，可略過下載。否則請從行前信或主辦單位提供的位置取得最新版 ZIP。本站不放未授權的教材下載網址；遺失時請向原主辦單位索取。</li>
+        <li>教材有兩個來源，用一個就好：<b>網站</b> <a href="https://github.com/cwstedctw/sci-club-toolkit">github.com/cwstedctw/sci-club-toolkit</a> → 綠色 Code → Download ZIP；或<b>行前信／主辦發的教材包</b>（官方原件在 OneDrive 活動夾的「官方文件」，不放進這個公開網站）。你已經在解壓後的教材裡看到這一頁，就略過下載。</li>
         <li><b>先解壓縮，不要直接在 ZIP 裡操作。</b>Windows 用右鍵「解壓縮全部」；Mac 雙擊 ZIP，Finder 會建立解壓縮後的資料夾。</li>
         <li>在本機建立一個英文資料夾，例如 <span class="en">club2026</span>。Windows 用檔案總管；Mac 用 Finder。若位置會自動同步到 OneDrive、iCloud Drive、Google 雲端硬碟或 Dropbox，請換到不會自動同步的位置。</li>
         <li>把解壓縮後的教材內容複製進 <span class="en">club2026</span>。Windows 用 <span class="en">Ctrl+A／Ctrl+C／Ctrl+V</span>；Mac 用 <span class="en">Command+A／Command+C／Command+V</span>。完成後，<span class="en">index.html</span>、<span class="en">style.css</span>、<span class="en">app.js</span> 應直接出現在 <span class="en">club2026</span>，不必再點進第二層。</li>
@@ -328,7 +329,7 @@
         <li>把 <span class="en">templates</span> 裡的三個學員範本複製到 <span class="en">club2026</span> 根目錄，並移除前面的資料夾層級：<span class="en">PROJECT-README.md</span>、<span class="en">HANDOFF.md</span>、<span class="en">LEARNER-RULES.md</span>。先保留「待填」即可，<a href="method.html#skill">方法頁</a>會帶你填。</li>
         <li>依 <a href="sources/README.md">sources/README.md</a> 準備五類原件，保留原副檔名並使用固定開頭：<span class="en">01-official-result-template.*</span>、<span class="en">02-foundation-consensus-slides.*</span>、<span class="en">03-school-plan-deidentified.*</span>、<span class="en">04-school-calendar.*</span>、<span class="en">05-school-reimbursement-blank.*</span>。</li>
         <li>官方成果範本與共識營簡報應來自行前信、主辦單位共用資料夾或基金會確認來源；本校計畫、行事曆與核銷空白表由本校承辦人或主計室提供。這個 repo <b>沒有附未授權原件</b>。</li>
-        <li>缺官方成果範本時，關 1、2、3、5 只能用虛構資料練習；缺共識營簡報或本校核銷空白表時，關 4 只能練習。缺檔時不准宣稱工具符合正式欄位或可直接送件。</li>
+        <li>缺官方成果範本時，課程規劃表、名單與出席、學生回饋單、結案 只能用虛構資料練習；缺共識營簡報或本校核銷空白表時，核銷對帳 只能練習。缺檔時不准宣稱工具符合正式欄位或可直接送件。</li>
         <li>用 Codex 與 Antigravity 分別<b>打開同一個 <span class="en">club2026</span> 資料夾</b>，不要只上傳其中一份檔案。</li>
       </ol>
       <div class="warn">
@@ -350,8 +351,8 @@
     <!-- 自我檢查 -->
     <section class="card" id="check">
       <h2>最後：出門前對一次</h2>
-      <p>這裡只確認安裝與登入。全部勾完後，再到<a href="step0.html">關 0：開課前驗收</a>做一次 60 秒讀檔測試；測試提示詞只放在關 0，不在兩頁重複。</p>
-      <p class="small">01–08 都要在 8/19 前準備好；只有 07b GitHub Desktop 是選配。沒有安裝權限請提早找資訊組或改帶自己的筆電。</p>
+      <p>這裡只確認安裝與登入。全部勾完後，再到<a href="step0.html">開課前檢查</a>做一次 60 秒讀檔測試；測試提示詞只放在那一頁，不在兩頁重複。</p>
+      <p class="small">01–05、08 請在進場前勾完。06、07、07b 沒勾仍可上完 09:00–12:00，會後再補。沒有安裝權限請提早找資訊組或改帶自己的筆電。</p>
       <ul class="checklist">
         <li><label><input type="checkbox"><span>01　ChatGPT 帳號可以登入</span></label></li>
         <li><label><input type="checkbox"><span>02　有一個個人 @gmail.com（不是學校帳號）</span></label></li>

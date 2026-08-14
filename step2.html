@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 2：學生名單＋出席｜科學社團專案管理範本站</title>
+<title>名單與出席｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -34,7 +34,7 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g1">1 這頁做什麼</a></li>
         <li><a href="#g2">2 官方要求</a></li>
         <li><a href="#g3">3 提示詞卡</a></li>
         <li><a href="#g4">4 新手會卡在哪</a></li>
@@ -42,12 +42,12 @@
       </ol>
     </aside>
     <main>
-      <p class="eyebrow">關 2</p>
+      <p class="eyebrow">名單與出席</p>
       <h1>學生名單＋出席</h1>
-      <p class="lede">這一關有官方規定當靠山（共識營簡報第 12 頁）：<strong>教室日誌不是形式，它是核銷的憑據。</strong>名單填一次，出席率與材料費份數兩件事一起解決。</p>
-      <p class="small">8/19 下半場作品統一在 <strong>11:50</strong> 收件；這一關使用<strong>單一 Antigravity</strong>，釐清、實作與檢查都留在同一個對話，不切回 Codex。</p>
+      <p class="lede">這一頁有官方規定當靠山（共識營簡報第 12 頁）：<strong>教室日誌不是形式，它是核銷的憑據。</strong>名單填一次，出席率與材料費份數兩件事一起解決。</p>
+      <p class="small">8/19 下半場作品統一在 <strong>11:50</strong> 收件；這一頁使用<strong>單一 Antigravity</strong>，釐清、實作與檢查都留在同一個對話，不切回 Codex。</p>
       <section class="gate" id="g1">
-        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <header><span class="n">1</span><h2>這頁做什麼</h2></header>
         <div class="body">
           <p>做一張表：學生名單建一次，之後每次上課點名，系統自己算出兩個數字——<strong>出席率</strong>（官方報告書第⑤項）與<strong>材料費該開幾份</strong>（核銷對帳用）。</p>
           <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 960 700" role="img" aria-labelledby="roster-title roster-desc">
@@ -182,7 +182,7 @@
             <dl>
               <dt>要什麼</dt><dd>一台真的能點名、能算數字的工具</dd>
               <dt>AI 大概會回什麼</dt><dd>一個 .html 檔＋路徑</dd>
-              <dt>你要檢查什麼</dt><dd>關掉再打開，資料還在嗎？點名 12 人時份數顯示 14 嗎？備份能否安全還原？去識別化摘要能否供關 5 讀取？</dd>
+              <dt>你要檢查什麼</dt><dd>關掉再打開，資料還在嗎？點名 12 人時份數顯示 14 嗎？備份能否安全還原？去識別化摘要能否供結案 讀取？</dd>
             </dl>
           </div>
           <div class="prompt">
@@ -236,10 +236,10 @@
             <li><strong>上下學期沒分開</strong>：到期末核銷才發現一張請購單跨了兩個期間，得整張重做。</li>
             <li><strong>資料關掉就不見了</strong>：要明確跟 AI 說「資料存在瀏覽器裡，關掉再開還要在」，然後自己關一次試試。</li>
             <li><strong>以為瀏覽器資料會跟著 GitHub 換電腦</strong>：不會。換電腦、移動檔案或更新工具前，先在原電腦匯出 JSON 備份；備份含真實名單時，只能放在學校核准的安全位置。</li>
-            <li><strong>把真名備份交給關 5</strong>：不行。關 5 只讀 <code>outputs/attendance-summary.json</code>；真名備份與附件一、二留在學校受控位置。</li>
+            <li><strong>把真名備份交給結案頁</strong>：不行。結案頁只讀 <code>outputs/attendance-summary.json</code>；真名備份與附件一、二留在學校受控位置。</li>
             <li><strong>還原錯誤備份後整份名單不見</strong>：還原前一定要先驗格式、顯示筆數與摘要，再由人確認。測試錯誤檔時，原資料必須留著。</li>
             <li><strong>把官方欄位交給 AI 猜</strong>：先讓它讀附件一與附件二。找不到原檔就停，不能用「常見欄位」代替。</li>
-            <li>🚨 <strong>準備把含真名的工作資料夾放上網</strong>：不要上傳原本的工作資料夾，也不要把「載入練習用範例」當成清除個資。請<strong>另外建立一個全新的乾淨資料夾</strong>，只複製要公開的檔案進去，公開版本一律使用虛構名單，再逐檔檢查後才上傳（見<a href="github.html">關 6</a>）。</li>
+            <li>🚨 <strong>準備把含真名的工作資料夾放上網</strong>：不要上傳原本的工作資料夾，也不要把「載入練習用範例」當成清除個資。請<strong>另外建立一個全新的乾淨資料夾</strong>，只複製要公開的檔案進去，公開版本一律使用虛構名單，再逐檔檢查後才上傳（見<a href="github.html">留下版本</a>）。</li>
           </ul>
         </div>
       </section>

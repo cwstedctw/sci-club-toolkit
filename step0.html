@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 0：開課前驗收｜科學社團專案管理範本站</title>
+<title>開課前檢查｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,13 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 驗收</a>
-      <a href="step1.html">關 1 規劃表</a>
-      <a href="step2.html">關 2 名單出席</a>
-      <a href="step3.html">關 3 回饋單</a>
-      <a href="step4.html">關 4 核銷對帳</a>
-      <a href="step5.html">關 5 結案</a>
-      <a href="github.html">關 6 版本接力</a>
+      <a href="step0.html">開課前檢查</a>
+      <a href="step1.html">課程規劃表</a>
+      <a href="step2.html">名單與出席</a>
+      <a href="step3.html">學生回饋單</a>
+      <a href="step4.html">核銷對帳</a>
+      <a href="step5.html">結案</a>
+      <a href="github.html">留下版本</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -34,7 +34,7 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g1">1 這頁做什麼</a></li>
         <li><a href="#g2">2 官方要求</a></li>
         <li><a href="#g3">3 提示詞卡</a></li>
         <li><a href="#g4">4 新手會卡在哪</a></li>
@@ -42,13 +42,17 @@
       </ol>
     </aside>
     <main>
-      <p class="eyebrow">關 0</p>
-      <h1>開課前驗收</h1>
-      <p class="lede">這頁不再教你重裝一次。請先照<a href="install.html">行前安裝</a>完成詳細設定，再用這張驗收卡確認 8/19 當天能直接開始。</p>
+      <p class="eyebrow">開課前檢查</p>
+      <h1>兩個 AI 要開同一個資料夾</h1>
+      <p class="lede">這頁不再教你重裝一次。請先照<a href="install.html">行前安裝</a>做完，再用這張卡確認 8/19 早上能直接開始。會後重做時，也從這一頁確認兩個 AI 開的是同一個 <code>club2026</code>。</p>
+      <div class="note info">
+        <span class="label">只要三步</span>
+        <p>① 建立／打開整個 <code>club2026</code>　② Codex 與 Antigravity 都選這個資料夾，完整路徑要一樣　③ 兩邊各貼一次下面的 60 秒讀檔卡。缺官方原件仍可過關；沒有本校計畫就去<a href="step1.html">課程規劃表</a>用虛構表，不要停在這一頁等檔。</p>
+      </div>
       <section class="gate" id="g1">
-        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <header><span class="n">1</span><h2>這頁做什麼</h2></header>
         <div class="body">
-          <p>這一關只做一件事：確認教材、學員記憶與必要原件都放在固定位置，再讓 Codex 與 Antigravity 開啟<strong>同一個資料夾</strong>。詳細下載、設定與故障排除仍集中在行前安裝頁。</p>
+          <p>這一頁只做一件事：確認教材、學員記憶與必要原件都放在固定位置，再讓 Codex 與 Antigravity 開啟<strong>同一個資料夾</strong>。詳細下載、設定與故障排除仍集中在行前安裝頁。</p>
           <pre class="flow">先完成「行前安裝」
           ↓
 建立 club2026，準備 outputs／specs／sources／學員記憶
@@ -68,7 +72,7 @@ Antigravity 選取同一個資料夾
               <p><strong>建立專案資料夾。</strong>Windows 開啟檔案總管，Mac 開啟 Finder，在本機位置新增 <code>club2026</code>。如果路徑含有 OneDrive、iCloud Drive、Google 雲端硬碟或 Dropbox，請改放到沒有自動同步的位置。</p>
             </li>
             <li>
-              <p><strong>把專案原始檔放進去。</strong>至少放入下面幾樣。這是本機工作資料夾；到關 6 會另外建立逐檔核准的 <code>club2026-share</code>，<strong>不要把這裡整包直接上傳</strong>。</p>
+              <p><strong>把專案原始檔放進去。</strong>至少放入下面幾樣。這是本機工作資料夾；到「留下版本」會另外建立逐檔核准的 <code>club2026-share</code>，<strong>不要把這裡整包直接上傳</strong>。</p>
               <ul>
                 <li>解壓縮後的研習教材包內容（<code>index.html</code>、<code>style.css</code>、<code>app.js</code> 與其他教材檔應直接放在 <code>club2026</code> 裡）</li>
                 <li>新增空的 <code>outputs</code> 與 <code>specs</code>；作品與已確認規格分開放，不得覆蓋教材的 <code>index.html</code></li>
@@ -79,7 +83,7 @@ Antigravity 選取同一個資料夾
                 <li><code>sources/04-school-calendar.*</code>：本校行事曆</li>
                 <li><code>sources/05-school-reimbursement-blank.*</code>：本校現行核銷空白表</li>
               </ul>
-              <p class="small">取得來源與改名方式見 <a href="sources/README.md">sources/README.md</a>。教材不附未授權原件。缺官方成果範本時，關 1、2、3、5 只能練習；缺共識營簡報或本校核銷空白表時，關 4 只能練習。若計畫書含個資，先另存去識別化副本。</p>
+              <p class="small">取得來源與改名方式見 <a href="sources/README.md">sources/README.md</a>。教材不附未授權原件。缺官方成果範本時，課程規劃表、名單與出席、學生回饋單、結案 只能練習；缺共識營簡報或本校核銷空白表時，核銷對帳 只能練習。若計畫書含個資，先另存去識別化副本。</p>
             </li>
             <li>
               <p><strong>用 Codex 開啟整個資料夾。</strong>開啟 ChatGPT 桌面版、切換到 Codex，從輸入區附近的<strong>資料夾圖示或目前專案位置</strong>選擇資料夾。系統的資料夾選擇視窗出現後，找到 <code>club2026</code>，選取資料夾本身，再確認開啟。</p>
@@ -110,7 +114,7 @@ Antigravity 選取同一個資料夾
       <section class="gate" id="g2">
         <header><span class="n">2</span><h2>官方要求</h2></header>
         <div class="body">
-          <p>這一關不對應基金會的成果文件，只是開課前的技術驗收。</p>
+          <p>這一頁不對應基金會的成果文件，只是開課前的技術驗收。</p>
           <div class="note warn">
             <span class="label">驗收不要使用學生名單</span>
             <p>學生名單（附件一）預計於 2026 年 8–9 月繳交，但這次測試只放<strong>計畫書、官方範本或虛構資料</strong>。真人學生姓名、出席、成績、聯絡資料與備份檔<strong>不進 AI、不提交版本（commit）、不上傳（push）</strong>，請留在學校核准的受控位置。</p>
@@ -167,7 +171,7 @@ Antigravity 選取同一個資料夾
             <li><label><input type="checkbox"><span>五類原件已逐項標成「已找到」或「缺少」，也知道缺檔時只能練習</span></label></li>
             <li><label><input type="checkbox"><span>Codex 已選取整個 club2026，而且看得到根目錄、sources、specs 與 outputs</span></label></li>
             <li><label><input type="checkbox"><span>Antigravity 已開啟同一個完整路徑，而且看得到相同檔案</span></label></li>
-            <li><label><input type="checkbox"><span>GitHub 帳號、Git 與已登入的 GitHub CLI 已通過行前安裝頁的檢查</span></label></li>
+            <li><label><input type="checkbox"><span>（選配）GitHub 帳號、Git、GitHub CLI 已登入——沒勾仍可上完早上這堂，會後再補</span></label></li>
             <li><label><input type="checkbox"><span>Codex 與 Antigravity 都跑過 60 秒測試，列出的資料夾、檔名與計畫書標題一致</span></label></li>
             <li><label><input type="checkbox"><span>教材包現成的 index.html 能用瀏覽器打開，而且測試資料沒有學生個資</span></label></li>
           </ul>
