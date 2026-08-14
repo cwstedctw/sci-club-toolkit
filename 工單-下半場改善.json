@@ -102,9 +102,10 @@
       "now": "講義通篇沒提帳號類型，B-4 只說「選你的 Google 帳號」，Q1–Q5 也沒有一題處理這個。Antigravity 官方文件在 Workspace 帳號遇到狀況時是建議改用 @gmail.com。真正的空窗不是當天（已經要求在家先裝好登入過一次），而是那幾天在家卡住、沒有人可以舉手——講義正是行前文件，所以這幾句寫進講義最對。講義標題已經標「（Windows 版）」、出發前也講了帶 Windows 筆電，這點沒問題。",
       "change": "建議三句話：\n・出發前第 2 點：「準備一組 Google 帳號。建議用個人的 @gmail.com；學校配發的 Google 帳號（Workspace，通常是 @…edu.tw）有可能被學校管理端擋住第三方應用程式，官方文件也建議遇到狀況時改用 @gmail.com。」\n・B-4 補一句：「如果你有兩個 Google 帳號，這裡先選個人的 @gmail.com。」\n・加 Q6：「按 Continue with Google 之後跳錯誤或一直轉？先試著換成個人的 @gmail.com 再登一次；學校配發的帳號有時會被管理端限制。」",
       "accept": "講義的出發前第 2 點、B-4、Q6 三處都寫著「建議用個人的 @gmail.com」這條路；老師在家按 Continue with Google 卡住時，翻講義就找得到怎麼辦，不必舉手。",
-      "blocked_by": "查不到 12 位是不是都帶 Windows——若有人只有 Mac，要先問清楚是哪一代：Antigravity 的 Mac 版只支援 Apple Silicon，Intel Mac 裝不起來。",
+      "blocked_by": "查不到 12 位是不是都帶 Windows——若有人只有 Mac，要先問清楚是哪一代：Antigravity 的 Mac 版只支援 Apple Silicon，Intel Mac 裝不起來。（8/14 後續工單 B 條提供不寫死寫法，Mac 機型仍待 LINE 回覆，不影響講義）",
       "id": "P0-07",
-      "status": "待處理"
+      "status": "已完成",
+      "done_note": "已完成（2026-08-14，B 條）：出發前第 2 點改為個人 @gmail.com 建議句（含 Workspace 警語）；B-4 補「兩個帳號先選個人 @gmail.com」；新增 Q6（Continue with Google 卡住→換個人帳號）；加 Mac 備註（Intel Mac 行前實裝、不寫死不能來）。docx 與 PDF 皆重出並驗證可搜到 @gmail.com（5 處）與 Workspace（2 處）；未動文盛的 install.html。"
     },
     {
       "seq": 8,
