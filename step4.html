@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關 4：核銷對帳｜科學社團專案管理範本站</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">科學社團專案管理範本站 <span>2026/8/19 花蓮教師研習</span></div>
+    <nav class="main" aria-label="主導覽">
+      <a href="index.html">總覽</a>
+      <a href="install.html">行前安裝</a>
+      <a href="method.html">方法</a>
+      <a href="demo.html">示範</a>
+      <a href="needs.html">需求對照</a>
+      <a href="step0.html">關 0 驗收</a>
+      <a href="step1.html">關 1 規劃表</a>
+      <a href="step2.html">關 2 名單出席</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
+      <a href="refs.html">延伸閱讀</a>
+      <a href="workshop.html">8/19 場次</a>
+    </nav>
+    <button class="projbtn" type="button" aria-pressed="false">投影模式</button>
+  </div>
+</header>
+<div class="wrap">
+  <div class="shell">
+    <aside class="sidebar">
+      <h2>這頁有什麼</h2>
+      <ol>
+        <li><a href="#g1">1 這關做什麼</a></li>
+        <li><a href="#g2">2 官方要求</a></li>
+        <li><a href="#g3">3 提示詞卡</a></li>
+        <li><a href="#g4">4 新手會卡在哪</a></li>
+        <li><a href="#g5">5 驗收清單</a></li>
+      </ol>
+    </aside>
+    <main>
+      <p class="eyebrow">關 4</p>
+      <h1>核銷對帳</h1>
+      <p class="lede">把出席人次、發票日期、用途別與校內表單放在同一張檢查表裡。工具只協助算時數、份數與金額；<strong>身分證字號、戶籍住址、匯款帳號不進 AI、不進雲端，只在學校紙本手寫。</strong></p>
+      <p class="small">這一關使用單一 Antigravity；頁面中的校內表單名稱來自三校原始檔，各校主計室若有不同版本，以本校現行表單為準。</p>
+
+      <section class="gate" id="g1">
+        <header><span class="n">1</span><h2>這關做什麼</h2></header>
+        <div class="body">
+          <p>做一個離線核銷檢查工具，輸入去識別化的週次、日期、用途、數量與金額後，提醒你該用哪一張校內表、哪個日期區間，以及材料費份數有沒有和教室日誌對上。</p>
+          <pre class="flow">關 2 的 outputs/attendance-summary.json（不含姓名）
+          ＋ 採購／授課日期與金額
+          ↓
+判斷用途別與校內表單
+          ↓
+核對材料費份數＝出席學生數＋2 位教師
+          ↓
+分開 2026/9–12 與 2027/1–6
+          ↓
+產生核銷檢查清單，再回本校正式表單填寫</pre>
+          <div class="note warn">
+            <span class="label">工具不是正式憑證</span>
+            <p>這一關產生的是<strong>對帳工作表</strong>，不能取代本校請購、黏貼憑證、印領清冊與簽核流程。正式送件前一定要交由承辦人與主計室核對。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gate" id="g2">
+        <header><span class="n">2</span><h2>官方要求</h2></header>
+        <div class="body">
+          <h3>先選對用途別</h3>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>用途</th><th>三校資料中的表單</th><th>下半部主要欄位</th></tr></thead>
+              <tbody>
+                <tr><td>材料費／教材教具費</td><td>財物請購（大興稱「申請表」）</td><td>編號、品名（規格）、數量、單價、金額</td></tr>
+                <tr><td>外聘講師鐘點費</td><td>講習鐘點費</td><td>講師姓名、任職機關、日期、起訖時間、節數、每節鐘點費、總計、簽章</td></tr>
+                <tr><td>校內教師教學鐘點費</td><td>教學鐘點費（含保險）</td><td>職別、姓名、時數、單價、政府負擔、代扣款、實領金額</td></tr>
+                <tr><td>講師交通住宿</td><td>住宿交通</td><td>講師姓名、任職機關、日期、起訖地點、交通費、住宿費</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note info">
+            <span class="label">導師費待本校確認</span>
+            <p>三校作法不同：一校使用「導師職務加給」，另一校把導師列在同一張印領清冊。請向本校主計室確認科目與表單，工具只能顯示「待確認」，不能代選。</p>
+          </div>
+          <div class="note warn">
+            <span class="label">表單名稱有「含保險」，不代表基金會會核銷保險</span>
+            <p>「教學鐘點費（含保險）」是部分學校現行空白表的名稱與欄位。基金會規則仍明列勞健保費、二代健保補充保費與保險費不予核銷。工具要把「校內表名」與「基金會可核銷項目」分開顯示；正式填表方式仍由本校主計室確認。</p>
+          </div>
+
+          <h3>已確認的經費規則</h3>
+          <ul>
+            <li>不必來函的固定項目：鐘點費每小時 1,000 元；導師費每次 1,000 元；材料費每人次 250 元。</li>
+            <li>餐費每人次 120 元，只有<strong>週末開課達 3 小時（含）以上</strong>才可申請，計算人次含授課指導老師與導師。</li>
+            <li>要另外來函、依實核銷的項目：專家教學演示費每小時 2,000 元，一學年至多 2 次；教授指導出席費每次 2,500 元，一學年至多 2 次；相關交通、住宿費依實核銷。</li>
+            <li>專家教學演示必須額外邀請，不得由計畫內原授課教師兼任；要納入申請週數，演示當天不可再申請原授課講師每小時 1,000 元的鐘點費。</li>
+            <li>材料費以耗材為主；設備、工具與有財產編號的器具不予核銷。</li>
+            <li>勞健保費、二代健保補充保費與保險費不予核銷；各經費項目不予勻支。</li>
+            <li>材料費建議依上課週數開立收據／發票；月結時，明細要寫清楚日期與數量。</li>
+            <li>材料費數量要和教室日誌的<strong>出席學生數＋兩位教師</strong>相符。</li>
+            <li>同一張請購單要分開 2026 年 9–12 月與 2027 年 1–6 月。</li>
+            <li>鐘點費、導師費認列實際授課日期；材料費、餐費認列發票／收據日期。</li>
+          </ul>
+          <p class="small">來源：財團法人仰望教育基金會《國中小科學社團扶助計畫》共識營簡報的經費與核銷說明；校內表單名稱另由三校 2026/8 原始檔交叉核對。材料費「出席學生數＋兩位教師」的原文在共識營簡報第 12 頁。當期申請方式與本校表單仍要向基金會窗口及主計室確認。</p>
+        </div>
+      </section>
+
+      <section class="gate" id="g3">
+        <header><span class="n">3</span><h2>提示詞卡</h2></header>
+        <div class="body">
+          <div class="note">
+            <p><strong>四段都貼在同一個 Antigravity 對話。</strong>只使用「第幾週、日期、出席總數、用途與金額」等去識別化資料。人員姓名用「講師 A」「教師 B」代替；身分證、地址、匯款資料連假的都不要輸入。</p>
+          </div>
+          <div class="prompt">
+            <header><span class="step">① 釐清規格</span><button class="copy" type="button">複製</button></header>
+            <pre>我要製作科學社團核銷對帳工具。請先讀 sources/02-foundation-consensus-slides.*、
+sources/05-school-reimbursement-blank.*、sources/03-school-plan-deidentified.*，
+以及 outputs/attendance-summary.json。固定開頭有兩份或找不到時先停下來，不要自己選。
+請分成三段回報：
+1. 基金會已確認的經費與日期規則，逐條標出來源
+2. 本校表單的實際名稱與欄位
+3. 找不到、彼此衝突或需要主計室確認的項目
+
+導師費使用哪一張表先標「待本校主計室確認」，不要自行選。
+身分證字號、戶籍住址、匯款帳號不得要求我提供，也不得建立數位欄位；
+只保留「此欄回正式紙本手寫」提醒。
+
+請特別分開「固定經費」「需來函項目」「不予核銷」「本校表單待確認」，
+並核對餐費 120 元與週末至少 3 小時、演示費 2,000 元、指導出席費 2,500 元、
+演示不得由原授課教師兼任或同日重複請領等來源。
+
+先不要做工具。先問我三到五個必要問題。回答後整理來源相對路徑、已確認、待確認、
+檢查規則、摘要欄位與驗收案例；我確認後固定存成 specs/step4.md，同名檔已存在
+就停下來，不得覆蓋。規格只寫 sources/... 或 outputs/... 相對路徑，不寫電腦帳號名稱。
+我說可以再實作。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>官方規則、本校表單與待確認事項分開的規格</dd>
+              <dt>AI 大概會回什麼</dt><dd>用途別、日期、欄位與缺口對照</dd>
+              <dt>你要檢查什麼</dt><dd>它有沒有真的讀本校空白表；待確認項目有沒有被硬猜</dd>
+            </dl>
+          </div>
+
+          <div class="prompt">
+            <header><span class="step">② 實作</span><button class="copy" type="button">複製</button></header>
+            <pre>請先讀 specs/step4.md 與 outputs/attendance-summary.json；找不到就停下來。
+依已確認規格做一個離線可開的單一 HTML 對帳工具，固定存成：
+outputs/reimbursement-check.html
+如果同名檔已存在，先停下來告訴我，不得覆蓋，也不得覆蓋教材的 index.html。
+
+工具至少要能：
+1. 輸入週次、日期、用途、品名或工作項目、數量、單價與金額
+2. 材料費另輸入當次出席學生總數，自動顯示「出席學生數＋2 位教師」應核銷份數
+3. 清楚分開 2026 年 9–12 月與 2027 年 1–6 月
+4. 依用途提示本校對應表單；導師費保留「待主計室確認」
+5. 檢查金額加總、份數不符、跨年度、認列日期與不得核銷項目
+6. 餐費要輸入當次出席學生數、實際在場授課指導老師數與導師數，檢查申請人次；
+   另檢查每人次 120 元、是否週末、是否達 3 小時，不符合就警告，不自行核准
+7. 教學演示與指導出席要分開顯示「需來函」，檢查單價、每學年最多 2 次；
+   演示另檢查是否額外邀請、是否納入申請週數、是否和原授課教師鐘點費重複
+8. 匯出不含姓名的對帳摘要，固定下載 reimbursement-summary.json，提醒我存成
+   outputs/reimbursement-summary.json，供關 5 讀取；內容只放期間、用途別加總、
+   檢查通過／警告／待確認數與規則版本，並寫 contains_personal_data: false，
+   不含人名、匯款、身分證、逐筆憑證號碼；同名檔存在先提醒備份，不得靜默覆蓋
+9. 所有畫面都不建立身分證字號、戶籍住址、匯款帳號欄位，改顯示紙本手寫提醒
+
+請附一顆「載入練習用範例」，人員只用講師 A、教師 B，數字清楚標示為虛構。
+做完回報完整路徑；不要把正式表單裡的真人資料複製進工具。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一份協助核對、但不冒充正式憑證的離線工具</dd>
+              <dt>AI 大概會回什麼</dt><dd>一個 HTML 檔與完整路徑</dd>
+              <dt>你要檢查什麼</dt><dd>材料費 12 位學生是否顯示 14 份；跨年度是否警告</dd>
+            </dl>
+          </div>
+
+          <div class="prompt">
+            <header><span class="step">③ 檢查</span><button class="copy" type="button">複製</button></header>
+            <pre>請重新打開 outputs/reimbursement-check.html，也重新讀基金會簡報與本校空白表單，
+逐條列出問題，先不要修改：
+1. 材料費份數是否等於 attendance-summary 的出席學生總數＋2；測試 12 人時是否顯示 14 份
+2. 2026/9–12 與 2027/1–6 是否分開，跨年度資料是否會警告
+3. 鐘點費／導師費與材料費／餐費的認列日期是否分清楚
+4. 用途別與表單名稱是否來自本校原檔；導師費是否仍標待確認
+5. 不予核銷與不得勻支項目是否會被提醒
+6. 餐費人次是否使用當次出席學生與實際在場教師，且 120 元、週末與至少 3 小時同時檢查
+7. 演示費 2,000 元、指導出席費 2,500 元、每學年最多 2 次與「需來函」是否都有檢查
+8. 演示由原授課教師兼任、未納入週數或同日重複請領鐘點費時是否警告
+9. 金額加總、outputs/reimbursement-summary.json 匯出與每一顆按鈕是否真的能用
+10. 原始碼、範例與匯出摘要是否沒有真人個資、身分證、地址或匯款資料
+最後列出我沒想到但應該檢查的項目。列完等我確認，不要直接改檔。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一張可以逐項核對的問題清單</dd>
+              <dt>AI 大概會回什麼</dt><dd>日期、人次、表單、金額與個資問題</dd>
+              <dt>你要檢查什麼</dt><dd>自己用 12 人、跨年度與設備採購三個案例各試一次</dd>
+            </dl>
+          </div>
+
+          <div class="prompt">
+            <header><span class="step">④ 修正並重驗</span><button class="copy" type="button">複製</button></header>
+            <pre>這是我確認要修正的問題：
+⟨貼上問題清單，只保留你確認要改的項目⟩
+
+請只修正這些項目。先把原檔複製成 outputs/reimbursement-check-before-fix.html；
+若備份檔已存在，先停下來問我，不得覆蓋。修正時只用虛構、去識別化資料。
+
+修正後重新開啟成品，重跑第 ③ 步十項檢查，再測試：
+12 位學生材料費、跨年度、設備採購、導師費、週末 2 小時餐費、週末 3 小時餐費、
+演示與原授課鐘點費重複、第三次指導出席八個案例。
+最後分成「已修正」「仍待本校確認」兩段回報，附成品與備份完整路徑。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>有備份、重驗過的修正版</dd>
+              <dt>AI 大概會回什麼</dt><dd>修正項目、四個測試結果與路徑</dd>
+              <dt>你要檢查什麼</dt><dd>待主計室確認的項目沒有被 AI 自行拍板</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="gate" id="g4">
+        <header><span class="n">4</span><h2>新手會卡在哪</h2></header>
+        <div class="body">
+          <ul>
+            <li><strong>拿編列金額當核銷金額</strong>：編列時按預估人次；核銷材料費要看那一週實際出席學生數再加 2 位教師。</li>
+            <li><strong>只看請購日期</strong>：鐘點費、導師費看實際授課日；材料費、餐費看發票或收據日期。</li>
+            <li><strong>一張表跨兩個年度</strong>：2026 年 9–12 月與 2027 年 1–6 月要分開。</li>
+            <li><strong>有餐費就直接核</strong>：餐費不只看單價；還要同時符合週末開課且至少 3 小時。</li>
+            <li><strong>把演示當一般鐘點</strong>：演示與指導出席都要另外來函，且各有單價、次數與不得重複請領條件。</li>
+            <li><strong>不同校直接套同一張表</strong>：三校表單同源，但名稱與導師費作法仍有差異。正式送件以本校主計室版本為準。</li>
+            <li><strong>把紙本個資交給 AI 代填</strong>：身分證、戶籍、匯款資料只回正式紙本手寫；AI 只算時數、份數與金額。</li>
+            <li><strong>以為 Private repo 可以放核銷資料</strong>：不行。含人員或匯款資料的檔案、備份與匯出摘要都不能 push。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="gate" id="g5">
+        <header><span class="n">5</span><h2>驗收清單</h2></header>
+        <div class="body">
+          <ul class="checklist">
+            <li><label><input type="checkbox"><span>用途別與本校表單名稱已從原始空白表逐欄核對</span></label></li>
+            <li><label><input type="checkbox"><span>點名 12 位學生時，材料費份數顯示 14 份</span></label></li>
+            <li><label><input type="checkbox"><span>2026 年 9–12 月與 2027 年 1–6 月分開</span></label></li>
+            <li><label><input type="checkbox"><span>授課日與發票／收據日的認列規則沒有混用</span></label></li>
+            <li><label><input type="checkbox"><span>設備、工具、保險相關費用與經費勻支會出現警告</span></label></li>
+            <li><label><input type="checkbox"><span>餐費每人次 120 元，且只有週末至少 3 小時才不警告</span></label></li>
+            <li><label><input type="checkbox"><span>演示與指導出席的單價、每學年最多 2 次及需來函已檢查</span></label></li>
+            <li><label><input type="checkbox"><span>原授課教師兼任演示或同日重複請領鐘點費會警告</span></label></li>
+            <li><label><input type="checkbox"><span>導師費仍標示「待本校主計室確認」，沒有自動選表</span></label></li>
+            <li><label><input type="checkbox"><span>outputs/reimbursement-summary.json 能匯出、重新開啟，金額加總一致</span></label></li>
+            <li><label><input type="checkbox"><span>specs/step4.md 已保存來源、已確認、待確認與驗收案例</span></label></li>
+            <li><label><input type="checkbox"><span>成品在 outputs/reimbursement-check.html，沒有覆蓋教材或舊作品</span></label></li>
+            <li><label><input type="checkbox"><span>工具、原始碼與匯出摘要都沒有身分證、戶籍、匯款資料或其他真人個資</span></label></li>
+          </ul>
+          <p class="done-count small">已完成 0 / 13 項</p>
+        </div>
+      </section>
+
+      <footer class="site">
+        <p>科學社團專案管理範本站｜2026/8/19 花蓮縣國中小教師研習・會後自學用。整站可離線開啟，沒有網路也看得到。</p>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

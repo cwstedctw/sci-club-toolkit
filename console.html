@@ -427,25 +427,93 @@
       letter-spacing: -2px;
     }
 
-    /* 🔴 投影模式 (視角隔離) 樣式 override */
+    /* 🔴 投影安全看板：開啟後只顯示這個專用畫面與退出按鈕 */
+    #projection-safe-view,
+    #projection-exit-btn {
+      display: none;
+    }
     body.projection-mode {
       background-color: #000000 !important;
+      overflow: auto;
     }
-    body.projection-mode header,
-    body.projection-mode .nav-tabs,
-    body.projection-mode .hide-on-projection {
+    body.projection-mode > :not(#projection-safe-view):not(#projection-exit-btn):not(script) {
       display: none !important;
     }
-    body.projection-mode .proj-huge-num {
-      font-size: 8vh !important;
-      line-height: 1;
-      font-weight: 900;
+    body.projection-mode #projection-safe-view {
+      display: block;
+      min-height: 100vh;
+      padding: 72px 5vw 48px;
+      background: #000000;
+      color: #ffffff;
+    }
+    body.projection-mode #projection-exit-btn {
+      display: block;
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10001;
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 2px solid #ffffff;
+      border-radius: 8px;
+      background: #b91c1c;
+      color: #ffffff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .projection-safe-shell {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+    .projection-safe-heading {
+      margin: 0;
       color: var(--emerald);
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      text-align: center;
     }
-    body.projection-mode .student-note,
-    body.projection-mode .sensitive-name,
-    body.projection-mode .action-btn-group {
-      display: none !important;
+    .projection-safe-note {
+      margin: 12px 0 32px;
+      color: #cbd5e1;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      text-align: center;
+    }
+    .projection-safe-stats,
+    .projection-safe-groups {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .projection-safe-card {
+      padding: 22px;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      background: #111827;
+      text-align: center;
+    }
+    .projection-safe-label {
+      color: #cbd5e1;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+    }
+    .projection-safe-value {
+      margin-top: 10px;
+      color: var(--emerald);
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+    .projection-safe-groups {
+      margin-top: 24px;
+    }
+    .projection-safe-group-status {
+      margin-top: 8px;
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      font-weight: 800;
+    }
+    @media (max-width: 800px) {
+      .projection-safe-stats,
+      .projection-safe-groups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     /* Toast 復原通知 */
@@ -554,6 +622,24 @@
       <button class="btn btn-slate" id="btn-toggle-projection" onclick="toggleProjectionMode()">📺 投影模式</button>
     </div>
   </header>
+
+  <!-- 投影模式專用畫面：只放整體統計與組別燈號，不放學員資料或輸入欄位 -->
+  <button type="button" id="projection-exit-btn" onclick="exitProjectionMode()" aria-keyshortcuts="Escape">
+    ✕ 離開投影模式
+  </button>
+  <section id="projection-safe-view" aria-label="投影安全看板" aria-live="polite">
+    <div class="projection-safe-shell">
+      <h1 class="projection-safe-heading">📺 研習現場看板</h1>
+      <p class="projection-safe-note">只顯示整體人數與組別燈號。按 Esc 或右上角按鈕可離開投影模式。</p>
+      <div class="projection-safe-stats">
+        <div class="projection-safe-card"><div class="projection-safe-label">應到</div><div class="projection-safe-value" id="projection-safe-total">0</div></div>
+        <div class="projection-safe-card"><div class="projection-safe-label">實到</div><div class="projection-safe-value" id="projection-safe-attended">0</div></div>
+        <div class="projection-safe-card"><div class="projection-safe-label">目前在場</div><div class="projection-safe-value" id="projection-safe-present">0</div></div>
+        <div class="projection-safe-card"><div class="projection-safe-label">出席率</div><div class="projection-safe-value" id="projection-safe-rate">—</div></div>
+      </div>
+      <div class="projection-safe-groups" id="projection-safe-groups" aria-label="各組人數與巡場燈號"></div>
+    </div>
+  </section>
 
   <!-- 主頁籤導覽列 -->
   <nav class="nav-tabs">
@@ -728,7 +814,7 @@
               <tr>
                 <th style="width: 70px;">座號</th>
                 <th style="width: 140px;">姓名 / 學校</th>
-                <th>① 24週課程規劃表</th>
+                <th>① 課程規劃表</th>
                 <th>② 學生回饋單</th>
                 <th>③ 出席對帳工具</th>
               </tr>
@@ -782,7 +868,7 @@
           <div class="card-title">👥 學員名單維護與批量匯入</div>
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <button class="btn btn-blue" onclick="openRosterPasteModal()">📋 貼上 CSV 匯入學員</button>
-            <button class="btn btn-amber" onclick="triggerAutoGrouping()">🎲 自動分 4 組（小老師分開）</button>
+            <button class="btn btn-amber" onclick="triggerAutoGrouping()">🎲 自動分 4 組（小老師平均分散）</button>
             <button class="btn btn-red" onclick="triggerResetToDefaultSample()">🔄 載入 14 筆預設範例</button>
           </div>
         </div>
@@ -878,7 +964,7 @@
           <div class="card-title">🛠️ 實作巡場故障分流與求救燈號 (4組)</div>
         </div>
         <div style="margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted);">
-          💡 此區供講師與工讀即時掌握組別狀況。**投影模式下僅顯示紅黃綠燈號，絕不公開任何學員姓名**。
+          💡 此區供講師與工讀即時掌握組別狀況。<strong>投影模式會切換到專用安全看板，只顯示整體統計與組別燈號。</strong>
         </div>
 
         <div class="grid-2" id="group-support-grid">
@@ -905,7 +991,7 @@
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <button class="btn btn-emerald" onclick="showBroadcastFullscreen(0)">1. 請回座，3 分鐘後開始 (含倒數)</button>
         <button class="btn btn-blue" onclick="showBroadcastFullscreen(1)">2. 午餐：素食有專區</button>
-        <button class="btn btn-slate" onclick="showBroadcastFullscreen(2)">3. 下午場地 A128</button>
+        <button class="btn btn-slate" onclick="showBroadcastFullscreen(2)">3. 場地 A128</button>
         <button class="btn btn-amber" onclick="showBroadcastFullscreen(3)">4. 請完成簽退後再離場</button>
 
         <div style="border-top: 1px solid var(--slate-border); padding-top: 12px; margin-top: 8px;">
@@ -948,7 +1034,7 @@
       <button class="modal-close" onclick="closeModal('modal-unchecked-out')">✕</button>
       <h2 style="margin-bottom: 16px; color: var(--red);">⚠️ 缺簽退人員清單</h2>
       <div class="hide-on-projection" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">
-        在場已簽到但尚未簽退者。投影模式下將自動隱藏姓名僅顯示人數。
+        在場已簽到但尚未簽退者。進入投影模式後，整個主介面會切換成不含姓名、學校、職稱、餐食與輸入欄位的安全看板。
       </div>
       <div id="unchecked-out-list" style="display: flex; flex-direction: column; gap: 8px;">
         <!-- 動態列出 -->
@@ -1104,7 +1190,7 @@
     const BROADCAST_PRESETS = [
       "請回座，3 分鐘後開始",
       "午餐：素食有專區",
-      "下午場地 A128",
+      "場地 A128",
       "請完成簽退後再離場"
     ];
 
@@ -1146,8 +1232,10 @@
       announcement: "",
       checklist: {
         hoursCsvDownloadedAt: null,
+        hoursCsvVerified: false,
         signSheetPrintedConfirmed: false,
         backupDownloadedAt: null,
+        backupVerified: false,
         collectionBoxArchived: false,
         waivers: []
       },
@@ -1165,6 +1253,175 @@
     let countdownInterval = null;
     let countdownRemaining = 180;
     let currentEditingNoteStudentId = null;
+    let storageWarningAttached = false;
+
+    const RESERVED_IDS = new Set(["__proto__", "prototype", "constructor"]);
+    const SUBMISSION_STATES = new Set(["未收", "網路收到", "隨身碟收到", "檔案打不開"]);
+
+    function cleanText(value, maxLength, fieldName, required = false) {
+      if (value === null || value === undefined) value = "";
+      if (typeof value !== "string" && typeof value !== "number") {
+        throw new Error(`${fieldName} 必須是文字`);
+      }
+      const text = normalizeText(String(value)).replace(/[\u0000-\u001F\u007F]/g, " ").trim();
+      if (required && !text) throw new Error(`${fieldName} 不可空白`);
+      if (text.length > maxLength) throw new Error(`${fieldName} 超過 ${maxLength} 字`);
+      return text;
+    }
+
+    function cleanDate(value, fieldName) {
+      if (value === null || value === undefined || value === "") return null;
+      if (typeof value !== "string") throw new Error(`${fieldName} 日期格式不正確`);
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) throw new Error(`${fieldName} 日期格式不正確`);
+      return date.toISOString();
+    }
+
+    function cleanBoolean(value) {
+      return value === true;
+    }
+
+    function normalizeStateData(source, strictBackup = false) {
+      if (!source || typeof source !== "object" || Array.isArray(source)) {
+        throw new Error("最外層必須是物件");
+      }
+      if (strictBackup) {
+        if (source.schema !== "workshop-console") throw new Error("schema 必須是 workshop-console");
+        if (source.version !== 1) throw new Error("只支援第 1 版備份");
+        if (source.eventDate !== "2026-08-19") throw new Error("活動日期不是 2026-08-19");
+        ["exportedAt", "students", "submissions", "showcase", "showcaseBackups", "announcement", "checklist", "groupStatus", "broadcastCustom"].forEach(key => {
+          if (!(key in source)) throw new Error(`缺少必要欄位：${key}`);
+        });
+        cleanDate(source.exportedAt, "匯出時間");
+      }
+
+      if (!Array.isArray(source.students)) throw new Error("students 必須是陣列");
+      if (source.students.length > 500) throw new Error("學員筆數超過 500 筆上限");
+      const rawSubmissions = source.submissions;
+      if (!rawSubmissions || typeof rawSubmissions !== "object" || Array.isArray(rawSubmissions)) {
+        throw new Error("submissions 必須是物件");
+      }
+
+      const oldToNewId = new Map();
+      const usedIds = new Set();
+      const students = source.students.map((raw, index) => {
+        if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+          throw new Error(`students 第 ${index + 1} 筆不是物件`);
+        }
+        const oldId = cleanText(raw.id, 80, `students 第 ${index + 1} 筆 id`, true);
+        if (oldToNewId.has(oldId)) throw new Error(`學員 id 重複：${oldId}`);
+        let id = oldId;
+        if (!/^[A-Za-z0-9_-]+$/.test(id) || RESERVED_IDS.has(id) || usedIds.has(id)) {
+          id = `s_import_${String(index + 1).padStart(3, "0")}`;
+          while (usedIds.has(id)) id += "_x";
+        }
+        oldToNewId.set(oldId, id);
+        usedIds.add(id);
+
+        const checkedInAt = cleanDate(raw.checkedInAt, `第 ${index + 1} 筆簽到時間`);
+        const checkedOutAt = cleanDate(raw.checkedOutAt, `第 ${index + 1} 筆簽退時間`);
+        if (checkedOutAt && !checkedInAt) throw new Error(`第 ${index + 1} 筆有簽退時間但沒有簽到時間`);
+        const meal = cleanText(raw.meal, 10, `第 ${index + 1} 筆餐食`);
+        const group = cleanText(raw.group, 2, `第 ${index + 1} 筆組別`);
+        if (meal && !["葷", "素"].includes(meal)) throw new Error(`第 ${index + 1} 筆餐食只能是葷、素或空白`);
+        if (group && !["1", "2", "3", "4"].includes(group)) throw new Error(`第 ${index + 1} 筆組別只能是 1 到 4 或空白`);
+
+        return {
+          id,
+          seat: cleanText(raw.seat, 20, `第 ${index + 1} 筆座號`),
+          name: cleanText(raw.name, 80, `第 ${index + 1} 筆姓名`, true),
+          school: cleanText(raw.school, 120, `第 ${index + 1} 筆學校`, true),
+          title: cleanText(raw.title, 120, `第 ${index + 1} 筆職稱`),
+          meal,
+          group,
+          note: cleanText(raw.note, 500, `第 ${index + 1} 筆備註`),
+          mentor: cleanBoolean(raw.mentor),
+          checkedInAt,
+          checkedOutAt
+        };
+      });
+
+      const submissions = {};
+      students.forEach(student => {
+        const oldId = [...oldToNewId.entries()].find(([, newId]) => newId === student.id)?.[0];
+        const rawProducts = oldId ? rawSubmissions[oldId] : null;
+        if (strictBackup && (!rawProducts || typeof rawProducts !== "object")) {
+          throw new Error(`缺少 ${oldId} 的繳交紀錄`);
+        }
+        submissions[student.id] = {};
+        ["1", "2", "3"].forEach(productId => {
+          const rawProduct = rawProducts && rawProducts[productId];
+          if (strictBackup && (!rawProduct || typeof rawProduct !== "object")) {
+            throw new Error(`缺少 ${oldId} 的第 ${productId} 件繳交紀錄`);
+          }
+          const productState = rawProduct && rawProduct.state ? cleanText(rawProduct.state, 20, "繳交狀態") : "未收";
+          if (!SUBMISSION_STATES.has(productState)) throw new Error(`不支援的繳交狀態：${productState}`);
+          submissions[student.id][productId] = {
+            state: productState,
+            volunteer: cleanBoolean(rawProduct && rawProduct.volunteer),
+            receivedAt: cleanDate(rawProduct && rawProduct.receivedAt, "繳交時間")
+          };
+        });
+      });
+
+      function normalizeShowcase(raw, fieldName) {
+        const out = { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
+        if (raw !== undefined && (!raw || typeof raw !== "object" || Array.isArray(raw))) {
+          throw new Error(`${fieldName} 必須是物件`);
+        }
+        Object.keys(out).forEach(slot => {
+          const value = raw && raw[slot];
+          if (value === null || value === undefined || value === "") return;
+          const oldId = cleanText(value, 80, `${fieldName}.${slot}`);
+          if (!oldToNewId.has(oldId)) throw new Error(`${fieldName}.${slot} 指向不存在的學員`);
+          out[slot] = oldToNewId.get(oldId);
+        });
+        return out;
+      }
+
+      const rawChecklist = source.checklist || {};
+      if (typeof rawChecklist !== "object" || Array.isArray(rawChecklist)) throw new Error("checklist 必須是物件");
+      const allowedWaivers = new Set(["unout", "hours", "backup", "signsheet"]);
+      const rawWaivers = Array.isArray(rawChecklist.waivers) ? rawChecklist.waivers : [];
+      const checklist = {
+        hoursCsvDownloadedAt: cleanDate(rawChecklist.hoursCsvDownloadedAt, "時數表下載時間"),
+        hoursCsvVerified: cleanBoolean(rawChecklist.hoursCsvVerified),
+        signSheetPrintedConfirmed: cleanBoolean(rawChecklist.signSheetPrintedConfirmed),
+        backupDownloadedAt: cleanDate(rawChecklist.backupDownloadedAt, "備份下載時間"),
+        backupVerified: cleanBoolean(rawChecklist.backupVerified),
+        collectionBoxArchived: cleanBoolean(rawChecklist.collectionBoxArchived),
+        waivers: [...new Set(rawWaivers.filter(value => allowedWaivers.has(value)))]
+      };
+
+      const rawGroups = source.groupStatus || {};
+      if (typeof rawGroups !== "object" || Array.isArray(rawGroups)) throw new Error("groupStatus 必須是物件");
+      const groupStatus = {};
+      ["1", "2", "3", "4"].forEach(group => {
+        const raw = rawGroups[group] || {};
+        if (typeof raw !== "object" || Array.isArray(raw)) throw new Error(`第 ${group} 組狀態格式不正確`);
+        const status = cleanText(raw.status || "normal", 20, `第 ${group} 組狀態`);
+        const category = cleanText(raw.category, 20, `第 ${group} 組類型`);
+        if (!["normal", "stuck", "halted"].includes(status)) throw new Error(`第 ${group} 組燈號不正確`);
+        if (category && !["網路", "登入", "安裝", "操作", "硬體"].includes(category)) throw new Error(`第 ${group} 組卡關類型不正確`);
+        groupStatus[group] = {
+          status,
+          category,
+          note: cleanText(raw.note, 500, `第 ${group} 組紀錄`),
+          updatedAt: cleanDate(raw.updatedAt, `第 ${group} 組更新時間`)
+        };
+      });
+
+      return {
+        students,
+        submissions,
+        showcase: normalizeShowcase(source.showcase, "showcase"),
+        showcaseBackups: normalizeShowcase(source.showcaseBackups, "showcaseBackups"),
+        announcement: cleanText(source.announcement, 500, "公告"),
+        checklist,
+        groupStatus,
+        broadcastCustom: cleanText(source.broadcastCustom, 500, "自訂廣播") || "請各位老師完成簽退後再離場"
+      };
+    }
 
     /* --------------------------------------------------------------------------
        初始化與 localStorage 持久化
@@ -1187,19 +1444,27 @@
         isStorageAvailable = true;
         document.getElementById("degraded-banner").style.display = "none";
       } catch (e) {
-        isStorageAvailable = false;
-        document.getElementById("degraded-banner").style.display = "block";
-
-        // 降級提醒：每10分鐘提醒下載備份
-        setInterval(() => {
-          alert("⚠️ [本機儲存降級提醒] 目前處於記憶體模式，請記得下載備份！");
-        }, 600000);
-
-        window.addEventListener("beforeunload", (e) => {
-          e.preventDefault();
-          e.returnValue = "本機儲存不可用，關閉分頁資料將消失！確定離開？";
-        });
+        activateMemoryMode("⚠️ 本機儲存無法使用，資料只存在這個分頁；請立即下載備份，關閉分頁前務必確認檔案可開啟！");
       }
+    }
+
+    function activateMemoryMode(message) {
+      isStorageAvailable = false;
+      const banner = document.getElementById("degraded-banner");
+      banner.textContent = message;
+      banner.style.display = "block";
+      const badge = document.getElementById("save-status");
+      badge.textContent = "僅存本分頁";
+      badge.className = "save-badge warning";
+      if (storageWarningAttached) return;
+      storageWarningAttached = true;
+      setInterval(() => {
+        alert("⚠️ [本機儲存降級提醒] 資料只存在這個分頁，請下載備份並確認檔案可開啟！");
+      }, 600000);
+      window.addEventListener("beforeunload", (e) => {
+        e.preventDefault();
+        e.returnValue = "本機儲存不可用，關閉分頁資料將消失！確定離開？";
+      });
     }
 
     function loadState() {
@@ -1208,10 +1473,13 @@
         if (raw) {
           try {
             const parsed = JSON.parse(raw);
-            state = Object.assign(state, parsed);
+            state = normalizeStateData(parsed, false);
             return;
           } catch (e) {
             console.error("Parse state error", e);
+            activateMemoryMode(`⚠️ 已存資料格式不完整（${e.message}），為避免覆寫原檔，暫時載入練習範例且不自動儲存。請先保留原瀏覽器資料，再找講師協助。`);
+            initDefaultSampleData(false);
+            return;
           }
         }
       }
@@ -1219,7 +1487,7 @@
       initDefaultSampleData();
     }
 
-    function initDefaultSampleData() {
+    function initDefaultSampleData(persist = true) {
       state.students = JSON.parse(JSON.stringify(DEFAULT_STUDENTS));
       state.submissions = {};
       state.students.forEach(s => {
@@ -1232,7 +1500,16 @@
       state.showcase = { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
       state.showcaseBackups = { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
       state.announcement = "歡迎參加 115 學年度科學社團扶助計畫研習活動！請完成報到與簽到。";
-      saveState();
+      state.checklist = {
+        hoursCsvDownloadedAt: null,
+        hoursCsvVerified: false,
+        signSheetPrintedConfirmed: false,
+        backupDownloadedAt: null,
+        backupVerified: false,
+        collectionBoxArchived: false,
+        waivers: []
+      };
+      if (persist) saveState();
     }
 
     function saveState() {
@@ -1245,6 +1522,8 @@
           el.className = "save-badge saved";
         } catch (e) {
           console.error("Save error", e);
+          activateMemoryMode("⚠️ 儲存失敗，這次變更只存在目前分頁。請立即下載備份並確認檔案可開啟，再關閉頁面。");
+          showToast("儲存失敗：目前只保留在這個分頁", "error");
         }
       } else {
         const el = document.getElementById("save-status");
@@ -1258,18 +1537,24 @@
       window.addEventListener("storage", (e) => {
         if (e.key === STORAGE_KEY && e.newValue) {
           try {
-            state = JSON.parse(e.newValue);
+            state = normalizeStateData(JSON.parse(e.newValue), false);
             renderAll();
             showToast("資料已由另一個視窗更新！", "info");
           } catch (err) {
             console.error(err);
+            showToast("另一個視窗傳來的資料格式不正確，已拒絕套用", "error");
           }
         }
       });
 
-      // 按 Esc 鍵關閉任何覆蓋層 Modal / 廣播
+      // 投影模式時 Esc 優先退出；其餘時候關閉覆蓋層 Modal / 廣播
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
+          if (isProjectionMode) {
+            e.preventDefault();
+            exitProjectionMode();
+            return;
+          }
           closeAllOverlays();
         }
       });
@@ -1284,25 +1569,67 @@
       renderOpeningCheckResults();
       renderEndDayCheckResults();
       renderGroupStatusGrid();
+      renderProjectionSafeView();
     }
 
     /* --------------------------------------------------------------------------
        視角隔離與投影模式
        -------------------------------------------------------------------------- */
     function toggleProjectionMode() {
-      isProjectionMode = !isProjectionMode;
+      setProjectionMode(!isProjectionMode);
+    }
+
+    function exitProjectionMode() {
+      setProjectionMode(false);
+    }
+
+    function setProjectionMode(enabled) {
+      isProjectionMode = !!enabled;
       const btn = document.getElementById("btn-toggle-projection");
       if (isProjectionMode) {
+        closeAllOverlays();
         document.body.classList.add("projection-mode");
         btn.textContent = "📺 離開投影模式";
         btn.className = "btn btn-red";
-        showToast("已開啟投影模式 (視角隔離啟動，敏感個資與姓名已隱藏)", "info");
       } else {
         document.body.classList.remove("projection-mode");
         btn.textContent = "📺 投影模式";
         btn.className = "btn btn-slate";
       }
       renderAll();
+
+      if (isProjectionMode) {
+        requestAnimationFrame(() => document.getElementById("projection-exit-btn")?.focus());
+      } else {
+        showToast("已離開投影模式", "info");
+        requestAnimationFrame(() => btn?.focus());
+      }
+    }
+
+    function renderProjectionSafeView() {
+      const stats = computeStats();
+      document.getElementById("projection-safe-total").textContent = stats.total;
+      document.getElementById("projection-safe-attended").textContent = stats.attended;
+      document.getElementById("projection-safe-present").textContent = stats.present;
+      document.getElementById("projection-safe-rate").textContent = stats.rateStr;
+
+      const groupsEl = document.getElementById("projection-safe-groups");
+      groupsEl.innerHTML = "";
+      for (let g = 1; g <= 4; g++) {
+        const groupSize = state.students.filter(s => s.group === String(g)).length;
+        const status = state.groupStatus[String(g)]?.status || "normal";
+        let label = "🟢 正常";
+        let color = "var(--emerald)";
+        if (status === "stuck") { label = "🟡 卡住"; color = "var(--amber)"; }
+        if (status === "halted") { label = "🔴 停擺"; color = "var(--red)"; }
+
+        groupsEl.innerHTML += `
+          <div class="projection-safe-card" style="border-top: 6px solid ${color};">
+            <div class="projection-safe-label">第 ${g} 組｜${groupSize} 人</div>
+            <div class="projection-safe-group-status" style="color:${color};">${label}</div>
+          </div>
+        `;
+      }
     }
 
     /* --------------------------------------------------------------------------
@@ -1380,7 +1707,7 @@
       }
 
       // 各校到齊狀況
-      const schoolMap = {};
+      const schoolMap = Object.create(null);
       state.students.forEach(s => {
         if (!schoolMap[s.school]) schoolMap[s.school] = { total: 0, arrived: 0 };
         schoolMap[s.school].total++;
@@ -1520,7 +1847,7 @@
           <div class="${cardClass}">
             <div style="display:flex; justify-content:space-between; align-items:flex-start;">
               <div>
-                <span class="seat-badge">座號 ${s.seat || '—'}</span>
+                <span class="seat-badge">座號 ${escapeHtml(s.seat || '—')}</span>
                 <span style="font-size:0.8rem; color:var(--text-muted); margin-left:6px;">第 ${s.group || '未'} 組</span>
               </div>
               ${statusTag}
@@ -1639,11 +1966,14 @@
       const container = document.getElementById("toast-container");
       const toast = document.createElement("div");
       toast.className = "toast";
-      toast.innerHTML = `
-        <span>${msg}</span>
-        <button class="btn btn-amber btn-sm" style="min-height:32px; padding:4px 10px;">復原 (10秒內)</button>
-      `;
-      const btn = toast.querySelector("button");
+      const label = document.createElement("span");
+      label.textContent = String(msg);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn btn-amber btn-sm";
+      btn.style.cssText = "min-height:32px; padding:4px 10px;";
+      btn.textContent = "復原 (10秒內)";
+      toast.append(label, btn);
       btn.onclick = () => {
         undoFn();
         toast.remove();
@@ -1656,8 +1986,10 @@
     function showToast(msg, type = "info") {
       const container = document.getElementById("toast-container");
       const toast = document.createElement("div");
-      toast.className = "toast";
-      toast.innerHTML = `<span>${msg}</span>`;
+      toast.className = `toast toast-${type}`;
+      const label = document.createElement("span");
+      label.textContent = String(msg);
+      toast.appendChild(label);
       container.appendChild(toast);
       setTimeout(() => { if (toast.parentNode) toast.remove(); }, 3000);
     }
@@ -1718,7 +2050,13 @@
       if (document.getElementById("note-tag-mid").checked) tags.push("中場離場");
       if (document.getElementById("note-tag-early").checked) tags.push("提早離開");
 
-      const freeText = document.getElementById("note-free-text").value.trim();
+      let freeText;
+      try {
+        freeText = cleanText(document.getElementById("note-free-text").value, 80, "備註");
+      } catch (err) {
+        alert(`無法儲存：${err.message}`);
+        return;
+      }
 
       let finalNote = "";
       if (tags.length > 0) {
@@ -1741,26 +2079,30 @@
     }
 
     function submitWalkinStudent() {
-      const name = document.getElementById("walkin-name").value.trim();
-      const school = document.getElementById("walkin-school").value.trim();
-      if (!name || !school) {
-        alert("請輸入姓名與學校！");
+      let name, school, seat, title;
+      try {
+        name = cleanText(document.getElementById("walkin-name").value, 80, "姓名", true);
+        school = cleanText(document.getElementById("walkin-school").value, 120, "學校", true);
+        seat = cleanText(document.getElementById("walkin-seat").value, 20, "座號");
+        title = cleanText(document.getElementById("walkin-title").value, 120, "職稱");
+      } catch (err) {
+        alert(`無法新增：${err.message}`);
         return;
       }
 
-      let seat = document.getElementById("walkin-seat").value.trim();
       if (seat && seat.length === 1) seat = "0" + seat;
 
-      const newId = "s_" + Date.now();
+      const newId = "s_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
       const newStudent = {
         id: newId,
         seat: seat,
         name: name,
         school: school,
-        title: document.getElementById("walkin-title").value.trim(),
+        title: title,
         meal: document.getElementById("walkin-meal").value,
         group: document.getElementById("walkin-group").value,
         note: "",
+        mentor: false,
         checkedInAt: new Date().toISOString(), // 買即簽到
         checkedOutAt: null
       };
@@ -1789,7 +2131,7 @@
         const subData = state.submissions[s.id] || {};
         tbody.innerHTML += `
           <tr>
-            <td><span class="seat-badge">${s.seat || '—'}</span></td>
+            <td><span class="seat-badge">${escapeHtml(s.seat || '—')}</span></td>
             <td>
               <div class="student-name ${isProjectionMode ? 'sensitive-name' : ''}">${escapeHtml(s.name)}</div>
               <div style="font-size:0.8rem; color:var(--text-muted);">${escapeHtml(s.school)}</div>
@@ -1934,7 +2276,7 @@
 
       const container = document.getElementById("project-stats-content");
       container.innerHTML = `
-        <div>① 24週課程規劃表：<span style="color:var(--emerald);">${c1} / ${N}</span></div>
+        <div>① 課程規劃表：<span style="color:var(--emerald);">${c1} / ${N}</span></div>
         <div>② 學生回饋單：<span style="color:var(--emerald);">${c2} / ${N}</span></div>
         <div>③ 出席對帳工具：<span style="color:var(--emerald);">${c3} / ${N}</span></div>
       `;
@@ -1965,7 +2307,7 @@
               </select>
             </td>
             <td class="hide-on-projection" style="text-align:center;">
-              <label style="display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; cursor:pointer;" title="勾起來的人，分組時會被拆開到不同組">
+              <label style="display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; cursor:pointer;" title="勾起來的人，分組時會儘量平均分散到四組">
                 <input type="checkbox" ${s.mentor ? 'checked' : ''} style="width:22px; height:22px; min-height:22px; cursor:pointer;" onchange="toggleMentor('${s.id}', this.checked)" aria-label="${escapeHtml(s.name)} 設為小老師">
               </label>
             </td>
@@ -1994,13 +2336,24 @@
     function updateStudentField(id, field, val) {
       const s = state.students.find(x => x.id === id);
       if (!s) return;
+      const limits = { seat: 20, name: 80, school: 120, title: 120, meal: 10, group: 2 };
+      if (!(field in limits)) return;
+      try {
+        val = cleanText(val, limits[field], field, field === "name" || field === "school");
+      } catch (err) {
+        alert(`無法儲存：${err.message}`);
+        renderRosterTable();
+        return;
+      }
       if (field === "seat" && val.length === 1) val = "0" + val;
-      s[field] = val.trim();
+      if (field === "meal" && val && !["葷", "素"].includes(val)) return;
+      if (field === "group" && val && !["1", "2", "3", "4"].includes(val)) return;
+      s[field] = val;
       saveState();
       renderAll();
     }
 
-    /* 小老師：勾起來的人，自動分組時會被拆散到不同組（每組至多一位） */
+    /* 小老師：勾起來的人，自動分組時會儘量平均分散到四組 */
     function toggleMentor(id, checked) {
       const s = state.students.find(x => x.id === id);
       if (!s) return;
@@ -2025,32 +2378,40 @@
       }
     }
 
-    /* 自動分組 (均分 4 組，相差不超過 1 人，須二次確認) */
-    function triggerAutoGrouping() {
-      if (!confirm("⚠️ 自動分組將覆蓋所有既有組別設定（含手動指定），確定執行重抽嗎？")) return;
-      if (!confirm("再次確認：確定要執行自動隨機分組？")) return;
-
+    function buildBalancedGroups(students) {
       const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
-      const mentors = shuffle(state.students.filter(s => s.mentor));
-      const others = shuffle(state.students.filter(s => !s.mentor));
+      const mentors = shuffle(students.filter(s => s.mentor));
+      const others = shuffle(students.filter(s => !s.mentor));
 
-      /* 先把小老師一人一組拆開，其餘的每次補進人最少的那一組（保證各組相差不超過 1 人） */
+      /* 小老師先循環放入四組，其餘人每次補進人最少的組別（各組相差不超過 1 人） */
       const buckets = [[], [], [], []];
       mentors.forEach((s, i) => buckets[i % 4].push(s));
       others.forEach(s => {
         buckets.reduce((a, b) => (b.length < a.length ? b : a)).push(s);
       });
+      return { buckets, mentors };
+    }
+
+    /* 自動分組 (均分 4 組，相差不超過 1 人，須二次確認) */
+    function triggerAutoGrouping() {
+      if (!confirm("⚠️ 自動分組將覆蓋所有既有組別設定（含手動指定），確定執行重抽嗎？")) return;
+      if (!confirm("再次確認：確定要執行自動隨機分組？")) return;
+
+      const { buckets, mentors } = buildBalancedGroups(state.students);
       buckets.forEach((bucket, i) => bucket.forEach(s => { s.group = String(i + 1); }));
 
       saveState();
       renderAll();
-      const n = Math.min(mentors.length, 4);
-      showToast(
-        n > 0
-          ? `已分組：${n} 組各有一位小老師，人數平均`
-          : "已完成隨機平均分組 (1-4組)",
-        "emerald"
-      );
+      const sizeSummary = buckets.map(bucket => bucket.length).join("/");
+      let mentorSummary = "目前未設定小老師";
+      if (mentors.length > 0 && mentors.length < 4) {
+        mentorSummary = `${mentors.length} 位小老師已分散到 ${mentors.length} 組，另有 ${4 - mentors.length} 組目前沒有小老師`;
+      } else if (mentors.length === 4) {
+        mentorSummary = "每組各有 1 位小老師";
+      } else if (mentors.length > 4) {
+        mentorSummary = `${mentors.length} 位小老師已儘量平均分散；因超過 4 位，部分組會有 2 位以上`;
+      }
+      showToast(`已完成平均分組：4 組人數為 ${sizeSummary}；${mentorSummary}。`, "emerald");
     }
 
     function triggerResetToDefaultSample() {
@@ -2093,12 +2454,18 @@
           return;
         }
 
-        const rawName = normalizeText(cols[0]);
-        const rawSchool = normalizeText(cols[1]);
-        const rawTitle = normalizeText(cols[2]);
-        const rawMealStr = cols[3].trim();
-        const rawGroup = cols[4] ? cols[4].trim() : "";
-        let rawSeat = cols[5] ? cols[5].trim() : "";
+        let rawName, rawSchool, rawTitle, rawMealStr, rawGroup, rawSeat;
+        try {
+          rawName = cleanText(cols[0], 80, `第 ${lineNo} 行姓名`, true);
+          rawSchool = cleanText(cols[1], 120, `第 ${lineNo} 行學校`, true);
+          rawTitle = cleanText(cols[2], 120, `第 ${lineNo} 行職稱`);
+          rawMealStr = cleanText(cols[3], 10, `第 ${lineNo} 行餐食`);
+          rawGroup = cleanText(cols[4] || "", 2, `第 ${lineNo} 行組別`);
+          rawSeat = cleanText(cols[5] || "", 20, `第 ${lineNo} 行座號`);
+        } catch (err) {
+          errors.push(err.message);
+          return;
+        }
 
         if (rawSeat && rawSeat.length === 1) rawSeat = "0" + rawSeat;
 
@@ -2149,14 +2516,11 @@
 
       saveState();
       renderAll();
-
-      const summaryEl = document.getElementById("roster-paste-summary");
-      summaryEl.innerHTML = `
-        <div style="background:#162032; padding:12px; border-radius:8px; font-size:0.9rem;">
-          <div style="font-weight:bold; color:var(--emerald);">匯入完成摘要：成功 ${successCount} 筆／略過重複 ${skippedCount} 筆／錯誤警告 ${errors.length} 筆</div>
-          ${errors.length > 0 ? `<div style="color:var(--red); margin-top:8px; max-height:150px; overflow-y:auto;">${errors.join("<br>")}</div>` : ''}
-        </div>
-      `;
+      renderImportSummary(
+        "roster-paste-summary",
+        `匯入完成摘要：成功 ${successCount} 筆／略過重複 ${skippedCount} 筆／錯誤警告 ${errors.length} 筆`,
+        errors
+      );
     }
 
     function openSubPasteModal() {
@@ -2184,7 +2548,13 @@
         let key = cols[0].trim();
         if (key.length === 1) key = "0" + key;
         const prodId = cols[1].trim();
-        const timeStr = cols[2] ? cols[2].trim() : new Date().toISOString();
+        let timeStr;
+        try {
+          timeStr = cleanDate(cols[2] ? cols[2].trim() : new Date().toISOString(), `第 ${lineNo} 行繳交時間`);
+        } catch (err) {
+          errors.push(err.message);
+          return;
+        }
 
         if (!["1", "2", "3"].includes(prodId)) {
           errors.push(`第 ${lineNo} 行：產品代號「${prodId}」不符(應為1/2/3)`);
@@ -2220,14 +2590,33 @@
 
       saveState();
       renderAll();
+      renderImportSummary(
+        "sub-paste-summary",
+        `繳交匯入摘要：成功更新 ${successCount} 筆／已收到略過 ${skippedCount} 筆／對不上名單 ${errors.length} 筆`,
+        errors
+      );
+    }
 
-      const summaryEl = document.getElementById("sub-paste-summary");
-      summaryEl.innerHTML = `
-        <div style="background:#162032; padding:12px; border-radius:8px; font-size:0.9rem;">
-          <div style="font-weight:bold; color:var(--emerald);">繳交匯入摘要：成功更新 ${successCount} 筆／已收到略過 ${skippedCount} 筆／對不上名單 ${errors.length} 筆</div>
-          ${errors.length > 0 ? `<div style="color:var(--red); margin-top:8px; max-height:150px; overflow-y:auto;">${errors.join("<br>")}</div>` : ''}
-        </div>
-      `;
+    function renderImportSummary(elementId, title, errors) {
+      const summaryEl = document.getElementById(elementId);
+      summaryEl.replaceChildren();
+      const box = document.createElement("div");
+      box.style.cssText = "background:#162032; padding:12px; border-radius:8px; font-size:0.9rem;";
+      const heading = document.createElement("div");
+      heading.style.cssText = "font-weight:bold; color:var(--emerald);";
+      heading.textContent = title;
+      box.appendChild(heading);
+      if (errors.length > 0) {
+        const list = document.createElement("div");
+        list.style.cssText = "color:var(--red); margin-top:8px; max-height:150px; overflow-y:auto;";
+        errors.forEach(message => {
+          const row = document.createElement("div");
+          row.textContent = message;
+          list.appendChild(row);
+        });
+        box.appendChild(list);
+      }
+      summaryEl.appendChild(box);
     }
 
     /* 全形轉半形與去除前後空白 */
@@ -2276,7 +2665,9 @@
       });
 
       const nowHHMM = new Date().toTimeString().slice(0, 5).replace(":", "");
-      exportCSV(`簽到表-20260819-${nowHHMM}.csv`, headers, rows);
+      if (exportCSV(`簽到表-20260819-${nowHHMM}.csv`, headers, rows)) {
+        showToast("已啟動簽到表下載；請到下載資料夾確認檔案存在且可開啟", "info");
+      }
     }
 
     function downloadHoursCSV() {
@@ -2294,87 +2685,120 @@
         ];
       });
 
-      state.checklist.hoursCsvDownloadedAt = new Date().toISOString();
-      saveState();
-      renderEndDayCheckResults();
-
       const nowHHMM = new Date().toTimeString().slice(0, 5).replace(":", "");
-      exportCSV(`時數表-20260819-${nowHHMM}.csv`, headers, rows);
+      if (exportCSV(`時數表-20260819-${nowHHMM}.csv`, headers, rows)) {
+        state.checklist.hoursCsvDownloadedAt = new Date().toISOString();
+        state.checklist.hoursCsvVerified = false;
+        saveState();
+        renderEndDayCheckResults();
+        showToast("已啟動時數表下載；找到並開啟檔案後，請勾選人工確認", "info");
+      }
     }
 
     function exportCSV(filename, headers, rows) {
       let content = "\uFEFF"; // UTF-8 BOM
-      content += headers.map(h => `"${h.replace(/"/g, '""')}"`).join(",") + "\r\n";
+      content += headers.map(csvCell).join(",") + "\r\n";
       rows.forEach(r => {
-        content += r.map(c => `"${(c ?? "").toString().replace(/"/g, '""')}"`).join(",") + "\r\n";
+        content += r.map(csvCell).join(",") + "\r\n";
       });
 
       const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+      return triggerBrowserDownload(blob, filename);
+    }
+
+    function csvCell(value) {
+      let text = (value ?? "").toString();
+      /* 避免姓名或備註被試算表當成公式執行。前置單引號只影響顯示，不會執行。 */
+      if (/^[\t\r\n ]*[=+\-@]/.test(text)) text = "'" + text;
+      return `"${text.replace(/"/g, '""')}"`;
+    }
+
+    function triggerBrowserDownload(blob, filename) {
       const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      link.click();
+      const objectUrl = URL.createObjectURL(blob);
+      try {
+        link.href = objectUrl;
+        link.download = filename;
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        return true;
+      } catch (err) {
+        console.error("Download error", err);
+        showToast("瀏覽器未能啟動下載，資料未標記為完成", "error");
+        return false;
+      } finally {
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+      }
     }
 
     function downloadBackup() {
+      const exportedAt = new Date().toISOString();
       const exportObj = {
         schema: "workshop-console",
         version: 1,
-        exportedAt: new Date().toISOString(),
+        exportedAt,
         eventDate: "2026-08-19",
         students: state.students,
         submissions: state.submissions,
         showcase: state.showcase,
         showcaseBackups: state.showcaseBackups,
         announcement: state.announcement,
-        checklist: state.checklist,
+        checklist: {
+          ...state.checklist,
+          backupDownloadedAt: exportedAt,
+          backupVerified: false
+        },
         groupStatus: state.groupStatus,
         broadcastCustom: state.broadcastCustom
       };
 
-      state.checklist.backupDownloadedAt = new Date().toISOString();
-      saveState();
-      renderEndDayCheckResults();
-
       const nowHHMM = new Date().toTimeString().slice(0, 5).replace(":", "");
       const jsonStr = JSON.stringify(exportObj, null, 2);
       const blob = new Blob([jsonStr], { type: "application/json" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `備份-20260819-${nowHHMM}.json`;
-      link.click();
-
-      showToast("已下載 JSON 完整備份", "emerald");
+      if (triggerBrowserDownload(blob, `備份-20260819-${nowHHMM}.json`)) {
+        state.checklist.backupDownloadedAt = new Date().toISOString();
+        state.checklist.backupVerified = false;
+        saveState();
+        renderOpeningCheckResults();
+        renderEndDayCheckResults();
+        showToast("已啟動 JSON 備份下載；找到並開啟檔案後，請勾選人工確認", "info");
+      }
     }
 
     function handleRestoreJSON(evt) {
       const file = evt.target.files[0];
       if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        alert("⚠️ 備份檔超過 5 MB 上限，已拒絕還原；現有資料保持不動。");
+        evt.target.value = "";
+        return;
+      }
 
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
           const parsed = JSON.parse(e.target.result);
-          if (!parsed.schema || parsed.schema !== "workshop-console") {
-            alert("⚠️ 錯誤：匯入的 JSON 檔案結構 schema 不符合（必須為 workshop-console），已拒絕還原！");
-            return;
-          }
+          /* 全部欄位先驗證、正規化到 candidate；在這之前絕不碰現有 state。 */
+          const candidate = normalizeStateData(parsed, true);
           if (!confirm("確定要還原此 JSON 備份檔嗎？目前的資料將會被取代！")) return;
-
-          state.students = parsed.students || [];
-          state.submissions = parsed.submissions || {};
-          state.showcase = parsed.showcase || { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
-          state.showcaseBackups = parsed.showcaseBackups || { "SHOW-1": null, "SHOW-2": null, "SHOW-3": null };
-          state.announcement = parsed.announcement || "";
-          state.checklist = parsed.checklist || state.checklist;
-          state.groupStatus = parsed.groupStatus || state.groupStatus;
-
+          state = candidate;
           saveState();
           renderAll();
-          alert("✅ 成功還原 JSON 備份資料！");
+          alert(isStorageAvailable
+            ? "✅ 成功還原並儲存 JSON 備份資料！"
+            : "⚠️ 已在目前分頁載入備份，但本機儲存不可用；請勿關閉，並立即重新下載備份。");
         } catch (err) {
-          alert("⚠️ 無法解析此 JSON 檔案，請檢查檔案格式！現有資料保持不動。");
+          console.error("Restore validation error", err);
+          alert(`⚠️ 備份檔未通過檢查：${err.message}\n\n現有資料保持不動。`);
+        } finally {
+          evt.target.value = "";
         }
+      };
+      reader.onerror = () => {
+        alert("⚠️ 無法讀取這個檔案；現有資料保持不動。");
+        evt.target.value = "";
       };
       reader.readAsText(file);
     }
@@ -2388,7 +2812,7 @@
       state.students.forEach((s, idx) => {
         rowsHtml += `
           <tr>
-            <td style="text-align:center;">${s.seat || (idx + 1)}</td>
+            <td style="text-align:center;">${escapeHtml(s.seat || String(idx + 1))}</td>
             <td>${escapeHtml(s.name)}</td>
             <td>${escapeHtml(s.school)}</td>
             <td>${escapeHtml(s.title || '')}</td>
@@ -2469,7 +2893,7 @@
       state.students.forEach((s, idx) => {
         pageCardsHtml += `
           <div class="nameplate-card">
-            <div class="nameplate-seat">座號 ${s.seat || '—'}</div>
+            <div class="nameplate-seat">座號 ${escapeHtml(s.seat || '—')}</div>
             <div class="nameplate-name">${escapeHtml(s.name)}</div>
             <div class="nameplate-sub">${escapeHtml(s.school)}｜第 ${s.group || '未'} 組</div>
           </div>
@@ -2512,8 +2936,8 @@
       const todayStr = new Date().toLocaleDateString("zh-TW", { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, "-");
       const test3Pass = todayStr.includes("2026") && todayStr.includes("08") && todayStr.includes("19");
 
-      // 4. 最近備份存在且為今日
-      const test4Pass = !!state.checklist.backupDownloadedAt;
+      // 4. 瀏覽器只能知道「已啟動下載」；由人確認檔案真的存在且能開啟
+      const test4Pass = !!state.checklist.backupVerified;
 
       resultsEl.innerHTML = `
         <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
@@ -2531,13 +2955,17 @@
           </span>
         </div>
         <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
-          <span>4. 開場前備份檔建立：</span>
+          <span>4. 開場前備份檔人工確認：</span>
           <span style="font-weight:bold; color:${test4Pass ? 'var(--emerald)' : 'var(--amber)'};">
-            ${test4Pass ? `✅ 通過 (已於 ${formatHHMM(state.checklist.backupDownloadedAt)} 下載)` : '⚠️ 提示：請先點選右側按鈕下載開場前備份'}
+            ${test4Pass ? '✅ 通過（已確認檔案存在且可開啟）' : (state.checklist.backupDownloadedAt ? `⚠️ ${formatHHMM(state.checklist.backupDownloadedAt)} 已啟動下載，仍待人工確認` : '⚠️ 請先下載開場前備份')}
           </span>
         </div>
-        <div style="margin-top:8px;">
+        <div style="margin-top:8px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
           <button class="btn btn-blue" onclick="downloadBackup()">下載開場前備份</button>
+          <label style="font-weight:bold;">
+            <input type="checkbox" ${state.checklist.backupVerified ? 'checked' : ''} ${state.checklist.backupDownloadedAt ? '' : 'disabled'} onchange="toggleDownloadVerified('backup', this.checked)">
+            我已在下載資料夾找到 JSON，並成功開啟檢查
+          </label>
         </div>
       `;
     }
@@ -2556,10 +2984,9 @@
 
       // 必達項 1: 缺簽退為 0
       const item1Pass = stats.uncheckedOut === 0 || waivers.includes("unout");
-      // 必達項 2: 已下載時數表
-      const item2Pass = !!state.checklist.hoursCsvDownloadedAt || waivers.includes("hours");
-      // 必達項 3: 已下載備份
-      const item3Pass = !!state.checklist.backupDownloadedAt || waivers.includes("backup");
+      // 必達項 2、3：瀏覽器只能啟動下載，必須由人確認檔案存在且可開啟
+      const item2Pass = !!state.checklist.hoursCsvVerified || waivers.includes("hours");
+      const item3Pass = !!state.checklist.backupVerified || waivers.includes("backup");
       // 必達項 4: 人工確認紙本簽到表印出且正確
       const item4Pass = state.checklist.signSheetPrintedConfirmed || waivers.includes("signsheet");
 
@@ -2567,7 +2994,7 @@
 
       // 缺簽退姓名具體列出
       const unoutStudents = state.students.filter(s => s.checkedInAt !== null && s.checkedOutAt === null);
-      const unoutNamesStr = unoutStudents.map(s => s.name).join("、");
+      const unoutNamesStr = escapeHtml(unoutStudents.map(s => s.name).join("、"));
 
       resultsEl.innerHTML = `
         <div style="padding:10px; background:${allMandatoryPassed ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)'}; border: 1px solid ${allMandatoryPassed ? 'var(--emerald)' : 'var(--red)'}; border-radius:8px; font-weight:bold; font-size:1.1rem;">
@@ -2589,10 +3016,14 @@
           <!-- 項目 2 -->
           <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
             <div>
-              <strong>2. 下載研習時數表 CSV：</strong>
-              <span style="color:${state.checklist.hoursCsvDownloadedAt ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
-                ${state.checklist.hoursCsvDownloadedAt ? `已於 ${formatHHMM(state.checklist.hoursCsvDownloadedAt)} 下載` : '未下載'}
+              <strong>2. 確認研習時數表 CSV：</strong>
+              <span style="color:${state.checklist.hoursCsvVerified ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
+                ${state.checklist.hoursCsvVerified ? '已人工確認檔案存在且可開啟' : (state.checklist.hoursCsvDownloadedAt ? `${formatHHMM(state.checklist.hoursCsvDownloadedAt)} 已啟動下載，仍待確認` : '尚未啟動下載')}
               </span>
+              <label style="display:block; margin-top:6px; font-size:0.9rem;">
+                <input type="checkbox" ${state.checklist.hoursCsvVerified ? 'checked' : ''} ${state.checklist.hoursCsvDownloadedAt ? '' : 'disabled'} onchange="toggleDownloadVerified('hours', this.checked)">
+                我已在下載資料夾找到 CSV，並成功開啟檢查
+              </label>
             </div>
             <button class="btn btn-outline btn-sm hide-on-projection" onclick="toggleWaiver('hours')">${waivers.includes("hours") ? '取消豁免' : '標記不適用豁免'}</button>
           </div>
@@ -2600,10 +3031,14 @@
           <!-- 項目 3 -->
           <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
             <div>
-              <strong>3. 下載 JSON 完整備份：</strong>
-              <span style="color:${state.checklist.backupDownloadedAt ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
-                ${state.checklist.backupDownloadedAt ? `已於 ${formatHHMM(state.checklist.backupDownloadedAt)} 下載` : '未下載'}
+              <strong>3. 確認 JSON 完整備份：</strong>
+              <span style="color:${state.checklist.backupVerified ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
+                ${state.checklist.backupVerified ? '已人工確認檔案存在且可開啟' : (state.checklist.backupDownloadedAt ? `${formatHHMM(state.checklist.backupDownloadedAt)} 已啟動下載，仍待確認` : '尚未啟動下載')}
               </span>
+              <label style="display:block; margin-top:6px; font-size:0.9rem;">
+                <input type="checkbox" ${state.checklist.backupVerified ? 'checked' : ''} ${state.checklist.backupDownloadedAt ? '' : 'disabled'} onchange="toggleDownloadVerified('backup', this.checked)">
+                我已在下載資料夾找到 JSON，並成功開啟檢查
+              </label>
             </div>
             <button class="btn btn-outline btn-sm hide-on-projection" onclick="toggleWaiver('backup')">${waivers.includes("backup") ? '取消豁免' : '標記不適用豁免'}</button>
           </div>
@@ -2624,6 +3059,20 @@
 
     function renderEndDayCheckResults() {
       runEndDayCheck();
+    }
+
+    function toggleDownloadVerified(kind, checked) {
+      const isHours = kind === "hours";
+      const timestampKey = isHours ? "hoursCsvDownloadedAt" : "backupDownloadedAt";
+      const verifiedKey = isHours ? "hoursCsvVerified" : "backupVerified";
+      if (checked && !state.checklist[timestampKey]) {
+        alert("請先按下載，並在下載資料夾找到檔案後再勾選。");
+        return;
+      }
+      state.checklist[verifiedKey] = !!checked;
+      saveState();
+      renderOpeningCheckResults();
+      renderEndDayCheckResults();
     }
 
     function toggleSignSheetConfirmed(checked) {
@@ -2794,7 +3243,7 @@
         container.innerHTML += `
           <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:10px 14px; border-radius:8px;">
             <div>
-              <span class="seat-badge">座號 ${s.seat || '—'}</span>
+              <span class="seat-badge">座號 ${escapeHtml(s.seat || '—')}</span>
               <strong style="margin-left:8px; font-size:1.1rem;">${escapeHtml(s.name)}</strong>
               <span style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;">(${escapeHtml(s.school)})</span>
             </div>
@@ -2820,7 +3269,7 @@
           listEl.innerHTML += `
             <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:10px 14px; border-radius:8px;">
               <div>
-                <span class="seat-badge">座號 ${s.seat || '—'}</span>
+                <span class="seat-badge">座號 ${escapeHtml(s.seat || '—')}</span>
                 <strong class="${isProjectionMode ? 'sensitive-name' : ''}" style="margin-left:8px; font-size:1.1rem;">${escapeHtml(s.name)}</strong>
                 <span class="${isProjectionMode ? 'sensitive-name' : ''}" style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;">(${escapeHtml(s.school)})</span>
               </div>
@@ -2860,7 +3309,7 @@
         absents.forEach(s => {
           html += `
             <tr style="border-bottom:1px solid #ccc;">
-              <td>${s.seat || '—'}</td>
+              <td>${escapeHtml(s.seat || '—')}</td>
               <td><strong>${escapeHtml(s.name)}</strong></td>
               <td>${escapeHtml(s.school)}</td>
               <td>第 ${s.group || '未'} 組</td>
@@ -2888,8 +3337,8 @@
       state.students.forEach(s => {
         const sub = state.submissions[s.id] || {};
         const missingItems = [];
-        if (sub["1"]?.state === "未收") missingItems.push("① 24週課程規劃表");
-        if (sub["1"]?.state === "檔案打不開") missingItems.push("① 24週課程規劃表 (⚠️ 需重新繳交)");
+        if (sub["1"]?.state === "未收") missingItems.push("① 課程規劃表");
+        if (sub["1"]?.state === "檔案打不開") missingItems.push("① 課程規劃表 (⚠️ 需重新繳交)");
 
         if (sub["2"]?.state === "未收") missingItems.push("② 學生回饋單");
         if (sub["2"]?.state === "檔案打不開") missingItems.push("② 學生回饋單 (⚠️ 需重新繳交)");
@@ -2913,7 +3362,7 @@
         missingList.forEach(m => {
           html += `
             <div style="margin-bottom:12px; border-bottom:1px dashed #666; padding-bottom:8px;">
-              <strong>${escapeHtml(m.student.name)} (${escapeHtml(m.student.school)}) - 座號 ${m.student.seat || '—'}：</strong>
+              <strong>${escapeHtml(m.student.name)} (${escapeHtml(m.student.school)}) - 座號 ${escapeHtml(m.student.seat || '—')}：</strong>
               <div style="margin-left:15px; color:#d97706;">缺件及需重交項目：${m.items.join("； ")}</div>
             </div>
           `;
@@ -2951,6 +3400,7 @@
 
     /* 頁籤切換 */
     function switchTab(paneId) {
+      if (isProjectionMode) return;
       document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
 

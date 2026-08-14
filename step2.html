@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -42,6 +45,7 @@
       <p class="eyebrow">關 2</p>
       <h1>學生名單＋出席</h1>
       <p class="lede">這一關有官方規定當靠山（共識營簡報第 12 頁）：<strong>教室日誌不是形式，它是核銷的憑據。</strong>名單填一次，出席率與材料費份數兩件事一起解決。</p>
+      <p class="small">8/19 下半場作品統一在 <strong>11:50</strong> 收件；這一關使用<strong>單一 Antigravity</strong>，釐清、實作與檢查都留在同一個對話，不切回 Codex。</p>
       <section class="gate" id="g1">
         <header><span class="n">1</span><h2>這關做什麼</h2></header>
         <div class="body">
@@ -102,7 +106,7 @@
     <text x="480" y="683" text-anchor="middle" fill="var(--fg2)" font-size="14">最常退件：漏加教師 2 人</text>
   </g>
 </svg>
-          <p>這張名單也是後面幾關的地基：回饋單、學生作品、材料費對帳，全部共用它。<strong>填一次、四個地方都能用。</strong></p>
+          <p>這張名單是後面幾關的資料來源。真實名單只留在本機受控工具；回饋、作品與材料費對帳使用去識別化總數或摘要。<strong>不同 HTML 不會自動共用瀏覽器資料</strong>，換工具或換電腦前要先依本頁匯出備份。</p>
         </div>
       </section>
       <section class="gate" id="g2">
@@ -126,53 +130,99 @@
         <header><span class="n">3</span><h2>提示詞卡</h2></header>
         <div class="body">
           <div class="note">
-            <p><strong>下面這些是起手式，不是標準答案。</strong>貼完第一段之後，真正決定成品好不好的是你接著怎麼跟它談——四招在<a href="method.html#talk">方法頁</a>那一節。</p>
+            <p><strong>下面四張卡都貼在同一個 Antigravity 對話。</strong>這是下半場的單一 AI 流程；卡片只是起手式，真正決定成品好不好的是你接著怎麼跟它談——四招在<a href="method.html#talk">方法頁</a>那一節。</p>
           </div>
           <div class="prompt">
-            <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
-            <pre>我要做一個社團的名單與出席紀錄工具。有三條官方規定你一定要照著做：
-・材料費份數 ＝ 當次出席學生數 ＋ 授課教師 2 人
-・出席率要算整個學期的整體百分比
-・請購單要分成 2026 年 9–12 月 與 2027 年 1–6 月 兩段
+            <header><span class="step">① 釐清規格：貼給 Antigravity</span><button class="copy" type="button">複製</button></header>
+            <pre>我要做一個社團的名單與出席紀錄工具。請分清楚已確認規則與待確認項目：
+・先讀 sources/01-official-result-template.*，找到附件一「學生名單」與附件二「學生出席表／教室日誌」；逐欄列出原始欄位。同一固定開頭有兩份或找不到就停下來，不要自編欄位
+・已確認：材料費份數 ＝ 當次出席學生數 ＋ 授課教師 2 人
+・已確認：請購單要分成 2026 年 9–12 月 與 2027 年 1–6 月 兩段
+・待確認：成果報告要填整個學期的整體出席率，但現有官方原件沒有定義分母
+・工具暫用「出席人次 ÷（名單人數 × 已點名堂次）」；畫面要標示「送件前請向基金會確認算法」
 
-先不要寫程式。先問我三到五個你需要知道的問題，我答完你再寫規格。
-請把規格用下面這兩行框起來，中間不要夾雜別的話，我才知道要複製哪一段：
-===規格開始===
-（規格內容）
-===規格結束===</pre>
+這一階段只用虛構資料討論。不要請我貼真實學生姓名、學號、出席或聯絡資料。
+
+先不要寫程式。先問我三到五個你需要知道的問題。
+我答完後，先列出來源相對路徑、已確認、待確認、驗收案例與去識別化摘要欄位。
+規格檔只寫 sources/... 這種專案內相對路徑，不寫含電腦帳號名稱的完整路徑。
+等我說確認後，固定存成 specs/step2.md；同名檔已存在就停下來，不得覆蓋。
+等我說可以再製作。</pre>
             <dl>
               <dt>要什麼</dt><dd>欄位、畫面與兩個算式的規格</dd>
               <dt>AI 大概會回什麼</dt><dd>名單欄位表、點名畫面、出席率與份數的算式</dd>
-              <dt>你要檢查什麼</dt><dd>份數算式有沒有含「＋2 位老師」；有沒有把上下學期分開</dd>
+              <dt>你要檢查什麼</dt><dd>份數算式有沒有含「＋2 位老師」；出席率有沒有把暫用公式與待確認提醒寫清楚；有沒有把上下學期分開</dd>
             </dl>
           </div>
           <div class="prompt">
-            <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
-            <pre>請照規格做一個單一檔案的 HTML 工具，離線可開，資料存在瀏覽器裡。
-請加一顆「載入練習用範例」，裡面用虛構姓名，絕對不要用真名。
-做完告訴我檔案存在哪個完整路徑。
-畫面怎麼排、用什麼顏色你決定，但字不要小於 16 px。
+            <header><span class="step">② 實作：留在同一個 Antigravity 對話</span><button class="copy" type="button">複製</button></header>
+            <pre>請先讀 specs/step2.md；找不到就停下來。再依照已確認規格做一個單一檔案的 HTML 工具，離線可開，
+固定存成 outputs/attendance.html。若同名檔已存在，先停下來告訴我，
+不得覆蓋，也不得覆蓋教材的 index.html。
 
-⟨把第 1 步那兩條框線中間的內容整段貼在這裡，框線本身不用貼⟩</pre>
+工具至少要能：
+1. 新增、編輯學生；刪除前要再次確認
+2. 新增上課日期、逐次點名，並能更正選錯的出席紀錄
+3. 依剛才讀到的官方欄位，匯出附件一與附件二；缺欄位就標「待確認」，不要自編
+4. 分開統計 2026 年 9–12 月與 2027 年 1–6 月
+5. 顯示每次出席學生數、材料費份數（出席學生數＋2）及暫用出席率
+6. 匯出 JSON 備份，並能從 JSON 還原。還原前先檢查格式、顯示摘要與筆數，
+   等使用者再次確認才覆蓋瀏覽器現有資料；格式錯誤時不得清除原資料
+7. 提醒使用者：瀏覽器 localStorage 不會跟著 GitHub 到另一台電腦；
+   更新工具或換電腦前要先匯出備份，備份含個資，不准交給 AI 或上傳 GitHub
+8. 另有「匯出去識別化接力摘要」按鈕，固定下載 attendance-summary.json，提醒我把它存到
+   outputs/attendance-summary.json。內容只能有：產生時間、日期範圍、名單人數、已點名堂次、
+   出席人次、分母、暫用公式、暫用百分比、公式狀態、附件一／二完成狀態，並明寫
+   contains_personal_data: false；不得含姓名、座號、逐次個人出席或聯絡資料。
+   若 outputs/attendance-summary.json 已存在，先提醒我另外備份，不得靜默覆蓋。
+
+請加一顆「載入練習用範例」，裡面只用虛構姓名。
+做完告訴我檔案存在哪個完整路徑。畫面怎麼排、用什麼顏色你決定，
+但字不要小於 16 px。</pre>
             <dl>
               <dt>要什麼</dt><dd>一台真的能點名、能算數字的工具</dd>
               <dt>AI 大概會回什麼</dt><dd>一個 .html 檔＋路徑</dd>
-              <dt>你要檢查什麼</dt><dd>關掉再打開，資料還在嗎？點名 12 人時份數顯示 14 嗎？</dd>
+              <dt>你要檢查什麼</dt><dd>關掉再打開，資料還在嗎？點名 12 人時份數顯示 14 嗎？備份能否安全還原？去識別化摘要能否供關 5 讀取？</dd>
             </dl>
           </div>
           <div class="prompt">
-            <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
-            <pre>這是剛做好的名單出席工具（路徑：⟨貼上路徑⟩）。請逐條列出問題，不要幫我改：
+            <header><span class="step">③ 檢查：仍在同一個 Antigravity 對話</span><button class="copy" type="button">複製</button></header>
+            <pre>請重新打開剛做好的名單出席工具，逐條列出問題，先不要幫我改：
 1. 材料費份數是否等於當次出席學生數＋2
-2. 出席率的分母是名單人數還是有到的人數，是否符合官方定義
+2. 出席率目前採用什麼分子與分母；有沒有誤稱為官方定義
 3. 上下學期是否分開統計
 4. 有沒有任何按鈕按了沒反應、或文字看不見
 5. 有沒有真實姓名留在裡面
-最後再告訴我：還有什麼是我沒想到、但應該要檢查的？</pre>
+6. 新增、編輯、更正出席與刪除確認是否都能用
+7. 附件一、附件二的匯出欄位是否真的來自官方範本，而不是自行猜測
+8. JSON 還原遇到空檔、錯誤格式或缺欄位時，是否保留原資料並清楚報錯
+9. outputs/attendance-summary.json 是否包含分子、分母、暫用公式、日期範圍與附件狀態
+10. 去識別化摘要是否完全沒有姓名、座號、逐次個人出席與聯絡資料
+最後再告訴我：還有什麼是我沒想到、但應該要檢查的？
+列完後先等我確認，不要直接改檔。</pre>
             <dl>
               <dt>要什麼</dt><dd>一張「哪裡不對」的清單</dd>
-              <dt>AI 大概會回什麼</dt><dd>逐條問題，常會抓到分母算錯</dd>
+              <dt>AI 大概會回什麼</dt><dd>逐條問題，包含目前採用的出席率公式與待確認項目</dd>
               <dt>你要檢查什麼</dt><dd>它指出的每一條，自己在畫面上試一次</dd>
+            </dl>
+          </div>
+          <div class="prompt">
+            <header><span class="step">④ 修正並重驗：仍在同一個 Antigravity 對話</span><button class="copy" type="button">複製</button></header>
+            <pre>這是我確認要修正的問題：
+⟨貼上剛才的問題清單，只保留你確認要改的項目⟩
+
+請只修正這些項目，不要動其他已通過的內容。若 outputs/attendance.html 已存在，
+先複製成 outputs/attendance-before-fix.html 留存；若備份檔也已存在，先停下來問我，
+不得覆蓋。修正時只用虛構資料，不要要求我貼真實名單或備份檔。
+
+修正後重新開啟工具，逐條重跑第 ③ 步的十項檢查。另做一次完整測試：
+建立虛構名單 → 點名 → 匯出備份 → 新增一筆 → 還原舊備份 → 核對筆數 →
+匯出去識別化摘要 → 打開摘要確認無姓名、分子分母正確。
+最後分成「已修正」「仍待確認」兩段回報，附上成品與備份的完整路徑。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>有備份、經過第二次檢查的修正版</dd>
+              <dt>AI 大概會回什麼</dt><dd>修正項目、備份還原測試與檔案路徑</dd>
+              <dt>你要檢查什麼</dt><dd>錯誤備份沒有清掉原資料；測試只使用虛構名單</dd>
             </dl>
           </div>
         </div>
@@ -182,10 +232,14 @@
         <div class="body">
           <ul>
             <li><strong>份數忘了加兩位老師</strong>：最常見的一個錯。AI 幾乎都只算學生。</li>
-            <li><strong>出席率的分母算錯</strong>：分母是「應到人數」（名單人數 × 上課次數），不是「有到的人數」。</li>
+            <li><strong>把出席率公式寫成「官方規定」</strong>：成果報告範本要填整體出席率，但現有原件沒有定義分母。本站暫用「出席人次 ÷（名單人數 × 已點名堂次）」；送件前仍要向基金會窗口確認。</li>
             <li><strong>上下學期沒分開</strong>：到期末核銷才發現一張請購單跨了兩個期間，得整張重做。</li>
             <li><strong>資料關掉就不見了</strong>：要明確跟 AI 說「資料存在瀏覽器裡，關掉再開還要在」，然後自己關一次試試。</li>
-            <li>🚨 <strong>裡面有真實學生姓名</strong>：這台如果之後要放上網（<a href="github.html">關 6</a>），先按「載入練習用範例」把真名單清乾淨。</li>
+            <li><strong>以為瀏覽器資料會跟著 GitHub 換電腦</strong>：不會。換電腦、移動檔案或更新工具前，先在原電腦匯出 JSON 備份；備份含真實名單時，只能放在學校核准的安全位置。</li>
+            <li><strong>把真名備份交給關 5</strong>：不行。關 5 只讀 <code>outputs/attendance-summary.json</code>；真名備份與附件一、二留在學校受控位置。</li>
+            <li><strong>還原錯誤備份後整份名單不見</strong>：還原前一定要先驗格式、顯示筆數與摘要，再由人確認。測試錯誤檔時，原資料必須留著。</li>
+            <li><strong>把官方欄位交給 AI 猜</strong>：先讓它讀附件一與附件二。找不到原檔就停，不能用「常見欄位」代替。</li>
+            <li>🚨 <strong>準備把含真名的工作資料夾放上網</strong>：不要上傳原本的工作資料夾，也不要把「載入練習用範例」當成清除個資。請<strong>另外建立一個全新的乾淨資料夾</strong>，只複製要公開的檔案進去，公開版本一律使用虛構名單，再逐檔檢查後才上傳（見<a href="github.html">關 6</a>）。</li>
           </ul>
         </div>
       </section>
@@ -194,15 +248,22 @@
         <div class="body">
           <ul class="checklist">
             <li><label><input type="checkbox"><span>名單欄位跟官方附件一一樣</span></label></li>
+            <li><label><input type="checkbox"><span>附件二匯出欄位已逐欄和官方範本核對</span></label></li>
             <li><label><input type="checkbox"><span>點名 12 位學生時，材料費份數顯示 14 份</span></label></li>
-            <li><label><input type="checkbox"><span>出席率的分母是應到人數（名單人數 × 上課次數）</span></label></li>
+            <li><label><input type="checkbox"><span>出席率公式清楚寫出分子與分母，並標示送件前要向基金會確認</span></label></li>
             <li><label><input type="checkbox"><span>2026 年 9–12 月 與 2027 年 1–6 月 分開統計</span></label></li>
             <li><label><input type="checkbox"><span>關掉瀏覽器再打開，資料還在</span></label></li>
+            <li><label><input type="checkbox"><span>能新增、編輯、更正出席；刪除前會再次確認</span></label></li>
+            <li><label><input type="checkbox"><span>JSON 備份能匯出；錯誤備份不會清掉原資料；正確備份能還原</span></label></li>
+            <li><label><input type="checkbox"><span>outputs/attendance-summary.json 有日期範圍、分子、分母、暫用公式、百分比與附件狀態</span></label></li>
+            <li><label><input type="checkbox"><span>去識別化摘要沒有姓名、座號、逐次個人出席或聯絡資料</span></label></li>
+            <li><label><input type="checkbox"><span>specs/step2.md 已保存來源、已確認、待確認與驗收案例</span></label></li>
             <li><label><input type="checkbox"><span>每一顆按鈕都按過一次，都有反應</span></label></li>
             <li><label><input type="checkbox"><span>畫面上每一行字都唸得出來（沒有白底白字）</span></label></li>
-            <li><label><input type="checkbox"><span>要放上網之前，裡面沒有任何真實學生姓名</span></label></li>
+            <li><label><input type="checkbox"><span>要放上網時另開全新的乾淨資料夾，且逐檔確認沒有真實學生資料</span></label></li>
+            <li><label><input type="checkbox"><span>成品在 outputs/attendance.html，沒有覆蓋教材首頁或既有作品</span></label></li>
           </ul>
-          <p class="done-count small">已完成 0 / 8 項</p>
+          <p class="done-count small">已完成 0 / 15 項</p>
         </div>
       </section>
 

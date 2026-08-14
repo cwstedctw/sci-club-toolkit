@@ -188,7 +188,7 @@ details.block.ok{border-color:var(--ok)}
   background:var(--card);overflow:hidden}
 .frame iframe{display:block;width:100%;height:min(78vh,820px);border:0;background:var(--card)}
 .frame .ph{position:absolute;inset:0;display:grid;place-content:center;gap:.5rem;
-  text-align:center;padding:2rem;color:var(--fg2);font-size:var(--fs-ms)}
+  text-align:center;padding:2rem;color:var(--fg2);font-size:var(--fs-ms);pointer-events:none}
 .frame .ph b{color:var(--warn);font-size:var(--fs-ml)}
 /* app.js 用 ph.hidden=true 藏佔位字，但上面的 display:grid 會蓋過瀏覽器對 [hidden] 的
    display:none，害佔位字疊在 iframe 上面。這一行把它壓回去。 */
@@ -201,7 +201,32 @@ details.block.ok{border-color:var(--ok)}
 .btn:hover{background:var(--card-hi);color:var(--fg)}
 .btn.primary{background:var(--ok);color:#04231a;border-color:var(--ok);font-weight:700}
 .btn.primary:hover{background:var(--ok-d);color:var(--ok-l)}
-.mobile-open{display:none}
+.mobile-open{display:inline-flex}
+.copy-manual{display:block;width:100%;min-height:10rem;margin:.75rem 0 0;padding:.8rem;
+  border:2px solid var(--warn);border-radius:4px;background:#fff;color:#111;
+  font:inherit;font-size:var(--fs-s);line-height:1.5;resize:vertical}
+
+/* Zoomable teaching diagrams and screenshots. */
+.media-viewer{width:100%;margin:1rem 0;color:var(--fg)}
+.media-zoom-controls{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;
+  padding:.4rem .5rem;background:#243349;border:1px solid var(--line);border-radius:6px 6px 0 0}
+.media-zoom-controls .media-zoom-label{margin-right:auto;color:var(--fg2);font-size:var(--fs-s)}
+.media-zoom-button{min-width:44px;min-height:44px;padding:0 .75rem;border:1px solid var(--line);
+  border-radius:4px;background:var(--card);color:var(--fg);font:inherit;font-size:var(--fs-s);cursor:pointer}
+.media-zoom-button:hover:not(:disabled){background:var(--card-hi)}
+.media-zoom-button:disabled{opacity:.45;cursor:not-allowed}
+.media-zoom-status{min-width:3.8rem;text-align:center;color:var(--warn);font-size:var(--fs-s);
+  font-variant-numeric:tabular-nums}
+.media-viewport{width:100%;overflow:auto;border:1px solid var(--line);border-top:0;
+  border-radius:0 0 6px 6px;background:var(--card);overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;cursor:grab}
+.media-viewport.is-dragging{cursor:grabbing}
+.media-zoom-surface{margin-inline:auto;transform-origin:top left}
+.media-zoom-target{display:block;width:100%!important;max-width:none!important;height:auto;
+  user-select:none;-webkit-user-drag:none}
+body.proj .media-viewer{margin:.5rem 0}
+body.proj .media-viewport{max-height:56vh}
+body.proj .media-viewer .media-zoom-target{max-height:none}
 
 /* ── 純文字流程圖 ───────────────────────── */
 pre.flow{background:var(--card);border:1px solid var(--line);border-radius:6px;
@@ -224,7 +249,14 @@ footer.site{border-top:1px solid var(--line);margin-top:4rem;padding:1.5rem 0 0;
   .frame .ph{position:static;min-height:12rem}
   .mobile-open{display:inline-flex}
 }
-@media print{.topbar,.sidebar,.copy{display:none}body{background:#fff;color:#000}}
+@media print{
+  .topbar,.sidebar,.copy,.media-zoom-controls{display:none}
+  body{background:#fff;color:#000}
+  .media-viewer{max-width:100%!important;margin:.5rem 0}
+  .media-viewport{overflow:visible;border:0;background:transparent}
+  .media-zoom-surface{width:100%!important}
+  .needbars.media-zoom-target{--fs-s:.85rem!important;--fs-xs:.75rem!important}
+}
 
 .needbars{display:grid;gap:.5rem;margin:.75rem 0}
 .nb-row{display:grid;grid-template-columns:11rem 1fr 3.5rem;gap:.6rem;align-items:center}

@@ -34,10 +34,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -50,7 +53,7 @@
   <aside class="sidebar">
     <h2>這頁有什麼</h2>
     <ol>
-      <li><a href="#pick">課前先看這三個就夠</a></li>
+      <li><a href="#pick">課前先看這四個就夠</a></li>
       <li><a href="#fix">當場卡住：症狀對照表</a></li>
       <li><a href="#official">官方文件</a></li>
       <li><a href="#zh">中文入門教學</a></li>
@@ -70,18 +73,26 @@
     </p>
 
     <div class="note">
-      <b>不用全部看完。</b>課前只要看「先看這三個」，其他等你真的卡住再回來查。
+      <b>不用全部看完。</b>課前只要看「先看這四個」，其他等你真的卡住再回來查。
+    </div>
+    <div class="note info">
+      <b>8/19 有兩種 AI 流程。</b>上半場實際使用 Codex → Antigravity → Codex，完成規劃、實作與複核；下半場才使用單一 Antigravity。GitHub 帳號、Git 與已登入的 GitHub CLI 也要在行前準備好，讓 AI 能留版本並把 repo 內的專案記憶、規格與作品接到另一台電腦；GitHub Desktop 選配。
+    </div>
+    <div class="note ok">
+      <b>課後要重做，不必先讀外部文章。</b>先回<a href="install.html">行前安裝</a>與<a href="step0.html">關 0</a>，再依現場實作順序走<a href="step1.html">關 1</a>、<a href="step3.html">關 3</a>、<a href="step2.html">關 2</a>、<a href="step4.html">關 4</a>、<a href="step5.html">關 5</a>與<a href="github.html">關 6</a>；真的卡住才用本頁查。本站目前沒有列公開教材下載網址，請保留行前信附件的 ZIP，遺失時向原主辦單位索取最新版。
     </div>
 
     <section class="pick3" id="pick">
-      <h3>課前先看這三個就夠</h3>
+      <h3>課前先看這四個就夠</h3>
       <ol>
         <li><a href="https://codelabs.developers.google.com/getting-started-google-antigravity?hl=zh-tw" target="_blank" rel="noopener noreferrer">開始使用 Google Antigravity</a>（Google 官方，<b>繁體中文</b>、圖多）<br>
-          <span class="muted small">安裝、登入、建第一個專案，跟著點就會。行前唯一必看的一篇。</span></li>
+          <span class="muted small">安裝、登入、建第一個專案，跟著點就會。Antigravity 入門先看這篇。</span></li>
         <li><a href="https://learn.chatgpt.com/docs/quickstart" target="_blank" rel="noopener noreferrer">ChatGPT 桌面版 Quickstart</a>（OpenAI 官方，英文）<br>
           <span class="muted small">安裝 → 登入 → 開資料夾 → 第一次對話。英文不好也沒關係，照著畫面點。</span></li>
+        <li><a href="install.html#a6">GitHub 行前安裝清單</a>（本教材中文步驟）<br>
+          <span class="muted small">依序完成 GitHub 帳號、Git、GitHub CLI 與登入；GitHub Desktop 是選配。這組工具用於版本控制與跨機器接手；部署另列選配，可用 GitHub Pages、Netlify 或其他服務。</span></li>
         <li><a href="https://antigravity.google/docs/plans" target="_blank" rel="noopener noreferrer">Antigravity 額度說明</a>（Google 官方，英文）<br>
-          <span class="muted small"><b>只要看一件事：免費方案是「每週」刷新。</b>用完當天補不回來——這是 8/19 最可能毀掉你半天的東西。</span></li>
+          <span class="muted small"><b>只要看一件事：免費方案按週刷新。</b>實際額度會依帳號與模型變動，不要預設固定次數；用完當天無法立刻補回。</span></li>
       </ol>
     </section>
 
@@ -97,7 +108,7 @@
         <tr><td>突然不動了，像當機</td>
             <td><b>先想是不是額度用完</b>——這是最常見的原因，而且它不會明講。兩邊都是看進度條，不是數次數。</td></tr>
         <tr><td>它一直跳出來問我可不可以</td>
-            <td><b>那是正常的</b>，它在問能不能碰你的檔案。新手階段建議保持「每次都問我」，你才知道它做了什麼。</td></tr>
+            <td><b>那是正常的</b>。初學者請保留安全等級 <span class="en">Default</span>，產出審核選 <span class="en">Always Ask</span>；不要為了少幾次確認改成可讀寫整台電腦的 <span class="en">Full machine</span>。</td></tr>
         <tr><td>它說做好了，但我找不到檔案</td>
             <td>叫它「<b>把完整路徑印出來</b>」。找不到通常是開錯資料夾，不是它沒做。</td></tr>
         <tr><td>做出來的內容我沒講過</td>
@@ -122,10 +133,19 @@
         <p>系統需求寫在這裡（Windows 10 64 位元以上）。裝之前先確認你的電腦過關。</p></li>
       <li><a href="https://antigravity.google/docs/plans" target="_blank" rel="noopener noreferrer">Antigravity 方案與額度</a>
         <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
-        <p><b>免費是每週刷新</b>。這一條請務必看。</p></li>
+        <p><b>免費方案按週刷新</b>，但實際額度會依帳號與模型變動。這一條請務必看。</p></li>
       <li><a href="https://www.antigravity.google/docs/settings" target="_blank" rel="noopener noreferrer">Antigravity 設定說明</a>
         <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
         <p>登入怪怪的、或想調安全等級時看這裡。<a href="install.html">行前安裝那頁</a>有中文對照。</p></li>
+      <li><a href="https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github" target="_blank" rel="noopener noreferrer">建立 GitHub 帳號</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>建立帳號並完成信箱驗證；這是保存版本與跨機器接手的行前必備。</p></li>
+      <li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">下載 Git</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>Git 的官方下載入口；它負責版本紀錄與 <span class="en">commit</span>／<span class="en">push</span>／<span class="en">clone</span>／<span class="en">pull</span>，裝好後用 <span class="en">git --version</span> 驗收。</p></li>
+      <li><a href="https://cli.github.com/" target="_blank" rel="noopener noreferrer">下載 GitHub CLI</a>
+        <div class="meta"><span class="tag off">官方</span><span class="tag">英文</span></div>
+        <p>GitHub CLI 的官方下載入口；讓 AI 登入並操作 GitHub，裝好後用 <span class="en">gh auth status</span> 驗收。</p></li>
     </ul>
 
     <h2 id="zh">中文入門教學</h2>

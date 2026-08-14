@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "contains_personal_data": false,
+  "status": "待填；送件前向基金會確認算法",
+  "collection_note": "由學校在受控環境蒐集授課老師自評，這份檔只保留去識別化彙總，不含姓名、逐人回答或聯絡資料。",
+  "indicator_6_teaching_extension": {
+    "official_indicator": "多少課程已延伸到正式自然科學領域課程",
+    "question_text": "待基金會窗口或校內承辦人確認",
+    "counting_unit": "課程、堂次或節次待確認",
+    "achieved_count_numerator": null,
+    "eligible_count_denominator": null,
+    "threshold": "待確認",
+    "percentage": null,
+    "evidence_files": []
+  },
+  "indicator_7_professional_benefit": {
+    "official_indicator": "多少授課師資表示對專業增能有實質助益",
+    "question_text": "待基金會窗口或校內承辦人確認",
+    "positive_response_numerator": null,
+    "valid_response_denominator": null,
+    "threshold": "待確認",
+    "percentage": null,
+    "evidence_files": []
+  }
+}

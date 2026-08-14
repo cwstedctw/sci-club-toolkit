@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 0：行前準備｜科學社團專案管理範本站</title>
+<title>關 0：開課前驗收｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -40,62 +43,102 @@
     </aside>
     <main>
       <p class="eyebrow">關 0</p>
-      <h1>行前準備</h1>
-      <p class="lede">在 8/19 之前做完這一關，當天就不用花時間在裝軟體上。裝不起來沒關係，現場有做好的範例檔可以直接用，不用排隊等修電腦。</p>
+      <h1>開課前驗收</h1>
+      <p class="lede">這頁不再教你重裝一次。請先照<a href="install.html">行前安裝</a>完成詳細設定，再用這張驗收卡確認 8/19 當天能直接開始。</p>
       <section class="gate" id="g1">
         <header><span class="n">1</span><h2>這關做什麼</h2></header>
         <div class="body">
-          <p>把兩個 AI 裝在你自己的筆電上，開好一個資料夾，然後跑通一次——確認它真的讀得到你的檔案。</p>
-          <p><strong>白話說明：</strong>你以前用的免費 ChatGPT 是在網頁上聊天，它看不到你電腦裡的東西。這兩個工具不一樣，它們可以打開你指定的資料夾、讀裡面的檔案、直接把做好的檔案存回去。所以第一件事就是「告訴它讀哪個資料夾」。</p>
-          <h4>要裝的兩個</h4>
+          <p>這一關只做一件事：確認教材、學員記憶與必要原件都放在固定位置，再讓 Codex 與 Antigravity 開啟<strong>同一個資料夾</strong>。詳細下載、設定與故障排除仍集中在行前安裝頁。</p>
+          <pre class="flow">先完成「行前安裝」
+          ↓
+建立 club2026，準備 outputs／specs／sources／學員記憶
+          ↓
+Codex 選取整個 club2026 資料夾
+          ↓
+Antigravity 選取同一個資料夾
+          ↓
+做一次 60 秒讀檔檢查
+          ↓
+看到真實檔名與標題 → 驗收完成</pre>
+          <p><a class="btn primary" href="install.html">還沒安裝好？前往詳細步驟</a></p>
+
+          <h3>照這五步做</h3>
+          <ol>
+            <li>
+              <p><strong>建立專案資料夾。</strong>Windows 開啟檔案總管，Mac 開啟 Finder，在本機位置新增 <code>club2026</code>。如果路徑含有 OneDrive、iCloud Drive、Google 雲端硬碟或 Dropbox，請改放到沒有自動同步的位置。</p>
+            </li>
+            <li>
+              <p><strong>把專案原始檔放進去。</strong>至少放入下面幾樣。這是本機工作資料夾；到關 6 會另外建立逐檔核准的 <code>club2026-share</code>，<strong>不要把這裡整包直接上傳</strong>。</p>
+              <ul>
+                <li>解壓縮後的研習教材包內容（<code>index.html</code>、<code>style.css</code>、<code>app.js</code> 與其他教材檔應直接放在 <code>club2026</code> 裡）</li>
+                <li>新增空的 <code>outputs</code> 與 <code>specs</code>；作品與已確認規格分開放，不得覆蓋教材的 <code>index.html</code></li>
+                <li>把 <code>templates/PROJECT-README.md</code>、<code>HANDOFF.md</code>、<code>LEARNER-RULES.md</code> 複製到根目錄</li>
+                <li><code>sources/01-official-result-template.*</code>：基金會成果報告書官方範本</li>
+                <li><code>sources/02-foundation-consensus-slides.*</code>：基金會共識營簡報</li>
+                <li><code>sources/03-school-plan-deidentified.*</code>：本校社團計畫去識別化副本</li>
+                <li><code>sources/04-school-calendar.*</code>：本校行事曆</li>
+                <li><code>sources/05-school-reimbursement-blank.*</code>：本校現行核銷空白表</li>
+              </ul>
+              <p class="small">取得來源與改名方式見 <a href="sources/README.md">sources/README.md</a>。教材不附未授權原件。缺官方成果範本時，關 1、2、3、5 只能練習；缺共識營簡報或本校核銷空白表時，關 4 只能練習。若計畫書含個資，先另存去識別化副本。</p>
+            </li>
+            <li>
+              <p><strong>用 Codex 開啟整個資料夾。</strong>開啟 ChatGPT 桌面版、切換到 Codex，從輸入區附近的<strong>資料夾圖示或目前專案位置</strong>選擇資料夾。系統的資料夾選擇視窗出現後，找到 <code>club2026</code>，選取資料夾本身，再確認開啟。</p>
+              <p class="small"><strong>不要只開其中一個 Word 或 PDF。</strong>通過訊號是 Codex 顯示目前專案為 <code>club2026</code>，而且看得到根目錄、<code>sources</code>、<code>specs</code> 與 <code>outputs</code>。</p>
+            </li>
+            <li>
+              <p><strong>用 Antigravity 開啟同一個資料夾。</strong>開啟 Antigravity，從輸入區上方的<strong>資料夾圖示或目前資料夾名稱</strong>選擇資料夾；也可從「檔案／<span class="en">File</span>」選單找「開啟資料夾／<span class="en">Open Folder</span>」。再選剛才那一個 <code>club2026</code>。若出現信任提示，先核對路徑確實是自己建立的資料夾，再確認開啟。</p>
+              <p class="small">兩邊資料夾名稱相同還不夠，<strong>完整位置也要相同</strong>。Windows 在檔案總管網址列複製，例如 <code>C:\Users\你的帳號\Documents\club2026</code>；Mac 在 Finder 選取資料夾後按 <code>Option+Command+C</code>，例如 <code>/Users/你的帳號/Documents/club2026</code>。</p>
+            </li>
+            <li>
+              <p><strong>先看檔案，再做測試。</strong>確認兩個 AI 都看得到相同根目錄、五個原件代號與三份學員記憶檔，才進到下面的 60 秒讀檔檢查。缺檔可以列出，但不得用別的檔案猜著代替。</p>
+            </li>
+          </ol>
+          <div class="note info">
+            <span class="label">最容易按錯的地方</span>
+            <p>這裡要選的是<strong>整個 <code>club2026</code> 資料夾</strong>，不是點開計畫書，也不是只把一個檔案上傳到聊天視窗。</p>
+          </div>
           <div class="grid two">
-            <div class="card"><h4 style="margin-top:0">Codex（領隊）</h4><p>負責想清楚要做什麼、回頭檢查有沒有漏。免費額度比較緊，但它的工作很輕，夠用。</p></div>
-            <div class="card"><h4 style="margin-top:0">Antigravity（隊員）</h4><p>負責真的把檔案做出來。免費額度<strong>一週給一次</strong>，用完要等一週。</p></div>
+            <div class="card"><h4 style="margin-top:0">上半場</h4><p>Codex 規劃 → Antigravity 實作 → Codex 複核。</p></div>
+            <div class="card"><h4 style="margin-top:0">下半場</h4><p>使用單一 Antigravity，減少切換工具的負擔。</p></div>
           </div>
           <div class="note warn">
-            <span class="label">還沒好之前先別動</span>
-            <p>裝好之後<strong>不要先拿額度玩</strong>。留到 8/19 動手那兩段，額度用完當天補不回來。</p>
+            <span class="label">只檢查，不先做作品</span>
+            <p>行前只做下面一次短檢查，不叫 AI 生成新工具。把免費額度留給 8/19。</p>
           </div>
-          <h4>開一個資料夾</h4>
-          <p>在桌面開一個資料夾，名字用英文，例如 <code>club2026</code>。裡面先放兩份檔案：</p>
-          <ul>
-            <li>你的社團計畫書（Word 或 PDF 都可以）</li>
-            <li>基金會的成果報告書範本</li>
-          </ul>
-          <p class="small">資料夾和檔案名稱都用英文或數字。中文檔名在後面幾關會出問題（<a href="github.html">關 6</a> 會再講一次）。</p>
         </div>
       </section>
       <section class="gate" id="g2">
         <header><span class="n">2</span><h2>官方要求</h2></header>
         <div class="body">
-          <p>這一關不對應任何基金會文件，是為了讓後面幾關做得下去。</p>
-          <p>但有一件跟官方有關的事現在就要知道：<strong>學生名單（附件一）2026 年 8–9 月就要交</strong>。所以這個資料夾裡等一下也會放名單，那份檔案不要外傳。</p>
+          <p>這一關不對應基金會的成果文件，只是開課前的技術驗收。</p>
+          <div class="note warn">
+            <span class="label">驗收不要使用學生名單</span>
+            <p>學生名單（附件一）預計於 2026 年 8–9 月繳交，但這次測試只放<strong>計畫書、官方範本或虛構資料</strong>。真人學生姓名、出席、成績、聯絡資料與備份檔<strong>不進 AI、不提交版本（commit）、不上傳（push）</strong>，請留在學校核准的受控位置。</p>
+          </div>
         </div>
       </section>
       <section class="gate" id="g3">
         <header><span class="n">3</span><h2>提示詞卡</h2></header>
         <div class="body">
           <div class="prompt">
-            <header><span class="step">① 確認它真的讀到你的資料夾（貼給 Codex）</span><button class="copy" type="button">複製</button></header>
-            <pre>請列出你現在開著的這個資料夾裡所有檔案的檔名，一個一行。
-然後告訴我我的計畫書第一頁的標題是什麼。
-如果你打不開這個資料夾，直接說打不開，不要猜。</pre>
+            <header><span class="step">60 秒讀檔檢查（Codex 與 Antigravity 各貼一次）</span><button class="copy" type="button">複製</button></header>
+            <pre>現在只做讀取檢查，不要修改、新增或刪除任何檔案，也不要執行終端機指令。
+
+請先告訴我目前資料夾的完整路徑，再列出根目錄、sources、specs、outputs 的檔名。
+逐項回報 sources/ 裡 01、02、03、04、05 五個固定開頭是「已找到」或「缺少」。
+接著讀取 03-school-plan-deidentified.*，告訴我第一頁的標題；不要讀取或輸出真人個資。
+再確認 PROJECT-README.md、HANDOFF.md、LEARNER-RULES.md 是否在根目錄。
+
+如果你看不到資料夾或打不開檔案，直接說明卡在哪裡，不要猜。</pre>
             <dl>
-              <dt>要什麼</dt><dd>確認 AI 真的看得到你的檔案</dd>
-              <dt>AI 大概會回什麼</dt><dd>一串檔名，加上你計畫書的真實標題</dd>
-              <dt>你要檢查什麼</dt><dd>檔名對不對？標題是你寫的那個嗎？<strong>只要有一個不對，它就是在編</strong></dd>
+              <dt>要什麼</dt><dd>分別確認兩個 AI 都真的開到同一個資料夾</dd>
+              <dt>AI 大概會回什麼</dt><dd>完整路徑、相同檔名、五類原件狀態，以及計畫書的真實標題</dd>
+              <dt>你要檢查什麼</dt><dd>兩邊的資料夾名稱、檔名與標題都一致嗎？<strong>只要有一個不對，就先停止，不接受 AI 猜答案</strong></dd>
             </dl>
           </div>
-          <div class="prompt">
-            <header><span class="step">② 跑通一次小任務（貼給 Antigravity）</span><button class="copy" type="button">複製</button></header>
-            <pre>請在你現在開著的這個資料夾的根目錄建立一個 test.html，
-內容只要一行大字：「我的社團管理工具測試成功」。
-做完告訴我檔案存在哪個路徑。</pre>
-            <dl>
-              <dt>要什麼</dt><dd>確認它真的能在你的電腦上產生檔案</dd>
-              <dt>AI 大概會回什麼</dt><dd>一個 test.html 加上路徑說明</dd>
-              <dt>你要檢查什麼</dt><dd>照著那行路徑打開資料夾，檔案真的在嗎？用瀏覽器打得開嗎？</dd>
-            </dl>
+          <div class="note info">
+            <span class="label">看到什麼才算通過</span>
+            <p>兩個 AI 顯示相同完整路徑，列出的教材、學員記憶與原件狀態一致，而且計畫書標題正確；過程中沒有新增或修改檔案，才算通過。缺原件可以通過「技術驗收」，但相關關卡只能練習。最後雙擊 <code>index.html</code>，確認瀏覽器能顯示頁面。</p>
           </div>
         </div>
       </section>
@@ -103,33 +146,30 @@
         <header><span class="n">4</span><h2>新手會卡在哪</h2></header>
         <div class="body">
           <div class="note">
-            <p><strong>卡住的標準解法只有一句：把畫面上的錯誤訊息，整段複製貼給 AI 問。</strong>
-            一個字都不要改、不要自己翻譯——那串你看不懂的英文，對它來說是最有用的線索。</p>
-            <p>如果是<strong>還在裝、兩個 AI 都還沒好</strong>，就用手機或瀏覽器開 <b>chatgpt.com</b> 網頁版問，
-            那個不用安裝。裝好一個、另一個卡住的話，問裝好的那個。</p>
-            <p class="small">完整說明與可複製的提示詞在<a href="install.html#stuck">行前安裝那頁</a>。
-            真的裝不起來也請照樣來，現場有做好的範例檔，三樣東西一樣做得完。</p>
+            <p><strong>先把畫面上的錯誤訊息完整複製下來，不要改字或自己翻譯。</strong>接著到<a href="install.html#stuck">行前安裝的「卡住怎麼辦」</a>，照相同錯誤找解法。</p>
+            <p>真的裝不起來也請照樣來；現場會提供做好的範例檔。</p>
           </div>
           <ul>
-            <li><strong>AI 說「完成了」但你找不到檔案</strong>：它存到自己的暫存資料夾去了。它回話裡有一行寫路徑，<strong>那行字很重要</strong>，照著找。</li>
-            <li><strong>它列出的檔名不是你的檔案</strong>：它沒讀到，自己編了。重新把完整路徑貼給它一次。</li>
-            <li><strong>學校筆電登不進去</strong>：校園網路可能會擋。<strong>請在你自己教室的網路先試一次</strong>，不要等到 8/19 當天才第一次登入。</li>
-            <li><strong>權限不足、裝不起來</strong>：各校電腦權限不同。不用硬拚，當天講師手上有做好的範例檔，你直接用那份往下做。</li>
-            <li><strong>免費額度用完了</strong>：Antigravity 一週給一次。所以先別玩。</li>
+            <li><strong>檔名或標題不對</strong>：AI 沒有讀到正確資料夾。停止測試，重新選擇研習資料夾。</li>
+            <li><strong>只看得到一份 Word 或 PDF</strong>：你可能開到單一檔案，而不是專案資料夾。回到工具首頁，重新選「開啟資料夾」。</li>
+            <li><strong>Codex 與 Antigravity 顯示不同資料夾</strong>：兩邊重新選一次，確認資料夾名稱與位置完全相同。</li>
+            <li><strong>兩邊都叫 club2026，內容卻不同</strong>：電腦上可能有兩個同名資料夾。到檔案總管複製完整路徑，逐字核對。</li>
+            <li><strong>GitHub 或工具還沒登入</strong>：回到行前安裝頁完成登入；不要等到上課當天才第一次嘗試。</li>
           </ul>
         </div>
       </section>
       <section class="gate" id="g5">
         <header><span class="n">5</span><h2>驗收清單</h2></header>
         <div class="body">
+          <p>詳細安裝清單只放在<a href="install.html#check">行前安裝頁</a>；這裡只驗收開課時會用到的六件事。</p>
           <ul class="checklist">
-            <li><label><input type="checkbox"><span>兩個 AI 都裝好了，而且登入成功</span></label></li>
-            <li><label><input type="checkbox"><span>在教室的網路（不是家裡）登入成功過一次</span></label></li>
-            <li><label><input type="checkbox"><span>桌面有一個英文名字的資料夾，裡面放了計畫書與官方報告書範本</span></label></li>
-            <li><label><input type="checkbox"><span>AI 列出的檔名，跟你資料夾裡的檔案一模一樣</span></label></li>
-            <li><label><input type="checkbox"><span>AI 在你的資料夾裡產出過一個 test.html，你用瀏覽器打得開</span></label></li>
-            <li><label><input type="checkbox"><span>你知道它回話裡「檔案路徑」那行字長什麼樣子</span></label></li>
-            <li><label><input type="checkbox"><span>額度還沒用掉，留給 8/19</span></label></li>
+            <li><label><input type="checkbox"><span>club2026 內有教材、outputs、specs、三份學員記憶檔與 sources/README.md</span></label></li>
+            <li><label><input type="checkbox"><span>五類原件已逐項標成「已找到」或「缺少」，也知道缺檔時只能練習</span></label></li>
+            <li><label><input type="checkbox"><span>Codex 已選取整個 club2026，而且看得到根目錄、sources、specs 與 outputs</span></label></li>
+            <li><label><input type="checkbox"><span>Antigravity 已開啟同一個完整路徑，而且看得到相同檔案</span></label></li>
+            <li><label><input type="checkbox"><span>GitHub 帳號、Git 與已登入的 GitHub CLI 已通過行前安裝頁的檢查</span></label></li>
+            <li><label><input type="checkbox"><span>Codex 與 Antigravity 都跑過 60 秒測試，列出的資料夾、檔名與計畫書標題一致</span></label></li>
+            <li><label><input type="checkbox"><span>教材包現成的 index.html 能用瀏覽器打開，而且測試資料沒有學生個資</span></label></li>
           </ul>
           <p class="done-count small">已完成 0 / 7 項</p>
         </div>

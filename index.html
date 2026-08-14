@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -39,20 +42,21 @@
     </aside>
     <main>
       <p class="eyebrow">總覽</p>
-      <h1>做完，報告也就寫完了</h1>
-      <p class="lede">這站是 2026/8/19 花蓮研習的教材。它教你用兩個 AI，做出一套自己社團在用的管理工具；而那套工具長出來的東西，正好就是期末報告書要交的東西。</p>
+      <h1>平時做完，期末報告就有底稿</h1>
+      <p class="lede">這站是 2026/8/19 花蓮研習的教材。上半場由陳文盛帶關 1，示範 Codex 與 Antigravity 兩個能讀指定資料夾、產出檔案的 AI 工具如何接力完成課程規劃表；下半場由游豐兆帶關 3 與關 2，使用單一 Antigravity 完成學生回饋單、名單與出席。這些成品會成為期末成果報告的重要工作底稿；正式送件仍要回官方範本人工核對、填寫與簽核。</p>
 
       <div class="note info">
         <span class="label">這站怎麼用</span>
-        <p>研習當天我們會一起動手三次：關 1（課程規劃表）、關 3（學生回饋單）、關 2（名單與出席）。會後你照著頁面上的五格自己往下做：<strong>這關做什麼 → 官方要求 → 提示詞卡（按一下就複製）→ 新手會卡在哪 → 驗收清單（可以勾）</strong>。每一關都一樣的順序，你不用重新學怎麼看。</p>
+        <p>研習當天會依序動手三次：上半場由陳文盛示範兩個 AI 工具接力，完成關 1（課程規劃表）；下半場由游豐兆使用單一 Antigravity，完成關 3（學生回饋單）與關 2（名單與出席）。會後重做時，先走<strong>行前安裝 → 關 0 → 方法</strong>，再走<strong>關 1 → 關 3 → 關 2 → 關 4 → 關 5 → 關 6</strong>。每一關都用同樣五格：<strong>這關做什麼 → 官方要求 → 提示詞卡（按一下就複製）→ 新手會卡在哪 → 驗收清單（可以勾）</strong>。</p>
         <p class="small">右上角有「投影模式」，字會變大、側邊目次收起來，適合投在教室螢幕上帶著大家做。手機也開得起來。</p>
       </div>
 
       <h2 id="why">一、老師想解決的事，和報告要交的東西，是同一件</h2>
       <p>我們看完 14 位老師報名表上寫的需求（8 所學校），也讀完基金會的官方報告書範本，發現兩邊講的是同一件事。</p>
-      <div class="card">
-        <h3>14 位老師自己寫的需求 → 官方報告書的哪一節</h3>
-        <div class="needbars">
+      <div class="card keep-together" style="break-inside:avoid;page-break-inside:avoid">
+        <figure class="keep-together" style="margin:0;break-inside:avoid;page-break-inside:avoid">
+          <h3>14 位老師自己寫的需求 → 官方報告書的哪一節</h3>
+          <div class="needbars" data-zoomable aria-label="14 位老師報名需求與官方成果報告書落點長條圖">
         <div class="nb-row">
           <div class="nb-label">教案與學習單</div>
           <div class="nb-track"><div class="nb-fill" style="width:57%"></div></div>
@@ -89,8 +93,9 @@
           <div class="nb-num">1 人</div>
           <div class="nb-map">→ 材料費（250 元／人次）</div>
         </div>
-        </div>
-        <p class="small">2026/8 行前調查，14 份回覆、8 所學校，需求可複選。右邊是這件事在官方成果報告書裡的落點。</p>
+          </div>
+          <figcaption class="small" style="margin-top:.75rem">資料說明：2026/8 報名需求資料共有 14 位、8 所學校，需求可複選。另有 8 份較詳細的行前工具調查；兩套資料分開統計，不混算。每列右側標示該需求在官方成果報告書裡的落點。</figcaption>
+        </figure>
       </div>
 
       <div class="card">
@@ -101,24 +106,24 @@
           <tbody>
             <tr><td>壹</td><td>基本資料（學校、負責人、承辦人、期程、補助經費）</td><td>—</td></tr>
             <tr><td>貳</td><td><strong>課程規劃表</strong>：週次｜日期｜課程內容｜任課教師｜備註</td><td><a href="step1.html">關 1</a></td></tr>
-            <tr><td>參</td><td><strong>課程紀錄</strong>：兩大項（課程活動、學生作品或成果發表），各附文字說明與照片</td><td>會後</td></tr>
-            <tr><td>肆</td><td><strong>效益達成情形</strong>：學生面 5 項＋師資面 2 項，<strong>共七個百分比</strong></td><td><a href="step2.html">關 2</a>與關 3</td></tr>
-            <tr><td>伍</td><td>結論與建議</td><td>會後</td></tr>
-            <tr><td>陸</td><td><strong>附件三樣</strong>：學生名單、學生出席表（教室日誌）、學生回饋單</td><td><a href="step2.html">關 2</a>與關 3</td></tr>
+            <tr><td>參</td><td><strong>課程紀錄</strong>：兩大項（課程活動、學生作品或成果發表），各附文字說明與照片</td><td><a href="step5.html">關 5</a></td></tr>
+            <tr><td>肆</td><td><strong>效益達成情形</strong>：學生面 5 項＋師資面 2 項，<strong>共七個百分比</strong></td><td><a href="step2.html">關 2</a>、<a href="step3.html">關 3</a>、<a href="step5.html">關 5</a></td></tr>
+            <tr><td>伍</td><td>結論與建議</td><td><a href="step5.html">關 5</a></td></tr>
+            <tr><td>陸</td><td><strong>附件三樣</strong>：學生名單、學生出席表（教室日誌）、學生回饋單</td><td><a href="step2.html">關 2</a>與<a href="step3.html">關 3</a></td></tr>
           </tbody>
         </table>
         <div class="note">
-          <p>🔴 <strong>有兩件事現在不知道，明年六月會很麻煩。</strong></p>
-          <p>第貳節那張課程規劃表，範本上<strong>只印了 24 列</strong>。但各校排的週次不一定剛好 24——
-          我們看到的兩所學校，一所排 28 週、一所排 19 次，都要自己增列或刪列。</p>
-          <p>第肆節那七個百分比，前四項<strong>只能從學生回饋單算出來</strong>。
-          回饋單要在學期初就發下去；<strong>明年六月才想到，補不回來。</strong></p>
+          <p>🔴 <strong>有兩件事現在不先處理，明年六月會很麻煩。</strong></p>
+          <p>第貳節那張課程規劃表，範本上<strong>預印了 24 列</strong>，不是規定每校都要上 24 週。
+          我們查到的三校分別排 28 次、19 次與 22 週；請依自己學校的實際課程增列或刪列。</p>
+          <p>第肆節前四個百分比需要學生回饋資料支撐。
+          <strong>學期初先把題目設計好</strong>；實際發放與回收時點待確認，不要等到明年六月才臨時補問。</p>
         </div>
         <p class="small">出處：財團法人仰望教育基金會《115 學年度國中小科學社團扶助計畫 成果報告書》範本，2026-07-06 版。</p>
       </div>
       <div class="note ok">
         <span class="label">這堂課的一句話</span>
-        <p style="font-size:var(--fs-ml)">今天不是教你們寫報告。是把你們本來就想做的事做好——<strong>做完，報告也就寫完了。</strong></p>
+        <p style="font-size:var(--fs-ml)">今天不是要你臨時替報告編故事，而是把平時本來就要做的事留下可追溯資料。<strong>平時做完，期末就有可靠底稿；正式送件仍要回官方範本核對與簽核。</strong></p>
       </div>
 
       <h2 id="blocker">二、真正會卡住的地方不是寫作，是拿不出證明</h2>
@@ -133,14 +138,23 @@
 師資面
  ⑥  ____% 的課程有延伸應用到正式的自然課
  ⑦  ____% 的老師覺得對專業有實質幫助</pre>
-      <p>這七個數字要從哪裡來？</p>
-      <pre class="flow">①②③④  ←── 學生回饋單（附件三）
-⑤        ←── 教室日誌（附件二）
-⑥⑦      ←── 授課老師自己評</pre>
+      <p>這七個數字可以用哪些資料支撐？</p>
+      <div class="tablewrap" style="break-inside:avoid;page-break-inside:avoid">
+        <table aria-label="七項效益指標與資料來源對照">
+          <thead>
+            <tr><th>成果報告書指標</th><th>可追溯的資料</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>①②③④</strong>　學生面前四項</td><td>可由學生回饋單（附件三）等可追溯資料支撐；回饋單不是唯一來源。</td></tr>
+            <tr><td><strong>⑤</strong>　社團整體出席率</td><td>學生出席表／教室日誌（附件二）</td></tr>
+            <tr><td><strong>⑥⑦</strong>　師資面兩項</td><td>授課老師自評</td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="note bad">
         <span class="label">最關鍵的一句話</span>
-        <p><strong>回饋單不是期末補的附件，它是那四個百分比「唯一的來源」。</strong>學期初沒把題目設計好，到了 2027 年 6 月就算不出來——而且補不回來。</p>
-        <p>而現在（8 月）正好是唯一還來得及做的時間點。</p>
+        <p><strong>回饋單不是期末才臨時補的附件。</strong>學期初先把題目設計好，讓題目能對應前四個百分比；實際發放與回收時點待確認。</p>
+        <p>現在先把題目與計算方式想清楚，期末才有可靠資料可用。</p>
       </div>
       <div class="note warn">
         <span class="label">教室日誌也一樣</span>
@@ -149,7 +163,7 @@
       </div>
 
       <h2 id="system">三、系統全貌：四張表共用同一份學生名單</h2>
-      <p>我們要做的不是四個各自獨立的小工具，而是一套互相連動的社團管理系統。填一次名單，四個地方都能用。</p>
+      <p>四份資料要回到同一個來源，才不會各自長出不同的學生人數。這套教材會產生數個離線 HTML；它們<strong>不保證自動同步</strong>。真實名單留在關 2 的受控工具，後面各關只帶去識別化的總數或摘要，不重新貼真名給 AI。</p>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1200 740" role="img" aria-labelledby="flow-title flow-desc" style="display:block;max-width:100%;font-family:system-ui,-apple-system,'Segoe UI','Noto Sans TC',sans-serif">
   <title id="flow-title">學生名單與官方成果報告資料流程圖</title>
   <desc id="flow-desc">學生名單填寫一次後，分別產生出席紀錄、回饋單、學生作品與材料費對帳，再轉換成官方需要的出席率、四個百分比、成果展示頁與核銷份數。課程規劃表橫貫四欄，讓作品對應到課程週次。</desc>
@@ -229,7 +243,7 @@
     <circle cx="1035" cy="634" r="8" fill="var(--warn)"/>
 
     <rect x="55" y="606" width="322" height="57" rx="12" fill="var(--card-hi)" stroke="var(--warn)" stroke-width="3"/>
-    <text x="216" y="642" fill="var(--fg)" font-size="21" font-weight="700" text-anchor="middle">課程規劃表（24 週）</text>
+    <text x="216" y="642" fill="var(--fg)" font-size="21" font-weight="700" text-anchor="middle">課程規劃表（實際週次）</text>
 
     <rect x="763" y="606" width="382" height="57" rx="12" fill="var(--card-hi)" stroke="var(--warn)" stroke-width="3"/>
     <text x="954" y="642" fill="var(--fg)" font-size="19" font-weight="700" text-anchor="middle">每個作品對應到第幾週</text>
@@ -237,22 +251,27 @@
     <text x="600" y="705" fill="var(--fg2)" font-size="16" text-anchor="middle">橫貫四欄的課程地基</text>
   </g>
 </svg>
+      <p class="small">上圖表示資料關係，不代表每個 HTML 會自動互傳瀏覽器資料。跨工具請使用不含個資的摘要；跨電腦前先依各關說明備份。</p>
 
       <h2 id="gates">四、從這裡開始</h2>
-      <p class="small">這一版先放上面這幾關。<b>關 3（學生回饋單）、關 4（核銷對帳）、關 5（結案）</b>還在寫，研習後一週補上——但關 3 的內容 <b>8/19 當天現場會帶你做</b>，不會漏掉。關 3 回饋單、關 4 材料費對帳、關 5 結案、進階關「搬上雲端」會後一週補上。</p>
+      <p class="small">第一次使用先走「行前安裝 → 關 0 → 方法」，實作順序再走<strong>關 1 → 關 3 → 關 2 → 關 4 → 關 5 → 關 6</strong>；卡片仍依關卡編號排列，方便日後查找。關 3–5 已收錄目前查證得到的內容；需要基金會窗口、各校主計室或游豐兆老師補充的現場做法，頁面會明標「待確認」。</p>
       <div class="grid two" style="margin-top:1rem">
-        <a class="card" href="method.html"><div class="k">先讀這頁</div><div class="t">方法：兩個 AI 怎麼分工</div><div class="d">領隊、隊員、回頭檢查。含兩個「AI 會說謊」的實測案例，這頁是全站最重要的一頁。</div></a>
-        <a class="card" href="demo.html"><div class="k">看得到摸得到</div><div class="t">示範：三個可以真的按的東西</div><div class="d">研習管理台、作品收件器、成果展示牆，以及做出它們的提示詞。</div></a>
-        <a class="card" href="needs.html"><div class="k">這跟我有什麼關係</div><div class="t">老師需求對照</div><div class="d">你被要求交的每一樣東西，在這站的哪一關。</div></a>
-        <a class="card" href="step0.html"><div class="k">關 0</div><div class="t">行前準備</div><div class="d">裝好兩個 AI、開同一個資料夾、跑通一次。</div></a>
-        <a class="card" href="step1.html"><div class="k">關 1</div><div class="t">24 週課程規劃表</div><div class="d">一次生成，仰望、學校備查、家長通知三種格式各自輸出。</div></a>
+        <a class="card" href="install.html"><div class="k">第 1 步</div><div class="t">行前安裝</div><div class="d">裝好 Codex、Antigravity、Git 與 GitHub CLI，並準備 club2026 教材資料夾。</div></a>
+        <a class="card" href="step0.html"><div class="k">第 2 步／關 0</div><div class="t">開課前驗收</div><div class="d">讓兩個 AI 開啟同一個完整路徑，做 60 秒讀檔檢查。</div></a>
+        <a class="card" href="method.html"><div class="k">第 3 步</div><div class="t">方法：上半場雙 AI、下半場單一 AI</div><div class="d">先看懂規劃、實作、複核與修正的方式，再開始做作品。</div></a>
+        <a class="card" href="needs.html"><div class="k">開始前可先看</div><div class="t">老師需求對照</div><div class="d">你被要求交的每一樣東西，在這站的哪一關。</div></a>
+        <a class="card" href="step1.html"><div class="k">關 1</div><div class="t">依實際週次做課程規劃表</div><div class="d">依本校計畫生成，仰望、學校備查、家長通知三種格式各自輸出。</div></a>
         <a class="card" href="step2.html"><div class="k">關 2</div><div class="t">學生名單＋出席</div><div class="d">出席率與核銷份數一次解決。</div></a>
-        <a class="card" href="github.html"><div class="k">關 6</div><div class="t">交出去（放上 GitHub 變成網址）</div><div class="d">讓你做的東西有一個網址，辦公室和家裡打開的是同一份。</div></a>
+        <a class="card" href="step3.html"><div class="k">關 3</div><div class="t">學生回饋單</div><div class="d">把學生面前四項指標變成可追溯的題目與計算表。</div></a>
+        <a class="card" href="step4.html"><div class="k">關 4</div><div class="t">核銷對帳</div><div class="d">按用途選對表、核對人次、日期與上下學期。</div></a>
+        <a class="card" href="step5.html"><div class="k">關 5</div><div class="t">結案</div><div class="d">把前面各關成果整理成六節成果報告與三份附件。</div></a>
+        <a class="card" href="github.html"><div class="k">關 6</div><div class="t">版本控制＋跨機器接手</div><div class="d">讓 AI 留下每次修改，並把 repo 內的專案記憶、規格與作品從辦公室電腦接到家裡電腦。</div></a>
+        <a class="card" href="demo.html"><div class="k">選看</div><div class="t">操作示範</div><div class="d">管理台可以操作、作品收件器會另開原站，成果展示牆則提供畫面預覽。</div></a>
         <a class="card" href="workshop.html"><div class="k">8/19</div><div class="t">場次資訊與三小時流程</div><div class="d">當天怎麼走、行前必做什麼。</div></a>
       </div>
       <div class="note ok" style="margin-top:1.5rem">
         <span class="label">順帶一提</span>
-        <p>你現在看的這一頁，就是用<a href="github.html">關 6</a> 那個方法放上網的。整站也可以下載整包帶回學校，沒網路也開得起來。</p>
+        <p><a href="github.html">關 6</a> 先教版本控制與跨機器接手。若還想把作品放上網，部署是另一個選配步驟，可使用 GitHub Pages、Netlify 或其他服務。這份教材包解壓縮後可直接開啟 <code>index.html</code>，沒有網路也能閱讀；需要網路的外部示範與 AI 工具會另外標示。</p>
       </div>
 
       <footer class="site">

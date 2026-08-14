@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -64,17 +67,26 @@
         <header><span class="n">3</span><h2>提示詞卡</h2></header>
         <div class="body">
           <div class="prompt">
-            <header><span class="step">① 規劃：貼這段給 Codex</span><button class="copy" type="button">複製</button></header>
+            <header><span class="step">① 釐清規格</span><button class="copy" type="button">複製</button></header>
             <pre>整段可以直接複製貼給 AI 的話。
-寫成老師照抄就能用的樣子，不要寫「請描述你的需求」這種空話。</pre>
+寫成老師照抄就能用的樣子，不要寫「請描述你的需求」這種空話。
+要求它先讀官方原檔；找不到就停下來，不得自編欄位或規定。</pre>
           </div>
           <div class="prompt">
-            <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
-            <pre>（同上）</pre>
+            <header><span class="step">② 實作</span><button class="copy" type="button">複製</button></header>
+            <pre>指定固定成品路徑 outputs/檔名.html。
+同名檔已存在時先停下來，不得覆蓋，也不得覆蓋教材的 index.html。
+示範資料只用虛構內容，不要求老師貼真實個資。</pre>
           </div>
           <div class="prompt">
-            <header><span class="step">③ 檢查：貼這段回去給 Codex</span><button class="copy" type="button">複製</button></header>
-            <pre>（同上）</pre>
+            <header><span class="step">③ 檢查</span><button class="copy" type="button">複製</button></header>
+            <pre>重新讀官方原檔與成品，逐條列問題，先不要改。
+列完等老師確認，不把 AI 自己的建議直接寫回成品。</pre>
+          </div>
+          <div class="prompt">
+            <header><span class="step">④ 修正並重驗</span><button class="copy" type="button">複製</button></header>
+            <pre>只修正老師確認的問題；先做不覆蓋舊檔的備份。
+修正後重新跑第 ③ 步，分開回報「已修正」與「仍待確認」。</pre>
           </div>
         </div>
       </section>
@@ -92,10 +104,11 @@
         <div class="body">
           <ul class="checklist">
             <li><label><input type="checkbox"><span>可以打勾的具體項目，不要寫「確認無誤」這種</span></label></li>
+            <li><label><input type="checkbox"><span>成品在指定的 outputs 檔名，沒有覆蓋教材或舊作品</span></label></li>
             <li><label><input type="checkbox"><span>最後一項固定寫：裡面沒有任何真人個資（學生和老師都算）</span></label></li>
           </ul>
           <!-- ⚠️ 下面這個 N 要改成你實際寫了幾條，不然畫面數字會對不上 -->
-          <p class="done-count small">已完成 0 / 2 項</p>
+          <p class="done-count small">已完成 0 / 3 項</p>
         </div>
       </section>
       <footer class="site">

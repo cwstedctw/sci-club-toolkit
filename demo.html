@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>示範：三個可以真的按的東西｜科學社團專案管理範本站</title>
+<title>示範：三個課堂成果｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -39,11 +42,9 @@
     <main>
       <p class="eyebrow">示範</p>
       <h1>這三個東西都是課堂教的方法做出來的</h1>
-      <p class="lede">這一頁不是截圖。你可以直接在下面按、輸入、看它算出來，然後往下看「做出這東西的三段提示詞」。</p>
+      <p class="lede">A 管理台可以直接操作；B 交件頁可從按鈕或 QR code 開啟，但連到 Google Apps Script，必須有網路；C 展示牆因為需要講師金鑰，這裡只提供實際畫面截圖。每個示範下方都有「做出這東西的三段提示詞」。</p>
 
-      <!-- ⚠ 本機接檔說明：三個 iframe 目前是空的佔位。
-           在本機把 src 補上（管理台＝單檔 HTML；交件頁與展示牆＝Apps Script 網址），
-           app.js 會自動隱藏佔位說明。教材網不重做 demo。 -->
+      <!-- A 直接嵌入可操作的管理台；B 連到示範用交件頁；C 只公開不含金鑰的畫面截圖。 -->
 
       <div class="tabs" role="tablist" aria-label="三個示範">
         <button type="button" role="tab" data-tab="panel-console" aria-controls="panel-console" aria-selected="true">A 研習管理台</button>
@@ -56,10 +57,10 @@
           <div class="framebar">
             <span class="t">A・研習管理台</span>
             <span class="small">14 筆去識別的虛構名單，絕不放真名單</span>
-            <a class="btn mobile-open" href="#" data-demo-open="console">另開新視窗</a>
+            <a class="btn mobile-open" href="console.html" data-demo-open="console" target="_blank" rel="noopener">另開管理台</a>
           </div>
           <iframe data-demo="console" title="研習管理台" src="console.html" loading="lazy"></iframe>
-          <div class="ph"><b>示範程式尚未接上</b><span>這個位置會嵌入研習管理台本體（單一 HTML 檔）。手機請用上面的「另開新視窗」。</span></div>
+          <div class="ph"><b>管理台已可操作</b><span>如果這裡沒有顯示管理台，請用上方的「另開管理台」。</span></div>
         </div>
         <div class="note ok">
           <span class="label">給老師的話</span>
@@ -151,7 +152,7 @@
         <div class="frame">
           <div class="framebar">
             <span class="t">B・作品交件頁（學生這一端）</span>
-            <span class="small">示範用收件器，檔案進示範用資料夾</span>
+            <span class="small">需要網路｜示範用收件器，檔案進示範用資料夾</span>
             
           </div>
           <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2rem;align-items:center;padding:1.2rem;background:#0f172a">
@@ -159,10 +160,11 @@
             <div style="text-align:center">
               <img src="qr-submit.png" alt="交件頁 QR code" style="width:190px;height:190px;display:block;background:#fff;padding:8px;border-radius:6px" loading="lazy">
               <p style="margin:.6rem 0 0;font-size:.9rem;color:#94a3b8">手機掃這個</p>
-              <a class="btn" href="https://script.google.com/macros/s/AKfycbzebFg27JrCtSW6AvbhkSUIaPnLNm6ejveefmBBV5u2JqOinogq6bwG2ILdc087lApQuA/exec" target="_blank" rel="noopener noreferrer" style="margin-top:.6rem;display:inline-block">在新分頁打開交件頁</a>
+              <a class="btn" href="https://script.google.com/macros/s/AKfycbzebFg27JrCtSW6AvbhkSUIaPnLNm6ejveefmBBV5u2JqOinogq6bwG2ILdc087lApQuA/exec" data-demo-open="submit" target="_blank" rel="noopener noreferrer" style="margin-top:.6rem;display:inline-block">在新分頁打開交件頁</a>
             </div>
           </div>
           <div class="note ok" style="margin:0"><span class="label">這是真的，掃了就能交</span>
+          <p><strong>這一段需要網路。</strong>離線開教材時仍可看左側截圖與下方說明，但不能開啟交件頁或上傳檔案。</p>
           <p>左邊是交件頁的實際畫面，右邊的 QR 掃了直接開（示範用的那一支，收到的檔案進拋棄式資料夾）。
           免登入、不用有帳號：選座號 → 選檔案 → 輸入通行碼 → 送出。通行碼當天投影在螢幕上。
           收到的檔案進講師自己的雲端硬碟，學生彼此看不到、也看不到資料夾本身。</p>
@@ -228,7 +230,7 @@
           <div class="framebar">
             <span class="t">C・成果展示牆（老師這一端・投影用）</span>
             <span class="small">示範版，假資料</span>
-            <a class="btn mobile-open" href="#" data-demo-open="wall">另開新視窗</a>
+            <a class="btn mobile-open" href="wall-preview.png" data-demo-open="wall" target="_blank" rel="noopener">開啟大圖</a>
           </div>
           <img src="wall-preview.png" alt="成果展示牆的實際畫面：座號磁貼與頂端統計" style="width:100%;display:block;border:0" loading="lazy">
           <div class="note" style="margin:0"><span class="label">這裡放的是實際畫面截圖，不是可操作的版本</span><p>展示牆要用講師專屬金鑰才打得開——把金鑰放在公開網頁上，等於任何人都能看到全班作品。所以這裡只放畫面，實際操作在 8/19 現場示範。</p></div>
@@ -241,8 +243,8 @@
           <p>沒勾的作品只亮完成狀態，點不開。這是尊重，也是個資紅線：交作業是義務，被公開展示不是。</p>
         </div>
         <div class="note ok">
-          <span class="label">老師做的 HTML 工具會直接在投影幕上跑起來</span>
-          <p>不是截圖，是當場輸入資料、當場算出出席率。這是全站最有戲的一幕——你在教室做的東西，在螢幕上真的動起來。</p>
+          <span class="label">8/19 現場開啟 HTML 作品後，工具會直接在投影幕上跑起來</span>
+          <p>這裡提供的是展示牆截圖；現場開啟作品後，可以當場輸入資料、當場算出出席率。你在教室做的東西，會在螢幕上真的動起來。</p>
         </div>
         <div class="note info">
           <span class="label">不同檔案怎麼展示</span>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>關 6：交出去（放上 GitHub 變成網址）｜科學社團專案管理範本站</title>
+<title>關 6：留下版本，換電腦接著做｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -40,55 +43,94 @@
     </aside>
     <main>
       <p class="eyebrow">關 6</p>
-      <h1>交出去：讓你做的東西有一個網址</h1>
-      <p class="lede">這一關只講一件事：<strong>AI 可以幫你 commit、push；然後你在辦公室和家裡打開的，是同一份。</strong>沒有第二個概念。</p>
+      <h1>留下版本，換一台電腦也能接著做</h1>
+      <p class="lede"><strong>GitHub 在這一關先拿來做版本控制與跨機器接手。</strong>每次修改都留一個版本，專案規格、規則與交接紀錄也跟著走；把網站部署成網址是另一件事，最後再選要不要做。</p>
       <div class="note info">
         <span class="label">名詞先講白話</span>
-        <p><strong>GitHub</strong>：一個免費放檔案的地方，可以順便把檔案變成一個網址讓別人打開。<br><strong>commit、push</strong>：就是「存一版」跟「傳上去」。這兩個字你不用會操作，AI 會做，你只要看得懂它在說什麼。<br><strong>Pages</strong>：GitHub 把你的 HTML 檔變成真的網頁的功能。</p>
+        <p><strong>Git</strong>：替專案保存每次修改的版本。<br><strong>GitHub</strong>：把 Git 版本庫放到網路上，讓另一台電腦或協作者取得同一份專案。<br><strong>commit、push</strong>：把目前修改「存成一版」，再「傳到 GitHub」。<br><strong>clone、pull</strong>：另一台電腦第一次取得完整專案用 clone；已經有專案時，用 pull 抓回最新版本。</p>
       </div>
       <section class="gate" id="g1">
         <header><span class="n">1</span><h2>這關做什麼</h2></header>
         <div class="body">
-          <p>讓你的東西有一個網址，而且兩台電腦同步。</p>
-          <p>你前面幾關做出來的管理台、規劃表，現在只活在那台筆電裡。放上去之後：</p>
+          <p>把專案變成一條看得見的版本線，並讓另一台電腦讀到同一批專案記憶。</p>
+          <pre class="flow">電腦 A 更新去識別化學員記憶與核准共享的工具
+  ↓ 先看差異
+commit 存成一版 → push 傳到 GitHub
+                         ↓
+電腦 B：第一次 clone／之後 pull
+  ↓
+讀 PROJECT-README、HANDOFF、LEARNER-RULES 與 specs
+  ↓
+從同一個進度接著做</pre>
+          <p>這裡說的「專案記憶」，不是上一台電腦的聊天內容，而是你主動寫進檔案、取得 repo 權限的人都讀得到的去識別化紀錄。學員專案只使用：</p>
           <ul>
-            <li>你會拿到一個網址，手機、平板、別人的電腦都打得開，<strong>對方不用登入、不用裝任何東西</strong></li>
-            <li>辦公室做一半，回家接著做，<strong>不用再寄檔案給自己</strong></li>
-            <li>改一行字，請 AI 更新上去，<strong>網址不變，內容變了</strong></li>
+            <li><code>PROJECT-README.md</code>：這個學員專案的目標、固定位置與目前狀態</li>
+            <li><code>HANDOFF.md</code>：做到哪裡、下一步與仍待問誰</li>
+            <li><code>LEARNER-RULES.md</code>：個資、安全與寫作偏好</li>
+            <li><code>specs/step1.md</code> 至 <code>step5.md</code>：每關確認過的來源、規格與待確認事項</li>
           </ul>
-          <div class="note ok">
-            <span class="label">你現在就在看它</span>
-            <p>你現在看的這個教材網站，就是用這個方法放上網的。</p>
+          <p class="small">教材製作者的 <code>AGENTS.md</code>、<code>README.md</code>、協作指南、查證資料與改善工單，不是學員專案記憶，不要複製到 <code>club2026-share</code>，第二台 AI 也不要讀它們當待辦。</p>
+          <div class="note bad">
+            <span class="label">GitHub 不會自動搬走聊天記錄</span>
+            <p>AI 的聊天內容、瀏覽器暫存與 <code>localStorage</code> 不會因為 push 就跑到另一台電腦。要跨機器接手的資訊，必須整理成 repo 裡的規格、規則或交接檔。這些檔案同樣不准放真實學生個資。</p>
           </div>
           <h4>行前要準備（併入行前信）</h4>
           <ul>
-            <li>GitHub 帳號（免費，請用<strong>個人 gmail</strong> 註冊，不要用學校帳號）</li>
-            <li>Git，或 GitHub Desktop，二選一（要讓 AI 代操的話，裝 Git 就好）</li>
+            <li>GitHub 帳號（免費，建議用可長期使用的個人信箱註冊）</li>
+            <li>安裝 <strong>Git 與 GitHub CLI</strong>，並完成 GitHub CLI 登入；這是讓 AI 自動建立版本庫、commit、push、clone 與 pull 的行前工具</li>
+            <li>GitHub Desktop 是有畫面的選配工具，不是 AI 自動流程的必要條件</li>
           </ul>
-          <h4>8/19 現場示範腳本（10 分鐘，講師機投影）</h4>
+          <h4>第二台電腦也要先準備</h4>
+          <ul>
+            <li>安裝 Git 與 GitHub CLI，並用同一個有權限的 GitHub 帳號完成 <code>gh auth login</code></li>
+            <li>準備一個<strong>空的存放位置</strong>，不要挑已經有同名專案或做到一半檔案的資料夾</li>
+            <li>先記下 Private repo 的 HTTPS 網址；第二台第一次取得專案時一定要用到</li>
+          </ul>
+          <h4>10 分鐘講師機示範</h4>
           <div class="tablewrap">
             <table>
               <thead><tr><th>時間</th><th>做什麼</th><th>你會看到什麼</th></tr></thead>
               <tbody>
-                <tr><td>0:00–0:30</td><td>講一句：你做好的東西，現在只活在這台筆電裡</td><td>問題被說中</td></tr>
-                <tr><td>0:30–3:00</td><td>對 AI 說「幫我把這個資料夾放上 GitHub」</td><td>AI 自己跑完，畫面吐出一個網址</td></tr>
-                <tr><td>3:00–5:00</td><td>改一行字，對 AI 說「幫我更新上去」</td><td>AI 自己 commit＋push</td></tr>
-                <tr><td>5:00–7:00</td><td>拿手機開同一個網址</td><td><strong>網址沒變，內容已經更新</strong></td></tr>
-                <tr><td>7:00–10:00</td><td>收尾：辦公室做一半，回家接著做，不用再寄檔案給自己</td><td>知道這件事為什麼值得裝</td></tr>
+                <tr><td>0:00–1:30</td><td>打開乾淨接力資料夾，指出 <code>PROJECT-README.md</code>、<code>HANDOFF.md</code>、<code>LEARNER-RULES.md</code> 與 <code>specs/</code></td><td>知道哪些學員記憶能跟著 repo 走</td></tr>
+                <tr><td>1:30–3:30</td><td>請 AI 先列出差異，再 commit、push</td><td>GitHub 留下一個有說明的版本</td></tr>
+                <tr><td>3:30–5:30</td><td>改一行字，請 AI 比較差異，再做第二次 commit、push</td><td>看得出改了哪一行，GitHub 上留下兩個版本</td></tr>
+                <tr><td>5:30–8:30</td><td>在另一台電腦 clone；已經有專案則 pull</td><td>另一台取得相同檔案與版本紀錄</td></tr>
+                <tr><td>8:30–10:00</td><td>請另一台 AI 只讀學員記憶，說明目前進度、缺件與下一步</td><td>不用靠原本聊天記錄，也不會誤讀教材工單</td></tr>
               </tbody>
             </table>
           </div>
           <div class="note info">
-            <span class="label">現場不講什麼（寫出來，避免失焦）</span>
-            <p>這一關只到「有網址、兩台同步」為止。想更深入的老師，教材頁末尾接「跟 AI 一起用 Git」工作坊（15 關，CC BY-NC-SA），自己走。</p>
+            <span class="label">只有一台電腦也能示範</span>
+            <p>在另一個空資料夾執行 clone，把它當作「第二台電腦」。不要直接複製原資料夾；這樣學員才看得到 GitHub 如何把版本與專案記憶交給另一個工作位置。</p>
           </div>
         </div>
       </section>
       <section class="gate" id="g2">
         <header><span class="n">2</span><h2>官方要求</h2></header>
         <div class="body">
-          <p><strong>無。</strong>這一關不對應基金會的任何文件，是給老師自己方便的。</p>
-          <p class="small">但下面那條紅框的個資提醒不是官方要求也要遵守——放上去就是公開的。</p>
+          <p><strong>這一關不對應基金會的繳交文件。</strong>版本控制與跨機器接手，是團隊自己保護成果、維持工作連續性的做法。</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>會跟著 GitHub 走</th><th>不會自動跟著走</th><th>絕對不要上傳</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>逐檔核准的空白 HTML 工具、去識別化摘要與學員記憶</td>
+                  <td>AI 聊天記錄</td>
+                  <td>學生姓名、學號、電話、地址與照片</td>
+                </tr>
+                <tr>
+                  <td>PROJECT-README、HANDOFF、LEARNER-RULES、specs 與其他已核准的去識別化檔案</td>
+                  <td>未 commit、只 commit 未 push、未追蹤或被 <code>.gitignore</code> 排除的檔案；瀏覽器 <code>localStorage</code>、AI 對話／session、本機設定與登入 token</td>
+                  <td>密碼、API 金鑰、登入憑證、<code>備份-*.json</code>，以及含個資的匯出檔</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="small">repo 設為 Private 也不代表可以放學生個資。Git 會保留歷史版本，推上去之後才刪檔，舊版本裡仍可能找得到。</p>
+          <div class="note warn">
+            <span class="label">跨機器接手不等於搬走全部原件</span>
+            <p><code>sources/</code> 與真人資料不進 GitHub。第二台可以接著讀規格、修改安全工具、看進度；需要重新核對官方或校內原件時，必須由學校用核准方式另行提供，缺原件就只能標「待確認」。</p>
+          </div>
         </div>
       </section>
       <section class="gate" id="g3">
@@ -97,63 +139,138 @@
           <div class="note">
             <span class="label">前提：行前那三個工具要裝好</span>
             <p>
-              這一關要 AI 幫你做事，它需要三樣東西：<span class="en">Git</span>（送檔案）、
-              <span class="en">GitHub CLI</span>（在 GitHub 上開新位置）、還有你已經<b>登入過一次</b>的 GitHub 帳號。
+              這一關要 AI 幫你做事，它需要三樣東西：<span class="en">Git</span>（版本與傳送）、
+              <span class="en">GitHub CLI</span>（讓 AI 登入、建立並操作 GitHub repo）、還有你已經<b>登入過一次</b>的 GitHub 帳號。
               三樣都在 <a href="install.html">行前安裝</a> 那頁的第 06、07 項。<br>
-              <b>如果沒裝 GitHub CLI</b>，AI 會卡在「找不到那個位置」
-              （<span class="en">repository not found</span>）——因為單靠 Git 沒辦法憑空建出一個新的。
+              <b>如果沒裝 GitHub CLI</b>，AI 常會回報找不到 <code>gh</code> 指令，無法替你建立或管理 GitHub 上的 repo；
+              commit、push、clone、pull 本身則是 Git 的工作。
             </p>
+            <p>第一次 commit 前，AI 還要檢查 Git 的作者姓名與 email。若尚未設定，請它停下來問你要用什麼；不要讓它自行填寫，也不要未經同意改全域設定。</p>
           </div>
 
-          <p class="small" style="margin-top:1rem">位置開好之後，下面這三句才用得上。第一句只用一次，之後每天用的其實只有第二、第三句。</p>
+          <div class="note bad" style="margin-top:1rem">
+            <span class="label">第一步不是上傳，是先做乾淨接力資料夾</span>
+            <p><code>club2026</code> 可能放著校務原件、真名備份或不該分享的工作資料。<strong>不要叫 AI 掃描原始工作資料夾，也不要整包推上 GitHub。</strong>先更新學員記憶，再用檔案總管或 Finder 手動建立 <code>club2026-share</code>，逐項複製下方核准的內容。</p>
+          </div>
           <div class="prompt">
-            <header><span class="step">① 第一次放上去</span><button class="copy" type="button">複製</button></header>
-            <pre>幫我把你現在開著的這個資料夾放上我的 GitHub，
-建一個公開的 repo、開好 Pages，做完把網址給我。
-動手前先列出你要上傳哪些檔案讓我確認，我說可以你再開始。</pre>
+            <header><span class="step">⓪A 先更新學員交接記憶</span><button class="copy" type="button">複製</button></header>
+            <pre>現在是學員 club2026 模式。請只讀 PROJECT-README.md、HANDOFF.md、
+LEARNER-RULES.md、specs/，以及 outputs/ 裡檔名含 summary 的去識別化 JSON。
+不要讀 sources/、真名備份、附件一／二、逐人回饋、照片或其他工作資料。
+
+先提出 PROJECT-README.md 與 HANDOFF.md 的更新草稿，內容只寫：
+已完成、通過哪些驗收、下一步、仍待向誰確認、哪些原件未隨 GitHub 移轉。
+逐句檢查沒有學生、家長或教師個資，也沒有含電腦帳號名稱的本機完整路徑；
+來源只寫 sources/...、specs/... 或 outputs/... 相對路徑。等我確認後才更新這兩個檔案，
+不要修改教材 HTML、AGENTS.md、協作指南、查證資料或改善工單。</pre>
             <dl>
-              <dt>要什麼</dt><dd>一個可以打開的網址</dd>
-              <dt>AI 大概會回什麼</dt><dd>先列檔案清單等你確認，然後建 repo、上傳、開 Pages，最後給你網址</dd>
-              <dt>你要檢查什麼</dt><dd><b>清單裡有沒有出現任何人的資料</b>；有就喊停。網址拿到後用手機開一次</dd>
+              <dt>要什麼</dt><dd>把這次進度從聊天整理成去識別化學員記憶</dd>
+              <dt>AI 大概會回什麼</dt><dd>先給兩份更新草稿，等你確認才存檔</dd>
+              <dt>你要檢查什麼</dt><dd>下一步是否具體；有沒有真人資料或把待確認寫成定案</dd>
+            </dl>
+          </div>
+          <div class="note info">
+            <span class="label">club2026-share 的逐項允許清單</span>
+            <ul>
+              <li>一定要有：<code>PROJECT-README.md</code>、<code>HANDOFF.md</code>、<code>LEARNER-RULES.md</code>、<code>specs/</code></li>
+              <li>逐檔核准後可放：空白／去識別化的工具，以及 <code>outputs/*-summary.json</code></li>
+              <li>一律不放：<code>sources/</code>、真名備份、附件一／二、逐人回饋、照片、核銷原始資料、教材製作者的 <code>AGENTS.md</code>／README／協作指南／查證資料／改善工單、密碼或 token</li>
+            </ul>
+          </div>
+          <div class="prompt">
+            <header><span class="step">⓪B 手動複製後，只做風險檢查</span><button class="copy" type="button">複製</button></header>
+            <pre>我已經用檔案總管手動建立 club2026-share，並只複製我認為可以共享的檔案。
+先不要執行 git、不要上傳，也不要修改、移動或刪除任何檔案。
+
+請先確認你目前開啟的是 club2026-share，不是 club2026。
+接著列出這個乾淨資料夾裡的所有檔案（包含隱藏檔），再逐檔檢查是否出現：
+學生、家長或教師個資、照片人臉、出席與逐人回饋、備份 JSON、核銷個資、
+sources/ 原件、教材製作者的 AGENTS／README／協作指南／查證資料／改善工單、
+校務原檔、含電腦帳號名稱的本機完整路徑、密碼、token、API 金鑰或私人聯絡資訊。
+
+另外確認 PROJECT-README.md、HANDOFF.md、LEARNER-RULES.md 與 specs/ 都存在。
+
+只回報檔案清單與風險；我逐檔確認以前，不要建立 repo 或上傳。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一個只含核准共享內容的乾淨資料夾</dd>
+              <dt>AI 大概會回什麼</dt><dd>現有檔案、缺少的學員記憶與風險清單；不會替你複製</dd>
+              <dt>你要檢查什麼</dt><dd>真名、照片、備份與登入憑證一律沒有進去</dd>
+            </dl>
+          </div>
+
+          <p class="small" style="margin-top:1rem">先用 Codex 或 Antigravity 開啟剛確認的 <code>club2026-share</code>，再使用下面幾張卡。建立 repo 只做一次；之後每次修改先更新 HANDOFF，再走第二張。</p>
+          <div class="prompt">
+            <header><span class="step">① 第一次建立版本庫</span><button class="copy" type="button">複製</button></header>
+            <pre>請先確認你目前開啟的是我剛核准的 club2026-share，不是原始工作資料夾。
+確認 PROJECT-README.md、HANDOFF.md、LEARNER-RULES.md 與 specs/ 都存在，
+且沒有 sources/、教材製作者 AGENTS／README／協作指南／查證資料／改善工單。
+先執行唯讀檢查：git --version、gh auth status，以及 Git 的作者姓名與 email 是否已設定。
+若作者資料未設定，停下來問我要用什麼；不要自行填寫，也不要未經我同意改全域設定。
+
+接著幫我把這個乾淨資料夾放上我的 GitHub，
+建立 Private repo，並完成第一個 commit 和 push。
+動手前先列出準備上傳的每一個檔案（包含隱藏檔），確認 repo 設為 Private，
+以及有沒有學生個資、照片、備份、密碼、token 或金鑰。我確認後你再開始。
+完成後回報 repo HTTPS 網址與最新 commit 雜湊，不要只說「完成」。</pre>
+            <dl>
+              <dt>要什麼</dt><dd>一個有第一筆版本紀錄的 GitHub repo</dd>
+              <dt>AI 大概會回什麼</dt><dd>先列差異與檔案清單，等你確認後才建立 repo、commit、push</dd>
+              <dt>你要檢查什麼</dt><dd><b>清單裡有沒有學生個資、憑證或不該共享的檔案</b>；有就喊停</dd>
             </dl>
           </div>
           <div class="note">
-            <span class="label">如果 AI 開不了 Pages，你自己點也很快</span>
-            <p>
-              到你的 repo 頁面 → <span class="en">Settings</span> → 左邊選 <span class="en">Pages</span>
-              → <span class="en">Source</span> 選 <span class="en">Deploy from a branch</span>
-              → 分支選 <span class="en">main</span>（或 <span class="en">master</span>）、資料夾選 <span class="en">/ (root)</span> → <span class="en">Save</span>。<br>
-              開好之後<b>剛開會出現 404，官方說最多要等 10 分鐘</b>，先去做別的事再回來看。
-            </p>
+            <span class="label">部署和版本控制分開</span>
+            <p>把檔案 push 到 GitHub，是保存版本與交接；把網站部署成公開網址，是另一個步驟。需要網址時可以選 GitHub Pages，也可以用 Netlify 或其他部署平台。這一關不把 GitHub 當成唯一部署方式。</p>
           </div>
           <div class="prompt">
             <header><span class="step">② 之後每次改完</span><button class="copy" type="button">複製</button></header>
-            <pre>幫我把剛剛的修改更新上去。
-上傳前先列出這次要送上去的每一個檔案，還有每個檔案改了什麼，
-讓我確認過再動手。不要用「全部一起加」的方式。</pre>
+            <pre>先確認 HANDOFF.md 已記下這次完成、下一步與仍待確認事項，而且沒有個資。
+幫我把剛剛的修改更新上去。先執行 git status 與 git diff，
+列出這次要送上去的每一個檔案、每個檔案改了什麼，以及建議的繁體中文 commit 訊息。
+也逐檔檢查學生個資、照片、備份、密碼、token 與 API 金鑰。
+讓我確認過再 commit、push；不要用「全部一起加」的方式，也不要自動加入未追蹤檔。
+完成後回報最新 commit 雜湊與 repo 網址。</pre>
             <dl>
-              <dt>要什麼</dt><dd>網址上的內容跟著你的修改變新</dd>
+              <dt>要什麼</dt><dd>GitHub 上留下這次修改的版本</dd>
               <dt>AI 大概會回什麼</dt><dd>它會 commit＋push，然後回報完成</dd>
-              <dt>你要檢查什麼</dt><dd>重新整理那個網址，改的那行字有變嗎（要等，有時候要幾分鐘才會換過去）</dd>
+              <dt>你要檢查什麼</dt><dd>commit 說明是否講清楚「改了什麼、為什麼」，檔案清單是否只有這次要傳的內容</dd>
             </dl>
           </div>
           <div class="prompt">
             <header><span class="step">③ 換另一台電腦時</span><button class="copy" type="button">複製</button></header>
-            <pre>我在另一台電腦，幫我把 GitHub 上那份最新的抓下來。
-如果這台電腦上已經有我改到一半的東西，先告訴我，不要直接蓋掉。</pre>
+            <pre>我在另一台電腦。
+repo HTTPS 網址：⟨貼上 GitHub repo 網址，例如 https://github.com/帳號/club2026-share.git⟩
+要存放的父資料夾：⟨貼上完整路徑，例如 Windows 的 D:\AI-course，或 Mac 的 /Users/你的帳號/Documents/AI-course⟩
+
+先執行唯讀檢查：git --version 與 gh auth status，確認這個帳號有權讀取 Private repo。
+再檢查父資料夾下預計產生的 club2026-share：
+・同名資料夾不存在，才可以 clone；clone 前先回報完整目的地
+・同名資料夾存在但不是 Git repo，先停下來，不得覆蓋或在裡面 clone
+・同名資料夾已是 Git repo，先執行 git remote -v，把 origin HTTPS 網址和上面網址核對
+  網址不一致就停下來，不得 pull 或改 remote
+・網址一致時再執行 git status；有尚未 commit 的修改就停，乾淨時才問我是否 pull
+接著只讀 PROJECT-README.md、HANDOFF.md、LEARNER-RULES.md 與 specs/ 的學員記憶，
+告訴我目前進度、限制、缺少哪些 sources 原件與下一步。不要讀教材改善工單，
+也不要直接覆蓋、移動或刪除任何本機修改。
+最後回報完整專案路徑與目前 commit 雜湊，讓我和第一台比較。</pre>
             <dl>
               <dt>要什麼</dt><dd>這台電腦拿到最新的那一份</dd>
-              <dt>AI 大概會回什麼</dt><dd>它會把檔案下載更新到你指定的資料夾</dd>
-              <dt>你要檢查什麼</dt><dd>打開檔案，看看是不是你在另一台改的那一版</dd>
+              <dt>AI 大概會回什麼</dt><dd>它會 clone 或 pull，讀完專案記憶後摘要目前進度</dd>
+              <dt>你要檢查什麼</dt><dd>remote 網址與最新 commit 是否一致；進度是否符合 PROJECT-README、HANDOFF、LEARNER-RULES 與 specs</dd>
             </dl>
           </div>
           <div class="prompt">
             <header><span class="step">④ 出錯的時候</span><button class="copy" type="button">複製</button></header>
-            <pre>出錯了，這是錯誤訊息：⟨整段貼上⟩</pre>
+            <pre>出錯了，這是完整錯誤訊息：
+⟨整段貼上，不要刪字⟩
+
+請先用白話說明原因，再列出你建議的唯讀檢查。現在不要修改檔案或 Git 設定，
+不要 reset、force push、刪除、覆蓋或搬移任何東西。需要變更前先把指令、
+會影響哪些檔案、能不能復原講清楚，等我確認再做。</pre>
             <dl>
               <dt>要什麼</dt><dd>把問題交回給 AI 處理</dd>
-              <dt>AI 大概會回什麼</dt><dd>它會解釋原因並直接處理</dd>
-              <dt>你要檢查什麼</dt><dd>錯誤訊息<strong>整段貼上</strong>，不要只貼最後一行、也不要自己重打</dd>
+              <dt>AI 大概會回什麼</dt><dd>先解釋原因與唯讀檢查，不會直接改動</dd>
+              <dt>你要檢查什麼</dt><dd>錯誤訊息<strong>整段貼上</strong>；它若提到 reset、force、刪除或覆蓋，先不要允許</dd>
             </dl>
           </div>
         </div>
@@ -163,18 +280,22 @@
         <div class="body">
           <ul>
             <li><strong>第一次 push 要登入授權，瀏覽器會自己跳出來</strong> → 正常，照著按就好。</li>
-            <li><strong>repo 設成 Private</strong> → 用免費方案時 Pages 開不了，要設成 Public。（付費方案可以用私人 repo 開 Pages，但我們用不到。）</li>
-            <li><strong>首頁檔名不是 <code>index.html</code></strong> → 開出來多半是「404 找不到頁面」。首頁一定要叫 <code>index.html</code>。</li>
-            <li><strong>Pages 剛開會先出現 404</strong> → 正常，要等。<b>官方說最多可能要 10 分鐘</b>，別急著砍掉重做。</li>
-            <li><strong>中文檔名在網址會變成一長串亂碼（不一定開不了，但很難傳給別人）</strong> → 檔名一律英文，頁面才開得起來。</li>
+            <li><strong>第一次 commit 報作者身分不明</strong> → 請 AI 顯示目前設定，停下來問你要用的姓名與 email；不要讓它自行猜，也不要未經同意改全域設定。</li>
+            <li><strong>把 commit 和 push 當成同一件事</strong> → commit 只存到這台電腦；完成 push，另一台才抓得到。</li>
+            <li><strong>換電腦後直接 pull</strong> → 先請 AI 檢查本機有沒有未保存的修改；有就停下來處理，不要硬蓋。</li>
+            <li><strong>以為 AI 記得上一台的聊天</strong> → 把需求、規則與下一步寫進 repo 的專案記憶檔，再 commit、push。</li>
+            <li><strong>第二台已經有同名資料夾就直接 pull</strong> → 先用 <code>git remote -v</code> 比對 repo 網址，再看 <code>git status</code>；任一不符就停。</li>
+            <li><strong>只寫「更新」當 commit 訊息</strong> → 改成具體說明，例如「補上出席表驗收規則，避免漏算請假」。</li>
+            <li><strong>第二台只說「幫我抓下來」</strong> → AI 不知道是哪個 repo、要放哪裡。一定要貼 repo HTTPS 網址與目的地完整路徑。</li>
           </ul>
           <div class="note bad">
-            <span class="label">🚨 放上去就是公開的</span>
-            <p>管理台裡如果有真實學生名單，<strong><b>另外開一個乾淨的資料夾</b>，只把「要給別人看的檔案」複製過去再上傳。<b>不要</b>拿原本那個工作資料夾按「載入練習用範例」就當作清乾淨了——真名可能還留在瀏覽器的暫存、你匯出過的備份檔、或資料夾裡你忘記的檔案</strong>。網址一旦公開，任何人都打得開，事後刪掉也可能已經被存下來。</p>
-            <p>會外傳的東西一律只放虛構名單。真名單留在你自己的電腦或學校雲端。</p><p style="margin-top:.6rem"><b>上傳前一定要先問 AI 這一句</b>（不要跳過）：</p><div class="prompt" style="margin:.5rem 0"><button class="copy" type="button">複製</button><pre>先不要上傳。請先做兩件事：
+            <span class="label">🚨 上傳前先擋個資與憑證</span>
+            <p>GitHub 會保留版本歷史。即使 repo 是 Private，或之後把檔案刪掉，舊版本仍可能留著。專案記憶只能寫工作規格與交接資訊，不能寫真實學生資料。</p>
+            <p>需要共享範例時，另外準備一個乾淨資料夾，只放虛構資料與可公開的檔案。真名單留在學校核准的系統或安全位置。</p><p style="margin-top:.6rem"><b>push 前一定要先問 AI 這一句</b>（不要跳過）：</p><div class="prompt" style="margin:.5rem 0"><button class="copy" type="button">複製</button><pre>先不要上傳。請先做兩件事：
 一、列出你打算上傳的每一個檔案（含隱藏檔），一個一行。
 二、逐檔告訴我裡面有沒有出現這些東西：姓名、學號、班級座號、
-    電話、email、地址、生日、照片裡的人臉、家長資料。
+    電話、email、地址、生日、照片裡的人臉、家長資料、成績、出席、請假、
+    個別回饋或私訊、身分證、戶籍、匯款資料、密碼、API 金鑰、備份-*.json。
 我確認之後你再上傳。</pre></div><p style="font-size:.95rem">它列完你自己看一遍，有真名就停下來。<b>東西一旦推上去，就算你之後刪掉，紀錄裡還是留得住</b></p>
           </div>
         </div>
@@ -183,18 +304,23 @@
         <header><span class="n">5</span><h2>驗收清單</h2></header>
         <div class="body">
           <ul class="checklist">
-            <li><label><input type="checkbox"><span>網址在手機上開得起來</span></label></li>
-            <li><label><input type="checkbox"><span>傳給旁邊的人，他不用登入也開得起來</span></label></li>
-            <li><label><input type="checkbox"><span>頁面上沒有任何真實學生姓名</span></label></li>
-            <li><label><input type="checkbox"><span>改一行字請 AI 更新，網址上的內容跟著變</span></label></li>
-            <li><label><input type="checkbox"><span>你知道這個網址之後要怎麼找回來</span></label></li>
+            <li><label><input type="checkbox"><span>上傳來源是逐檔核准的 club2026-share，不是含工作資料的原始資料夾</span></label></li>
+            <li><label><input type="checkbox"><span>repo 有 PROJECT-README、HANDOFF、LEARNER-RULES 與 specs，沒有 sources 或教材製作者工單</span></label></li>
+            <li><label><input type="checkbox"><span>Git 作者姓名與 email 已由自己確認，GitHub CLI 也已登入正確帳號</span></label></li>
+            <li><label><input type="checkbox"><span>GitHub 上看得到至少兩個 commit，訊息寫得出每次改了什麼</span></label></li>
+            <li><label><input type="checkbox"><span>能查看目前版本和上一版的差異</span></label></li>
+            <li><label><input type="checkbox"><span>另一個資料夾或另一台電腦能 clone／pull 到最新版本</span></label></li>
+            <li><label><input type="checkbox"><span>第一台、GitHub 與第二台顯示的最新 commit 雜湊一致</span></label></li>
+            <li><label><input type="checkbox"><span>第二台既有 repo 的 origin 網址已用 git remote -v 和指定 HTTPS 網址核對</span></label></li>
+            <li><label><input type="checkbox"><span>另一個 AI 讀完專案記憶後，能說出目前進度與下一步</span></label></li>
+            <li><label><input type="checkbox"><span>repo 與版本歷史沒有學生個資、密碼或 API 金鑰</span></label></li>
           </ul>
-          <p class="done-count small">已完成 0 / 5 項</p>
+          <p class="done-count small">已完成 0 / 10 項</p>
         </div>
       </section>
       <div class="note info" style="margin-top:2rem">
-        <span class="label">想再往下走</span>
-        <p>這一關到「有網址、兩台同步」就結束，刻意不往下走。想再深入的老師可以接「跟 AI 一起用 Git」工作坊，共 15 關，CC BY-NC-SA 授權，自己走完。</p>
+        <span class="label">需要公開網址時，再選部署平台</span>
+        <p>GitHub Pages 是靜態網站的其中一個選項，Netlify 或其他平台也可以。無論選哪一個，先把版本控制與個資檢查做好；部署不是跨機器接手的必要條件。</p>
       </div>
 
       <footer class="site">

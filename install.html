@@ -34,10 +34,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -56,10 +59,10 @@
       <li><a href="#a4">04 Antigravity 2.0</a></li>
       <li><a href="#a5">05 裝好之後要調的設定</a></li>
       <li><a href="#a6">06 GitHub 帳號</a></li>
-      <li><a href="#a7">07 Git ＋ GitHub Desktop</a></li>
+      <li><a href="#a7">07 Git ＋ GitHub CLI</a></li>
       <li><a href="#a8">08 教材包與資料夾</a></li>
       <li><a href="#check">最後：自我檢查</a></li>
-      <li><a href="#cli">進階 CLI（選配）</a></li>
+      <li><a href="#cli">Antigravity／Codex CLI（選配）</a></li>
       <li><a href="#stuck">卡住怎麼辦</a></li>
     </ol>
   </aside>
@@ -68,8 +71,8 @@
     <p class="eyebrow">行前準備</p>
     <h1>8/19 之前，請先準備好這幾項</h1>
     <p class="lede">
-      抓 40 分鐘就夠。<b>全部免費，不用付一毛錢。</b>
-      當天上午三小時要動手做三樣東西，時間很緊，所以裝軟體這件事請務必在家裡先做完。
+      8/19 上半場會由 Codex 規劃、Antigravity 實作，再回 Codex 複核；下半場才使用單一 Antigravity。
+      請先備妥 ChatGPT／Codex、個人 Gmail、Antigravity、GitHub 帳號、Git、已登入的 GitHub CLI 與研習資料夾。GitHub 這一組工具會用來留下版本，並把專案接到另一台電腦。<b>全部免費；GitHub Desktop 選配。</b>
     </p>
 
     <div class="note info">
@@ -85,7 +88,7 @@
     <!-- 01 -->
     <section class="inst" id="a1">
       <h3><span class="no">01</span> ChatGPT 帳號</h3>
-      <p class="why">要用它裡面的 Codex。<b>免費方案就夠</b>，不必升級付費。</p>
+      <p class="why">8/19 上半場會用 Codex 規劃與複核。<b>免費方案就夠</b>，不必升級付費。</p>
       <ol>
         <li>到 <span class="en">chatgpt.com</span> 註冊（有帳號就跳過）</li>
         <li>用瀏覽器登入一次，確認進得去</li>
@@ -109,42 +112,40 @@
 
     <!-- 03 -->
     <section class="inst" id="a3">
-      <h3><span class="no">03</span> ChatGPT 桌面版 → 切到 Codex</h3>
-      <p class="why">這是「領隊」。負責想清楚要做什麼、以及回頭幫你檢查有沒有做錯。</p>
+      <h3><span class="no">03</span> ChatGPT 桌面版 → 開啟 Codex</h3>
+      <p class="why">8/19 上半場第一步用它整理規格，第三步再用它對照原始資料複核 Antigravity 的成品。</p>
       <ol>
         <li>到 <span class="en">chatgpt.com/download</span> 下載安裝</li>
         <li>用 01 的帳號登入</li>
-        <li><b>左上角的切換器切到 Codex</b>（不是一般聊天模式）</li>
+        <li>打開 ChatGPT 桌面版後，選擇 <b>Codex</b>，再開始一個新任務。不同版本的位置可能會調整；請找「Codex」名稱，不要只靠這張截圖認位置。</li>
       </ol>
       <div class="warn">
-        <b>別去搜尋「Codex」下載獨立軟體。</b>
-        2026 年 7 月起它已經併進 ChatGPT app 裡了，網路上搜到的多半是過期教學，也有假冒的下載站。
+        <b>這堂課使用 ChatGPT 桌面版裡的 Codex。</b>
+        請從 <span class="en">chatgpt.com/download</span> 取得官方版本，不要從來路不明的下載站安裝。
       </div>
       <figure style="margin:.9rem 0">
-        <img src="img/codex-switcher.png" alt="ChatGPT 桌面版左上角的 Codex 切換器" style="width:100%;max-width:420px;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <img src="img/codex-switcher.png" alt="ChatGPT 桌面版中的 Codex 畫面範例" style="width:100%;max-width:420px;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
         <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">
-          左上角這個「<span class="en">Codex ⌄</span>」就是切換器。點它可以在一般聊天和 Codex 之間換。
+          這是教材製作時的畫面範例；你的版本位置可能不同。看到「<span class="en">Codex</span>」並能建立新任務即可。
         </figcaption>
       </figure>
       <div class="pick">
-        <b>好消息：介面是中文的。</b>
-        下面那排「新聊天、Pull Request、網站、已排程、外掛程式」都看得懂，
-        不用怕整片英文。（<span class="en">Pull Request</span> 那項我們用不到，不理它就好。）
+        <b>介面文字可能隨版本與語言設定不同。</b>
+        這堂課只要會做三件事：開啟 Codex、選整個 <span class="en">club2026</span> 資料夾、開始新任務。
       </div>
       <div class="pick"><b>怎麼算裝好</b>：切到 Codex 之後，它可以「打開一個資料夾」。看得到這個功能就對了。</div>
       <div class="warn">
-        <b>順便看一下你的額度。</b>視窗<b>左下角</b>你的帳號旁邊會有一個百分比，那是目前用掉多少。
-        8/19 之前請讓它保持在低點——額度用完當天補不回來。
+        <b>裝好、確認切得到就先停。</b>行前只確認能開研習資料夾，不先產生作品，把額度留給 8/19 上半場。
       </div>
     </section>
 
     <!-- 04 -->
     <section class="inst" id="a4">
       <h3><span class="no">04</span> Antigravity 2.0（桌面版）</h3>
-      <p class="why">這是「隊員」。負責真的把檔案做出來。</p>
+      <p class="why">8/19 上半場由它照 Codex 的規格製作，接著把成品交回 Codex 複核；下半場則由它單獨完成整段流程。</p>
       <ol>
         <li><b>只從 <span class="en">antigravity.google/download</span> 下載</b></li>
-        <li>頁面上有四樣東西，請選 <b>Antigravity 2.0（桌面版）</b>。<br><span class="muted" style="font-size:.92rem">另外三樣寫著 IDE、CLI、SDK，那是給工程師用的版本，名字看起來很像但不是我們要的。<b>按錯只是下載到用不到的軟體，不會弄壞電腦</b>，刪掉重下就好。</span></li>
+        <li>頁面上有四樣東西，請選 <b>Antigravity 2.0（桌面版）</b>。<br><span class="muted" style="font-size:.92rem">另外三樣寫著 IDE、CLI、SDK，那是不同使用方式，名字看起來很像但不是這堂課要用的桌面版。若選錯，先不要安裝或執行，回官方頁重選即可。</span></li>
         <li>用 02 的個人 Gmail 登入</li>
       </ol>
       <div class="stop">
@@ -152,21 +153,21 @@
       </div>
       <table class="kv">
         <tr><th>Windows</th><td>10 以上、64 位元</td></tr>
-        <tr><th>Mac</th><td>macOS 12 以上，而且<b>只支援 Apple Silicon</b>（M1 之後的機型）。舊的 Intel Mac 不行 —— 這種情況請當天帶學校筆電或跟旁邊的老師併桌</td></tr>
+        <tr><th>Mac</th><td>macOS 12 以上。官方下載頁目前同時列出 Apple Silicon 與 Intel 按鈕，但需求文字又寫「X86 不支援」，兩段資訊彼此矛盾。<b>Intel Mac 請在行前實際安裝並通過關 0；無法通過就改帶 Windows 或 Apple Silicon 筆電。</b></td></tr>
       </table>
       <div class="warn">
-        <b>裝好之後先別玩。</b>它的免費額度是<b>一週給一次</b>，用完要等一週。
-        請把額度留給 8/19 那天動手的兩段。
+        <b>裝好之後先別玩。</b>免費方案的額度按週刷新，額度與可用模型會依帳號狀況變動。
+        行前只做一次短讀檔檢查，把額度留給 8/19 實作。
       </div>
-      <div class="pick"><b>怎麼算裝好</b>：登入成功，而且開得起跟 Codex 同一個資料夾。</div>
+      <div class="pick"><b>怎麼算裝好</b>：登入成功，而且開得起你準備給研習使用的資料夾。</div>
     </section>
 
     <!-- 05 -->
     <section class="inst" id="a5">
       <h3><span class="no">05</span> Antigravity 裝好之後，要調的設定</h3>
       <p class="why">
-        它出廠的安全等級最嚴，AI 每要做一個動作都會停下來問你。
-        先調好，當天才不會每三十秒被打斷一次。
+        先認得兩個安全設定。初學者不必為了省幾次確認就放寬整台電腦的權限；
+        8/19 建議保留 <span class="en">Default</span>，並把產出審核設成 <span class="en">Always Ask</span>。
       </p>
 
       <p><b>設定在哪裡</b>：視窗<b>左下角</b>的 <span class="en">Settings</span>（齒輪圖示），
@@ -187,12 +188,12 @@
         <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">點右邊那個下拉，會看到四個選項。</figcaption>
       </figure>
       <table class="kv">
-        <tr><th><span class="en">Default</span><br><span class="muted" style="font-weight:400">剛裝好就是這個</span></th>
+        <tr><th><span class="en">Default</span><br><b style="color:var(--accent,#10b981)">🌟 初學者建議保留</b></th>
             <td>官方寫：工作資料夾以外的檔案存取、以及<b>所有</b>終端機指令，都要人工審核。<br>
-                → 最安全，但它會一直問你，做起事來很慢。</td></tr>
-        <tr><th><span class="en">Full machine</span><br><b style="color:var(--accent,#10b981)">🌟 建議選這個</b></th>
-            <td>官方寫：所有終端機指令<b>仍然要審核</b>，但 AI 可以讀寫這台電腦上的任何檔案。<br>
-                → 名字聽起來像「整台電腦交出去」，其實<b>要動手時還是會問你</b>，只是不必為了每個檔案再確認一次。</td></tr>
+                → 會多幾次確認，但能把權限限制在你指定的工作範圍，適合第一次使用。</td></tr>
+        <tr><th><span class="en">Full machine</span></th>
+            <td>AI 可以讀寫這台電腦上的任何檔案。終端機指令雖仍可能要求審核，<b>不代表每一次檔案讀寫都會先問你</b>。<br>
+                → 這堂課不需要整台電腦權限，初學者不要選。</td></tr>
         <tr><th><span class="en">Turbo mode</span></th>
             <td>官方寫：<b>關閉所有安全屏障</b>，換取最快的速度。<br>
                 → <b>不要選。</b>你會不知道它對你的電腦做了什麼。</td></tr>
@@ -221,8 +222,8 @@
       </div>
 
       <div class="pick">
-        <b>為什麼要管這個</b>：8/19 有一段要示範「請 AI 幫你把檔案放上網路」。
-        那需要它跑電腦指令，設定太嚴會一直卡住、太鬆你又不知道它做了什麼。
+        <b>為什麼要管這個</b>：Antigravity 會讀寫檔案，也可能執行電腦指令。
+        這堂課用 <span class="en">Default</span> 就夠；看到確認視窗時先讀內容，再決定是否允許。
       </div>
 
       <p class="muted" style="font-size:.9rem;margin-top:.8rem">
@@ -237,7 +238,7 @@
     <section class="inst" id="a6">
       <h3><span class="no">06</span> GitHub 帳號</h3>
       <p class="why">
-        為了讓你做好的東西變成一個<b>網址</b>。校長要看、家長要看、明年接手的老師要看，傳一個連結就好，不用一直寄檔案。
+        GitHub 不只是拿來部署網站。它是專案的接力站：保留每次修改的版本，也讓另一台電腦取回同一個 repo。repo 裡的專案記憶、規格與作品會一起帶過去。
       </p>
       <ol>
         <li>到 <span class="en">github.com</span> 註冊，免費</li>
@@ -249,17 +250,17 @@
 
     <!-- 07 -->
     <section class="inst" id="a7">
-      <h3><span class="no">07</span> Git（＋ GitHub Desktop）</h3>
-      <p class="why">上一項是「網路上的地方」，這一項是「把東西送上去的工具」。你不用學它，交給 AI 用。</p>
+      <h3><span class="no">07</span> Git ＋ GitHub CLI（行前必備；GitHub Desktop 選配）</h3>
+      <p class="why">Git 負責版本紀錄，以及 <span class="en">commit</span>、<span class="en">push</span>、<span class="en">clone</span>、<span class="en">pull</span>；GitHub CLI 讓 AI 登入並操作你的 GitHub。兩者都列入 8/19 行前必備。GitHub Desktop 只是看得見的選配工具。</p>
       <table class="kv">
         <tr><th>Windows</th>
             <td>到 <span class="en">git-scm.com</span> 下載，安裝時<b>一路按 Next 就好</b>，那些選項不用看懂。<br>
-                <b>其中一步請選 <span class="en">Install for me only</span></b> —— 這樣就不需要管理員權限，學校的筆電也裝得起來。</td></tr>
+                如果出現管理員權限提示，請在自己的筆電確認後再允許；學校配發且被鎖定的電腦，請找資訊組協助。</td></tr>
         <tr><th>Mac</th>
             <td>多半已經內建。沒有的話，第一次用到時系統會自己跳出安裝提示，按同意就好。</td></tr>
       </table>
       <div class="warn">
-        學校配發的筆電如果鎖了安裝權限，先找資訊組開權限，或當天帶自己的筆電。<br><b>請務必試著裝</b>——8/19 最後一段會用到。真的裝不起來，當天提早 20 分鐘到，我們現場幫你看；前面三段動手不受影響，不會整個下午白來。
+        這一段是行前必備，請不要留到 8/19 現場才裝。學校配發的筆電如果鎖了安裝權限，請先找資訊組協助，或改用自己的筆電。
       </div>
       <p><b>怎麼驗收</b>：打開 Codex，貼這一句給它：</p>
       <div class="prompt">
@@ -268,10 +269,9 @@
       </div>
       <div class="pick"><b>怎麼算裝好</b>：它回你一串版本號（例如 <span class="en">git version 2.xx.x</span>）就對了。</div>
 
-      <h4 style="margin:1.1rem 0 .4rem">還要裝一個：<span class="en">GitHub CLI</span>（讓 AI 能自己開位置）</h4>
+      <h4 style="margin:1.1rem 0 .4rem">還要裝一個：<span class="en">GitHub CLI</span>（讓 AI 能登入並操作 GitHub）</h4>
       <p class="why" style="margin-bottom:.5rem">
-        剛才那個 Git 只會「把檔案送上去」，它<b>沒辦法在 GitHub 上開一個新位置</b>。
-        要讓 AI 一句話從頭做到尾，還需要這個工具。
+        剛才那個 Git 負責記版本與傳送檔案；要讓 AI 登入 GitHub、建立 repo，再把整套流程接起來，還需要這個工具。
       </p>
       <ol>
         <li>到 <span class="en">cli.github.com</span> 下載安裝（Windows 一路 Next）</li>
@@ -304,84 +304,81 @@
       <div class="pick">
         <b>它跟前面兩個的關係</b>：Desktop 自己就能建 repo、提交、上傳，
         <b>不是非得配合前面那兩個才能用</b>。<br>
-        我們仍然請你裝前面兩個，是因為<b>這門課要示範的是「AI 幫你做」</b>，
-        而 AI 是在終端機下指令，需要指令版的 Git 與 GitHub CLI。<br>
+        若要照關 6 的提示詞讓 AI 自動留版本、上傳、下載並跨機器接手，就需要指令版的 Git 與已登入的 GitHub CLI。<br>
         Desktop 的價值在<b>你自己看得見</b>：它改了哪些檔案、上次什麼時候傳的，一眼就懂。
       </div>
       <div class="warn">
         裝不起來也沒關係，這一項是<b>加分不是必要</b>——AI 用指令那個就能把事情做完。
+      </div>
+      <div class="note info">
+        <b>部署是另一個選配步驟。</b>要把網站公開時，可以選 GitHub Pages、Netlify 或其他服務；前面安裝 GitHub 工具的核心目的，是版本控制與跨機器接手，不綁定任何部署平台。
       </div>
     </section>
 
     <!-- 08 -->
     <section class="inst" id="a8">
       <h3><span class="no">08</span> 教材包與一個資料夾</h3>
-      <p class="why">兩個 AI 要看同一個資料夾，才有辦法接力。</p>
+      <p class="why">8/19 上半場請讓 Codex 與 Antigravity 都開這個資料夾，兩個 AI 才能依序規劃、實作與複核。AI 代理就是能讀取整個專案資料夾、依步驟做事並回報結果的 AI，不只是回答一則聊天訊息。</p>
       <ol>
-        <li>下載行前信裡的教材包 ZIP，右鍵解壓縮（Windows 和 Mac 都內建，不用另外裝軟體）</li>
-        <li>在桌面開一個資料夾，<b>名字用英文</b>，例如 <span class="en">club2026</span></li>
-        <li>裡面先放兩份檔案：你的<b>社團計畫書</b>、基金會的<b>成果報告書範本</b></li>
-        <li>Codex 和 Antigravity <b>都打開這一個資料夾</b></li>
+        <li>若你已經在解壓縮後的教材裡看到這一頁，可略過下載。否則請從行前信或主辦單位提供的位置取得最新版 ZIP。本站不放未授權的教材下載網址；遺失時請向原主辦單位索取。</li>
+        <li><b>先解壓縮，不要直接在 ZIP 裡操作。</b>Windows 用右鍵「解壓縮全部」；Mac 雙擊 ZIP，Finder 會建立解壓縮後的資料夾。</li>
+        <li>在本機建立一個英文資料夾，例如 <span class="en">club2026</span>。Windows 用檔案總管；Mac 用 Finder。若位置會自動同步到 OneDrive、iCloud Drive、Google 雲端硬碟或 Dropbox，請換到不會自動同步的位置。</li>
+        <li>把解壓縮後的教材內容複製進 <span class="en">club2026</span>。Windows 用 <span class="en">Ctrl+A／Ctrl+C／Ctrl+V</span>；Mac 用 <span class="en">Command+A／Command+C／Command+V</span>。完成後，<span class="en">index.html</span>、<span class="en">style.css</span>、<span class="en">app.js</span> 應直接出現在 <span class="en">club2026</span>，不必再點進第二層。</li>
+        <li>在 <span class="en">club2026</span> 新增 <span class="en">outputs</span> 與 <span class="en">specs</span>。作品放 <span class="en">outputs</span>，每關確認過的規格放 <span class="en">specs</span>，都不得覆蓋教材首頁。</li>
+        <li>把 <span class="en">templates</span> 裡的三個學員範本複製到 <span class="en">club2026</span> 根目錄，並移除前面的資料夾層級：<span class="en">PROJECT-README.md</span>、<span class="en">HANDOFF.md</span>、<span class="en">LEARNER-RULES.md</span>。先保留「待填」即可，<a href="method.html#skill">方法頁</a>會帶你填。</li>
+        <li>依 <a href="sources/README.md">sources/README.md</a> 準備五類原件，保留原副檔名並使用固定開頭：<span class="en">01-official-result-template.*</span>、<span class="en">02-foundation-consensus-slides.*</span>、<span class="en">03-school-plan-deidentified.*</span>、<span class="en">04-school-calendar.*</span>、<span class="en">05-school-reimbursement-blank.*</span>。</li>
+        <li>官方成果範本與共識營簡報應來自行前信、主辦單位共用資料夾或基金會確認來源；本校計畫、行事曆與核銷空白表由本校承辦人或主計室提供。這個 repo <b>沒有附未授權原件</b>。</li>
+        <li>缺官方成果範本時，關 1、2、3、5 只能用虛構資料練習；缺共識營簡報或本校核銷空白表時，關 4 只能練習。缺檔時不准宣稱工具符合正式欄位或可直接送件。</li>
+        <li>用 Codex 與 Antigravity 分別<b>打開同一個 <span class="en">club2026</span> 資料夾</b>，不要只上傳其中一份檔案。</li>
       </ol>
       <div class="warn">
-        <b>資料夾和檔名都用英文或數字。</b>中文檔名在後面幾關會出問題（網址會變成一串亂碼）。<br>
+        <b>資料夾和首頁檔名建議用英文或數字。</b>中文檔名通常仍能開啟，但網址會變成較長的編碼，不利分享與排錯。<br>
         另外<b>別放在桌面的雲端同步資料夾裡</b>（OneDrive、Google 雲端硬碟那種），同步會跟 AI 搶檔案。
       </div>
-      <div class="pick"><b>怎麼算裝好</b>：兩個 AI 印出來的資料夾路徑一模一樣。</div>
+      <div class="pick"><b>怎麼算裝好</b>：在 <span class="en">club2026</span> 這一層直接看得到教材檔、<span class="en">outputs</span>、<span class="en">specs</span>、三份學員記憶檔與 <span class="en">sources/README.md</span>；Codex 與 Antigravity 也顯示同一個完整位置。五類原件是否齊全要另外逐項核對。</div>
 
       <div class="warn" style="margin-top:.9rem">
         <b>「資料夾路徑」是什麼？怎麼複製給 AI？</b><br>
-        後面每一關的提示詞都會叫你「貼上你的資料夾路徑」。那不是資料夾的名字，
-        而是像 <span class="en">C:\Users\你的名字\Desktop\club2026</span> 這樣一整串。<br>
-        <b>怎麼拿到它</b>：打開檔案總管、進到那個資料夾，
-        <b>在上面那條網址列點一下</b>（原本顯示「本機 &gt; 桌面 &gt; club2026」的地方），
-        它會變成一整串文字，這時候按 <span class="en">Ctrl+A</span> 全選、<span class="en">Ctrl+C</span> 複製，就能貼給 AI 了。<br>
-        <span class="muted" style="font-size:.92rem">更快的方法：<b>直接把資料夾拖進 AI 的視窗裡</b>，兩個工具都吃這一招，不用打任何字。</span>
+        後面有些驗收或跨機器步驟會用到「完整路徑」。那不是資料夾的名字，
+        而是像 Windows 的 <span class="en">C:\Users\你的名字\Documents\club2026</span>，或 Mac 的 <span class="en">/Users/你的帳號/Documents/club2026</span> 這樣一整串。<br>
+        <b>Windows</b>：打開檔案總管、進到資料夾，點上方網址列，再按 <span class="en">Ctrl+A</span>、<span class="en">Ctrl+C</span>。<br>
+        <b>Mac</b>：在 Finder 選取 <span class="en">club2026</span> 資料夾，按 <span class="en">Option+Command+C</span> 複製完整路徑。<br>
+        <span class="muted" style="font-size:.92rem">這條路徑主要拿來核對兩個工具開的是同一個位置。真正開專案時，請使用工具裡的資料夾圖示或目前專案位置，選取<strong>整個資料夾</strong>；不要把資料夾拖進聊天視窗，避免它只被當成附件。</span>
       </div>
     </section>
 
     <!-- 自我檢查 -->
     <section class="card" id="check">
-      <h2>最後：花 3 分鐘自我檢查</h2>
-      <p>在 Codex 貼這一句，它會告訴你有沒有真的讀到你的檔案：</p>
-      <div class="prompt">
-        <button class="copy" type="button">複製</button>
-        <pre>請列出我這個資料夾裡所有檔案的檔名，一個一行。
-然後告訴我我的計畫書第一頁的標題是什麼。
-如果你打不開這個資料夾，直接說打不開，不要猜。</pre>
-      </div>
-      <div class="note">
-        <b>為什麼要問「第一頁的標題」？</b>
-        因為 AI 有時候會裝作讀過、其實是編的。標題只要有一個字對不上，它就是在編——
-        這個檢查習慣，就是 8/19 那天要教你的主要東西之一。
-      </div>
-
-      <h3>出門前對一次</h3>
-      <p class="small">前八項是這門課會用到的；07b 是加分的，沒有也能上課；最後兩條是提醒。</p>
+      <h2>最後：出門前對一次</h2>
+      <p>這裡只確認安裝與登入。全部勾完後，再到<a href="step0.html">關 0：開課前驗收</a>做一次 60 秒讀檔測試；測試提示詞只放在關 0，不在兩頁重複。</p>
+      <p class="small">01–08 都要在 8/19 前準備好；只有 07b GitHub Desktop 是選配。沒有安裝權限請提早找資訊組或改帶自己的筆電。</p>
       <ul class="checklist">
         <li><label><input type="checkbox"><span>01　ChatGPT 帳號可以登入</span></label></li>
         <li><label><input type="checkbox"><span>02　有一個個人 @gmail.com（不是學校帳號）</span></label></li>
-        <li><label><input type="checkbox"><span>03　ChatGPT 桌面版裝好，而且切得到 Codex</span></label></li>
+        <li><label><input type="checkbox"><span>03　ChatGPT 桌面版裝好，而且開得到 Codex 新任務</span></label></li>
         <li><label><input type="checkbox"><span>04　Antigravity 2.0 裝好、用個人 Gmail 登入成功</span></label></li>
         <li><label><input type="checkbox"><span>05　Antigravity 的安全等級與產出審核已經調過</span></label></li>
         <li><label><input type="checkbox"><span>06　GitHub 帳號註冊完成、驗證信點過</span></label></li>
-        <li><label><input type="checkbox"><span>07　git --version 問得到版本號</span></label></li>
-        <li><label><input type="checkbox"><span>07b　GitHub Desktop 裝好並登入（加分項，沒有也能上課）</span></label></li>
-        <li><label><input type="checkbox"><span>08　英文名字的資料夾開好，兩個 AI 印出的路徑一樣</span></label></li>
+        <li><label><input type="checkbox"><span>07　git --version 問得到版本號，GitHub CLI 也已登入</span></label></li>
+        <li><label><input type="checkbox"><span>選配：07b　GitHub Desktop 裝好並登入</span></label></li>
+        <li><label><input type="checkbox"><span>08　club2026 內直接看得到教材檔、outputs、specs、三份學員記憶檔與 sources/README.md</span></label></li>
+        <li><label><input type="checkbox"><span>原件　五類來源逐項核對；缺檔處已知道只能練習、不能宣稱正式可送件</span></label></li>
+        <li><label><input type="checkbox"><span>路徑　Codex、Antigravity 開的是同一個完整位置</span></label></li>
         <li><label><input type="checkbox"><span>額外：在<b>學校教室的網路</b>登入過一次（家裡通不代表教室通）</span></label></li>
-        <li><label><input type="checkbox"><span>額外：兩邊的免費額度都還沒用掉，留給 8/19</span></label></li>
+        <li><label><input type="checkbox"><span>額外：Codex 與 Antigravity 的額度都留給 8/19</span></label></li>
       </ul>
-      <p class="done-count bigdone">已完成 0 / 11 項</p>
+      <p class="done-count bigdone">已完成 0 / 13 項</p>
       <p class="muted small">勾選狀態存在你自己的瀏覽器裡，換一台電腦就要重勾。</p>
     </section>
 
     <!-- 卡住 -->
     <section class="inst" id="cli">
-      <h3>想再往下走：同一頁還有一個 CLI（選配，行前不用裝）</h3>
+      <h3>想再往下走：Antigravity／Codex CLI（選配，行前不用裝）</h3>
       <p>
         你抓 Antigravity 2.0 的那個下載頁，<strong>往下捲還有一段叫「Antigravity CLI」</strong>。
         那是命令列版本，可以讓兩個 AI 互相接力，不用你在中間複製貼上。
-        <strong>行前完全不用碰它</strong>，8/19 當天我們會在講師機上示範一次給你看。
+        <strong>這裡說的不是前面必裝的 GitHub CLI</strong>；Antigravity CLI 與 Codex CLI
+        行前都不用裝，有興趣再於會後研究。
       </p>
       <p>
         會在這裡提，是想讓你知道<strong>這條路存在，而且入口就在你已經去過的那一頁</strong>。

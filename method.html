@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>方法：兩個 AI 怎麼分工｜科學社團專案管理範本站</title>
+<title>方法：上半場雙 AI、下半場單一 AI｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -31,23 +34,27 @@
     <aside class="sidebar">
       <h2>這頁有什麼</h2>
       <ol>
-        <li><a href="#flow">三個步驟</a></li>
+        <li><a href="#flow">上半場雙 AI 三步驟</a></li>
         <li><a href="#lie">AI 會說謊</a></li>
         <li><a href="#check">驗收口訣</a></li>
         <li><a href="#who">領隊與隊員</a></li>
-        <li><a href="#prompts">三段提示詞</a></li>
-        <li><a href="#relay">用資料夾傳紙條</a></li>
+        <li><a href="#prompts">上半場三段提示詞</a></li>
+        <li><a href="#relay">進一步：用資料夾傳紙條</a></li>
         <li><a href="#talk">卡片只是起頭</a></li>
         <li><a href="#skill">教它一次，之後每次都照做</a></li>
       </ol>
     </aside>
     <main>
       <p class="eyebrow">方法</p>
-      <h1>兩個 AI 怎麼分工</h1>
-      <p class="lede">課名是「Codex／Antigravity」，我們就用兩個，而且各有各的工作。一個負責想清楚要做什麼，一個負責真的做出來，然後第一個回頭挑錯。</p>
-      <p class="small">名詞先講白話：<strong>Codex</strong> 和 <strong>Antigravity</strong> 都是可以讀你電腦裡資料夾、幫你直接產出檔案的 AI 工具，跟只能在網頁上聊天的免費 ChatGPT 不一樣。這頁先看懂分工，實際安裝在<a href="step0.html">關 0</a>。</p>
+      <h1>上半場用兩個 AI 接力；下半場用一個 AI 做完</h1>
+      <p class="lede">8/19 上半場實際操作兩個 AI 代理。這裡的「代理」，就是能讀指定資料夾、依步驟產出檔案並回報結果的 AI 工具：先讓 Codex 把規格想清楚，再交給 Antigravity 做出檔案，最後回到 Codex 對照原始資料複核。下半場為了減少切換負擔，改由單一 Antigravity 完成。</p>
+      <p class="small">名詞先講白話：<strong>Codex</strong> 和 <strong>Antigravity</strong> 都是可以讀你指定資料夾、幫你直接產出檔案的 AI 工具。安裝與設定在<a href="install.html">行前安裝</a>，開啟同一個專案資料夾則在<a href="step0.html">關 0</a>。</p>
+      <div class="note ok">
+        <span class="label">8/19 兩種流程，不要混在一起</span>
+        <p><strong>上半場：Codex 規劃 → Antigravity 實作 → Codex 複核。</strong><br><strong>下半場：單一 Antigravity 釐清 → 實作 → 檢查。</strong>不論用一個或兩個 AI，最後都要由人核對原始資料。</p>
+      </div>
 
-      <h2 id="flow">三個步驟</h2>
+      <h2 id="flow">上半場：雙 AI 的三個步驟</h2>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 960 760" role="img" aria-labelledby="method-title method-desc">
   <title id="method-title">想清楚、做、驗收的三步驟</title>
   <desc id="method-desc">第一步由人主導 Codex 產出規格，第二步由 Antigravity 照規格製作檔案，第三步由人主導 Codex 逐條驗收。</desc>
@@ -125,36 +132,36 @@
 
       <div class="note ok">
         <span class="label">所以第 3 步不是多餘的</span>
-        <p style="font-size:var(--fs-ml)">「你已經有兩個 AI 了。一個負責做，一個負責挑錯。」</p>
-        <p>我們自己用三個 AI 查同一批資料，<strong>每一個都犯了錯，但沒有一個錯是三個都犯的。</strong></p>
+        <p style="font-size:var(--fs-ml)">上半場由 Codex 拿原始規格對 Antigravity 的成品；下半場則請 Antigravity 重新讀原始檔與成品後列出問題。</p>
+        <p>我們自己用三個 AI 查同一批資料，<strong>每一個都犯了錯，但沒有一個錯是三個都犯的。</strong>不管用一個或兩個工具，最後都要由人核對原始資料。</p>
       </div>
 
       <h2 id="check">驗收口訣：先對路徑、再對數量、再抽查內容</h2>
       <div class="grid three">
         <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">① 先對路徑</div><p>它說檔案存在哪？照著那行字打開資料夾，檔案真的在那裡嗎？<strong>AI 說「完成了」但你找不到檔案，通常是存到它自己的暫存資料夾去了。</strong></p></div>
-        <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">② 再對數量</div><p>你給它 11 張照片，它是不是寫了 11 條？表格要 24 列，是不是 24 列？數量不對，就是它自己補了或漏了。</p></div>
+        <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">② 再對數量</div><p>你給它 11 張照片，它是不是寫了 11 條？課程表的列數是否等於本校計畫的實際上課次數？數量不對，就是它自己補了或漏了。</p></div>
         <div class="card"><div class="k small" style="color:var(--ok);font-weight:700">③ 再抽查內容</div><p>隨手挑 2、3 條看細節。出現你沒寫過的事件、沒買過的器材、沒發生過的意外，就是它編的。</p></div>
       </div>
 
-      <h2 id="who">為什麼領隊給 Codex、做事給 Antigravity？</h2>
+      <h2 id="who">上半場為什麼讓 Codex 規劃與複核、Antigravity 實作？</h2>
       <div class="tablewrap">
         <table>
           <thead><tr><th></th><th>工作內容</th><th>花費</th></tr></thead>
           <tbody>
             <tr><td><strong>領隊（Codex）</strong></td><td>想清楚要做什麼、檢查有沒有漏</td><td><strong>輕</strong>——只是一段文字</td></tr>
-            <tr><td><strong>隊員（Antigravity）</strong></td><td>真的把東西做出來</td><td><strong>重</strong>——我們實測生一個工具吐了 1,540 行</td></tr>
+            <tr><td><strong>隊員（Antigravity）</strong></td><td>真的把東西做出來</td><td><strong>重</strong>——我們實測的一個工具共有 1,540 行程式碼</td></tr>
           </tbody>
         </table>
       </div>
-      <p>Codex 的免費額度比較緊，<strong>但領隊的工作剛好是輕的</strong>，所以放這裡剛好。Antigravity 的免費額度是<strong>一週給一次</strong>，用完要等一週，所以重活給它做、但只做一次。</p>
+      <p>Codex 免費方案的實際額度會浮動，適合拿來做文字規劃與複核。Antigravity 免費方案按週刷新；重活先確認規格再做，避免重跑浪費額度。</p>
       <div class="note warn">
         <span class="label">還沒好的地方要先知道</span>
-        <p>研習當天請<strong>不要先拿額度玩</strong>，留到動手那兩段。額度用完就得等一週，當天補不回來。</p>
+        <p>課前請<strong>不要先拿額度玩</strong>，把 Antigravity 額度留給 8/19 實作。免費額度按週刷新，當天用完無法立刻補回。</p>
       </div>
 
-      <h2 id="prompts">三段提示詞：想清楚 → 做 → 檢查</h2>
+      <h2 id="prompts">上半場實作：雙 AI 三段提示詞</h2>
     <p>
-      每一關都會再出現一次這三張卡，格式一樣，你不用重新學怎麼看。
+      這三張卡就是 8/19 上半場讓 Codex 與 Antigravity 接力的流程；下半場才使用各關卡裡的 Antigravity 單一工具版本。
       但先講一件更要緊的事：<strong>為什麼要分三段，不能一次講完？</strong>
     </p>
 
@@ -182,12 +189,16 @@
 
     <div class="note">
       <p>
-        說到底，這三段就是<strong>想清楚 → 做 → 驗收</strong>。
+        這三段就是<strong>想清楚 → 做 → 驗收</strong>。
         那是任何一件工作本來就有的三步，不是 AI 才有的。
         你以前辦活動、寫計畫也是這樣走，只是三步都自己做。
         現在中間那步交出去，<strong>但頭尾兩步還是你的</strong>。
       </p>
     </div>
+      <div class="note info">
+        <span class="label">這裡是方法練習，不是正式交件</span>
+        <p>下面先用一個縮小版工具練習「規劃 → 實作 → 複核」。正式的課程規劃表、出席、回饋、核銷與結案，請回到關 1–5 逐關完成；不要用這個練習檔代替官方附件。</p>
+      </div>
       <p class="small">按「複製」就會複製整段，貼到 AI 的輸入框裡，把角括號 ⟨⟩ 裡的字換成你自己的。</p>
 
       <div class="prompt">
@@ -208,10 +219,11 @@
 
       <div class="prompt">
         <header><span class="step">② 實作：貼這段給 Antigravity</span><button class="copy" type="button">複製</button></header>
-        <pre>以下是規格，請照它做出一個單一檔案的 HTML 工具，不要用任何需要連網的東西，我要能離線打開。
+        <pre>以下是方法練習的規格，請照它做出一個單一檔案的 HTML 工具，不要用任何需要連網的東西，我要能離線打開。
 資料存在瀏覽器裡就好，不用資料庫。
 請附一顆「載入練習用範例」的按鈕，裡面放虛構的假名單，不要放真名。
-做完請告訴我檔案存在哪個路徑。
+固定存成 outputs/practice-tool.html；若同名檔已存在，先停下來問我，不得覆蓋，
+也不得覆蓋教材的 index.html。做完請告訴我檔案存在哪個完整路徑。
 
 ⟨把第 1 步 Codex 給你的規格整段貼在這裡⟩</pre>
         <dl>
@@ -236,7 +248,7 @@
         </dl>
       </div>
     
-    <h2 id="relay">不想一直複製貼上？讓他們用資料夾傳紙條</h2>
+    <h2 id="relay">進一步：讓兩個 AI 用規格檔與交接檔傳紙條</h2>
     <p>
       照上面三段走一次，你會發現一件麻煩事：<strong>規格那一大段，要你自己從一個視窗複製、
       貼到另一個視窗</strong>。那段通常兩三百個字，手機打不動、電腦也要滑半天。
@@ -246,15 +258,16 @@
       既然開同一個，那就別用剪貼簿傳，<strong>叫他們把東西寫成檔案，放在資料夾裡互相拿</strong>。
     </p>
 
-    <h3>先建兩個空資料夾</h3>
+    <h3>沿用關 0 建好的資料夾，不要再創另一套</h3>
     <p>
-      在你的「我的小隊」資料夾裡，建兩個子資料夾，名字就叫
-      <code>inbox</code> 和 <code>outbox</code>。用檔案總管手動建就好，不用叫 AI 建。
+      關 0 已經在 <code>club2026</code> 建好 <code>specs</code>、<code>outputs</code>，根目錄也有
+      <code>HANDOFF.md</code>。這裡直接沿用；關 1–5 與關 6 都認得同一套位置。
     </p>
     <div class="note info">
       <ul>
-        <li><strong>inbox</strong>：領隊寫給隊員的任務單放這裡</li>
-        <li><strong>outbox</strong>：隊員做完的東西與交接說明放這裡</li>
+        <li><strong>specs</strong>：放已確認的規格；正式關卡使用 <code>step1.md</code> 到 <code>step5.md</code></li>
+        <li><strong>outputs</strong>：放 AI 產出的成品與去識別化摘要</li>
+        <li><strong>HANDOFF.md</strong>：記錄做到哪裡、下一步是什麼、還有哪些待確認</li>
       </ul>
     </div>
 
@@ -264,21 +277,22 @@
       <pre>（前面照原本那張卡講你要做什麼）
 
 規格想好之後，不要印在畫面上給我看。
-請把它寫成一個檔案，存到這個資料夾的 inbox 底下，檔名叫 spec.md。
+請把它寫成一個檔案，存到這個資料夾的 specs 底下，檔名叫 practice.md。
 寫完只要跟我說一句「寫好了」，並且把那個檔案的完整路徑印出來。</pre>
     </div>
 
     <div class="prompt">
       <header><span class="step">② 給 Antigravity：叫它自己去讀</span><button class="copy" type="button">複製</button></header>
-      <pre>請讀這個資料夾裡 inbox/spec.md 這個檔案，照它做出來。
-做完把成品存在這個資料夾的根目錄，並在 outbox 裡寫一個 done.md，
-裡面寫你做了什麼、檔案叫什麼名字、有哪裡你不確定。
+      <pre>請讀這個資料夾裡 specs/practice.md 這個檔案，照它做出來。
+做完把練習成品固定存在 outputs/practice-tool.html；若同名檔已存在，先停下來問我，
+不得覆蓋。接著更新根目錄的 HANDOFF.md，
+寫清楚你做了什麼、成品檔名、下一步，以及哪裡仍不確定；不要刪除原有紀錄。
 最後把成品的完整路徑印給我。</pre>
     </div>
 
     <div class="prompt">
       <header><span class="step">③ 回去給 Codex：拿規格對成品</span><button class="copy" type="button">複製</button></header>
-      <pre>隊員做完了。請你讀 inbox/spec.md 和 outbox/done.md，
+      <pre>隊員做完了。請你讀 specs/practice.md、HANDOFF.md，
 再打開他做出來的成品，逐條對照規格檢查。
 只告訴我哪裡不對、哪裡漏了，不要幫我改。
 規格裡沒寫到但你覺得有問題的，也一起講。</pre>
@@ -287,11 +301,11 @@
     <div class="note ok">
       <p><strong>這樣做多了三個好處，都不是省力氣而已：</strong></p>
       <ul>
-        <li><strong>規格留下來了。</strong> 貼在對話框裡的字，關掉視窗就沒了；寫成檔案，
-          下週想改課程規劃表，打開 <code>spec.md</code> 就知道當初講好什麼。</li>
-        <li><strong>換電腦還在。</strong> 辦公室做一半、回家接著做，資料夾帶著走就好。</li>
+        <li><strong>規格留下來了。</strong> 對話記錄是否保留、能保留多久，會依工具、帳號與設定而不同；寫成檔案後，
+          下週想改練習成品，打開 <code>specs/practice.md</code> 就知道當初講好什麼。</li>
+        <li><strong>換電腦接得上。</strong> 先依<a href="github.html">關 6</a>把乾淨的專案記憶 commit、push；另一台再 clone 或 pull。只把本機資料夾放著，不會自動出現在另一台電腦。</li>
         <li><strong>它們對不起來的時候，你查得到是誰的問題。</strong>
-          成品不對，回去看 <code>spec.md</code>：是規格就寫錯了，還是隊員沒照做？
+          成品不對，回去看 <code>specs/practice.md</code>：是規格就寫錯了，還是隊員沒照做？
           這兩件事的處理方式完全不同。</li>
       </ul>
     </div>
@@ -359,7 +373,8 @@
 （整段貼上，不要刪字）
 
 請告訴我：這是什麼意思？是我這台電腦的問題，還是要我去按什麼？
-如果需要我自己動手，一步一步講，我不會用命令列。</pre>
+先列唯讀檢查，不要直接刪除、覆蓋、移動檔案或修改全域設定。
+如果需要我自己動手，一步一步講，我不會用命令列；任何變更先等我確認。</pre>
     </div>
 
     <div class="note">
@@ -378,39 +393,60 @@
       重講很累，而且你每次講得不太一樣，它做出來也就不一樣。
     </p>
     <p>
-      <b>這兩個工具都有正式的做法：把你的規矩寫成一個檔案放在資料夾裡，它每次開工前自己會去讀。</b>
-      不是什麼進階功能，就是一個純文字檔——但<b>檔名不能亂取</b>，要用它認得的名字。
+      <b>把規則、已確認規格與下一步寫成檔案，兩個工具與下一台電腦才能接著讀。</b>
+      教材包本身已有 <span class="en">AGENTS.md</span>，它會先判斷你是在維護教材，還是在做學員作品；<b>不要覆蓋它</b>。
+      學員真正要帶走的記憶，是根目錄的 <span class="en">PROJECT-README.md</span>、<span class="en">HANDOFF.md</span>、<span class="en">LEARNER-RULES.md</span>，以及 <span class="en">specs/</span> 裡每一關的規格。
     </p>
 
     <table class="tablewrap" style="width:100%;border-collapse:collapse;margin:.8rem 0">
       <tr><th style="text-align:left;padding:.5rem;border:1px solid var(--line,#475569);width:30%">Codex</th>
           <td style="padding:.5rem;border:1px solid var(--line,#475569)">
-            在你的資料夾裡建一個叫 <span class="en">AGENTS.md</span> 的檔（<b>就是這個名字，不能改</b>）。
-            Codex 每次開始工作前會自己讀，不用你提醒。</td></tr>
+            既有的 <span class="en">AGENTS.md</span> 只負責模式與安全邊界。學員進度讀 <span class="en">PROJECT-README.md</span>、<span class="en">HANDOFF.md</span>、<span class="en">LEARNER-RULES.md</span> 與這一關的規格；不要另建或覆蓋同名的 <span class="en">AGENTS.md</span>。</td></tr>
       <tr><th style="text-align:left;padding:.5rem;border:1px solid var(--line,#475569)">Antigravity</th>
           <td style="padding:.5rem;border:1px solid var(--line,#475569)">
             官方的規則放在資料夾裡的 <span class="en">.agents/rules/</span> 底下（檔名隨你取，<span class="en">.md</span> 結尾）。
             設定裡可以把它設成「一直生效」。<br>
-            <span class="muted small">嫌麻煩的話，先用下面那句提示詞叫它讀 <span class="en">AGENTS.md</span> 也可以，只是要每次講。</span></td></tr>
+            <span class="muted small">這堂課先讓它讀同一組學員記憶檔；熟悉後再研究工具自己的長期規則設定。</span></td></tr>
     </table>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>檔案</th><th>記什麼</th><th>何時更新</th></tr></thead>
+        <tbody>
+          <tr><td><span class="en">PROJECT-README.md</span></td><td>專案目標、固定位置、目前狀態</td><td>開始與方向改變時</td></tr>
+          <tr><td><span class="en">HANDOFF.md</span></td><td>做到哪裡、下一步、仍待問誰</td><td>每次 commit 前</td></tr>
+          <tr><td><span class="en">LEARNER-RULES.md</span></td><td>安全底線與自己的寫作偏好</td><td>規則改變時</td></tr>
+          <tr><td><span class="en">specs/stepN.md</span></td><td>這一關讀過的來源、已確認、待確認與驗收案例</td><td>每關釐清規格後</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prompt">
+      <header><span class="step">三份學員記憶不在根目錄時</span><button class="copy" type="button">複製</button></header>
+      <pre>請先確認這是學員 club2026 模式，不是教材開發模式。
+檢查 templates/PROJECT-README.md、templates/HANDOFF.md、templates/LEARNER-RULES.md 是否存在。
+若根目錄缺少對應檔案，先列出準備複製的來源與目的地，等我確認後才複製；
+同名檔已存在就停下來，不得覆蓋。再確認 outputs/ 與 specs/ 已存在。
+不要修改教材 HTML、style.css、app.js 或 AGENTS.md。</pre>
+    </div>
 
     <div class="note">
       <span class="label">存檔的時候，記事本很會坑人</span>
       <p>
-        <b>一、存的位置</b>要選你跟 AI 共用的那個資料夾（例如桌面的 <span class="en">club2026</span>），
-        不要按預設存到「文件」——存錯地方它就讀不到。<br>
-        <b>二、存檔類型要選「所有檔案」</b>，檔名打 <span class="en">AGENTS.md</span>。
+        <b>一、先看根目錄有沒有範本。</b>行前步驟已把 <span class="en">templates/LEARNER-RULES.md</span> 複製到 <span class="en">club2026</span> 根目錄；有就打開編輯，不要再建同名檔。<br>
+        <b>二、真的缺檔才用記事本另存。</b>位置選 <span class="en">club2026</span>，存檔類型選「所有檔案」，檔名打 <span class="en">LEARNER-RULES.md</span>。
         如果不改存檔類型，記事本會自動加上 <span class="en">.txt</span>，變成
-        <span class="en">AGENTS.md.txt</span>，那它就不認得了。
+        <span class="en">LEARNER-RULES.md.txt</span>，那工具就找不到你指定的檔案。
       </p>
     </div>
 
-    <h3>裡面寫什麼：一份「不要有 AI 味」的規則</h3>
-    <p>我們自己就在用一份，專門把 AI 寫的中文改成台灣人講話的樣子。可以直接抄走改：</p>
+    <h3>在既有安全規則後面，加上自己的寫作偏好</h3>
+    <p>範本前半部的個資、安全與回報規則要保留。下面這段只追加到檔案後面，不要整份取代：</p>
     <div class="prompt">
-      <header><span class="step">檔名</span><span>AGENTS.md</span></header>
+      <header><span class="step">檔名</span><span>LEARNER-RULES.md</span></header>
       <button class="copy" type="button">複製</button>
-      <pre>寫給家長和學生看的東西，請照這些規則：
+      <pre>## 我的寫作偏好
+
+寫給家長和學生看的東西，請照這些規則：
 
 【不要用這些詞】
 賦能、打造、賦予、全方位、深度、精準、多元、面向、進行一個⋯的動作
@@ -431,12 +467,14 @@
     </div>
 
     <h3>用的時候</h3>
-    <p>Codex 會自己讀，直接交代任務就好。Antigravity 還沒設定規則的話，加一句：</p>
+    <p>在 Codex 或 Antigravity 交代任務時，都先加一句：</p>
     <div class="prompt">
       <header><span class="step">提示詞</span><span>加一句話</span></header>
       <button class="copy" type="button">複製</button>
       <pre>請幫我寫一份〈社團招生說明〉給家長看。
-寫之前先讀資料夾裡的 AGENTS.md，照那份的規則寫。
+先確認 AGENTS.md 判定現在是「學員 club2026 模式」，再讀 PROJECT-README.md、
+HANDOFF.md、LEARNER-RULES.md 與這一關的 specs/stepN.md。
+安全邊界依 AGENTS.md 的學員模式，專案狀態與寫作偏好依這四份學員記憶。
 寫完把你套用了哪幾條列出來，並且把你「沒有照做的地方」也一起講。</pre>
     </div>
     <div class="note">
@@ -444,7 +482,7 @@
       <p>
         叫它列「套用了哪幾條」，它可能只是照你的話重講一遍——<b>這不能證明它真的讀過那份檔</b>。
         多問一句「哪裡沒照做」比較有機會問出真話，因為那要它真的比對過才答得出來。<br>
-        不過說到底，<b>還是要你自己看成品</b>。這跟第 3 步「回頭檢查」是同一件事。
+        不過，<b>還是要你自己看成品</b>。這跟第 3 步「回頭檢查」是同一件事。
       </p>
     </div>
 

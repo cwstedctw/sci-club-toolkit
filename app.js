@@ -19,6 +19,7 @@
         分頁單位＝section.gate（關卡頁有五格）；沒有 gate 的頁面用 h2 切段。
         第一張是封面（h1 與導言，在第一個分界之前的東西）。 */
   var slides = [], cur = 0;
+  var projectionTabState = null, projectionScrollY = 0;
 
   function buildSlides(){
     var main = document.querySelector('main');
@@ -161,6 +162,12 @@
         var one = m[0], ok = one.tagName === 'SECTION' || one.tagName === 'ARTICLE' ||
                              (one.tagName === 'DIV' && (one.classList.contains('card') ||
                                                         one.classList.contains('body')));
+        /* 分頁面板必須整塊保留。若把面板內容拆到不同 slide，退出投影後
+           分頁只能藏住第一塊，後面的內容會漏到其他分頁。 */
+        if (one.getAttribute && one.getAttribute('role') === 'tabpanel') break;
+        /* keep-together 是一個完整圖表／圖說單位；高於一張時寧可整張捲動，
+           不鑽進去把 figcaption 拆到下一張。 */
+        if (one.classList && one.classList.contains('keep-together')) break;
         if (!ok || one.children.length < 2) break;
         h = one.querySelector(':scope > .body') || one;
       }
@@ -238,13 +245,57 @@
   function projection(){
     var btn = document.querySelector('.projbtn');
     if (!btn) return;
+    function prepareTabs(){
+      var panels = [].slice.call(document.querySelectorAll('[role="tabpanel"]'));
+      var tabButtons = [].slice.call(document.querySelectorAll('[role="tab"]'));
+      var selectedTab = tabButtons.filter(function(tab){ return tab.getAttribute('aria-selected') === 'true'; })[0];
+      projectionTabState = {
+        selectedId: selectedTab ? selectedTab.getAttribute('data-tab') : null,
+        panels: panels.map(function(panel){ return {el:panel, hidden:panel.hidden}; }),
+        buttons: tabButtons.map(function(tab){
+          return {el:tab, selected:tab.getAttribute('aria-selected'), tabIndex:tab.tabIndex};
+        })
+      };
+      /* 投影時每個面板都是一張可翻到的內容；不能沿用一般分頁的 hidden。 */
+      for (var i = 0; i < panels.length; i++) panels[i].hidden = false;
+    }
+    function restoreTabs(){
+      if (!projectionTabState) return;
+      projectionTabState.panels.forEach(function(item){ item.el.hidden = item.hidden; });
+      projectionTabState.buttons.forEach(function(item){
+        if (item.selected === null) item.el.removeAttribute('aria-selected');
+        else item.el.setAttribute('aria-selected', item.selected);
+        item.el.tabIndex = item.tabIndex;
+      });
+      if (projectionTabState.selectedId){
+        projectionTabState.panels.forEach(function(item){
+          item.el.hidden = item.el.id !== projectionTabState.selectedId;
+        });
+        projectionTabState.buttons.forEach(function(item){
+          var on = item.el.getAttribute('data-tab') === projectionTabState.selectedId;
+          item.el.setAttribute('aria-selected', on ? 'true' : 'false');
+          item.el.tabIndex = on ? 0 : -1;
+        });
+      }
+      projectionTabState = null;
+    }
     function apply(on){
+      var wasOn = document.body.classList.contains('proj');
+      if (on && !wasOn){
+        projectionScrollY = window.scrollY || 0;
+        prepareTabs();
+      }
       document.documentElement.classList.toggle('proj', on);
       document.body.classList.toggle('proj', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       btn.textContent = on ? '關閉投影模式' : '投影模式';
       if (on){ buildSlides(); fitSlides(); slideBar(); showSlide(cur); }
+      else if (wasOn){
+        restoreTabs();
+        requestAnimationFrame(function(){ window.scrollTo(0, projectionScrollY); });
+      }
       try { localStorage.setItem(KEY+'proj', on ? '1' : '0'); } catch(e){}
+      document.dispatchEvent(new CustomEvent('kxsq:projectionchange', {detail:{on:on}}));
     }
     document.addEventListener('keydown', function(e){
       if (!document.body.classList.contains('proj')) return;
@@ -281,16 +332,39 @@
         setTimeout(function(){ btn.removeAttribute('data-done'); btn.textContent = old; }, 1600);
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
-      } else { fallback(text, done); }
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done, btn, pre); });
+      } else { fallback(text, done, btn, pre); }
     });
-    function fallback(text, done){
+    function fallback(text, done, btn, pre){
       var ta = document.createElement('textarea');
       ta.value = text; ta.setAttribute('readonly','');
       ta.style.position='fixed'; ta.style.top='-1000px';
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); done(); } catch(e){ ta.style.top='0'; ta.style.position='static'; }
-      setTimeout(function(){ if (ta.parentNode) ta.parentNode.removeChild(ta); }, 100);
+      var copied = false;
+      try { copied = document.execCommand('copy') === true; } catch(e){ copied = false; }
+      if (copied){
+        done();
+        setTimeout(function(){ if (ta.parentNode) ta.parentNode.removeChild(ta); }, 100);
+        return;
+      }
+
+      /* 有些 file:// 瀏覽器會明確回傳 false。此時不能假裝成功，
+         改成留下可選取的文字，讓老師按 Ctrl+C 手動複製。 */
+      if (ta.parentNode) ta.parentNode.removeChild(ta);
+      var owner = btn.closest('.prompt, .card');
+      var oldManual = owner && owner.querySelector('.copy-manual');
+      if (oldManual) oldManual.parentNode.removeChild(oldManual);
+      ta = document.createElement('textarea');
+      ta.className = 'copy-manual';
+      ta.value = text;
+      ta.setAttribute('readonly','');
+      ta.setAttribute('aria-label','自動複製失敗，請按 Ctrl+C 手動複製');
+      pre.parentNode.insertBefore(ta, pre.nextSibling);
+      var old = btn.textContent;
+      btn.textContent = '請按 Ctrl+C';
+      ta.focus();
+      ta.select();
+      setTimeout(function(){ btn.textContent = old; }, 3000);
     }
   }
 
@@ -332,14 +406,34 @@
         if (panel) panel.hidden = !on;
       }
     }
+    function jumpInProjection(id){
+      if (!document.body.classList.contains('proj')) return false;
+      if (projectionTabState) projectionTabState.selectedId = id;
+      for (var i=0;i<btns.length;i++){
+        btns[i].setAttribute('aria-selected', btns[i].getAttribute('data-tab') === id ? 'true' : 'false');
+      }
+      var panel = document.getElementById(id);
+      var slide = panel && panel.closest('.slide');
+      if (slide){
+        var list = [].slice.call(slides);
+        var index = list.indexOf(slide);
+        if (index >= 0) showSlide(index);
+      }
+      return true;
+    }
     for (var i=0;i<btns.length;i++) (function(b, idx){
-      b.addEventListener('click', function(){ show(b.getAttribute('data-tab')); });
+      b.addEventListener('click', function(){
+        var id = b.getAttribute('data-tab');
+        if (!jumpInProjection(id)) show(id);
+      });
       b.addEventListener('keydown', function(e){
         var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
         if (!d) return;
         e.preventDefault();
         var n = btns[(idx + d + btns.length) % btns.length];
-        show(n.getAttribute('data-tab')); n.focus();
+        var id = n.getAttribute('data-tab');
+        if (!jumpInProjection(id)) show(id);
+        n.focus();
       });
     })(btns[i], i);
     show(btns[0].getAttribute('data-tab'));
@@ -352,11 +446,174 @@
       var f = frames[i], ifr = f.querySelector('iframe'), ph = f.querySelector('.ph');
       if (!ifr || !ph) continue;
       var src = ifr.getAttribute('src');
-      if (src && src.trim()) { ph.hidden = true; }
+      if (!src || !src.trim()) { ph.hidden = false; continue; }
+      /* 桌面版的「另開」連結會一直顯示；iframe 真載入失敗時，
+         再把備援說明蓋回來，避免只剩一個空框。 */
+      ph.hidden = true;
+      (function(frame, placeholder){
+        frame.addEventListener('load', function(){ placeholder.hidden = true; });
+        frame.addEventListener('error', function(){ placeholder.hidden = false; });
+      })(ifr, ph);
     }
   }
 
+  /* 7. 大張教材圖表：離線放大／縮小，放大後仍可捲動與拖曳。
+        處理 main 裡的 SVG、內容截圖與明標 data-zoomable 的 HTML 圖表；
+        QR code、logo、小圖示不加控制。 */
+  function mediaViewers(){
+    var main = document.querySelector('main');
+    if (!main) return;
+    var all = main.querySelectorAll('svg, img, [data-zoomable]');
+    var count = 0;
+
+    function isContentImage(el){
+      if (el.closest('.media-viewer') || el.hasAttribute('data-no-zoom')) return false;
+      if (el.hasAttribute('data-zoomable')) return true;
+      if (el.tagName.toLowerCase() === 'svg') return true;
+      var src = (el.getAttribute('src') || '').toLowerCase();
+      var alt = (el.getAttribute('alt') || '').toLowerCase();
+      var cls = (el.className || '').toString().toLowerCase();
+      if (/qr|qrcode|logo|icon/.test(src + ' ' + alt + ' ' + cls)) return false;
+      /* 目前的內容圖都是教學截圖：放在 figure、使用全寬，
+         或是 demo 的大張預覽圖。不用實際像素寬度判斷，避免 lazy image 還沒載入時漏掉。 */
+      return !!el.closest('figure') || el.style.width === '100%' ||
+             /(?:^|\/)(?:wall|submit)-preview\./.test(src);
+    }
+
+    function labelOf(el){
+      if (el.tagName.toLowerCase() === 'img') return el.getAttribute('alt') || '教材圖';
+      if (el.getAttribute('aria-label')) return el.getAttribute('aria-label');
+      var title = el.querySelector('title');
+      return title ? title.textContent.trim() : '教材圖表';
+    }
+
+    function button(text, aria, viewportId){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'media-zoom-button';
+      b.textContent = text;
+      b.setAttribute('aria-label', aria);
+      b.setAttribute('aria-controls', viewportId);
+      return b;
+    }
+
+    for (var i = 0; i < all.length; i++) (function(target){
+      if (!isContentImage(target)) return;
+      count++;
+      var label = labelOf(target);
+      var viewportId = 'mediaViewport' + count;
+      var viewer = document.createElement('div');
+      viewer.className = 'media-viewer';
+      viewer.setAttribute('role', 'group');
+      viewer.setAttribute('aria-label', '教材檢視工具：' + label);
+      /* 保留原圖的 max-width，避免 420px 截圖在 100% 時突然變大。 */
+      viewer.style.maxWidth = target.style.maxWidth || '100%';
+
+      var controls = document.createElement('div');
+      controls.className = 'media-zoom-controls';
+      controls.setAttribute('role', 'toolbar');
+      controls.setAttribute('aria-label', '圖片縮放');
+      var caption = document.createElement('span');
+      caption.className = 'media-zoom-label';
+      var isImage = target.tagName.toLowerCase() === 'img';
+      caption.textContent = isImage ? '圖片縮放' : '圖表縮放';
+      var out = button('−', isImage ? '縮小圖片' : '縮小圖表', viewportId);
+      var status = document.createElement('span');
+      status.className = 'media-zoom-status';
+      status.setAttribute('aria-live', 'polite');
+      var inn = button('＋', isImage ? '放大圖片' : '放大圖表', viewportId);
+      var reset = button('還原', (isImage ? '還原圖片' : '還原圖表') + '到 100%', viewportId);
+      controls.appendChild(caption);
+      controls.appendChild(out);
+      controls.appendChild(status);
+      controls.appendChild(inn);
+      controls.appendChild(reset);
+
+      var viewport = document.createElement('div');
+      viewport.className = 'media-viewport';
+      viewport.id = viewportId;
+      viewport.tabIndex = 0;
+      viewport.setAttribute('aria-label', label + '；可拖曳或用方向鍵捲動');
+      var surface = document.createElement('div');
+      surface.className = 'media-zoom-surface';
+      target.parentNode.insertBefore(viewer, target);
+      viewer.appendChild(controls);
+      viewer.appendChild(viewport);
+      viewport.appendChild(surface);
+      surface.appendChild(target);
+      target.classList.add('media-zoom-target');
+      if (target.tagName.toLowerCase() === 'img') target.setAttribute('draggable', 'false');
+
+      var zoom = 100;
+      function setZoom(next){
+        next = Math.max(75, Math.min(200, next));
+        var oldWidth = viewport.scrollWidth;
+        var oldCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+        zoom = next;
+        surface.style.width = zoom + '%';
+        /* HTML 長條圖不像圖片會隨寬度一起放大字體；同步調整它使用的
+           字級變數，讓「放大」真的能看清標籤與右側說明。 */
+        if (target.classList.contains('needbars')){
+          target.style.setProperty('--fs-s', (0.85 * zoom / 100) + 'rem');
+          target.style.setProperty('--fs-xs', (0.75 * zoom / 100) + 'rem');
+        }
+        status.textContent = zoom + '%';
+        out.disabled = zoom <= 75;
+        inn.disabled = zoom >= 200;
+        reset.disabled = zoom === 100;
+        if (oldWidth > 0 && viewport.clientWidth > 0){
+          var ratio = oldCenter / oldWidth;
+          requestAnimationFrame(function(){
+            viewport.scrollLeft = ratio * viewport.scrollWidth - viewport.clientWidth / 2;
+          });
+        }
+      }
+      out.addEventListener('click', function(){ setZoom(zoom - 25); });
+      inn.addEventListener('click', function(){ setZoom(zoom + 25); });
+      reset.addEventListener('click', function(){ setZoom(100); });
+      setZoom(100);
+
+      /* 檢視區有焦點時：+/−/0 縮放，方向鍵捲圖，
+         並擋住投影模式的上一張／下一張捷徑。 */
+      viewer.addEventListener('keydown', function(e){
+        /* 在投影模式按按鈕的 Space／Enter 只操作按鈕，不要同時翻頁。 */
+        if ((e.key === ' ' || e.key === 'Enter') && e.target.closest('.media-zoom-button')) e.stopPropagation();
+        else if (e.key === '+' || e.key === '=') { e.preventDefault(); e.stopPropagation(); setZoom(zoom + 25); }
+        else if (e.key === '-') { e.preventDefault(); e.stopPropagation(); setZoom(zoom - 25); }
+        else if (e.key === '0') { e.preventDefault(); e.stopPropagation(); setZoom(100); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault(); e.stopPropagation();
+          viewport.scrollBy({left:e.key === 'ArrowLeft' ? -120 : 120, behavior:'smooth'});
+        }
+      });
+
+      /* 觸控使用瀏覽器原生捲動；滑鼠另支援在圖上拖曳。 */
+      var drag = null;
+      viewport.addEventListener('pointerdown', function(e){
+        if (e.pointerType !== 'mouse' || e.button !== 0) return;
+        drag = {x:e.clientX, y:e.clientY, left:viewport.scrollLeft, top:viewport.scrollTop};
+        viewport.classList.add('is-dragging');
+        viewport.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      viewport.addEventListener('pointermove', function(e){
+        if (!drag) return;
+        viewport.scrollLeft = drag.left - (e.clientX - drag.x);
+        viewport.scrollTop = drag.top - (e.clientY - drag.y);
+        e.preventDefault();
+      });
+      function stopDrag(e){
+        if (!drag) return;
+        drag = null;
+        viewport.classList.remove('is-dragging');
+        if (e && viewport.hasPointerCapture(e.pointerId)) viewport.releasePointerCapture(e.pointerId);
+      }
+      viewport.addEventListener('pointerup', stopDrag);
+      viewport.addEventListener('pointercancel', stopDrag);
+    })(all[i]);
+  }
+
   ready(function(){
-    markNav(); projection(); copyButtons(); checklists(); tabs(); framePlaceholders();
+    markNav(); mediaViewers(); tabs(); projection(); copyButtons(); checklists(); framePlaceholders();
   });
 })();

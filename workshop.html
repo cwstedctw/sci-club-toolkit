@@ -16,10 +16,13 @@
       <a href="method.html">方法</a>
       <a href="demo.html">示範</a>
       <a href="needs.html">需求對照</a>
-      <a href="step0.html">關 0 行前</a>
+      <a href="step0.html">關 0 驗收</a>
       <a href="step1.html">關 1 規劃表</a>
       <a href="step2.html">關 2 名單出席</a>
-      <a href="github.html">關 6 交出去</a>
+      <a href="step3.html">關 3 回饋單</a>
+      <a href="step4.html">關 4 核銷對帳</a>
+      <a href="step5.html">關 5 結案</a>
+      <a href="github.html">關 6 版本接力</a>
       <a href="refs.html">延伸閱讀</a>
       <a href="workshop.html">8/19 場次</a>
     </nav>
@@ -52,10 +55,11 @@
       <div class="note warn">
         <span class="label">還沒好的話，當天會來不及</span>
         <ol>
-          <li>裝好兩個 AI 並登入成功，<strong>在教室的網路試過一次</strong>（<a href="step0.html">關 0</a>）</li>
-          <li>桌面開一個英文名字的資料夾，放進你的社團計畫書與官方報告書範本</li>
-          <li>註冊 GitHub 帳號（免費，用個人 gmail），裝 Git 或 GitHub Desktop（<a href="github.html">關 6</a>）</li>
-          <li><strong>額度先別玩</strong>：Antigravity 一週給一次，當天用得到</li>
+          <li>照<a href="install.html">行前安裝</a>解壓教材包，把內容複製進 <code>club2026</code>，並照頁面建立 <code>sources</code>、<code>specs</code>、<code>outputs</code> 與三份學員記憶檔。</li>
+          <li>把五類原件放進 <code>sources</code>：官方成果報告書範本、基金會共識營簡報、去識別化校內計畫、校務行事曆、校內核銷空白表。缺哪一份，就依<a href="sources/README.md">來源清單</a>標成待補，不要讓 AI 猜。</li>
+          <li>完成<a href="step0.html">關 0</a>；Codex 與 Antigravity 都要開啟同一個 <code>club2026</code>，並在<strong>教室的網路試過一次</strong>。</li>
+          <li>註冊並驗證 GitHub 帳號，安裝 Git 與 GitHub CLI，完成 GitHub CLI 登入；GitHub Desktop 選配（<a href="github.html">關 6</a>）。這組工具要讓 AI 自動留版本、上傳、下載並跨機器接手，請不要把安裝與登入留到現場</li>
+          <li><strong>額度先別玩</strong>：Codex 與 Antigravity 的額度都留給當天實作</li>
         </ol>
         <p class="small">裝不起來不用急。當天講師手上有做好的範例檔，卡住的人直接用那份往下做，不排隊等修電腦。</p>
       </div>
@@ -68,17 +72,19 @@
             <tr><td>09:00–09:10</td><td>開場：講他們每天在過的日子（等簽核、催進度、同一份資料填三次）</td><td>—</td></tr>
             <tr><td>09:10–09:20</td><td>說明：你想要的 ＝ 報告要的（<a href="needs.html">那張對照表</a>）</td><td>知道今天做的東西期末用得到</td></tr>
             <tr><td>09:20–09:35</td><td><strong>示範 AI 說謊</strong>（<a href="method.html#lie">兩個實測案例</a>），教三句驗收口訣</td><td>知道怎麼檢查 AI</td></tr>
-            <tr><td>09:35–09:50</td><td>兩個 AI 分工示範：Codex 想規格 → Antigravity 做東西</td><td>看懂領隊與隊員怎麼接力</td></tr>
-            <tr><td>09:50–10:25</td><td><strong>動手一：<a href="step1.html">24 週課程規劃表</a></strong></td><td>一份自己學校的 24 週表</td></tr>
+            <tr><td>09:35–09:45</td><td>示範兩個 AI 代理怎麼接力：<strong>Codex 規劃 → Antigravity 實作 → Codex 複核</strong></td><td>知道三步各在哪一個工具完成</td></tr>
+            <tr><td>09:45–10:22</td><td><strong>動手一：<a href="step1.html">依本校實際週次做課程規劃表</a></strong>（雙 AI 三步主流程；發現問題再走第 4 張修正卡）</td><td>一份經 Codex 複核、符合自己學校計畫的課程規劃表</td></tr>
+            <tr><td>10:22–10:25</td><td><strong>收上半場作品：課程規劃表</strong></td><td>完成第一次收件</td></tr>
             <tr><td>10:25–10:35</td><td>休息（也是救援時間，豐兆和工讀顧沒跟上的人）</td><td>—</td></tr>
-            <tr><td>10:35–11:10</td><td><strong>動手二：學生回饋單</strong>（從七個百分比反推題目）</td><td>一份可以印、可以發的回饋單</td></tr>
-            <tr><td>11:10–11:40</td><td><strong>動手三：<a href="step2.html">學生名單＋出席</a>＋材料費對帳</strong></td><td>一張表，出席與核銷一次解決</td></tr>
-            <tr><td>11:40–11:50</td><td><strong>學生作品成果展示</strong>（怎麼從 200 張挑 12 張、做成<a href="demo.html">展示頁</a>）</td><td>選片判準卡</td></tr>
-            <tr><td>11:50–12:00</td><td>帶得走的東西＋一個投稿機會＋合作邀請</td><td>提示詞卡、教材網址</td></tr>
+            <tr><td>10:35–11:05</td><td><strong>動手二：<a href="step3.html">學生回饋單</a></strong>（單一 Antigravity，先處理學生面前四項）</td><td>一份可以印、可以發的回饋單</td></tr>
+            <tr><td>11:05–11:35</td><td><strong>動手三：<a href="step2.html">學生名單＋出席</a>＋<a href="step4.html">材料費對帳</a></strong>（單一 Antigravity）</td><td>一張表，出席與核銷一起核對</td></tr>
+            <tr><td>11:35–11:40</td><td><strong><a href="step5.html">結案入口</a></strong>：12 張照片、七個百分比與六節報告要從哪裡拿資料</td><td>知道平時要留下哪些證據</td></tr>
+            <tr><td>11:40–11:50</td><td><strong><a href="github.html">關 6 示範</a></strong>：先看版本差異並 commit／push，再用另一台電腦或第二個空資料夾 clone，讓另一個 AI 讀專案記憶後接手</td><td>看懂版本控制與跨機器接續</td></tr>
+            <tr><td>11:50–12:00</td><td><strong>收下半場作品、確認檔名與問題紀錄</strong></td><td>完成第二次收件；有未完成處就記成「待確認」帶回去接著做</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="small">關 6「交出去」約 10 分鐘，在收尾那段用講師機投影示範（<a href="github.html">腳本在這裡</a>）。</p>
+      <p class="small">教材網目前採用的收件節點為 <strong>10:22</strong> 與 <strong>11:50</strong>。<a href="github.html">關 6</a> 會示範 AI 用 <span class="en">commit</span>／<span class="en">push</span> 留下版本，再從另一台電腦用 <span class="en">clone</span>／<span class="en">pull</span> 接續；跟著 repo 走的是 PROJECT-README、HANDOFF、LEARNER-RULES、specs 與逐檔核准的去識別化作品，不含 sources 原件或教材改善工單。部署是獨立選配，可使用 GitHub Pages、Netlify 或其他服務。</p>
 
       <h2 id="photo">從 200 張挑 12 張</h2>
       <p>官方報告書的「課程紀錄」只要求<strong>一段文字說明配 6 張照片</strong>，兩項共 12 張，<strong>沒有要求每張都寫圖說</strong>。所以難的不是寫 200 句，是挑。</p>
@@ -96,7 +102,7 @@
           <tbody>
             <tr><td>AI 說「完成了」但找不到檔案</td><td>它存到自己的暫存資料夾去了</td><td>先講：等一下它會告訴你檔案在哪，<strong>那行字很重要</strong></td></tr>
             <tr><td>AI 寫的內容根本不是我的計畫</td><td>它沒讀到你的檔案，就自己編一個</td><td>驗收口訣：<strong>先對路徑、再對數量、再抽查內容</strong></td></tr>
-            <tr><td>免費額度用完了</td><td>Antigravity 是一週給一次</td><td>課前就講：<strong>不要先拿額度玩</strong>，留到當天</td></tr>
+            <tr><td>免費額度用完了</td><td>Antigravity 免費額度按週刷新，當天無法立刻補回</td><td>課前就講：<strong>只做最低限度讀檔檢查</strong>，把額度留到當天</td></tr>
             <tr><td>學校筆電登不進去</td><td>校園網路可能會擋</td><td><strong>課前請在教室網路試一次</strong></td></tr>
             <tr><td>有人裝不起來</td><td>各校電腦權限不同</td><td>講師手上有<strong>做好的範例檔</strong>，卡住的人直接用</td></tr>
           </tbody>
@@ -106,10 +112,10 @@
 
       <h2 id="takeaway">可以帶走的東西</h2>
       <ul>
-        <li>這個教材網站的網址，以及可以離線看的整包檔案</li>
+        <li>這份教材資料夾：請保留行前信下載的 ZIP；解壓後可直接離線開啟。本站目前沒有公開下載網址。</li>
         <li>全站的提示詞卡（每一張都可以一鍵複製）</li>
-        <li>花蓮北濱國小等學校的真實報告（臺師大科教中心網站公開下載）</li>
-        <li>東華大學「全民科學週」教案庫，110 多份，作者都是花蓮在地老師</li>
+        <li><a href="https://www.sec.ntnu.edu.tw/uploads/asset/data/68f88e1d0e0b30b3b96f2a27/05_%E8%8A%B1%E8%93%AE%E7%B8%A3_%E5%8C%97%E6%BF%B1%E5%9C%8B%E6%B0%91%E5%B0%8F%E5%AD%B8-%E7%B7%9A%E4%B8%8A%E5%A0%B1%E5%91%8A.pdf" target="_blank" rel="noopener noreferrer">北濱國小科學教育專案期末報告（臺師大科教中心 PDF）</a></li>
+        <li><a href="https://sites.google.com/view/be-ernt/" target="_blank" rel="noopener noreferrer">東華大學團隊「全民 FUN 科學」教案與影片平台</a>（彙整 110 個歷年教案及示範影片）</li>
       </ul>
       <div class="note ok">
         <span class="label">一個投稿機會</span>
