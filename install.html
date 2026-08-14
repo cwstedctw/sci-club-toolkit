@@ -6,22 +6,23 @@
 <title>行前安裝｜科學社團專案管理範本站</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  .inst{border:1px solid var(--line,#475569);border-radius:10px;padding:1.1rem 1.2rem;margin:0 0 1.1rem}
+  .inst{border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem;margin:0 0 1.1rem;
+    background:linear-gradient(var(--card),var(--card)) padding-box,var(--edge) border-box;border:1px solid transparent}
   .inst > h3{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .5rem;font-size:1.15rem}
-  .inst > h3 .no{font-family:ui-monospace,Consolas,monospace;font-size:.95rem;color:var(--accent,#10b981);
-    border:1px solid currentColor;border-radius:4px;padding:0 .4rem;flex:0 0 auto}
-  .inst .why{color:var(--muted,#94a3b8);margin:0 0 .7rem}
+  .inst > h3 .no{font-family:ui-monospace,Consolas,monospace;font-size:.95rem;color:var(--accent);
+    border:1px solid currentColor;border-radius:999px;padding:0 .45rem;flex:0 0 auto}
+  .inst .why{color:var(--muted);margin:0 0 .7rem}
   .inst ol,.inst ul{margin:.4rem 0 .7rem;padding-left:1.4rem}
   .inst li{margin:.3rem 0}
-  .pick{border-left:3px solid var(--accent,#10b981);padding:.5rem .8rem;margin:.5rem 0;background:rgba(16,185,129,.07)}
-  .pick b{color:var(--accent,#10b981)}
-  .warn{border-left:3px solid #f59e0b;padding:.5rem .8rem;margin:.5rem 0;background:rgba(245,158,11,.08)}
-  .stop{border-left:3px solid #ef4444;padding:.5rem .8rem;margin:.5rem 0;background:rgba(239,68,68,.08)}
+  .pick{border-left:3px solid var(--accent);padding:.5rem .8rem;margin:.5rem 0;background:rgba(230,180,118,.08)}
+  .pick b{color:var(--accent)}
+  .warn{border-left:3px solid var(--warn);padding:.5rem .8rem;margin:.5rem 0;background:rgba(230,180,118,.08)}
+  .stop{border-left:3px solid var(--bad);padding:.5rem .8rem;margin:.5rem 0;background:rgba(240,113,120,.08)}
   .kv{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.95rem}
-  .kv th,.kv td{border:1px solid var(--line,#475569);padding:.45rem .6rem;text-align:left;vertical-align:top}
-  .kv th{width:32%;font-weight:600;color:var(--muted,#94a3b8)}
+  .kv th,.kv td{border:1px solid var(--line);padding:.45rem .6rem;text-align:left;vertical-align:top}
+  .kv th{width:32%;font-weight:600;color:var(--muted)}
   .en{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
-  .bigdone{font-size:1.15rem;font-weight:700;color:var(--accent,#10b981);margin:.6rem 0}
+  .bigdone{font-size:1.15rem;font-weight:700;color:var(--accent);margin:.6rem 0}
 </style>
 </head>
 <body>
@@ -190,7 +191,7 @@
         請從 <a href="https://chatgpt.com/download" target="_blank" rel="noopener noreferrer">chatgpt.com/download</a> 取得官方版本，不要從來路不明的下載站安裝。
       </div>
       <figure style="margin:.9rem 0">
-        <img src="img/codex-switcher.png" alt="ChatGPT 桌面版中的 Codex 畫面範例" style="width:100%;max-width:420px;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <img src="img/codex-switcher.png" alt="ChatGPT 桌面版中的 Codex 畫面範例" style="width:100%;max-width:420px;border:1px solid var(--line);border-radius:12px" loading="lazy">
         <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">
           這是教材製作時的畫面範例；你的版本位置可能不同。看到「<span class="en">Codex</span>」並能建立新任務即可。
         </figcaption>
@@ -278,22 +279,22 @@
       <p><b>設定在哪裡</b>：視窗<b>左下角</b>的 <span class="en">Settings</span>（齒輪圖示），
       或直接按 <span class="en">Ctrl + ,</span>（逗號）。</p>
       <figure style="margin:.8rem 0">
-        <img src="img/ag-main.png" alt="Antigravity 主畫面，左下角是 Settings" style="width:100%;max-width:620px;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <img src="img/ag-main.png" alt="Antigravity 主畫面，左下角是 Settings" style="width:100%;max-width:620px;border:1px solid var(--line);border-radius:12px" loading="lazy">
         <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">主畫面。左下角那個齒輪 <span class="en">Settings</span> 就是入口。</figcaption>
       </figure>
 
       <p>點進去之後選左邊的 <span class="en">General</span>，往下找 <span class="en">Agent Settings</span>：</p>
       <figure style="margin:.8rem 0">
-        <img src="img/ag-settings.png" alt="Antigravity 設定的 General 頁面" style="width:100%;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <img src="img/ag-settings.png" alt="Antigravity 設定的 General 頁面" style="width:100%;border:1px solid var(--line);border-radius:12px" loading="lazy">
       </figure>
 
       <h4 style="margin:1.2rem 0 .4rem">要改的第一個：<span class="en">Security Preset</span>（安全等級）</h4>
       <figure style="margin:.6rem 0">
-        <img src="img/ag-security-preset.png" alt="Security Preset 的四個選項展開" style="width:100%;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <img src="img/ag-security-preset.png" alt="Security Preset 的四個選項展開" style="width:100%;border:1px solid var(--line);border-radius:12px" loading="lazy">
         <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">點右邊那個下拉，會看到四個選項。</figcaption>
       </figure>
       <table class="kv">
-        <tr><th><span class="en">Default</span><br><b style="color:var(--accent,#10b981)">🌟 初學者建議保留</b></th>
+        <tr><th><span class="en">Default</span><br><b style="color:var(--accent)">🌟 初學者建議保留</b></th>
             <td>官方寫：工作資料夾以外的檔案存取、以及<b>所有</b>終端機指令，都要人工審核。<br>
                 → 會多幾次確認，但能把權限限制在你指定的工作範圍，適合第一次使用。</td></tr>
         <tr><th><span class="en">Full machine</span></th>
@@ -308,10 +309,10 @@
 
       <h4 style="margin:1.2rem 0 .4rem">要改的第二個：<span class="en">Artifact Review Policy</span>（產出審核）</h4>
       <figure style="margin:.6rem 0">
-        <img src="img/ag-artifact-review.png" alt="Artifact Review Policy 的兩個選項" style="width:100%;border:1px solid var(--line,#475569);border-radius:6px" loading="lazy">
+        <img src="img/ag-artifact-review.png" alt="Artifact Review Policy 的兩個選項" style="width:100%;border:1px solid var(--line);border-radius:12px" loading="lazy">
       </figure>
       <table class="kv">
-        <tr><th><span class="en">Always Ask</span><br><b style="color:var(--accent,#10b981)">🌟 建議選這個</b></th>
+        <tr><th><span class="en">Always Ask</span><br><b style="color:var(--accent)">🌟 建議選這個</b></th>
             <td>它在提出「工作計畫」「修改對照」這類文件時，會先停下來讓你看過再繼續。<br>
                 → 多一個看得到它在想什麼的機會。<br>
                 <b>⚠️ 但這不等於「每個檔案寫進去之前都會問你」</b>——它管的是那些給你看的說明文件，

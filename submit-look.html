@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>交件頁預覽</title>
+<style>
+  :root{
+    --bg:#05060d; --ink:#f4f1e8; --sub:rgba(235,229,214,.62);
+    --gold:#e6b476; --ice:#b7e2ee;
+    --line:rgba(242,236,220,.16); --card:rgba(16,24,48,.78);
+    --input:rgba(5,8,20,.72);
+    --edge:linear-gradient(140deg,rgba(183,226,238,.28),rgba(242,236,220,.10) 34%,rgba(230,180,118,.22) 70%,rgba(246,220,171,.18));
+    --sans:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+    --display:"Songti TC","Noto Serif CJK TC","PMingLiU",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--sans);color:var(--ink);line-height:1.7;
+    min-height:100dvh;padding:24px 16px 32px;background:var(--bg);
+  }
+  body::before{
+    content:"";position:fixed;width:120vw;height:40vh;left:-18vw;top:-12vh;
+    background:linear-gradient(100deg,transparent,rgba(230,180,118,.38) 40%,rgba(183,226,238,.2));
+    filter:blur(58px);mix-blend-mode:screen;pointer-events:none;
+  }
+  .card{
+    position:relative;z-index:1;max-width:430px;margin:0 auto;
+    background:linear-gradient(var(--card),var(--card)) padding-box,var(--edge) border-box;
+    border:1px solid transparent;border-radius:18px;padding:24px 20px;
+  }
+  h1{font-family:var(--display);font-size:1.4rem;margin-bottom:4px;
+    background:linear-gradient(97deg,var(--gold),#cfd8ff 50%,var(--ice));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:.85rem;color:var(--sub);margin-bottom:16px}
+  label{display:block;font-weight:700;margin:14px 0 4px;font-size:.95rem}
+  .field,.file{
+    width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;
+    background:var(--input);color:var(--sub);min-height:44px;
+  }
+  .row{display:flex;gap:10px;margin-top:6px}
+  .row span{
+    flex:1;text-align:center;padding:10px;border-radius:12px;border:1px solid var(--line);
+    min-height:44px;display:flex;align-items:center;justify-content:center;font-size:.92rem;
+  }
+  .row span.on{background:linear-gradient(96deg,var(--gold),var(--ice));color:#052033;font-weight:700;border-color:transparent}
+  .go{
+    width:100%;margin-top:20px;padding:15px;border:0;border-radius:999px;font-weight:700;
+    background:linear-gradient(96deg,var(--gold),var(--ice));color:#052033;font-size:1.1rem;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>8/19 成果繳交</h1>
+  <p class="sub">掃到哪張 QR 就交哪一件・每次交一個檔案・不用登入</p>
+  <label>你的座號（看桌牌）</label>
+  <div class="field">請選擇</div>
+  <label>要交的產品</label>
+  <div class="field">請選擇</div>
+  <label>檔案（10MB 內）</label>
+  <div class="file">選擇檔案</div>
+  <label>這件作品自願在今天現場投影展示</label>
+  <div class="row"><span class="on">否</span><span>是</span></div>
+  <label>去識別後可否當之後場次的參考範例</label>
+  <div class="row"><span class="on">僅供講師存查</span><span>同意當範例</span></div>
+  <label>通行碼（投影幕上那四位數）</label>
+  <div class="field">____</div>
+  <button class="go" type="button" tabindex="-1">送出</button>
+</div>
+</body>
+</html>

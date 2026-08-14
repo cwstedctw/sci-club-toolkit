@@ -6,33 +6,39 @@
   <title>研習現場管理台・115學年度科學社團扶助計畫</title>
   <style>
     /* ==========================================================================
-       設計主張：高對比深石墨與竹青 (Graphite & Emerald) 工業實用風
-       無外部資源、內嵌 CSS/JS、 file:// 雙擊可執行
+       夜空玻璃卡片（Night Aurora Glass）— 跟教材網同一套語彙
+       無外部資源、內嵌 CSS/JS、file:// 雙擊可執行
+       按鈕／狀態色寫死，避免再出現「白底白字整顆消失」
        ========================================================================== */
     :root {
-      --bg-main: #0f172a;
-      --bg-card: #1e293b;
-      --bg-card-hover: #334155;
-      --bg-input: #0f172a;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dark: #0f172a;
+      --bg-main: #05060d;
+      --bg-card: rgba(16,24,48,.78);
+      --bg-card-hover: rgba(230,180,118,.10);
+      --bg-input: rgba(5,8,20,.72);
+      --panel: rgba(12,18,38,.82);
+      --text-main: #f4f1e8;
+      --text-muted: rgba(235,229,214,.62);
+      --text-dark: #052033;
+      --gold: #e6b476;
+      --ice: #b7e2ee;
 
-      --emerald: #10b981;
+      --emerald: #34d399;
       --emerald-dark: #059669;
       --emerald-light: #d1fae5;
-      --amber: #f59e0b;
+      --amber: #e6b476;
       --amber-dark: #d97706;
       --amber-light: #fef3c7;
-      --red: #ef4444;
+      --red: #f07178;
       --red-dark: #dc2626;
       --red-light: #fee2e2;
-      --blue: #3b82f6;
-      --blue-dark: #2563eb;
+      --blue: #9ec9ff;
+      --blue-dark: #3b6fd4;
       --blue-light: #dbeafe;
-      --slate-border: #475569;
+      --slate-border: rgba(242,236,220,.16);
+      --edge: linear-gradient(140deg,rgba(183,226,238,.28),rgba(242,236,220,.10) 34%,rgba(230,180,118,.22) 70%,rgba(246,220,171,.18));
 
-      --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Microsoft JhengHei", sans-serif;
+      --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      --display: "Songti TC","Noto Serif CJK TC","PMingLiU","LiSong Pro",serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,7 +51,29 @@
       line-height: 1.5;
       min-height: 100vh;
       padding-bottom: 60px;
+      overflow-x: hidden;
     }
+    .aurora{
+      position:fixed;z-index:0;pointer-events:none;
+      filter:blur(58px);opacity:.42;mix-blend-mode:screen;
+    }
+    .aurora.a{
+      width:120vw;height:42vh;left:-16vw;top:-12vh;
+      background:linear-gradient(100deg,transparent 4%,rgba(230,180,118,.40) 36%,rgba(183,226,238,.26) 72%,transparent 96%);
+      border-radius:50% 42% 55% 45% / 68% 55% 62% 48%;
+    }
+    .aurora.b{
+      width:90vw;height:30vh;right:-20vw;top:8vh;
+      background:linear-gradient(82deg,transparent 8%,rgba(126,200,196,.24) 48%,rgba(246,220,171,.18) 78%,transparent 94%);
+      border-radius:44% 56% 48% 52% / 60% 46% 58% 52%;
+    }
+    .horizon{
+      position:fixed;left:0;right:0;bottom:0;height:28vh;z-index:0;pointer-events:none;
+      background:radial-gradient(120% 120% at 50% 118%, rgba(230,180,118,.10), transparent 55%),
+                 linear-gradient(0deg, rgba(8,15,34,.88), transparent 70%);
+    }
+    html.in-frame .aurora, html.in-frame .horizon{opacity:.18}
+    body.projection-mode .aurora, body.projection-mode .horizon{display:none}
 
     /* 頂端降級警告橫幅 */
     #degraded-banner {
@@ -63,17 +91,19 @@
 
     /* 頂端導覽與狀態列 */
     header {
-      background-color: #090d16;
-      border-bottom: 2px solid var(--slate-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5,6,13,.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--slate-border);
       padding: 12px 24px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     .brand-box {
@@ -83,18 +113,20 @@
     }
 
     .brand-title {
+      font-family: var(--display);
       font-size: 1.25rem;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      color: #ffffff;
+      letter-spacing: 0.04em;
+      color: var(--gold);
     }
 
     .version-tag {
-      background-color: var(--slate-border);
-      color: var(--text-muted);
+      background: rgba(230,180,118,.12);
+      color: var(--gold);
+      border: 1px solid var(--slate-border);
       font-size: 0.75rem;
       padding: 2px 8px;
-      border-radius: 4px;
+      border-radius: 999px;
       font-family: monospace;
     }
 
@@ -157,15 +189,19 @@
     .btn-amber { background-color: var(--amber-dark); color: #ffffff; }
     .btn-red { background-color: var(--red-dark); color: #ffffff; }
     .btn-blue { background-color: var(--blue-dark); color: #ffffff; }
-    .btn-slate { background-color: var(--slate-border); color: #ffffff; }
+    .btn-slate { background-color: #3d4a5c; color: #f4f1e8; }
     .btn-outline { background-color: transparent; border: 1.5px solid var(--slate-border); color: var(--text-main); }
     .btn-outline:hover { background-color: var(--bg-card-hover); }
 
     /* 主頁籤切換 */
     .nav-tabs {
+      position: relative;
+      z-index: 2;
       display: flex;
       gap: 6px;
-      background-color: #090d16;
+      background: rgba(5,6,13,.62);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       padding: 8px 24px;
       border-bottom: 1px solid var(--slate-border);
       overflow-x: auto;
@@ -182,11 +218,13 @@
       white-space: nowrap;
       min-height: 44px;
     }
-    .tab-btn:hover { color: #ffffff; background-color: rgba(255,255,255,0.05); }
-    .tab-btn.active { color: #ffffff; background-color: var(--emerald-dark); }
+    .tab-btn:hover { color: var(--text-main); background-color: var(--bg-card-hover); }
+    .tab-btn.active { color: #052033; background: linear-gradient(96deg, var(--gold), var(--ice)); }
 
     /* 主內容容器 */
     main {
+      position: relative;
+      z-index: 2;
       max-width: 1600px;
       margin: 0 auto;
       padding: 24px;
@@ -197,12 +235,16 @@
 
     /* 卡片區塊 */
     .card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--slate-border);
-      border-radius: 12px;
+      background:
+        linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+        var(--edge) border-box;
+      border: 1px solid transparent;
+      border-radius: 16px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 8px 28px rgba(4,8,20,.28);
     }
     .card-header {
       display: flex;
@@ -215,7 +257,7 @@
     .card-title {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -231,7 +273,7 @@
       width: 100%;
       background-color: var(--bg-input);
       border: 1px solid var(--slate-border);
-      color: #ffffff;
+      color: var(--text-main);
       padding: 10px 14px;
       border-radius: 8px;
       font-size: 0.95rem;
@@ -246,7 +288,7 @@
 
     /* 報到卡片與表格 */
     .student-card {
-      background-color: #162032;
+      background-color: var(--panel);
       border: 1px solid var(--slate-border);
       border-radius: 10px;
       padding: 14px;
@@ -261,14 +303,14 @@
 
     .seat-badge {
       background-color: var(--slate-border);
-      color: #ffffff;
+      color: var(--text-main);
       font-weight: 800;
       padding: 2px 8px;
       border-radius: 4px;
       font-size: 0.9rem;
     }
 
-    .student-name { font-size: 1.2rem; font-weight: 800; color: #ffffff; }
+    .student-name { font-size: 1.2rem; font-weight: 800; color: var(--text-main); }
     .student-info { font-size: 0.85rem; color: var(--text-muted); }
 
     .status-tag {
@@ -310,7 +352,7 @@
       border-bottom: 1px solid var(--slate-border);
     }
     .data-table th {
-      background-color: #090d16;
+      background-color: rgba(8,14,32,.72);
       color: var(--text-muted);
       font-weight: 700;
       position: sticky;
@@ -334,7 +376,7 @@
       min-height: 44px;
       border: 1px solid transparent;
     }
-    .sub-cell.unreceived { background-color: #334155; color: #94a3b8; }
+    .sub-cell.unreceived { background-color: rgba(51,65,85,.65); color: var(--text-muted); }
     .sub-cell.online { background-color: rgba(16, 185, 129, 0.25); color: var(--emerald); border-color: var(--emerald); }
     .sub-cell.usb { background-color: rgba(59, 130, 246, 0.25); color: var(--blue); border-color: var(--blue); }
     .sub-cell.corrupted { background-color: rgba(239, 68, 68, 0.25); color: var(--red); border-color: var(--red); }
@@ -485,7 +527,7 @@
     }
     .projection-safe-card {
       padding: 22px;
-      border: 1px solid #334155;
+      border: 1px solid var(--slate-border);
       border-radius: 12px;
       background: #111827;
       text-align: center;
@@ -595,6 +637,10 @@
   </style>
 </head>
 <body>
+  <div class="aurora a" aria-hidden="true"></div>
+  <div class="aurora b" aria-hidden="true"></div>
+  <div class="horizon" aria-hidden="true"></div>
+  <script>if (window.self !== window.top) document.documentElement.classList.add('in-frame');</script>
 
   <!-- 頂端降級警告橫幅 -->
   <div id="degraded-banner">
@@ -830,7 +876,7 @@
       <div class="card">
         <div class="card-header"><div class="card-title">🌟 現場展示名額指派 (限自願展示者)</div></div>
         <div class="grid-3">
-          <div class="card" style="margin:0; background-color: #162032;">
+          <div class="card" style="margin:0; background-color: var(--panel);">
             <div style="font-weight: 800; color: var(--amber); margin-bottom: 8px;">SHOW-1 展示名額</div>
             <label>主要展示學員：</label>
             <select id="showcase-1-select" onchange="updateShowcase('SHOW-1', this.value)"></select>
@@ -838,7 +884,7 @@
             <select id="showcase-1-backup-select" onchange="updateShowcaseBackup('SHOW-1', this.value)"></select>
           </div>
 
-          <div class="card" style="margin:0; background-color: #162032;">
+          <div class="card" style="margin:0; background-color: var(--panel);">
             <div style="font-weight: 800; color: var(--amber); margin-bottom: 8px;">SHOW-2 展示名額</div>
             <label>主要展示學員：</label>
             <select id="showcase-2-select" onchange="updateShowcase('SHOW-2', this.value)"></select>
@@ -846,7 +892,7 @@
             <select id="showcase-2-backup-select" onchange="updateShowcaseBackup('SHOW-2', this.value)"></select>
           </div>
 
-          <div class="card" style="margin:0; background-color: #162032;">
+          <div class="card" style="margin:0; background-color: var(--panel);">
             <div style="font-weight: 800; color: var(--amber); margin-bottom: 8px;">SHOW-3 展示名額</div>
             <label>主要展示學員：</label>
             <select id="showcase-3-select" onchange="updateShowcase('SHOW-3', this.value)"></select>
@@ -1720,7 +1766,7 @@
         const item = schoolMap[sc];
         const isAll = item.arrived === item.total && item.total > 0;
         schoolEl.innerHTML += `
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:8px 12px; border-radius:6px;">
             <span>${escapeHtml(sc)}</span>
             <span>
               <strong>${item.arrived}</strong> / ${item.total}
@@ -1742,7 +1788,7 @@
         if (st.status === "halted") { badgeColor = "var(--red)"; badgeLabel = "停擺"; }
 
         groupEl.innerHTML += `
-          <div style="background:#162032; padding:10px; border-radius:8px; border-top: 4px solid ${badgeColor};">
+          <div style="background:var(--panel); padding:10px; border-radius:8px; border-top: 4px solid ${badgeColor};">
             <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:6px;">
               <span>第 ${g} 組 (${groupStudents.length}人)</span>
               <span style="color:${badgeColor};">${badgeLabel}</span>
@@ -1796,7 +1842,7 @@
         }
 
         container.innerHTML += `
-          <div style="display:flex; gap:16px; align-items:center; padding:10px 14px; border-radius:8px; background:${isActive ? 'rgba(16, 185, 129, 0.2)' : '#162032'}; border: 1px solid ${isActive ? 'var(--emerald)' : 'transparent'};">
+          <div style="display:flex; gap:16px; align-items:center; padding:10px 14px; border-radius:8px; background:${isActive ? 'rgba(16, 185, 129, 0.2)' : 'var(--panel)'}; border: 1px solid ${isActive ? 'var(--emerald)' : 'transparent'};">
             <div style="font-weight:900; font-family:monospace; color:${isActive ? 'var(--emerald)' : 'var(--text-muted)'}; font-size:1.1rem; min-width:110px;">
               ${startTime} ~ ${endTime}
             </div>
@@ -2601,7 +2647,7 @@
       const summaryEl = document.getElementById(elementId);
       summaryEl.replaceChildren();
       const box = document.createElement("div");
-      box.style.cssText = "background:#162032; padding:12px; border-radius:8px; font-size:0.9rem;";
+      box.style.cssText = "background:var(--panel); padding:12px; border-radius:8px; font-size:0.9rem;";
       const heading = document.createElement("div");
       heading.style.cssText = "font-weight:bold; color:var(--emerald);";
       heading.textContent = title;
@@ -2940,21 +2986,21 @@
       const test4Pass = !!state.checklist.backupVerified;
 
       resultsEl.innerHTML = `
-        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+        <div style="display:flex; justify-content:space-between; padding:8px; background:var(--panel); border-radius:6px;">
           <span>1. 本機儲存 (localStorage) 寫入與讀取：</span>
           <span style="font-weight:bold; color:${test1Pass ? 'var(--emerald)' : 'var(--red)'};">${test1Pass ? '✅ 通過' : '❌ 未通過'}</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+        <div style="display:flex; justify-content:space-between; padding:8px; background:var(--panel); border-radius:6px;">
           <span>2. 名單筆數 > 0：</span>
           <span style="font-weight:bold; color:${test2Pass ? 'var(--emerald)' : 'var(--red)'};">${test2Pass ? `✅ 通過 (${count} 人)` : '❌ 未通過'}</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+        <div style="display:flex; justify-content:space-between; padding:8px; background:var(--panel); border-radius:6px;">
           <span>3. 本機電腦日期校正 (2026/8/19)：</span>
           <span style="font-weight:bold; color:${test3Pass ? 'var(--emerald)' : 'var(--amber)'};">
             ${test3Pass ? '✅ 通過 (2026/8/19)' : '⚠️ 警示：本機日期與活動日不符，簽到時間會記錯，請先校正電腦時鐘'}
           </span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding:8px; background:#162032; border-radius:6px;">
+        <div style="display:flex; justify-content:space-between; padding:8px; background:var(--panel); border-radius:6px;">
           <span>4. 開場前備份檔人工確認：</span>
           <span style="font-weight:bold; color:${test4Pass ? 'var(--emerald)' : 'var(--amber)'};">
             ${test4Pass ? '✅ 通過（已確認檔案存在且可開啟）' : (state.checklist.backupDownloadedAt ? `⚠️ ${formatHHMM(state.checklist.backupDownloadedAt)} 已啟動下載，仍待人工確認` : '⚠️ 請先下載開場前備份')}
@@ -3003,7 +3049,7 @@
 
         <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
           <!-- 項目 1 -->
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:8px 12px; border-radius:6px;">
             <div>
               <strong>1. 缺簽退人數為 0：</strong>
               <span style="color:${stats.uncheckedOut === 0 ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
@@ -3014,7 +3060,7 @@
           </div>
 
           <!-- 項目 2 -->
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:8px 12px; border-radius:6px;">
             <div>
               <strong>2. 確認研習時數表 CSV：</strong>
               <span style="color:${state.checklist.hoursCsvVerified ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
@@ -3029,7 +3075,7 @@
           </div>
 
           <!-- 項目 3 -->
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:8px 12px; border-radius:6px;">
             <div>
               <strong>3. 確認 JSON 完整備份：</strong>
               <span style="color:${state.checklist.backupVerified ? 'var(--emerald)' : 'var(--red)'}; font-weight:bold;">
@@ -3044,7 +3090,7 @@
           </div>
 
           <!-- 項目 4 -->
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:8px 12px; border-radius:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:8px 12px; border-radius:6px;">
             <div>
               <label style="margin:0; font-weight:bold; cursor:pointer; color:#ffffff;">
                 <input type="checkbox" ${state.checklist.signSheetPrintedConfirmed ? 'checked' : ''} onchange="toggleSignSheetConfirmed(this.checked)">
@@ -3108,7 +3154,7 @@
         const st = state.groupStatus[key] || { status: "normal", category: "", note: "" };
 
         grid.innerHTML += `
-          <div class="card" style="margin:0; background:#162032; border-top: 6px solid ${getStatusBorderColor(st.status)};">
+          <div class="card" style="margin:0; background:var(--panel); border-top: 6px solid ${getStatusBorderColor(st.status)};">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
               <h3 style="color:#ffffff;">第 ${g} 組巡場狀態</h3>
               <select style="width:140px; min-height:36px;" onchange="updateGroupStatus('${key}', 'status', this.value)">
@@ -3241,7 +3287,7 @@
 
       filtered.forEach(s => {
         container.innerHTML += `
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:10px 14px; border-radius:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:10px 14px; border-radius:8px;">
             <div>
               <span class="seat-badge">座號 ${escapeHtml(s.seat || '—')}</span>
               <strong style="margin-left:8px; font-size:1.1rem;">${escapeHtml(s.name)}</strong>
@@ -3267,7 +3313,7 @@
         listEl.innerHTML = `<div style="font-weight:bold; margin-bottom:8px;">目前共有 ${unout.length} 人在場尚未簽退：</div>`;
         unout.forEach(s => {
           listEl.innerHTML += `
-            <div style="display:flex; justify-content:space-between; align-items:center; background:#162032; padding:10px 14px; border-radius:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; background:var(--panel); padding:10px 14px; border-radius:8px;">
               <div>
                 <span class="seat-badge">座號 ${escapeHtml(s.seat || '—')}</span>
                 <strong class="${isProjectionMode ? 'sensitive-name' : ''}" style="margin-left:8px; font-size:1.1rem;">${escapeHtml(s.name)}</strong>

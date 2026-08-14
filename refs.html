@@ -7,20 +7,23 @@
 <link rel="stylesheet" href="style.css">
 <style>
   .reflist{list-style:none;padding:0;margin:.6rem 0 1.2rem}
-  .reflist li{border:1px solid var(--line,#475569);border-radius:8px;padding:.85rem 1rem;margin:0 0 .6rem}
+  .reflist li{border:1px solid var(--line);border-radius:16px;padding:.85rem 1rem;margin:0 0 .6rem;
+    background:linear-gradient(var(--card),var(--card)) padding-box,var(--edge) border-box;border:1px solid transparent}
   .reflist a{font-weight:600;font-size:1.05rem;text-decoration:none}
   .reflist a:hover{text-decoration:underline}
   .reflist .meta{display:flex;gap:.5rem;flex-wrap:wrap;margin:.35rem 0}
   .tag{font-size:.78rem;border:1px solid currentColor;border-radius:99px;padding:.05rem .55rem;line-height:1.6}
-  .tag.off{color:#10b981}.tag.blog{color:#94a3b8}.tag.vid{color:#f59e0b}.tag.forum{color:#3b82f6}
-  .reflist p{margin:.35rem 0 0;color:var(--muted,#94a3b8);font-size:.95rem}
-  .pick3{border:2px solid #10b981;border-radius:10px;padding:1rem 1.2rem;margin:0 0 1.4rem}
-  .pick3 h3{margin:0 0 .6rem;color:#10b981}
+  .tag.off{color:var(--ok)}.tag.blog{color:var(--fg2)}.tag.vid{color:var(--warn)}.tag.forum{color:var(--info)}
+  .reflist p{margin:.35rem 0 0;color:var(--muted);font-size:.95rem}
+  .pick3{border:1px solid transparent;border-radius:16px;padding:1rem 1.2rem;margin:0 0 1.4rem;
+    background:linear-gradient(var(--card),var(--card)) padding-box,var(--edge) border-box;
+    box-shadow:inset 3px 0 0 var(--a1)}
+  .pick3 h3{margin:0 0 .6rem;color:var(--a1)}
   .pick3 ol{margin:0;padding-left:1.3rem}
   .pick3 li{margin:.4rem 0}
   table.sx{width:100%;border-collapse:collapse;font-size:.95rem;margin:.6rem 0}
-  table.sx th,table.sx td{border:1px solid var(--line,#475569);padding:.5rem .65rem;text-align:left;vertical-align:top}
-  table.sx th{background:rgba(148,163,184,.12);font-weight:600}
+  table.sx th,table.sx td{border:1px solid var(--line);padding:.5rem .65rem;text-align:left;vertical-align:top}
+  table.sx th{background:rgba(230,180,118,.08);font-weight:600}
   table.sx td:first-child{width:30%;font-weight:600}
 </style>
 </head>

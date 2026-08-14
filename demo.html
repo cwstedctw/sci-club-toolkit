@@ -130,20 +130,20 @@
             <span class="small">需要網路｜示範用收件器，檔案進示範用資料夾</span>
             
           </div>
-          <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2rem;align-items:center;padding:1.2rem;background:#0f172a">
-            <img src="submit-preview.png" alt="交件頁的實際畫面" style="width:100%;max-width:420px;display:block;border:1px solid #475569;border-radius:6px" loading="lazy">
+          <div class="demo-stage">
+            <iframe class="look" src="submit-look.html" title="交件頁外觀預覽" loading="lazy"></iframe>
             <div style="text-align:center">
-              <img src="qr-submit.png" alt="交件頁 QR code" style="width:190px;height:190px;display:block;background:#fff;padding:8px;border-radius:6px" loading="lazy">
-              <p style="margin:.6rem 0 0;font-size:.9rem;color:#94a3b8">手機掃這個</p>
+              <img class="qr" src="qr-submit.png" alt="交件頁 QR code" loading="lazy">
+              <p class="cap">手機掃這個，打開的是線上真頁</p>
               <a class="btn" href="https://script.google.com/macros/s/AKfycbzebFg27JrCtSW6AvbhkSUIaPnLNm6ejveefmBBV5u2JqOinogq6bwG2ILdc087lApQuA/exec" data-demo-open="submit" target="_blank" rel="noopener noreferrer" style="margin-top:.6rem;display:inline-block">在新分頁打開交件頁</a>
             </div>
           </div>
           <div class="note ok" style="margin:0"><span class="label">這是真的，掃了就能交</span>
-          <p><strong>這一段需要網路。</strong>離線開教材時仍可看左側截圖與下方說明，但不能開啟交件頁或上傳檔案。</p>
-          <p>左邊是交件頁的實際畫面，右邊的 QR 掃了直接開（示範用的那一支，收到的檔案進拋棄式資料夾）。
+          <p><strong>這一段需要網路。</strong>離線開教材時仍可看左側預覽與下方說明，但不能開啟交件頁或上傳檔案。</p>
+          <p>左邊是交件頁的外觀預覽（跟教材同一套夜空玻璃）。右邊的 QR 掃了打開線上真頁（示範用的那一支，收到的檔案進拋棄式資料夾）。線上那支要重新部署後，畫面才會跟左邊一樣。
           免登入、不用有帳號：選座號 → 選檔案 → 輸入通行碼 → 送出。通行碼當天投影在螢幕上。
           收到的檔案進講師自己的雲端硬碟，學生彼此看不到、也看不到資料夾本身。</p>
-          <p style="margin-top:.5rem;font-size:.92rem;color:#94a3b8">
+          <p class="why">
           <b>為什麼這裡不是直接嵌在頁面上？</b>Google 的 Apps Script 預設不准別的網站把它嵌進來（防止有人拿它做釣魚頁）。
           我們沒有為了好看去放寬那個設定——現場本來就是掃 QR，這樣才是真實用法。</p></div>
         </div>
@@ -182,10 +182,10 @@
           <div class="framebar">
             <span class="t">C・成果展示牆（老師這一端・投影用）</span>
             <span class="small">示範版，假資料</span>
-            <a class="btn mobile-open" href="wall-preview.png" data-demo-open="wall" target="_blank" rel="noopener">開啟大圖</a>
+            <a class="btn mobile-open" href="wall-look.html" data-demo-open="wall" target="_blank" rel="noopener">另開展示牆預覽</a>
           </div>
-          <img src="wall-preview.png" alt="成果展示牆的實際畫面：座號磁貼與頂端統計" style="width:100%;display:block;border:0" loading="lazy">
-          <div class="note" style="margin:0"><span class="label">這裡放的是實際畫面截圖，不是可操作的版本</span><p>展示牆要用講師專屬金鑰才打得開——把金鑰放在公開網頁上，等於任何人都能看到全班作品。所以這裡只放畫面，實際操作在 8/19 現場示範。</p></div>
+          <iframe class="look tall" src="wall-look.html" title="成果展示牆外觀預覽" loading="lazy"></iframe>
+          <div class="note" style="margin:0"><span class="label">這裡是外觀預覽，不是現場真資料</span><p>展示牆要用講師專屬金鑰才打得開——把金鑰放在公開網頁上，等於任何人都能看到全班作品。所以這裡只放樣子，實際操作在 8/19 現場示範。</p></div>
         </div>
         <p><strong>你會看到：</strong>座號 × 產品的完成磁貼，頂端「① m/14　② n/14　③ p/14」的大字統計。投在教室螢幕上，誰交了、誰還沒交，一眼就看得完。</p>
 

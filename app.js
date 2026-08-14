@@ -626,7 +626,121 @@
     })(all[i]);
   }
 
+  /* 8. 夜空極光：星空 canvas + 極光帶 + 卡片入場。
+        不改任何 HTML。投影模式／減少動態時關掉。 */
+  function atmosphere(){
+    if (document.getElementById('sky')) return;
+    var reduced = false;
+    try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e){}
+
+    var sky = document.createElement('canvas');
+    sky.id = 'sky';
+    sky.setAttribute('aria-hidden', 'true');
+    var a = document.createElement('div'); a.className = 'aurora a'; a.setAttribute('aria-hidden', 'true');
+    var b = document.createElement('div'); b.className = 'aurora b'; b.setAttribute('aria-hidden', 'true');
+    var c = document.createElement('div'); c.className = 'aurora c'; c.setAttribute('aria-hidden', 'true');
+    var hz = document.createElement('div'); hz.className = 'horizon'; hz.setAttribute('aria-hidden', 'true');
+    var first = document.body.firstChild;
+    document.body.insertBefore(sky, first);
+    document.body.insertBefore(a, first);
+    document.body.insertBefore(b, first);
+    document.body.insertBefore(c, first);
+    document.body.insertBefore(hz, first);
+
+    var ctx = sky.getContext('2d');
+    if (ctx){
+      var W, H, stars = [], raf;
+      var DPR = Math.min(window.devicePixelRatio || 1, 2);
+      function size(){
+        W = window.innerWidth; H = window.innerHeight;
+        sky.width = W * DPR; sky.height = H * DPR;
+        sky.style.width = W + 'px'; sky.style.height = H + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        var N = Math.min(220, Math.floor(W * H / 7000));
+        stars = [];
+        for (var i = 0; i < N; i++){
+          stars.push({
+            x: Math.random() * W,
+            y: Math.random() * H * 0.92,
+            r: Math.random() < 0.86 ? Math.random() * 0.9 + 0.35 : Math.random() * 1.5 + 1.0,
+            p: Math.random() * Math.PI * 2,
+            s: 0.4 + Math.random() * 1.1,
+            b: 0.35 + Math.random() * 0.5,
+            tint: Math.random()
+          });
+        }
+      }
+      function frame(t){
+        if (document.body.classList.contains('proj')){
+          ctx.clearRect(0, 0, W, H);
+          raf = requestAnimationFrame(frame);
+          return;
+        }
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < stars.length; i++){
+          var st = stars[i];
+          var tw = reduced ? 1 : (0.72 + 0.28 * Math.sin(st.p + t * 0.001 * st.s));
+          var alpha = st.b * tw * (1 - Math.max(0, (st.y / H - 0.6)) * 1.4);
+          if (alpha <= 0.02) continue;
+          ctx.globalAlpha = Math.min(alpha, 0.9);
+          ctx.fillStyle = st.tint < 0.12 ? '#cfe8ff' : st.tint < 0.22 ? '#ffe9c8' : '#eef4ff';
+          ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
+          if (st.r > 1.15){
+            ctx.globalAlpha = Math.min(alpha * 0.35, 0.35);
+            ctx.fillRect(st.x - st.r * 3.2, st.y - 0.4, st.r * 6.4, 0.8);
+            ctx.fillRect(st.x - 0.4, st.y - st.r * 3.2, 0.8, st.r * 6.4);
+          }
+        }
+        ctx.globalAlpha = 1;
+        if (!reduced) raf = requestAnimationFrame(frame);
+      }
+      window.addEventListener('resize', function(){
+        cancelAnimationFrame(raf);
+        size();
+        raf = requestAnimationFrame(frame);
+      }, {passive: true});
+      size();
+      raf = requestAnimationFrame(frame);
+      if (reduced) frame(0);
+    }
+
+    var cards = document.querySelectorAll('a.card, .card, .note, .gate');
+    for (var i = 0; i < cards.length; i++){
+      if (!cards[i].querySelector(':scope > .sheen')){
+        var sheen = document.createElement('span');
+        sheen.className = 'sheen';
+        sheen.setAttribute('aria-hidden', 'true');
+        cards[i].appendChild(sheen);
+      }
+    }
+    if (reduced || document.body.classList.contains('proj')){
+      for (var j = 0; j < cards.length; j++) cards[j].classList.add('in');
+      return;
+    }
+    if (!('IntersectionObserver' in window)){
+      for (var k = 0; k < cards.length; k++) cards[k].classList.add('in');
+      return;
+    }
+    var list = [];
+    for (var n = 0; n < cards.length; n++){
+      cards[n].classList.add('enter');
+      list.push(cards[n]);
+    }
+    var io = new IntersectionObserver(function(entries){
+      for (var e = 0; e < entries.length; e++){
+        if (!entries[e].isIntersecting) continue;
+        var el = entries[e].target;
+        var idx = list.indexOf(el);
+        (function(target, delay){
+          setTimeout(function(){ target.classList.add('in'); }, Math.min(delay, 420));
+        })(el, Math.max(idx, 0) * 70);
+        io.unobserve(el);
+      }
+    }, {threshold: 0.08});
+    for (var m = 0; m < list.length; m++) io.observe(list[m]);
+  }
+
   ready(function(){
-    markNav(); mediaViewers(); tabs(); projection(); copyButtons(); checklists(); framePlaceholders();
+    markNav(); mediaViewers(); tabs(); projection(); copyButtons(); checklists(); framePlaceholders(); atmosphere();
   });
 })();
