@@ -82,6 +82,14 @@
       現場有做好的範例檔可以直接用，也有人可以幫你看。最怕的是因為裝不起來就不來——那才真的什麼都帶不走。
     </div>
 
+    <div class="note info">
+      <b>只帶得出平板（iPad／Android）的老師也請照樣來。</b>
+      兩個桌面工具都裝不了平板（只出 Windows／Mac 版），但你仍然跟得完：
+      上半場看示範、用瀏覽器開 <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">chatgpt.com</a> 網頁版跟著貼提示詞，或與帶筆電的老師併桌共機；
+      下半場的社團管理系統是網頁，平板直接開得動（請用一般視窗，<b>不要用無痕</b>——資料存在瀏覽器裡，無痕視窗關掉就整批清光）。
+      行前請回信說一聲，現場會幫你安排。
+    </div>
+
     <div class="stop">
       <b>只有一件事現在就要記住：請用你的個人 Gmail，不要用學校配的帳號。</b>
       學校的 Google 帳號常常登不進 Antigravity，這是官方說明寫的，不是我們設定錯。
@@ -100,7 +108,7 @@
           裝 Antigravity 2.0 桌面版，用個人 Gmail 登入<br>
           <a class="btn primary" href="https://antigravity.google/download">開啟 Antigravity 下載頁</a>
         </li>
-        <li>打開 ChatGPT 桌面版，切到 Codex，<b>開一個新對話，先不要開專案</b>。貼下面第一張卡。它會在「文件」建立 <span class="en">club2026</span>。看它印出的路徑，再開<b>新專案</b>選這個資料夾，再用下面「你是誰」那張卡。</li>
+        <li>打開 ChatGPT 桌面版，切到 Codex，<b>開一個新對話，先不要開專案</b>。貼下面第一張卡。它會先檢查「文件」有沒有被雲端同步，再建立 <span class="en">club2026</span> 並印出實際位置。看它印出的路徑，再開<b>新專案</b>選這個資料夾，再用下面「你是誰」那張卡。</li>
       </ol>
       <div class="prompt">
         <header><span class="step">新對話貼給 Codex（先不用開專案）</span><button class="copy" type="button">複製</button></header>
@@ -110,14 +118,17 @@
 要管理員密碼或要我去瀏覽器登入時，再一步一步告訴我。
 
 請先檢查，結果照實寫，版本號不要自己編：
-- 「文件」裡有沒有名叫 club2026 的資料夾？
+- 「文件」資料夾有沒有被 OneDrive 或 iCloud 同步？（Windows 看路徑有沒有 OneDrive；Mac 看「桌面與文件」的 iCloud 同步有沒有開）
+- 這台電腦有沒有名叫 club2026 的資料夾？
 - 請跑 agy --version
 - 請跑 git --version
 - 請跑 gh auth status
 
 接著只補沒有的：
-1. 請在「文件」建立 club2026。已經有同名資料夾就用現成的，不要覆蓋裡面的東西。
-   不要放在 OneDrive、iCloud、Google 雲端硬碟或 Dropbox。
+1. 建立 club2026。「文件」沒被同步就建在「文件」；有被同步就改建在使用者資料夾底下
+   （例如 C:\Users\我的名字\club2026 或 ~/club2026），並明講你建在哪裡。
+   已經有同名資料夾就用現成的，不要覆蓋裡面的東西。
+   總之不能放在 OneDrive、iCloud、Google 雲端硬碟或 Dropbox 會同步到的位置。
    若 club2026 裡還沒有 index.html，教材只從 https://github.com/cwstedctw/sci-club-toolkit 下載或 clone。
    已經有 index.html 就不要重抓。
 2. 沒有 outputs、specs，就建空資料夾。
@@ -143,10 +154,10 @@
         </dl>
       </div>
       <div class="prompt">
-        <header><span class="step">打開 agy，同一個 club2026</span><button class="copy" type="button">複製</button></header>
-        <pre>你是誰？</pre>
+        <header><span class="step">接著在同一個 Codex 對話裡，請它代問 agy</span><button class="copy" type="button">複製</button></header>
+        <pre>請你呼叫 agy，問它一句「你是誰」，把它的回答原封不動貼給我。</pre>
         <dl>
-          <dt>它該說</dt><dd>我是秀姑巒。</dd>
+          <dt>agy 該說</dt><dd>我是秀姑巒。（agy 是指令列工具，不用自己開終端機——整堂課都是 Codex 幫你叫它。）</dd>
         </dl>
       </div>
     </section>
@@ -182,9 +193,11 @@
       <h3><span class="no">03</span> ChatGPT 桌面版 → 開啟 Codex</h3>
       <p class="why">8/19 上半場你主要跟它講話：它先想規格，再自己呼叫 <span class="en">agy</span> 做檔案，最後再讀成品挑錯。</p>
       <ol>
-        <li>到 <a href="https://chatgpt.com/download" target="_blank" rel="noopener noreferrer">chatgpt.com/download</a> 下載安裝</li>
+        <li>到 <a href="https://chatgpt.com/download" target="_blank" rel="noopener noreferrer">chatgpt.com/download</a> 下載安裝<br>
+          <span class="muted" style="font-size:.92rem">Mac 下載到的是 <span class="en">.dmg</span>：打開後把圖示<b>拖進「應用程式（Applications）」</b>，之後從應用程式資料夾開啟——不要直接在掛載視窗裡用，重開機會「找不到 app」。第一次開啟若跳出「這是從網際網路下載的 App」詢問，按「打開」即可。</span></li>
         <li>打開後要登入帳號。可以用 Google 帳號（建議同一組個人 Gmail），或用 01 已經註冊好的 ChatGPT 帳號</li>
-        <li>打開 ChatGPT 桌面版後，選擇 <b>Codex</b>，再開始一個新任務。不同版本的位置可能會調整；請找「Codex」名稱，不要只靠這張截圖認位置。</li>
+        <li>打開 ChatGPT 桌面版後，用<b>左上角選單</b>選擇 <b>Codex</b>，再開始一個新任務。不同版本的位置可能會調整；請找「Codex」名稱，不要只靠這張截圖認位置。<br>
+          <span class="muted" style="font-size:.92rem">切換不太明顯，很多人切了沒感覺——<b>看左上角有沒有顯示 Codex</b> 才算切到。</span></li>
       </ol>
       <div class="warn">
         <b>這堂課使用 ChatGPT 桌面版裡的 Codex。</b>
@@ -212,7 +225,8 @@
       <p class="why">下半場你直接在這個桌面版裡做完。上半場真正動手的是下一節的 <span class="en">agy</span> 指令列，由 Codex 去叫它。</p>
       <ol>
         <li><b>只從 <a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer">antigravity.google/download</a> 下載</b></li>
-        <li>頁面上有好幾樣東西，這一節請先裝 <b>Antigravity 2.0（桌面版）</b>。<br><span class="muted" style="font-size:.92rem">同一頁往下捲還有 CLI，下一節再用 Codex 幫你裝。這裡不要先選 CLI。</span></li>
+        <li>頁面上有好幾樣東西，這一節請先裝 <b>Antigravity 2.0（桌面版）</b>。<br><span class="muted" style="font-size:.92rem">同一頁往下捲還有 CLI，下一節再用 Codex 幫你裝。這裡不要先選 CLI。</span><br>
+          <span class="muted" style="font-size:.92rem">Mac 同樣是 <span class="en">.dmg</span>：拖進「應用程式」再開啟；第一次開啟的「從網際網路下載」詢問按「打開」。</span></li>
         <li>用 02 的個人 Gmail 登入</li>
       </ol>
       <div class="stop">
@@ -220,7 +234,7 @@
       </div>
       <table class="kv">
         <tr><th>Windows</th><td>10 以上、64 位元</td></tr>
-        <tr><th>Mac</th><td>macOS 12 以上。官方下載頁目前同時列出 Apple Silicon 與 Intel 按鈕，但需求文字又寫「X86 不支援」，兩段資訊彼此矛盾。<b>Intel Mac 請在行前實際安裝並通過開課前檢查；無法通過就改帶 Windows 或 Apple Silicon 筆電。</b></td></tr>
+        <tr><th>Mac</th><td>macOS 12 以上。⚠️ <b>Intel（非 Apple Silicon）的 Mac 要特別小心</b>：官方需求文字寫「X86 不支援」，但下載管道仍抓得到 Intel 安裝檔（2026-08-15 查核），而且過往的災情都是「裝得起來、<b>登入後才掛</b>」。所以 Intel Mac 的行前驗收標準是三關全過：<b>裝好＋登入成功＋實際跑通一句小指令</b>，缺一關都不算。過不了就改帶 Windows 或 Apple Silicon 筆電；<b>兩台都借不到也請照樣來</b>，現場可與別的老師併桌共機，或直接用講師備好的範例檔。</td></tr>
       </table>
       <div class="warn">
         <b>裝好之後先別玩。</b>免費方案的額度按週刷新，額度與可用模型會依帳號狀況變動。
@@ -261,7 +275,7 @@
         重開後再貼一句：「請跑 agy --version，把完整輸出給我。」
       </div>
       <div class="pick"><b>怎麼算裝好</b>：Codex 跑 <span class="en">agy --version</span> 後，回你一串真實的版本號，不是「我找不到這個指令」。</div>
-      <p class="small">這一項跟前面的 GitHub CLI 不是同一個東西。GitHub CLI 的指令是 <span class="en">gh</span>；這裡要的是 <span class="en">agy</span>。</p>
+      <p class="small">這一項跟後面 07 會裝的 GitHub CLI 不是同一個東西。那個的指令是 <span class="en">gh</span>；這裡要的是 <span class="en">agy</span>。</p>
       <div class="note info">
         <b>為什麼 Codex 叫得動 agy 之後，對方知道要做什麼？</b>
         因為它們讀的是同一個資料夾裡的規格與記憶檔。這套教法的完整版在《<a href="https://cwstedctw.github.io/ndhu-ai-courses/courses/ai-team.html" target="_blank" rel="noopener noreferrer">打造你的 AI 雙人小隊</a>》（教材包 <a href="https://github.com/cwstedctw/ai-agent-team-course" target="_blank" rel="noopener noreferrer">ai-agent-team-course</a>）。8/19 上半場就是：你只跟 Codex 講，它去叫 agy。
@@ -277,7 +291,8 @@
       </p>
 
       <p><b>設定在哪裡</b>：視窗<b>左下角</b>的 <span class="en">Settings</span>（齒輪圖示），
-      或直接按 <span class="en">Ctrl + ,</span>（逗號）。</p>
+      或直接按快速鍵——Windows 是 <span class="en">Ctrl + ,</span>、Mac 是 <span class="en">Command + ,</span>（都是逗號）。
+      Mac 也可以從螢幕最上面的選單列點 app 名稱找 <span class="en">Settings</span>。</p>
       <figure style="margin:.8rem 0">
         <img src="img/ag-main.png" alt="Antigravity 主畫面，左下角是 Settings" style="width:100%;max-width:620px;border:1px solid var(--line);border-radius:12px" loading="lazy">
         <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">主畫面。左下角那個齒輪 <span class="en">Settings</span> 就是入口。</figcaption>
@@ -286,12 +301,13 @@
       <p>點進去之後選左邊的 <span class="en">General</span>，往下找 <span class="en">Agent Settings</span>：</p>
       <figure style="margin:.8rem 0">
         <img src="img/ag-settings.png" alt="Antigravity 設定的 General 頁面" style="width:100%;border:1px solid var(--line);border-radius:12px" loading="lazy">
+        <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">⚠️ 截圖裡的選值是<b>示範機當時的狀態，不是建議值</b>。你要選什麼，一律以下面兩張表為準。</figcaption>
       </figure>
 
       <h4 style="margin:1.2rem 0 .4rem">要改的第一個：<span class="en">Security Preset</span>（安全等級）</h4>
       <figure style="margin:.6rem 0">
         <img src="img/ag-security-preset.png" alt="Security Preset 的四個選項展開" style="width:100%;border:1px solid var(--line);border-radius:12px" loading="lazy">
-        <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">點右邊那個下拉，會看到四個選項。</figcaption>
+        <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">點右邊那個下拉，會看到四個選項。⚠️ 截圖裡停在 <span class="en">Turbo Mode</span>／<span class="en">Full Machine</span> 只是示範機的狀態——那正是下表叫你<b>不要選</b>的；請照表選 <span class="en">Default</span>。</figcaption>
       </figure>
       <table class="kv">
         <tr><th><span class="en">Default</span><br><b style="color:var(--accent)">🌟 初學者建議保留</b></th>
@@ -310,6 +326,7 @@
       <h4 style="margin:1.2rem 0 .4rem">要改的第二個：<span class="en">Artifact Review Policy</span>（產出審核）</h4>
       <figure style="margin:.6rem 0">
         <img src="img/ag-artifact-review.png" alt="Artifact Review Policy 的兩個選項" style="width:100%;border:1px solid var(--line);border-radius:12px" loading="lazy">
+        <figcaption class="muted" style="font-size:.9rem;margin-top:.3rem">⚠️ 截圖裡停在 <span class="en">Always Proceed</span> 只是示範機的狀態，不是建議值；請照下表選 <span class="en">Always Ask</span>。</figcaption>
       </figure>
       <table class="kv">
         <tr><th><span class="en">Always Ask</span><br><b style="color:var(--accent)">🌟 建議選這個</b></th>
@@ -363,7 +380,7 @@
             <td>到 <a href="https://git-scm.com" target="_blank" rel="noopener noreferrer">git-scm.com</a> 下載，安裝時<b>一路按 Next 就好</b>，那些選項不用看懂。<br>
                 如果出現管理員權限提示，請在自己的筆電確認後再允許；學校配發且被鎖定的電腦，請找資訊組協助。</td></tr>
         <tr><th>Mac</th>
-            <td>多半已經內建。沒有的話，第一次用到時系統會自己跳出安裝提示，按同意就好。</td></tr>
+            <td>沒裝過開發工具的 Mac 其實<b>沒有</b> git。第一次用到時（包含 Codex 幫你跑 <span class="en">git --version</span> 的時候）系統會跳出「安裝命令列開發者工具」的視窗——那個視窗跟 Codex 是同一件事，按「安裝」後要下載一段時間（校園網路可能十幾分鐘），裝完再請 Codex 重跑一次。</td></tr>
       </table>
       <div class="warn">
         學校筆電若鎖了安裝權限，會後要留版本時再找資訊組，或改用自己的筆電。不要因為這兩樣裝不起來就不來。
@@ -380,7 +397,8 @@
         剛才那個 Git 負責記版本與傳送檔案；要讓 AI 登入 GitHub、建立 repo，再把整套流程接起來，還需要這個工具。
       </p>
       <ol>
-        <li>到 <a href="https://cli.github.com" target="_blank" rel="noopener noreferrer">cli.github.com</a> 下載安裝（Windows 一路 Next）</li>
+        <li>到 <a href="https://cli.github.com" target="_blank" rel="noopener noreferrer">cli.github.com</a> 下載安裝（Windows 一路 Next）<br>
+          <span class="muted" style="font-size:.92rem">Mac 的官網首頁給的是指令安裝法；沒用過終端機的老師<b>這一項先跳過</b>（06、07 本來就是會後選配，不影響 8/19 早上），或把「幫我從 GitHub CLI 官方 releases 頁抓 macOS 的 .pkg 安裝檔來裝」這句交給 Codex。</span></li>
         <li>裝完<b>要登入一次</b>：在 Codex 裡貼下面這句</li>
       </ol>
       <div class="prompt">
@@ -426,7 +444,8 @@
       <h3><span class="no">08</span> 教材包與一個資料夾</h3>
       <p class="why">上半場只要 Codex 開這個資料夾，它才叫得動 <span class="en">agy</span>、也才找得到教材。下半場再另外用 Antigravity 桌面版開同一個位置。AI 代理就是能讀取整個專案資料夾、依步驟做事並回報結果的 AI，不只是回答一則聊天訊息。</p>
       <ol>
-        <li>教材有兩個來源，用一個就好：<b>網站</b> <a href="https://github.com/cwstedctw/sci-club-toolkit">github.com/cwstedctw/sci-club-toolkit</a> → 綠色 Code → Download ZIP；或<b>行前信／主辦發的教材包</b>（官方原件在 OneDrive 活動夾的「官方文件」，不放進這個公開網站）。你已經在解壓後的教材裡看到這一頁，就略過下載。</li>
+        <li>教材有兩個來源，用一個就好：<b>網站</b> <a href="https://github.com/cwstedctw/sci-club-toolkit">github.com/cwstedctw/sci-club-toolkit</a> → 綠色 Code → Download ZIP；或<b>行前信／主辦發的教材包</b>（官方原件在 OneDrive 活動夾的「官方文件」，不放進這個公開網站）。你已經在解壓後的教材裡看到這一頁，就略過下載。<br>
+          <span class="muted" style="font-size:.92rem">ZIP 裡看到「工單-」開頭的檔案、「協作指南-給豐兆.md」與 <span class="en">part2-豐兆/</span>，那些是<b>教材製作紀錄</b>——當作幕後花絮看可以，跟你要做的三樣東西無關，整批刪掉也完全不影響課程。</span></li>
         <li><b>先解壓縮，不要直接在 ZIP 裡操作。</b>Windows 用右鍵「解壓縮全部」；Mac 雙擊 ZIP，Finder 會建立解壓縮後的資料夾。</li>
         <li>在本機建立一個英文資料夾，例如 <span class="en">club2026</span>。Windows 用檔案總管；Mac 用 Finder。若位置會自動同步到 OneDrive、iCloud Drive、Google 雲端硬碟或 Dropbox，請換到不會自動同步的位置。</li>
         <li>把解壓縮後的教材內容複製進 <span class="en">club2026</span>。Windows 用 <span class="en">Ctrl+A／Ctrl+C／Ctrl+V</span>；Mac 用 <span class="en">Command+A／Command+C／Command+V</span>。完成後，<span class="en">index.html</span>、<span class="en">style.css</span>、<span class="en">app.js</span> 應直接出現在 <span class="en">club2026</span>，不必再點進第二層。</li>
