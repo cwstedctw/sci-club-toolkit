@@ -136,10 +136,10 @@
             <header><span class="step">① 釐清規格：貼給 Antigravity</span><button class="copy" type="button">複製</button></header>
             <pre>我要做一個社團的名單與出席紀錄工具。請分清楚已確認規則與待確認項目：
 ・先讀 sources/01-official-result-template.*，找到附件一「學生名單」與附件二「學生出席表／教室日誌」；逐欄列出原始欄位。同一固定開頭有兩份或找不到就停下來，不要自編欄位
-・已確認：材料費份數 ＝ 當次出席學生數 ＋ 授課教師 2 人
+・已確認：材料費份數 ＝ 當次出席學生數 ＋ 實際到場的授課教師人數（沒填就先當 2 位）
 ・已確認：請購單要分成 2026 年 9–12 月 與 2027 年 1–6 月 兩段
-・待確認：成果報告要填整個學期的整體出席率，但現有官方原件沒有定義分母
-・工具暫用「出席人次 ÷（名單人數 × 已點名堂次）」；畫面要標示「送件前請向基金會確認算法」
+・已確認：整體出席率的分母是總報名人數（名單上所有人），請假也算進分母。
+　範本上沒有印公式，這是基金會窗口 2026-08-14 定的口徑，畫面上要把分子分母寫出來
 
 這一階段只用虛構資料討論。不要請我貼真實學生姓名、學號、出席或聯絡資料。
 
@@ -151,7 +151,7 @@
             <dl>
               <dt>要什麼</dt><dd>欄位、畫面與兩個算式的規格</dd>
               <dt>AI 大概會回什麼</dt><dd>名單欄位表、點名畫面、出席率與份數的算式</dd>
-              <dt>你要檢查什麼</dt><dd>份數算式有沒有含「＋2 位老師」；出席率有沒有把暫用公式與待確認提醒寫清楚；有沒有把上下學期分開</dd>
+              <dt>你要檢查什麼</dt><dd>份數算式有沒有把實際到場的老師加進去；出席率的分母是不是總報名人數、請假有沒有算進去；有沒有把上下學期分開</dd>
             </dl>
           </div>
           <div class="prompt">
@@ -165,14 +165,14 @@
 2. 新增上課日期、逐次點名，並能更正選錯的出席紀錄
 3. 依剛才讀到的官方欄位，匯出附件一與附件二；缺欄位就標「待確認」，不要自編
 4. 分開統計 2026 年 9–12 月與 2027 年 1–6 月
-5. 顯示每次出席學生數、材料費份數（出席學生數＋2）及暫用出席率
+5. 顯示每次出席學生數、材料費份數（出席學生數＋實際到場的授課教師人數）及出席率
 6. 匯出 JSON 備份，並能從 JSON 還原。還原前先檢查格式、顯示摘要與筆數，
    等使用者再次確認才覆蓋瀏覽器現有資料；格式錯誤時不得清除原資料
 7. 提醒使用者：瀏覽器 localStorage 不會跟著 GitHub 到另一台電腦；
    更新工具或換電腦前要先匯出備份，備份含個資，不准交給 AI 或上傳 GitHub
 8. 另有「匯出去識別化接力摘要」按鈕，固定下載 attendance-summary.json，提醒我把它存到
    outputs/attendance-summary.json。內容只能有：產生時間、日期範圍、名單人數、已點名堂次、
-   出席人次、分母、暫用公式、暫用百分比、公式狀態、附件一／二完成狀態，並明寫
+   出席人次、分母、公式、百分比、附件一／二完成狀態，並明寫
    contains_personal_data: false；不得含姓名、座號、逐次個人出席或聯絡資料。
    若 outputs/attendance-summary.json 已存在，先提醒我另外備份，不得靜默覆蓋。
 
@@ -195,7 +195,7 @@
 6. 新增、編輯、更正出席與刪除確認是否都能用
 7. 附件一、附件二的匯出欄位是否真的來自官方範本，而不是自行猜測
 8. JSON 還原遇到空檔、錯誤格式或缺欄位時，是否保留原資料並清楚報錯
-9. outputs/attendance-summary.json 是否包含分子、分母、暫用公式、日期範圍與附件狀態
+9. outputs/attendance-summary.json 是否包含分子、分母、公式、日期範圍與附件狀態
 10. 去識別化摘要是否完全沒有姓名、座號、逐次個人出席與聯絡資料
 最後再告訴我：還有什麼是我沒想到、但應該要檢查的？
 列完後先等我確認，不要直接改檔。</pre>
@@ -229,7 +229,7 @@
         <div class="body">
           <ul>
             <li><strong>份數忘了加實際到場的授課教師</strong>：最常見的一個錯。AI 幾乎都只算學生。</li>
-            <li><strong>把出席率公式寫成「官方規定」</strong>：成果報告範本要填整體出席率，但現有原件沒有定義分母。本站暫用「出席人次 ÷（名單人數 × 已點名堂次）」；送件前仍要向基金會窗口確認。</li>
+            <li><strong>以為出席率的公式印在範本上</strong>：成果報告範本要填整體出席率，範本本身沒有印公式。<strong>基金會窗口（游豐兆）2026-08-14 定案</strong>：分子是出席人次，<strong>分母是總報名人數</strong>（名單上所有人），<strong>請假照樣算進分母</strong>。已知限制：學期中才入社的學生一加進名單，他入社前那幾週的累計出席率會跟著往下掉——那是口徑造成的，不是工具算錯。</li>
             <li><strong>上下學期沒分開</strong>：到期末核銷才發現一張請購單跨了兩個期間，得整張重做。</li>
             <li><strong>資料關掉就不見了</strong>：要明確跟 AI 說「資料存在瀏覽器裡，關掉再開還要在」，然後自己關一次試試。</li>
             <li><strong>以為瀏覽器資料會跟著 GitHub 換電腦</strong>：不會。換電腦、移動檔案或更新工具前，先在原電腦匯出 JSON 備份；備份含真實名單時，只能放在學校核准的安全位置。</li>
@@ -247,12 +247,12 @@
             <li><label><input type="checkbox"><span>名單欄位跟官方附件一一樣</span></label></li>
             <li><label><input type="checkbox"><span>附件二匯出欄位已逐欄和官方範本核對</span></label></li>
             <li><label><input type="checkbox"><span>點名 12 位學生時，材料費份數顯示 14 份</span></label></li>
-            <li><label><input type="checkbox"><span>出席率公式清楚寫出分子與分母，並標示送件前要向基金會確認</span></label></li>
+            <li><label><input type="checkbox"><span>出席率的分母是總報名人數，請假也算在分母裡</span></label></li>
             <li><label><input type="checkbox"><span>2026 年 9–12 月 與 2027 年 1–6 月 分開統計</span></label></li>
             <li><label><input type="checkbox"><span>關掉瀏覽器再打開，資料還在</span></label></li>
             <li><label><input type="checkbox"><span>能新增、編輯、更正出席；刪除前會再次確認</span></label></li>
             <li><label><input type="checkbox"><span>JSON 備份能匯出；錯誤備份不會清掉原資料；正確備份能還原</span></label></li>
-            <li><label><input type="checkbox"><span>outputs/attendance-summary.json 有日期範圍、分子、分母、暫用公式、百分比與附件狀態</span></label></li>
+            <li><label><input type="checkbox"><span>outputs/attendance-summary.json 有日期範圍、分子、分母、公式、百分比與附件狀態</span></label></li>
             <li><label><input type="checkbox"><span>去識別化摘要沒有姓名、座號、逐次個人出席或聯絡資料</span></label></li>
             <li><label><input type="checkbox"><span>specs/step2.md 已保存來源、已確認、待確認與驗收案例</span></label></li>
             <li><label><input type="checkbox"><span>每一顆按鈕都按過一次，都有反應</span></label></li>
