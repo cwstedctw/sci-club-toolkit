@@ -297,6 +297,9 @@ details.block.ok{box-shadow:inset 3px 0 0 var(--ok)}
 .demo-stage .cap{margin:.6rem 0 0;font-size:.9rem;color:var(--fg2)}
 .demo-stage .why{margin-top:.5rem;font-size:.92rem;color:var(--fg2)}
 @media (max-width:860px){.demo-stage{grid-template-columns:minmax(0,1fr)}}
+.openshot{padding:1.2rem;background:rgba(5,8,20,.45)}
+.openshot .shot{width:100%;display:block;border:1px solid var(--line);border-radius:12px}
+.openshot .cap{margin:.6rem 0 0;font-size:.9rem;color:var(--fg2)}
 .copy-manual{display:block;width:100%;min-height:10rem;margin:.75rem 0 0;padding:.8rem;
   border:2px solid var(--warn);border-radius:8px;background:#fff;color:#111;
   font:inherit;font-size:var(--fs-s);line-height:1.5;resize:vertical}
