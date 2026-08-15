@@ -182,6 +182,7 @@
         <b>不要用學校配的 Google 帳號</b>（那種 @xxx.edu.tw 的）。
         官方說明寫得很清楚：機構帳號常常登不進去。沒有個人 Gmail 就先申請一個，免費、三分鐘。
       </div>
+      <p class="small">這條限制是 <b>Antigravity 專屬</b>——ChatGPT 用學校的 Google 帳號登得進（8/15 實測）。怕弄混就兩邊都用同一組個人 Gmail，最單純。</p>
       <ul>
         <li>年齡要滿 18 歲並通過驗證，這是 Google 的規定</li>
       </ul>
@@ -194,7 +195,7 @@
       <p class="why">8/19 上半場你主要跟它講話：它先想規格，再自己呼叫 <span class="en">agy</span> 做檔案，最後再讀成品挑錯。</p>
       <ol>
         <li>到 <a href="https://chatgpt.com/download" target="_blank" rel="noopener noreferrer">chatgpt.com/download</a> 下載安裝<br>
-          <span class="muted" style="font-size:.92rem">Mac 下載到的是 <span class="en">.dmg</span>：打開後把圖示<b>拖進「應用程式（Applications）」</b>，之後從應用程式資料夾開啟——不要直接在掛載視窗裡用，重開機會「找不到 app」。第一次開啟若跳出「這是從網際網路下載的 App」詢問，按「打開」即可。</span></li>
+          <span class="muted" style="font-size:.92rem">Mac 需求 macOS 14 以上，<b>Apple Silicon 與 Intel 都支援</b>（2026-08-15 在 Intel Mac 實測可裝可跑）；介面與 Windows 相同。下載到的是 <span class="en">.dmg</span>：打開後把圖示<b>拖進「應用程式（Applications）」</b>，之後從應用程式資料夾開啟——不要直接在掛載視窗裡用，重開機會「找不到 app」。<b>正版檔第一次開什麼都不會跳</b>（新版 macOS 對官方公證的 app 直接放行；舊一點的 macOS 可能問「確定要打開嗎？」，按「打開」）。若跳出「<b>無法驗證開發者</b>」，多半是抓到非官方檔——停手，回官方下載頁重抓。</span></li>
         <li>打開後要登入帳號。可以用 Google 帳號（建議同一組個人 Gmail），或用 01 已經註冊好的 ChatGPT 帳號</li>
         <li>打開 ChatGPT 桌面版後，用<b>左上角選單</b>選擇 <b>Codex</b>，再開始一個新任務。不同版本的位置可能會調整；請找「Codex」名稱，不要只靠這張截圖認位置。<br>
           <span class="muted" style="font-size:.92rem">切換不太明顯，很多人切了沒感覺——<b>看左上角有沒有顯示 Codex</b> 才算切到。</span></li>
@@ -226,7 +227,7 @@
       <ol>
         <li><b>只從 <a href="https://antigravity.google/download" target="_blank" rel="noopener noreferrer">antigravity.google/download</a> 下載</b></li>
         <li>頁面上有好幾樣東西，這一節請先裝 <b>Antigravity 2.0（桌面版）</b>。<br><span class="muted" style="font-size:.92rem">同一頁往下捲還有 CLI，下一節再用 Codex 幫你裝。這裡不要先選 CLI。</span><br>
-          <span class="muted" style="font-size:.92rem">Mac 同樣是 <span class="en">.dmg</span>：拖進「應用程式」再開啟；第一次開啟的「從網際網路下載」詢問按「打開」。</span></li>
+          <span class="muted" style="font-size:.92rem">Mac 同樣是 <span class="en">.dmg</span>：拖進「應用程式」再開啟。首開規則同 03：正版不會跳警告；跳「無法驗證開發者」＝抓錯檔，停手重抓。</span></li>
         <li>用 02 的個人 Gmail 登入</li>
       </ol>
       <div class="stop">
@@ -234,7 +235,7 @@
       </div>
       <table class="kv">
         <tr><th>Windows</th><td>10 以上、64 位元</td></tr>
-        <tr><th>Mac</th><td>macOS 12 以上。⚠️ <b>Intel（非 Apple Silicon）的 Mac 要特別小心</b>：官方需求文字寫「X86 不支援」，但下載管道仍抓得到 Intel 安裝檔（2026-08-15 查核），而且過往的災情都是「裝得起來、<b>登入後才掛</b>」。所以 Intel Mac 的行前驗收標準是三關全過：<b>裝好＋登入成功＋實際跑通一句小指令</b>，缺一關都不算。過不了就改帶 Windows 或 Apple Silicon 筆電；<b>兩台都借不到也請照樣來</b>，現場可與別的老師併桌共機，或直接用講師備好的範例檔。</td></tr>
+        <tr><th>Mac</th><td>macOS 12 以上。<b>Intel（非 Apple Silicon）的 Mac：2026-08-15 已在 Intel MacBook Pro 實機驗過</b>——下載頁有「Download for Intel」按鈕（抓到的是 x86_64 原生檔），裝得起來、登得進、跑得動。⚠️ 但官方需求文字同時寫「X86 不支援」，前後矛盾，<b>不保證一直支援</b>；本教材以實測為準。<b>裝好第一件事：檢查更新到最新版</b>——舊版對中文內容曾在編輯步驟卡死，新版的更新說明已修這題。真的跑不動就與別的老師併桌共機，或用講師備好的範例檔，<b>一樣請來</b>。</td></tr>
       </table>
       <div class="warn">
         <b>裝好之後先別玩。</b>免費方案的額度按週刷新，額度與可用模型會依帳號狀況變動。
